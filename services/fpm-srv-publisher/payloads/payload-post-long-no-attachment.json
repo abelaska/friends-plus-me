@@ -1,0 +1,61 @@
+{
+  "account": {
+    "_id": "1",
+    "id": 103778702993142591484,
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"FQANpG6Nh5eMlprq7MOlc0Q7JxA/Qeou1XvzBmFHecXKcCjKx0P2Du4\"",
+    "title": "\"Věci\" se hýbou...",
+    "published": "2012-08-10T10:59:12.000Z",
+    "updated": "2012-08-10T10:59:12.488Z",
+    "id": "z13kedb43tefytzuo22nv5giqoq0fvhgn04",
+    "url": "https://plus.google.com/103778702993142591484/posts/FDbViK1U2RM",
+    "actor": {
+      "id": "103778702993142591484",
+      "displayName": "Alois Bělaška",
+      "name": {
+        "familyName": "Bělaška",
+        "givenName": "Alois"
+      },
+      "url": "https://plus.google.com/103778702993142591484",
+      "image": {
+        "url": "https://lh6.googleusercontent.com/-TBgNki-dgJs/AAAAAAAAAAI/AAAAAAAAAAA/mXv7j83sQC8/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 ",
+      "originalContent": "",
+      "url": "https://plus.google.com/103778702993142591484/posts/FDbViK1U2RM",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13kedb43tefytzuo22nv5giqoq0fvhgn04/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13kedb43tefytzuo22nv5giqoq0fvhgn04/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13kedb43tefytzuo22nv5giqoq0fvhgn04/people/resharers"
+      }
+    },
+    "crosspostSource": "oz:103778702993142591484.1391018849a.0",
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

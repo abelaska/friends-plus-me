@@ -1,0 +1,24 @@
+[db]
+  url = "mongodb://localhost/fpm"
+
+[redis]
+  auth_pass = ""
+  host = "localhost"
+  port = 6379
+
+[auth0]
+  clientId = "XXX"
+  clientSecret = "XXX-XXX"
+
+[oauth.tokens.store.crypto]
+  key = "XXX"
+  iv = "XXX"
+
+[session]
+  secret = "XXX"
+
+[fpm.app]
+  redirectUrl = "https://localhost:9000/signin"
+
+[sendy]
+  enabled = false

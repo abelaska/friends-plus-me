@@ -1,0 +1,30 @@
+<md-dialog aria-label="Pick Date And Time">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Pick Date And Time</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="/images/icons/close.svg" aria-label="Close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content layout="column" layout-align="center center">
+    	<div class="text-center" style="width: 100%;padding: 0 10px;">
+  		  <datetimepicker style="width: auto !important;border: 0" data-ng-model="time"
+      		data-datetimepicker-config="{ startView:'day', minView:'minute', minuteStep:5 }"
+      		data-before-render="beforeRender($view, $dates, $leftDate, $upDate, $rightDate)"
+      		data-on-set-time="onTimeSet(newDate, oldDate)" />
+    	</div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="column" layout-align="center center" style="padding-right: 10px;padding-left: 10px;">
+      <p flex style="margin: 0 10px">{{tzName}}</p>
+      <md-button class="md-raised md-primary" ng-click="confirm()" ng-disabled="!selectedTime" md-autofocus style="margin: 10px 0;{{selectedTime?'line-height: 26px;':''}}">
+        <span style="font-weight: bold">Schedule Post</span>
+  			<div ng-if="selectedTime">{{selectedLocalTime.format('LLL')}}</div>
+  		</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

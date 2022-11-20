@@ -1,0 +1,109 @@
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { OAuthApp, User } = require('@fpm/db');
+const {
+  testingDeps,
+  testingBeforeAll,
+  testingAfterAll,
+  testFunc,
+  nockHydraCreateApplication,
+  nockHydraUpdateApplication
+} = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should update application info', async () => {
+  const { cryptor } = testingDeps();
+  const user = await User.create({ auth0Id: nanoid(32), actorId: nanoid(32), state: States.user.enabled.code });
+
+  const client = {
+    name: nanoid(32),
+    description: 'app description',
+    url: 'https://domain.com',
+    callbacks: ['https://domain.com/callback'],
+    company: {
+      name: nanoid(32),
+      url: 'https://companydomain.com'
+    }
+  };
+
+  const { token } = nockHydraCreateApplication({
+    client,
+    active: true,
+    scope: 'apps',
+    userId: user._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'apps.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token },
+      body: client
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  const { body } = reply;
+  expect(body).toBeTruthy();
+  expect(body.ok).toBe(true);
+
+  const { app } = body;
+  expect(app).toBeTruthy();
+  expect(app.app_id).toBeTruthy();
+
+  const { token: updateToken } = nockHydraUpdateApplication({
+    client,
+    active: true,
+    scope: 'apps',
+    clientId: app.client_id,
+    clientSecret: app.client_secret,
+    userId: user._id.toString()
+  });
+
+  const client2 = {
+    name: nanoid(32),
+    description: 'app description 2',
+    url: 'https://domain2.com',
+    callbacks: ['https://domain.com/callback', 'https://domain2.com/callback'],
+    company: {
+      name: nanoid(32),
+      url: 'https://companydomain2.com'
+    }
+  };
+
+  const updateReply = await testFunc({
+    name: 'apps.update',
+    req: {
+      method: 'POST',
+      qs: { access_token: updateToken, app: app.app_id },
+      body: client2
+    }
+  });
+
+  expect(updateReply).toBeTruthy();
+  expect(updateReply.body).toBeTruthy();
+  expect(updateReply.body.ok).toBe(true);
+  expect(updateReply.body.app).toBeTruthy();
+
+  const dbOAuthApp = await OAuthApp.findById(app.app_id).exec();
+  expect(dbOAuthApp).toBeTruthy();
+  expect(dbOAuthApp.clientId).toBe(app.client_id);
+  expect(dbOAuthApp.clientSecret).toBe(cryptor.encrypt(app.client_secret));
+  expect(dbOAuthApp.name).toBe(client2.name);
+  expect(dbOAuthApp.description).toBe(client2.description);
+  expect(dbOAuthApp.url).toBe(client2.url);
+  expect(dbOAuthApp.callbacks.toObject()).toEqual(client2.callbacks);
+  expect(dbOAuthApp.company).toBeTruthy();
+  expect(dbOAuthApp.company.toObject()).toEqual(client2.company);
+
+  const expectApp = Object.assign({}, app, {
+    name: client2.name,
+    url: client2.url,
+    company: client2.company,
+    description: client2.description,
+    callbacks: client2.callbacks
+  });
+  expect(updateReply.body.app).toEqual(expectApp);
+});

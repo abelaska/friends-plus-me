@@ -1,0 +1,141 @@
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { ObjectId, OAuthApp, User } = require('@fpm/db');
+const {
+  testingDeps,
+  testingBeforeAll,
+  testingAfterAll,
+  testFunc,
+  testFuncWithReply,
+  nockHydraTokenIntrospect,
+  nockHydraCreateApplication
+} = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should fail on duplicit name', async () => {
+  const dbOAuthApp = await OAuthApp.create({ name: nanoid(48) });
+  const user = await User.create({ auth0Id: nanoid(32), actorId: nanoid(32), state: States.user.enabled.code });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    // clientId: 'fpm-developers-app',
+    scope: 'admin offline apps.write',
+    userId: user._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'apps.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token },
+      body: {
+        name: dbOAuthApp.name,
+        url: 'https://domain.com',
+        callbacks: ['https://domain.com/callback']
+      }
+    },
+    statusCode: 200,
+    res: {
+      ok: false,
+      error: 'invalid_request',
+      error_description: `Application name '${dbOAuthApp.name}' is not unique.`
+    }
+  });
+});
+
+test('should fail on reserved callback address', async () => {
+  const user = await User.create({ auth0Id: nanoid(32), actorId: nanoid(32), state: States.user.enabled.code });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'admin offline apps.write',
+    userId: user._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'apps.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token },
+      body: {
+        name: nanoid(32),
+        url: 'https://domain.com',
+        callbacks: ['https://domain.com/callback', 'https://friendsplus.me/callback']
+      }
+    },
+    statusCode: 200,
+    res: {
+      ok: false,
+      error: 'invalid_request',
+      error_description: 'Reserved callback'
+    }
+  });
+});
+
+test('should successfully register application', async () => {
+  const { cryptor } = testingDeps();
+  const user = await User.create({ auth0Id: nanoid(32), actorId: nanoid(32), state: States.user.enabled.code });
+
+  const client = {
+    name: nanoid(32),
+    description: 'app description',
+    url: 'https://domain.com',
+    callbacks: ['https://domain.com/callback']
+  };
+
+  const { token } = nockHydraCreateApplication({
+    client,
+    active: true,
+    clientId: 'fpm-developers-app',
+    scope: 'admin offline apps.write',
+    userId: user._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'apps.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token },
+      body: client
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  const { body } = reply;
+  expect(body).toBeTruthy();
+  expect(body.ok).toBe(true);
+  const { app } = body;
+  expect(app).toBeTruthy();
+  expect(app.app_id).toBeTruthy();
+  expect(ObjectId.isValid(app.app_id)).toBe(true);
+  expect(app.callbacks).toEqual(client.callbacks);
+  expect(app.client_id).toBeTruthy();
+  expect(app.client_secret).toBeTruthy();
+  expect(app.name).toBe(client.name);
+  expect(app.url).toBe(client.url);
+  expect(app.users).toBe(0);
+  expect(app.created_by).toEqual({ user_id: user._id.toString() });
+
+  expect(reply.statusCode).toBe(200);
+
+  const dbOAuthApp = await OAuthApp.findById(app.app_id).exec();
+  expect(dbOAuthApp).toBeTruthy();
+  expect(dbOAuthApp.createdAt).toBeTruthy();
+  expect(dbOAuthApp.createdBy).toBeTruthy();
+  expect(dbOAuthApp.createdBy.toString()).toBe(user._id.toString());
+  const obj = dbOAuthApp.toObject();
+  delete obj._id;
+  delete obj.createdAt;
+  delete obj.createdBy;
+  expect(obj).toEqual({
+    __v: 0,
+    callbacks: client.callbacks,
+    clientId: app.client_id,
+    clientSecret: cryptor.encrypt(app.client_secret),
+    description: client.description,
+    name: app.name,
+    url: app.url
+  });
+});

@@ -1,0 +1,13 @@
+.tmp/
+.sass-cache
+*.log
+dump.rdb
+*.uncaughtException
+node_modules/
+.dist/
+dist/
+public/components/
+public/styles/*.css
+views/share.html
+views/index.html
+source-context*.json

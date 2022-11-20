@@ -1,0 +1,14 @@
+*.txt
+*.md
+*.log
+source-context.json
+source-contexts.json
+.git
+.tmp
+test
+specs
+node_modules
+functions/__tests__
+utils/__tests__
+conf/config-test.toml
+conf/config-development.toml

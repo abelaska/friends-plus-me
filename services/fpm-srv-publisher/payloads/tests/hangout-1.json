@@ -1,0 +1,52 @@
+{
+ "kind": "plus#activity",
+ "etag": "\"9gbOFFuoDEFIkhx8VeqGHyzQdbY/_Dz2eS06qFEvaviFWnbtUfn19ms\"",
+ "title": "Allison Mollica hung out with 9 people. #hangoutsonair",
+ "published": "2013-03-01T17:30:09.407Z",
+ "updated": "2013-03-01T19:04:01.000Z",
+ "id": "z125grpqnuf0t51cd23hgrfjupnpzrhsc",
+ "url": "https://plus.google.com/116502499532003007487/posts/2WhfokBHpeD",
+ "actor": {
+  "id": "116502499532003007487",
+  "displayName": "Allison Mollica",
+  "url": "https://plus.google.com/116502499532003007487",
+  "image": {
+   "url": "https://lh5.googleusercontent.com/-vgflimG1FBg/AAAAAAAAAAI/AAAAAAAAOWg/F16PZZ7N7n4/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": "Eric Curts, Tim Maki, Richard Knepp, Carol LaRow, Joshua Mulloy, Rachel Small, Andrew Gamble, Deb Boisvert, and Lucie deLaBruere",
+  "url": "https://plus.google.com/116502499532003007487/posts/2WhfokBHpeD",
+  "replies": {
+   "totalItems": 13,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z125grpqnuf0t51cd23hgrfjupnpzrhsc/comments"
+  },
+  "plusoners": {
+   "totalItems": 1,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z125grpqnuf0t51cd23hgrfjupnpzrhsc/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z125grpqnuf0t51cd23hgrfjupnpzrhsc/people/resharers"
+  },
+  "attachments": [
+   {
+    "objectType": "hangout"
+   }
+  ]
+ },
+ "provider": {
+  "title": "Hangout"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

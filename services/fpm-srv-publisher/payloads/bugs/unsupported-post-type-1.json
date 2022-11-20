@@ -1,0 +1,83 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"rzsMXcCxI6zcaueXOWrwmdMoXlA/P9OYk8Gfcv5ip5Dpmlwm0fTncm0\"",
+    "title": "",
+    "published": "2014-10-28T13:40:42.173Z",
+    "updated": "2014-10-28T13:40:42.173Z",
+    "id": "z13iibwryze1t53q104cdpz4lrqntviral40k",
+    "url": "https://plus.google.com/110997543359786666522/posts/ZJQz4GL78AP",
+    "actor": {
+      "id": "110997543359786666522",
+      "displayName": "Oscar González Batista",
+      "url": "https://plus.google.com/110997543359786666522",
+      "image": {
+        "url": "https://lh6.googleusercontent.com/-AKUjI4LkPEI/AAAAAAAAAAI/AAAAAAAAAVE/ZJ1NXP6OdBw/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "",
+      "url": "https://plus.google.com/110997543359786666522/posts/ZJQz4GL78AP",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13iibwryze1t53q104cdpz4lrqntviral40k/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13iibwryze1t53q104cdpz4lrqntviral40k/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13iibwryze1t53q104cdpz4lrqntviral40k/people/resharers"
+      },
+      "statusForViewer": {
+        "resharingDisabled": false,
+        "canComment": true,
+        "canPlusone": true,
+        "isPlusOned": false,
+        "canUpdate": false
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "PEQUEÑAS OPORTUNIDADES",
+          "content": "Cada día está lleno de oportunidades para marcar una diferencia. Aunque muchas de ellas puedan parecer pequeñas e insignificantes, no tienes manera de saber a dónde podrían llevarte.",
+          "url": "http://oscargonzalezbatista.com/pequenas-oportunidades/",
+          "image": {
+            "url": "https://lh4.googleusercontent.com/proxy/10Uz6VeKJTxB5hOfI7EsM9lSMlg7Num9hpj3IT4Y17MTLgs7QxPjT75efiYVZyBdjQY5i1WsXUefuj40TtKO0m8vuD7Ml8WnlUx7zPQ_m9ilUEpWMy3R0Hhx4rCad16deKai4Q0zP8qN_ETT46Sj=w120-h120",
+            "type": "image/jpeg",
+            "height": 120,
+            "width": 120
+          },
+          "fullImage": {
+            "url": "http://oscargonzalezbatista.com/wp-content/uploads/2013/04/PEQUEÑAS-OPORTUNIDADES-300x214.jpeg",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

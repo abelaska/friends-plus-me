@@ -1,0 +1,55 @@
+{
+
+ "kind": "plus#activity",
+ "etag": "\"rzsMXcCxI6zcaueXOWrwmdMoXlA/WQJN1jSjeYHd-SaUXS7DXVh9hJk\"",
+ "title": "Look, new database and everything is much faster! We'll do everything for our users :)  #takingcareofbusiness...",
+ "published": "2014-06-17T11:32:46.850Z",
+ "updated": "2014-06-17T11:35:33.000Z",
+ "id": "z12lypjbioauvljfm23asr5zdkqddlpk5",
+ "url": "https://plus.google.com/105750980959577516811/posts/L9bmavA19AA",
+ "actor": {
+  "id": "105750980959577516811",
+  "displayName": "Friends+Me",
+  "url": "https://plus.google.com/105750980959577516811",
+  "image": {
+   "url": "https://lh3.googleusercontent.com/-dHBGGCq7AD4/AAAAAAAAAAI/AAAAAAAAAV0/z3sDZkVsswU/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": "Look, new database and everything is much faster! We&#39;ll do everything for our users :)   <a rel=\"nofollow\" class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23takingcareofbusiness\">#takingcareofbusiness</a>   <br /><br />God, I love my job :D\ufeff",
+  "url": "https://plus.google.com/105750980959577516811/posts/L9bmavA19AA",
+  "replies": {
+   "totalItems": 5,
+   "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12lypjbioauvljfm23asr5zdkqddlpk5/comments"
+  },
+  "plusoners": {
+   "totalItems": 18,
+   "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12lypjbioauvljfm23asr5zdkqddlpk5/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 0,
+   "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12lypjbioauvljfm23asr5zdkqddlpk5/people/resharers"
+  },
+  "statusForViewer": {
+   "resharingDisabled": false,
+   "canComment": true,
+   "canPlusone": true,
+   "isPlusOned": false,
+   "canUpdate": false
+  }
+ },
+ "provider": {
+  "title": "Google+"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

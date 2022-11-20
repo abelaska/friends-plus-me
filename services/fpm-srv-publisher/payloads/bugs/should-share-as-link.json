@@ -1,0 +1,83 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"Aaa4l0jN-g47IRyvOSoLC7MuXig/OlTxZG3a4IQ6L9LBVFiM25UKeNI\"",
+    "title": "Je viens de créer cette page. L'accès au différentes pages MemoryLine est plus aisé.\ufeff",
+    "published": "2014-07-05T20:33:01.996Z",
+    "updated": "2014-07-05T20:33:01.996Z",
+    "id": "z12jspha1ov0yftd1222dh3p4xuijrqli",
+    "url": "https://plus.google.com/101486277740590903726/posts/6erfiqaN1xJ",
+    "actor": {
+      "id": "101486277740590903726",
+      "displayName": "Gilles JOYEUX",
+      "url": "https://plus.google.com/101486277740590903726",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-6XbP5PcYaiQ/AAAAAAAAAAI/AAAAAAAAO9w/rS3TH3XJi1A/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "Je viens de créer cette page. L&#39;accès au différentes pages MemoryLine est plus aisé.\ufeff",
+      "url": "https://plus.google.com/101486277740590903726/posts/6erfiqaN1xJ",
+      "replies": {
+        "totalItems": 1,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12jspha1ov0yftd1222dh3p4xuijrqli/comments"
+      },
+      "plusoners": {
+        "totalItems": 12,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12jspha1ov0yftd1222dh3p4xuijrqli/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 1,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12jspha1ov0yftd1222dh3p4xuijrqli/people/resharers"
+      },
+      "statusForViewer": {
+        "resharingDisabled": false,
+        "canComment": true,
+        "canPlusone": true,
+        "isPlusOned": false,
+        "canUpdate": false
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "Français Italien MemoryLine (Liste initiale des thèmes)",
+          "content": "Pour chaque thème rangé dans l'ordre initial, on ouvre une page web qui contient un jeu : Memoryline. Il faut retrouver les paires français - italien.",
+          "url": "http://www.gilles-joyeux.fr/Francais_Italien_MemoryLine_init.html",
+          "image": {
+            "url": "https://lh3.googleusercontent.com/proxy/D004SAn8mNEVGaoh57KLO0OXsH6AHkSyyDQucacZxdbgHUtbFfoBYv-RHQZsals5LVPBXNn-EoaZwWM59qOc=w120-h120",
+            "type": "image/jpeg",
+            "height": 120,
+            "width": 120
+          },
+          "fullImage": {
+            "url": "http://www.gilles-joyeux.fr/Drapeau_italien.jpg",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

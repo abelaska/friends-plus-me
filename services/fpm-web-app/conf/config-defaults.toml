@@ -1,0 +1,462 @@
+[db.options]
+  useMongoClient = true
+  native_parser = true
+  poolSize = 32
+  reconnectInterval = 2000
+  reconnectTries = 180000000
+  autoReconnect = true
+  keepAlive = 120
+  noDelay = true
+[db.options.config]
+  autoIndex = false
+
+[analytics.url]
+  maxLength = 1024
+
+[bitly]
+  clientID = "XXX"
+  clientSecret = "XXX"
+  timeout = 15000
+  workers = 5
+
+[googl]
+  key = "XXX-XXX-XXX"
+  timeout = 15000
+  workers = 5
+[googl.retry]
+  timeout = 5000
+  wait = 1000
+
+[churnbee]
+  apiUrl = "http://api.churnbee.com/v1"
+  timeout = 30000
+
+[customerio]
+  enabled = false
+[customerio.http]
+  url = "https://track.customer.io/api/v1"
+  timeout = 30000
+  workers = 8
+
+[affiliate]
+  sandbox = true
+  autoApproveCommision = false
+  timeout = 60000
+  campaign = 13235
+  apiKey = "XXX"
+  url = "https://localhost:9000/1/affiliate/XXX"
+
+[influxdb]
+  enabled = false
+  timePrecision = "m"
+[influxdb.events.buffer]
+  max = 20000
+[influxdb.flush.interval]
+  seconds = 3
+
+[network]
+  timeout = 15000
+
+[defaults.metrics]
+  level = 5
+[defaults.network]
+  timeout = 15000
+[defaults.onUncaughtException]
+  code = 1
+  exit = false
+
+[email]
+  bcc = ""
+  sender = "Friends+Me <please-reply@friendsplus.me>"
+[email.team.invite]
+  bcc = ""
+  sender = "Friends+Me <team-invitation@friendsplus.me>"
+[email.invoice]
+  bcc = ""
+  sender = "Friends+Me Billing <support@friendsplus.me>"
+  subject = "Friends+Me Invoice"
+[email.transports.mailgun.auth]
+  api_key = "key-XXX"
+  domain = "friendsplus.me"
+
+[facebook.scope]
+  # FB remove ability to publish to profiles and Groups require another review
+  # profile = ["publish_actions","user_photos","user_managed_groups","manage_pages","publish_pages","pages_show_list","business_management"]
+  # group = ["publish_actions","user_photos","user_managed_groups","manage_pages","publish_pages","pages_show_list","business_management"]
+  # page = ["publish_actions","user_photos","user_managed_groups","manage_pages","publish_pages","pages_show_list","business_management"]
+  profile = ["manage_pages","publish_pages","pages_show_list","business_management"]
+  group = ["manage_pages","publish_pages","pages_show_list","business_management"]
+  page = ["manage_pages","publish_pages","pages_show_list","business_management"]
+
+[facebook.webhook]
+  token = "XXX"
+
+[google]
+  clientId = "XXX-XXX.apps.googleusercontent.com"
+  clientSecret = "XXX-XXX"
+[google.profile]
+  scope = [
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/plus.me",
+    "https://www.googleapis.com/auth/plus.pages.manage",
+    "https://www.googleapis.com/auth/plus.stream.read",
+    "https://www.googleapis.com/auth/plus.stream.write",
+    "https://www.googleapis.com/auth/plus.media.readwrite",
+    "https://www.googleapis.com/auth/plus.profiles.write",
+    "https://www.googleapis.com/auth/plus.collections.readonly",
+    "https://www.googleapis.com/auth/plus.collections.readwrite"
+  ]
+[google.page]
+  scope = [
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/plus.me",
+    "https://www.googleapis.com/auth/plus.pages.manage",
+    "https://www.googleapis.com/auth/plus.stream.read",
+    "https://www.googleapis.com/auth/plus.stream.write",
+    "https://www.googleapis.com/auth/plus.media.readwrite",
+    "https://www.googleapis.com/auth/plus.profiles.write",
+    "https://www.googleapis.com/auth/plus.collections.readonly",
+    "https://www.googleapis.com/auth/plus.collections.readwrite"
+  ]
+
+[linkedin]
+  scope = ["r_basicprofile","w_member_social","w_organization_social","rw_organization_admin"]
+
+[log.file]
+  level = "debug"
+  maxFiles = 25
+  maxSize = 10485760
+[log.logentries]
+  level = "info"
+
+[gcloud]
+  projectid = "friendspme"
+
+[image.proxy]
+  url = "http://fpm-ipapi-fpm-ipapi:8080"
+  token = "XXX"
+  timeout = 60000
+[image.upload]
+  projectId = "fpm-application"
+  bucket = "fpm-user-assets-upload"
+  uploadUrlTTL = 60000 # 1h
+[image.upload.credentials]
+  type = "service_account"
+  project_id = "fpm-application"
+  private_key_id = "XXX"
+  private_key = "-----BEGIN PRIVATE KEY-----\nXXX\n-----END PRIVATE KEY-----\n"
+  client_email = "file-upload@fpm-application.iam.gserviceaccount.com"
+  client_id = "XXX"
+  auth_uri = "https://accounts.google.com/o/oauth2/auth"
+  token_uri = "https://accounts.google.com/o/oauth2/token"
+  auth_provider_x509_cert_url = "https://www.googleapis.com/oauth2/v1/certs"
+  client_x509_cert_url = "https://www.googleapis.com/robot/v1/metadata/x509/file-upload%40fpm-application.iam.gserviceaccount.com"
+
+# [image.bucket]
+#   name = "fpmi"
+# [image.bucket.temp]
+#   name = "fpmi-temp"
+# [image.avatar.thumbnail]
+#   width = 50
+#   height = 50
+# [image.post.thumbnail]
+#   width = 300
+#   height = 300
+# [image.repost.thumbnail]
+#   width = 300
+#   height = 300
+# [image.cdn]
+#   url = "https://images.friendsplus.me"
+# [image.fetch]
+#   timeout = 60000
+
+[scheduler]
+  oid = "51de80ca086bb3475500006e"
+[scheduler.slot]
+  seconds = 5
+
+[scheduling.plan]
+  # kolik workeru najednou bude planovat nove casy do fronty
+  workers = 8
+  # minimalni pocet naplanovanych casu pri hromadnem planovani vsech scheduleru najednou
+  minQueuedTimesPerSchedule = 20
+
+[sendy]
+  subscribeUrl = "https://sendy.loysoft.com/subscribe"
+  timeout = 30000
+  unsubscribeUrl = "https://sendy.loysoft.com/unsubscribe"
+  removeUrl = "https://sendy.loysoft.com/remove"
+[sendy.lists]
+  expiredCharge = "XXX"
+  expiredSubscription = "XXX"
+  premiumUnsubscribe = "XXX"
+  signup = "XXX"
+  trial = "XXX"
+[sendy.lists.failedCharge]
+  braintree = "XXX"
+  paypal = "XXX"
+
+[session]
+  key = "fpmsess"
+  secret = "XXX"
+  # 30 days
+  ttl = 2592000
+
+[subscriptions]
+  currency = "USD"
+  homeCountryCode = "GB"
+
+[token]
+  # 90 days
+  expiresInSeconds = 7776000
+  secret = "XXX"
+
+[tumblr]
+  consumerKey = "XXX"
+  consumerSecret = "XXX"
+
+[twitter]
+  consumerKey = "XXX"
+  consumerSecret = "XXX"
+
+[pinterest]
+  timeout = 60000
+  consumerKey = "XXX"
+  consumerSecret = "XXX"
+  scope = ["read_public","write_public"]
+
+[aws.s3.photoupload]
+  bucket = "fpm-photo-upload"
+  accessKeyId = "XXX"
+  secretAccessKey = "XXX+XXX"
+
+[tasks.downgrader]
+  cron = "0 */15 * * *"
+[tasks.downgrader.lock]
+  enabled = true
+  timeoutSecs = 600
+
+[tasks.checkExpirations]
+  cron = "0 */30 * * * *"
+[tasks.checkExpirations.lock]
+  enabled = true
+  timeoutSecs = 18000
+
+[tasks.dailyaccountant]
+  cron = "0 */15 * * * *"
+[tasks.dailyaccountant.lock]
+  enabled = true
+  timeoutSecs = 860
+
+[tasks.dailyprofilecosts]
+  cron = "0 0 0 * * *"
+[tasks.dailyprofilecosts.lock]
+  enabled = true
+  timeoutSecs = 900
+
+[tasks.letsencryptupdater]
+  cron = "0 0 0 * * *"
+[tasks.letsencryptupdater.lock]
+  enabled = true
+  timeoutSecs = 600
+
+[users]
+  defaultPlan = "TRIAL"
+[users.use]
+  bitly = true
+  repostsPerMonth = -1
+  system = 3
+
+[lock.account]
+  ttl = 5000
+  maxAttempts = 40
+  wait = 250
+
+[lock.postsReady]
+  ttl = 30000
+  maxAttempts = 15
+  wait = 1000
+
+[post]
+  # timeout ulozeni postu do databaze (ms)
+  storeTimeout = 10000
+
+  # maximalni pocet pokusu o publikovani jednoho postu, pak je vyzadovan manualni restart
+  maxTries = 9
+  lockTimeBase = 2.4
+
+  # kolik maximalne muze byt postu pro kazdy ucet v odpovedi na pozadavek pro ziskani postu k publikovani
+  maxPostsPerAccountPerFetch = 1
+
+  # okolik sekund pozdrzet dalsi fetch v pripade publikovani postu s appendNoShare=true pres extensionu
+  delayNextFetchSeconds = 45
+[post.network.google.profile]
+  maxTries = 31
+  lockTimeBase = 1.2
+[post.network.google.community]
+  maxTries = 31
+  lockTimeBase = 1.2
+[post.network.google.collection]
+  maxTries = 31
+  lockTimeBase = 1.2
+
+## TRIAL PREMIUM
+
+[premium]
+  # sources u nichz je mozno prodlouzit datum expirace dobitim kreditu
+  extendableSources = ["tx", "affiliate"]
+
+# odesila se cele na klienta
+[premium.funds]
+  # prednastavene castky k dobiti v dolarech, prvni castka je minimalni povolena castka k dobiti
+  amounts = [9, 29, 59, 159, 259]
+
+[premium.reconcile.lock]
+  # na kolik sekund se ma uzamcit kredit zaznam pro uzavirku
+  seconds = 10800 # 3 hours
+
+[premium.lock]
+  ttl = 5000
+  maxAttempts = 20
+  wait = 250
+
+[premium.tx]
+  expireInDays = 365
+
+[premium.affiliate]
+  expireInDays = 365
+
+[premium.trial.signup]
+  credit = 50
+  expireInDays = 15
+
+[premium.trial.migrationfromfree]
+  credit = 50
+  expireInDays = 365
+
+[premium.trial.instagram]
+  # 0=instagram will be disabled for trial plans
+  expireInDays = 0
+
+[premium.trial.metrics]
+  # price per unit per month
+  member = 0
+  # price per unit per month
+  profile = 0
+  # price per unit per month
+  connectedAccount = 2.99
+  # price per unit per month
+  sourceAccount = 0
+  # price per unit per month
+  instagramQueue = 12.99
+
+[premium.low.warning]
+  # odeslat notifikaci pri zustatku na tento pocet dnu
+  remainingDays = [14,7,3,1]
+
+[premium.trial.warning]
+  # odeslat notifikaci pri zustatku na tento pocet dnu
+  remainingDays = [3,1]
+
+[google.refresh]
+  workers = 80
+  lockSeconds = 60
+  timeout = 3000
+  retryInMinutes = 10
+  stopRetryAfterHours = 24
+
+[api.token]
+  # 365 days
+  expiresInSeconds = 31536000
+
+[auth0]
+  domain = "fpm.auth0.com"
+
+[intercom]
+  appId = "XXX"
+  secret = "XXX"
+  token = "XXX="
+
+[blacklist]
+  countries = ["mk"]
+
+# Grant, social connector
+# /social/connect/:provider =>
+# /social/connect/:provider/callback =>
+# /social/:provider/callback
+[grant.server]
+  protocol = "https"
+  path = "/social"
+  callback = "/social/callback"
+  transport = "session"
+  state = true
+[grant.facebook]
+  authorize_url = "https://www.facebook.com/v6.0/dialog/oauth"
+  access_url = "https://graph.facebook.com/v6.0/oauth/access_token"
+  # FB remove ability to publish to profiles and Groups require another review
+  # scope = ["publish_actions","user_photos","user_managed_groups","manage_pages","publish_pages","pages_show_list","business_management"]
+  scope = ["manage_pages","publish_pages","pages_show_list","business_management"]
+[grant.facebook.reauth.custom_params]
+  auth_type = "reauthenticate"
+[grant.google]
+  #authorize_url = "https://accounts.google.com/o/oauth2/v2/auth"
+  #access_url = "https://www.googleapis.com/oauth2/v4/token"
+  custom_parameters = ["login_hint"]
+  scope = [
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/plus.me",
+    "https://www.googleapis.com/auth/plus.pages.manage",
+    "https://www.googleapis.com/auth/plus.stream.read",
+    "https://www.googleapis.com/auth/plus.stream.write",
+    "https://www.googleapis.com/auth/plus.media.readwrite",
+    "https://www.googleapis.com/auth/plus.profiles.write",
+    "https://www.googleapis.com/auth/plus.collections.readonly",
+    "https://www.googleapis.com/auth/plus.collections.readwrite"
+  ]
+[grant.google.custom_params]
+  access_type = "offline"
+  approval_prompt = "force"
+[grant.linkedin]
+  authorize_url = "https://www.linkedin.com/oauth/v2/authorization"
+  access_url = "https://www.linkedin.com/oauth/v2/accessToken"
+  oauth = 2
+  scope_delimiter = " "
+  scope = ["r_basicprofile","w_member_social","w_organization_social","rw_organization_admin"]
+[grant.pinterest]
+  scope = ["read_public", "write_public"]
+  authorize_url = "https://api.pinterest.com/oauth/"
+  access_url = "https://api.pinterest.com/v1/oauth/token"
+  oauth = 2
+[grant.tumblr]
+  key = "XXX"
+  secret = "XXX"
+  request_url = "https://www.tumblr.com/oauth/request_token"
+  authorize_url = "https://www.tumblr.com/oauth/authorize"
+  access_url = "https://www.tumblr.com/oauth/access_token"
+[grant.twitter]
+  custom_parameters = ["force_login", "screen_name"]
+
+[quickbooks]
+  scopes = ["com.intuit.quickbooks.accounting"]
+[quickbooks.kms]
+  project = "fpm-application"
+  location = "global"
+  keyRing = "fpm"
+  cryptoKey = "XXX"
+
+[hydra]
+  url = "https://hydra.friendsplus.me"
+  scope = "hydra.clients hydra.keys.get"
+  clientId = "admin"
+  clientSecret = "XXX"
+
+[fpm.app]
+  scopes = ["admin","offline"]
+  clientId = "XXX"
+  clientSecret = "XXX"
+
+[sso]
+  sessionKey = "XXX"

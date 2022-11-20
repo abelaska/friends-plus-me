@@ -1,0 +1,97 @@
+{
+  "account": {
+    "_id": "1",
+    "id": 103778702993142591484,
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"nmfNiti6wB5DqCmkKSnle50Q36k/u9vgOpg5BGPmVQqFITUljQQa9Dc\"",
+    "title": "Reshared post from Formula 1\n \n\n2012 FORMULA 1™ SHELL BELGIAN GRAND PRIX\n\n✵ SPA-FRANCORCHAMPS - C...",
+    "published": "2012-08-30T18:33:20.307Z",
+    "updated": "2012-08-30T18:33:20.307Z",
+    "id": "z13azhkr5lvszvqci224ivfizrbcifru5",
+    "url": "https://plus.google.com/107983688511342187573/posts/3TdyUUF7NXW",
+    "actor": {
+      "id": "107983688511342187573",
+      "displayName": "Raymond Moore",
+      "name": {
+        "familyName": "Moore",
+        "givenName": "Raymond"
+      },
+      "url": "https://plus.google.com/107983688511342187573",
+      "image": {
+        "url": "https://lh5.googleusercontent.com/-8M__kPl4fO0/AAAAAAAAAAI/AAAAAAAAAAA/2TTpQXZgq98/photo.jpg?sz=50"
+      }
+    },
+    "verb": "share",
+    "object": {
+      "objectType": "activity",
+      "id": "z12yd11zfqe2xfpw304cdtm5zpatv3tqg1s",
+      "actor": {
+        "id": "101443032616581166067",
+        "displayName": "Formula 1",
+        "url": "https://plus.google.com/101443032616581166067",
+        "image": {
+          "url": "https://lh4.googleusercontent.com/-GBJre0w_wVw/AAAAAAAAAAI/AAAAAAAAAAA/ey3bhj5Hkt0/photo.jpg?sz=50"
+        }
+      },
+      "content": "<b>2012 FORMULA 1™ SHELL BELGIAN GRAND PRIX</b><br /><br />✵ <b>SPA-FRANCORCHAMPS - CIRCUIT INFORMATION</b><br /><br />✖\tLAP DATA<br /><br />• Lap length\t7.004km - (4.352 miles)<br />• Race laps - 44<br />• Race distance - 308.052km (191.415 miles)<br />• Pole position - Right-hand side of the track<br />• Lap record - 1’47.263 (235.071 kph) by Sebastian Vettel, 2009<br />• Fastest lap - 1’44.503 (241.279 kph) by Jarno Trulli, 2009<br />• Maximum speed (2011) - 308.3 kph (191.569 mph) by Mark Webber, <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/106621698912925336150\" class=\"proflink\" oid=\"106621698912925336150\">Red Bull Racing</a></span> <br />• DRS zone/s (race) - Kemmel straight<br /><br />✖\tCAR PERFORMANCE<br /><br />• Full throttle -\t71%<br />• Downforce level - Medium<br />• Gear changes per lap - 48<br />• Fuel use per lap - 3.3kg<br /><br />✖ STRATEGY<br /><br />• Pit lane time loss\t18 seconds<br />• 2012 prime tyre :\tHard (2011: Medium)<br />• 2012 option tyre :\tMedium (2011: Soft)<br /><br />✖  CHANGES TO THE CIRCUIT SINCE 2011<br /><br />► The series of drains and connecting gullies on the right between turns nine and 10 have been re-worked in order to make them flat and level with the surrounding verges. <br />► A section of artificial grass two metres wide has been laid behind the painted ‘kerb’ on the right between turns 10 and 11. <br />► An opening has been provided in the guardrail on the right of the run-off area around the outside of turn 9.<br />► All white lines that border the track will be painted with FIA approved, skid-resistant paint.<br />► A debris fence has been installed in the guardrail and wall on the right of the pit entry. <br /><br />✵ <b>FIA BELGIAN GRAND PRIX</b> - Preview<br /><br />The Circuit de Spa-Francorchamps will host the 12th round of the 2012 Formula One World Championship as the Grand Prix of Belgium signals a return to racing following the series’ summer break. The track, which winds up and down through the Ardennes, has its reputation built on speed. At around 20 seconds, the section from La Source to Les Combes is the longest duration an F1 car will spend on full-throttle in 2012 – should the driver take the Eau Rouge/Raidillon combination flat-out.<br /> <br />Despite this, and another long flat-out run down to the new Bus Stop chicane, Spa is a more technical challenge than perhaps its high-speed reputation suggests, with the ten corners of the twisting middle sector often being where fast laps are crafted. Because of the challenges of Rivage, Blanchimont, Stavelot and especially Pouhon in this middle sector, Spa doesn’t demand the ultra-low downforce aero packages seen at Monza. Instead it falls into the medium-low category similar to those used in Montreal. It isn’t a race that heavily taxes suspension or braking, but it does see high tyre-wear and, with a longer lap – 7km in total – than any other grand prix, pitting at the right moment carries a greater premium.<br /> <br />Another factor is the weather: rare is the year when it doesn’t rain at some point over the Belgian Grand Prix weekend. This, in combination with the distance travelled around the lap and its elevation changes, make Spa notorious for inconsistent conditions, with showers falling on some parts of the circuit while others remain dry.<br /> <br />Fernando Alonso goes into the race leading the Drivers’ World Championship by 40 points. History looks kindly on drivers in his position with 8 out of the last ten World Championships being won by the driver top of the standings at this stage of the year. Spa, however, is not Alonso’s best circuit: he hasn’t won here since driving in F3000. <br /><br /> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23F1\">#F1</a>     <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23Formula1\">#Formula1</a>     <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23BelgianGP\">#BelgianGP</a>     <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23Spa\">#Spa</a>   (Via <a href=\"http://f1fanatic.co.uk\" >f1fanatic.co.uk</a>, FIA &amp; Allianz)",
+      "url": "https://plus.google.com/101443032616581166067/posts/P2WUq3MqL1H",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13azhkr5lvszvqci224ivfizrbcifru5/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13azhkr5lvszvqci224ivfizrbcifru5/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13azhkr5lvszvqci224ivfizrbcifru5/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "photo",
+          "content": "12Allianz_F1_12_Belgium_E_72DPI_RGB.png_843180934.png",
+          "url": "https://plus.google.com/photos/101443032616581166067/albums/5782520960846617985/5782520967712399490",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=https%3A%2F%2Flh4.googleusercontent.com%2F-DTIJbU_LwoA%2FUD-kLtq-4II%2FAAAAAAAAle4%2F7AObsaW6cPw%2Fw288-h288%2F12Allianz_F1_12_Belgium_E_72DPI_RGB.png_843180934.png",
+            "type": "image/jpeg",
+            "height": 120,
+            "width": 213
+          },
+          "fullImage": {
+            "url": "https://lh4.googleusercontent.com/-DTIJbU_LwoA/UD-kLtq-4II/AAAAAAAAle4/7AObsaW6cPw/12Allianz_F1_12_Belgium_E_72DPI_RGB.png_843180934.png",
+            "type": "image/jpeg",
+            "height": 452,
+            "width": 804
+          }
+        }
+      ]
+    },
+    "annotation": "This is your required reading to prep for the weekend&#39;s events. <a class='ot-hashtag' href='https://plus.google.com/s/%23Spa'>#Spa</a> <a class='ot-hashtag' href='https://plus.google.com/s/%23Formula1'>#Formula1</a>  <a class='ot-hashtag' href='https://plus.google.com/s/%23BelgianGP'>#BelgianGP</a>  ",
+    "crosspostSource": "15012289856748150776",
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "items": [
+        {
+          "type": "public"
+        },
+        {
+          "type": "circle",
+          "id": "3eMd5FPznikcRwn0iZrNGrmRZstOShC_"
+        },
+        {
+          "type": "person",
+          "id": "107983688511342187573"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div ng-controller="UserCtrl">
+  <div layout="row" layout-align="start center" style="margin: 20px 0;">
+    <div style="padding: 0 20px;">
+      <img ng-src="{{user.image.replace('=s50', '=s100')}}" ng-if="user.image" style="border-radius: 50%;"/>
+    </div>
+    <div>
+      <div layout="column">
+        <div style="font-size: 20px;color: rgba(0,0,0,0.8);">{{user.name}}</div>
+        <div style="font-size: 12px;color: rgba(0,0,0,0.7);">{{user.email}}</div>
+        <div style="font-size: 13px;color: rgba(0,0,0,0.7);margin-top: 10px;">Signed up {{signedAgo}}</div>
+      </div>
+    </div>
+  </div>
+      
+  <md-nav-bar md-selected-nav-item="currentState" nav-bar-aria-label="navigation links">
+    <md-nav-item md-nav-sref="user.notifications" sref-opts="currentParams" name="user.notifications">
+      Notifications
+    </md-nav-item>
+  </md-nav-bar>
+
+  <div ui-view style="margin-top: 20px" />
+</div>

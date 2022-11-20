@@ -1,0 +1,1 @@
+adb shell su 0 setprop persist.kju.env development

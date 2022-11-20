@@ -1,0 +1,61 @@
+{
+  "account": {
+    "shortener": {
+      "type": "none"
+    },
+    "id": 103778702993142591484,
+    "tokens": {
+      "livt": "anyone"
+    },
+    "url": "http://hud.iron.io/tq/projects/50124cab0008f20896004ec7/jobs/50e7371851df92730e1e4c0c"
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"sJt1VilOvxUfDlfPWeqwjvyqpgI/yIm4gHhc9GeSGdjVR8ku7wfvJLk\"",
+    "title": "自分語りなのだけど。\n\n中学校でさ 何人くらいいたかな？400～500人いたかな？かなり大きな学校に行ってたのよ。そんなある日、友達だったけどキモがられてた そんなHくんがいたのよ。Hくんも変わり者でさ...",
+    "published": "2013-01-04T20:07:18.872Z",
+    "updated": "2013-01-04T20:07:18.872Z",
+    "id": "z13edjxxvxaxxb2pv04cdr0aqluqvf5xnjw",
+    "url": "https://plus.google.com/113163639391262090050/posts/YHwcUH99Uqh",
+    "actor": {
+      "id": "113163639391262090050",
+      "displayName": "Kaoru N",
+      "url": "https://plus.google.com/113163639391262090050",
+      "image": {
+        "url": "https://lh5.googleusercontent.com/-KZ-c7ir9neI/AAAAAAAAAAI/AAAAAAABzOk/n2X9jzHVapE/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "自分語りなのだけど。<br /><br />中学校でさ　何人くらいいたかな？400～500人いたかな？かなり大きな学校に行ってたのよ。そんなある日、友達だったけどキモがられてた　そんなHくんがいたのよ。Hくんも変わり者でさ、生徒会長選挙にでる！つっててさ。すごく、真面目な奴なのよ。「応援演説してよ」ってたのまれてね。で総会。私が全校生徒の前で応援演説したのよ。全部であわせて3人ほど立候補してたかな？<br />いざ開票。数十票しかはいらないの。そうだよビリケツ。<br />でもおもしろかったねー。Hくんにはわるかったけどさ、「応援演説すれば　全校生徒の前で話しできるじゃん？それって素敵じゃん？」とかそんな下心を思ったり、実行したり　してた時期が私にもあったのだな。<br /><br />万能感ってさ　なくなっちゃうよね。歳をとったり、失敗を重ねるごとに。それとももっと大いなる下心を胸に生きていけば人生にハリがでるのかな？<br />ただ、なんといいましょうか、20歳を超えたあたりから急激に、　社会状況も相まって　　死ぬこととかが怖くなるわけですよ。例えばそれは生物的にも、社会的にも。ね。<br /><br />たーまんないよ。老けるのはいいよ。でも精神的にはガキンチョっていわれていい、老いたくないね。ジョブズも生きてた時にそんなこといってたけど「今日死ぬとしたら？死ぬほどするべきことってなにかあるか？」みたいなこと。万能感は消えるものなのだろう。たぶん要因は、生理的なものだったり、社会学的なものだったりするのだと思う。<br />どちらがライトサイドかダークサイドなアプローチなのかはわからないけれども、でもそうなのだから仕方がない、恐怖心こそを心を突き進める起爆剤に　いつの日か入るであろうお墓まで突き進んでいくことができたら　いいな！　なんて風にいま年始めに思ってます。ポジティブな話としてね、そう思っている。",
+      "url": "https://plus.google.com/113163639391262090050/posts/YHwcUH99Uqh",
+      "replies": {
+        "totalItems": 2,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13edjxxvxaxxb2pv04cdr0aqluqvf5xnjw/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13edjxxvxaxxb2pv04cdr0aqluqvf5xnjw/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13edjxxvxaxxb2pv04cdr0aqluqvf5xnjw/people/resharers"
+      }
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    },
+    "userId": "50e6688e465cc11059001af1",
+    "dbId": "50e7371821ff03ef20001e54"
+  }
+}

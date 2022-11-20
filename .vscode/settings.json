@@ -1,0 +1,15 @@
+{
+  "editor.tabSize": 2,
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": true,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.iconTheme": null,
+  "prettier.eslintIntegration": true,
+  "flow.useNPMPackagedFlow": true,
+  "javascript.format.enable": false,
+  "javascript.validate.enable": false,
+  "html.format.enable": false,
+  "git.ignoreLimitWarning": true
+}

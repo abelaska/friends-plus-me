@@ -1,0 +1,221 @@
+/* eslint no-mixed-operators: "off" */
+const moment = require('moment-timezone');
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { ObjectId, User, EmailVerify } = require('@fpm/db');
+const { testingBeforeAll, testingAfterAll, testFunc, nockHydraTokenIntrospect } = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+beforeEach(async () => Promise.all(await EmailVerify.find().exec(), q => q.remove()));
+
+test('should successfully confirm email verification', async () => {
+  const now = new Date();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  await User.create({
+    _id: dbUserId,
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'ab@gmail.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+
+  const emailVerify1 = await new EmailVerify({
+    uid: dbUserId,
+    expiresAt: moment
+      .utc()
+      .subtract(1, 'days')
+      .toDate()
+  }).save();
+
+  const emailVerify2 = await new EmailVerify({ uid: dbUserId }).save();
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'admin',
+    userId: dbUserId.toString()
+  });
+
+  let reply = await testFunc({
+    name: 'users.sendVerificationEmail',
+    req: {
+      qs: { access_token: token }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.user_id).toBe(dbUserId.toString());
+  expect(reply.body.verify_id).toBeTruthy();
+  expect(reply.body.verify_link).toBeTruthy();
+  expect(reply.body.verify_link).toEqual(
+    expect.stringMatching(/^https:\/\/api\.friendsplus\.me\/users\.verifyEmail\?id=[0-9a-f]+$/)
+  );
+
+  const { verify_id: id } = reply.body;
+
+  const list = await EmailVerify.find({ uid: dbUserId }).exec();
+  expect(list).toBeTruthy();
+  expect(list.length).toBe(3);
+
+  reply = await testFunc({
+    name: 'users.verifyEmail',
+    req: {
+      qs: { id }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.user_id).toBe(dbUserId.toString());
+  expect(reply.body.id).toBe(id);
+
+  let ev = await EmailVerify.findOne({ id }).exec();
+  expect(ev).toBeTruthy();
+  expect(ev.verifiedAt).toBeTruthy();
+  expect(ev.verifiedAt.valueOf()).toBeGreaterThanOrEqual(ev.createdAt.valueOf());
+
+  const user = await User.findById(dbUserId).exec();
+  expect(user).toBeTruthy();
+  expect(user.emailVerified).toBeTruthy();
+
+  ev = await EmailVerify.findOne({ id: emailVerify2.id }).exec();
+  expect(ev).toBeTruthy();
+  expect(ev.verifiedAt).toBeFalsy();
+  expect(ev.expiresAt.valueOf()).toBeLessThan(emailVerify2.expiresAt.valueOf());
+
+  ev = await EmailVerify.findOne({ id: emailVerify1.id }).exec();
+  expect(ev).toBeTruthy();
+  expect(ev.verifiedAt).toBeFalsy();
+  expect(ev.expiresAt.valueOf()).toBe(emailVerify1.expiresAt.valueOf());
+});
+
+test('email verification should fail on invalid id', async () => {
+  const now = new Date();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  await User.create({
+    _id: dbUserId,
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'ab@gmail.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+
+  const reply = await testFunc({
+    name: 'users.verifyEmail',
+    req: {
+      qs: { id: nanoid(32) }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body).toEqual({
+    error: 'invalid_request',
+    error_description: 'Invalid email verification',
+    ok: false
+  });
+});
+
+test('email verification should fail on expired id', async () => {
+  const now = new Date();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  await User.create({
+    _id: dbUserId,
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'ab@gmail.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+
+  const emailVerify = await new EmailVerify({
+    uid: dbUserId,
+    expiresAt: moment
+      .utc()
+      .subtract(1, 'days')
+      .toDate()
+  }).save();
+
+  const reply = await testFunc({
+    name: 'users.verifyEmail',
+    req: {
+      qs: { id: emailVerify.id }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body).toEqual({
+    error: 'invalid_request',
+    error_description: 'Expired email verification',
+    ok: false
+  });
+});
+
+test('email verification should fail on user not found', async () => {
+  const dbUserId = new ObjectId();
+
+  const emailVerify = await new EmailVerify({ uid: dbUserId }).save();
+
+  const reply = await testFunc({
+    name: 'users.verifyEmail',
+    req: {
+      qs: { id: emailVerify.id }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body).toEqual({
+    error: 'user_not_found',
+    ok: false
+  });
+});
+
+test('email verification should fail on inactive user', async () => {
+  const now = new Date();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  await User.create({
+    _id: dbUserId,
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'ab@gmail.com',
+    created: now,
+    state: States.user.deleted.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+
+  const emailVerify = await new EmailVerify({ uid: dbUserId }).save();
+
+  const reply = await testFunc({
+    name: 'users.verifyEmail',
+    req: {
+      qs: { id: emailVerify.id }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body).toEqual({
+    error: 'user_inactive',
+    ok: false
+  });
+});

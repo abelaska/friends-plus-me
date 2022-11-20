@@ -1,0 +1,3 @@
+cluster_url: http://localhost:4444
+client_id: admin
+client_secret: admin

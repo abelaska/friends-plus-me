@@ -1,0 +1,24 @@
+<md-dialog aria-label="Goo.gl Shortener">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Goo.gl Shortener</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="/images/icons/close.svg" aria-label="Close Dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content layout="column" layout-align="center center" style="padding: 10px 10px 0 10px;">
+      <p>Confirm if you want to use Goo.gl as a shortener for this queue.</p>
+      <md-switch class="md-primary" ng-model="connectToAllAccounts" aria-label="Switch all queues to Goo.gl shortener">Switch all queues to Goo.gl shortener</md-switch>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" style="padding-right: 10px;padding-left: 10px;">
+      <md-button class="md-raised" ng-click="cancel()" style="margin-left:0">Cancel</md-button>
+      <span flex></span>
+      <md-button class="md-raised md-primary" ng-click="connect(connectToAllAccounts)">Switch to Goo.gl Shortener</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

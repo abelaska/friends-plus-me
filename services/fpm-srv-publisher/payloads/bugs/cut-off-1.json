@@ -1,0 +1,78 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"IsY-oQztSRRmesNyH2e6tywVFrM/CuZti334r-rTYPY2sJxjMAiuUWw\"",
+    "title": "\"We Post Nothing About Our Daughter Online\"\n\nI scoffed at the headline and first couple of grafs of ...",
+    "published": "2013-09-04T21:29:26.555Z",
+    "updated": "2013-09-04T21:29:26.555Z",
+    "id": "z13wffni5xufgjngv04cgzogprvgtpj4hjc",
+    "url": "https://plus.google.com/115157882097089845153/posts/T2aBwN3QWVu",
+    "actor": {
+      "id": "115157882097089845153",
+      "displayName": "Mitch Wagner",
+      "url": "https://plus.google.com/115157882097089845153",
+      "image": {
+        "url": "https://lh6.googleusercontent.com/-DgGWPlzxwiY/AAAAAAAAAAI/AAAAAAAASQM/LK40R9GzZTk/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "<br />&quot;We Post Nothing About Our Daughter Online&quot;<br /><br /> I scoffed at the headline and first couple of grafs of this essay because I thought it would be another silly ZOMG THE PAEDOS!!! scare piece.<br /><br />But instead it&#39;s a thoughtful article about giving your children the choice of what to reveal about themselves online when they are adults.<br /><br />The author,  <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/112609956355138553458\" class=\"proflink\" oid=\"112609956355138553458\">Amy Webb</a></span>  , and her husband have set up accounts for their daughter on Twitter, Facebook, and other social media services, as well as getting her her own domain. They don&#39;t plan to use the accounts at all, just give her the passwords when the girl is of appropriate age. That&#39;s sweet and thoughtful, although I expect that by the time girl is old enough those things might be as useful as lessons in starting a Model T Ford. <br /><br /><span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/108793496697098698964\" class=\"proflink\" oid=\"108793496697098698964\">Slate</a></span>  : <a href=\"http://goo.gl/BsfKnx\" class=\"ot-anchor\" rel=\"nofollow\">http://goo.gl/BsfKnx</a><br /><br /> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23children\">#children</a>   <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23cybersafety\">#cybersafety</a>   <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23parenting\">#parenting</a>   <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23ttf\">#ttf</a>  ",
+      "url": "https://plus.google.com/115157882097089845153/posts/T2aBwN3QWVu",
+      "replies": {
+        "totalItems": 3,
+        "selfLink": "https://content.googleapis.com/plus/v1/activities/z13wffni5xufgjngv04cgzogprvgtpj4hjc/comments"
+      },
+      "plusoners": {
+        "totalItems": 4,
+        "selfLink": "https://content.googleapis.com/plus/v1/activities/z13wffni5xufgjngv04cgzogprvgtpj4hjc/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plus/v1/activities/z13wffni5xufgjngv04cgzogprvgtpj4hjc/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "photo",
+          "id": "115157882097089845153.5919882606220102226",
+          "content": "",
+          "url": "https://plus.google.com/photos/115157882097089845153/albums/5919882603777022721/5919882606220102226?authkey=XXX",
+          "image": {
+            "url": "https://lh6.googleusercontent.com/-k16KgfJxous/Uiel3Y_DSlI/AAAAAAAAXlI/sZILdcVaksI/w506-h750/130903_DATA_PrivacyAndKidsOnline.jpg.CROP.article568-large.jpg",
+            "type": "image/jpeg",
+            "height": 750,
+            "width": 506
+          },
+          "fullImage": {
+            "url": "https://lh6.googleusercontent.com/-k16KgfJxous/Uiel3Y_DSlI/AAAAAAAAXlI/sZILdcVaksI/130903_DATA_PrivacyAndKidsOnline.jpg.CROP.article568-large.jpg",
+            "type": "image/jpeg",
+            "height": 405,
+            "width": 568
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

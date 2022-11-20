@@ -1,0 +1,270 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"5NTCbsXue5u92XtxuV0QeM_x9B4/2XHuq6fhGNTdwzibssrotSV9fT0\"",
+    "title": "Reshared post from Android Headlines\n \n\n#LGNexus #FCC #WirelessCharging #Android42 #android\n\n\n\n\nW...",
+    "published": "2012-10-13T23:16:00.003Z",
+    "updated": "2012-10-13T23:16:00.003Z",
+    "id": "z13ivvf4btjzt1pam04cglnqxvrizxthiqo0k",
+    "url": "https://plus.google.com/114197358633834273250/posts/cEe6WMioaQ4",
+    "actor": {
+      "id": "114197358633834273250",
+      "displayName": "Richard Bajic",
+      "name": {
+        "familyName": "Bajic",
+        "givenName": "Richard"
+      },
+      "url": "https://plus.google.com/114197358633834273250",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-QLJgyig_lDQ/AAAAAAAAAAI/AAAAAAAAAAA/pg3N6aIEiWk/photo.jpg?sz=50"
+      }
+    },
+    "verb": "share",
+    "object": {
+      "objectType": "activity",
+      "id": "z13ziv1yiqr0xf2yk04cdnrahyajuh4h1sw0k",
+      "actor": {
+        "id": "102014810775752690796",
+        "displayName": "Android Headlines",
+        "url": "https://plus.google.com/102014810775752690796",
+        "image": {
+          "url": "https://lh5.googleusercontent.com/-JcojRnZZfeE/AAAAAAAAAAI/AAAAAAAAAAA/dJihGQAlm3c/photo.jpg?sz=50"
+        }
+      },
+      "content": "<a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23LGNexus\">#LGNexus</a> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23FCC\">#FCC</a> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23WirelessCharging\">#WirelessCharging</a> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23Android42\">#Android42</a> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23android\">#android</a><br /><br /><br /><br /><br />Wireless Charging? But it&#39;s still an LG Nexus that looks much like the Galaxy Nexus...",
+      "url": "https://plus.google.com/102014810775752690796/posts/bokCo5aB2yB",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13ivvf4btjzt1pam04cglnqxvrizxthiqo0k/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13ivvf4btjzt1pam04cglnqxvrizxthiqo0k/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13ivvf4btjzt1pam04cglnqxvrizxthiqo0k/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2Flg-nexus-real.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/lg-nexus-real.jpg",
+            "type": "image/jpeg",
+            "height": 400,
+            "width": 549
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2FThe-FCC-confirms-wireless-charging-on-the-LG-Nexus-4-2.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/The-FCC-confirms-wireless-charging-on-the-LG-Nexus-4-2.jpg",
+            "type": "image/jpeg",
+            "height": 416,
+            "width": 600
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2FThe-FCC-confirms-wireless-charging-on-the-LG-Nexus-4-2-150x150.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/The-FCC-confirms-wireless-charging-on-the-LG-Nexus-4-2-150x150.jpg",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2FThe-FCC-confirms-wireless-charging-on-the-LG-Nexus-4-1-150x150.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/The-FCC-confirms-wireless-charging-on-the-LG-Nexus-4-1-150x150.jpg",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2FThe-FCC-confirms-wireless-charging-on-the-LG-Nexus-4-150x150.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/The-FCC-confirms-wireless-charging-on-the-LG-Nexus-4-150x150.jpg",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2FMockup-of-the-LG-Nexus-4-150x150.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/Mockup-of-the-LG-Nexus-4-150x150.jpg",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2010%2F05%2Fnow-hiring-2012.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2010/05/now-hiring-2012.jpg",
+            "type": "image/jpeg",
+            "height": 250,
+            "width": 300
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2Flg-nexus-real-150x150.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/lg-nexus-real-150x150.jpg",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2FMetroPCS-TMobile-150x150.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/MetroPCS-TMobile-150x150.jpg",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2FDROID-DAILY-1-150x150.png",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/DROID-DAILY-1-150x150.png",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2Fgmail-42-150x150.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/gmail-42-150x150.jpg",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2Fasus-padfone-2-150x150.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/asus-padfone-2-150x150.jpg",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2FWild-Blood-150x150.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/Wild-Blood-150x150.jpg",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          }
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fandroidheadlines.com%2Fwp-content%2Fuploads%2F2012%2F10%2Fhtc-one-x-plus-630-150x150.jpg",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://androidheadlines.com/wp-content/uploads/2012/10/htc-one-x-plus-630-150x150.jpg",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          }
+        },
+        {
+          "objectType": "article",
+          "url": "http://androidheadlines.com/2012/10/featured-lg-nexus-wireless-charging-confirmed-by-fcc-visit.html"
+        },
+        {
+          "objectType": "article",
+          "displayName": "Featured LG Nexus’ Wireless Charging Confirmed by FCC visit | Android Headlines",
+          "content": "Seems like all we&#39;ve been reporting on lately is the LG Nexus. Well this time it appears that the device has taken a visit to the FCC. That normally means",
+          "url": "http://androidheadlines.com/2012/10/featured-lg-nexus-wireless-charging-confirmed-by-fcc-visit.html"
+        }
+      ]
+    },
+    "annotation": "",
+    "crosspostSource": "152598927355538417",
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "items": [
+        {
+          "type": "public"
+        },
+        {
+          "type": "person",
+          "id": "114197358633834273250"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<md-dialog aria-label="Go PREMIUM">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Go PREMIUM</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="/images/icons/close.svg" aria-label="Close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content class="go-premium" style="padding: 10px">
+      <p ng-repeat="line in lines" ng-bind-html="line"></p>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" style="padding-right: 10px;padding-left: 10px;">
+      <span flex></span>
+      <md-button class="md-raised" ng-click="cancel()">Cancel</md-button>
+      <md-button class="md-raised md-primary" ng-click="upgrade()" md-autofocus>Upgrade Now</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

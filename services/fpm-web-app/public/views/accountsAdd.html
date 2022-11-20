@@ -1,0 +1,177 @@
+<div layout="column" layout-margin="1" class="accounts-add" ng-controller="AccountsAddCtrl">
+
+  <div ng-show="!network && !profile">
+    <h1 style="margin-top:0;margin-bottom:0">Choose type of queue you'd like to add</h1>
+
+    <md-input-container md-no-float class="md-block search" style="margin-top:0">
+      <input ng-model="search" type="text" placeholder="Search..." ng-disabled="loadingAccounts">
+    </md-input-container>
+
+    <div layout="row" layout-wrap layout-align-xs="center start">
+      <md-button class="md-add {{n.type}}" md-whiteframe="5" ng-click="pickNetwork(n)" ng-show="n.show" ng-repeat="n in networks track by n.type" aria-label="Add {{n.name}} queue">
+        <md-tooltip>Add {{n.name}} queue</md-tooltip>
+        <div><i class="fa {{n.icon}}"></i>{{n.name}}<div class="beta" ng-if="n.beta"><span>Beta</span></div></div>
+      </md-button>
+    </div>
+  </div>
+
+  <div ng-if="network && !profile && !account && profiles.length == 0">
+    <div layout="row" style="margin:0">
+      <md-button class="md-network {{network.type}}" md-whiteframe="5" ng-click="pickNetwork(network)" style="margin:0 16px 0 0" aria-label="Choose a different network">
+        <md-tooltip>Choose a different network</md-tooltip>
+        <div><i class="fa {{network.icon}}"></i></div>
+      </md-button>
+      <h1 flex style="margin-bottom: 0;margin-top: 0;">Connect <b style="font-weight:400">{{network.name}}</b> account</h1>
+    </div>
+    <p style="margin:18px 0" ng-if="!showInstagramLogin">Connect new {{network.name}} account with access to {{typesList(network)}} you'd like to add</p>
+  </div>
+
+  <div ng-if="network && !profile && !account && profiles.length > 0">
+    <div layout="row" style="margin:0">
+      <md-button class="md-network {{network.type}}" md-whiteframe="5" ng-click="pickNetwork(network)" style="margin:0 16px 0 0" aria-label="Choose a different network">
+        <md-tooltip>Choose a different network</md-tooltip>
+        <div><i class="fa {{network.icon}}"></i></div>
+      </md-button>
+      <h1 flex hide-xs style="margin-bottom: 0;margin-top: 0;">Choose <b style="font-weight:400">{{network.name}}</b> account</h1>
+    </div>
+    <h1 hide-gt-xs style="margin-bottom: 0;margin-top: 0;">Choose <b style="font-weight:400">{{network.name}}</b> account</h1>
+    <p style="margin:18px 0">Choose one from already available {{network.name}} accounts with access to {{typesList(network)}} you'd like to add or connect new such a {{network.name}} account.</p>
+  </div>
+
+  <div ng-if="network && profile && !account">
+    <div layout="row" layout-wrap style="margin:0">
+      <md-button class="md-network {{network.type}}" md-whiteframe="5" ng-click="pickNetwork(network)" style="margin:0 16px 0 0" aria-label="Choose a different network">
+        <md-tooltip>Choose a different network</md-tooltip>
+        <div><i class="fa {{network.icon}}"></i></div>
+      </md-button>
+
+      <md-button class="md-raised md-network" layout="column" layout="center center" ng-click="pickProfile(profile)" style="margin:0 16px 0 0" aria-label="Choose a different {{network.name}} account">
+        <md-tooltip>Choose a different {{network.name}} account</md-tooltip>
+        <img ng-src="{{profile.image}}" alt="{{profile.name}}">
+      </md-button>
+
+      <h1 flex hide-sm hide-xs style="margin-top: 0;margin-bottom: 0;">Pick <b style="font-weight:400">{{typesList(network)}}</b> you'd like to add.</h1>
+      <span flex hide-gt-sm></span>
+
+      <md-button class="md-network" md-no-ink="true" aria-label="Refresh list" ng-if="network && profile && !loadingAccounts" ng-click="refreshAccounts()">
+        <md-tooltip>Refresh list</md-tooltip>
+        <md-icon md-svg-icon="/images/icons/refresh.svg"></md-icon>
+      </md-button>
+    </div>
+  </div>
+
+  <h1 hide-gt-sm style="margin-top: 0;margin-bottom: 0;" ng-if="network && profile && !account" >Pick <b style="font-weight:400">{{typesList(network)}}</b> you'd like to add.</h1>
+
+  <md-input-container md-no-float class="md-block search" ng-show="network && !loadingAccounts && !account && !showInstagramLogin">
+    <input ng-model="search" type="text" placeholder="Search...">
+  </md-input-container>
+
+  <div layout="row" layout-wrap ng-show="!profile && !account && !loadingAccounts && !showInstagramLogin">
+    <md-button class="md-add md-new" ng-click="addNewAccount(network.type)" ng-show="network && !profile" aria-label="Connect {{network.name}} account">
+      <i class="fa fa-plus"></i>Connect <b>{{network.name}}</b> account
+    </md-button>
+
+    <md-button class="md-raised md-profile" layout="column" layout="center center" ng-click="pickProfile(p)" ng-show="p.show" ng-repeat="p in profiles track by p._id" aria-label="Choose '{{p.name}}' {{network.name}} account">
+      <md-tooltip>Choose '{{p.name}}' {{network.name}} account</md-tooltip>
+      <img ng-src="{{p.image}}" alt="{{p.name}}">
+      <md-truncate>{{p.name}}</md-truncate>
+    </md-button>
+  </div>
+
+  <div layout="row" layout-align="center center" layout-padding="1" ng-if="profile && loadingAccounts && !account">
+    <div layout="column" layout-align="center center">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+      <p style="margin-top: 16px">Loading {{network.name}} accounts...</p>
+    </div>
+  </div>
+
+  <div layout="column" ng-if="profile && !account && !loadingAccounts">
+    <div layout="column" ng-show="isAccountsGroupVisible(g)" ng-repeat="g in groupedAccounts track by g.type">
+      <div style="text-transform: capitalize;font-weight: 300;font-size: 18px;color: rgba(0,0,0,0.54);" layout-margin="1" ng-click="g.collapsed = !!!g.collapsed" >
+        {{network.name}} {{subTypesMore[g.type]}}
+        <small style="margin:0">({{g.accounts.length}})</small>
+        <md-icon ng-if="g.collapsed" md-svg-src="/images/icons/chevron-down.svg"></md-icon>
+        <md-icon ng-if="!g.collapsed" md-svg-src="/images/icons/chevron-up.svg"></md-icon>
+      </div>
+
+      <div layout="row" layout-wrap ng-if="!g.collapsed">
+        <md-button class="md-raised md-account" layout="column" layout="center center" ng-click="pickAccount(a)" ng-repeat="a in g.accounts track by a.id" aria-label="Choose '{{a.name}}' {{network.name}} {{a.type}}">
+          <md-tooltip>Choose '{{a.name}}' {{network.name}} {{a.type}}</md-tooltip>
+          <img ng-src="{{a.image}}" alt="{{a.name}}">
+          <md-truncate>{{a.name}}</md-truncate>
+        </md-button>
+      </div>
+    </div>
+  </div>
+
+  <div layout="row" layout-align="center center" layout-padding="1" ng-if="profile && profile && account">
+    <div layout="column" layout-align="center center">
+      <h1 style="margin-top: 0;text-align:center">Connecting <b style="font-weight:400">{{network.name}} {{account.type}}</b> queue...</h1>
+
+      <md-button ng-disabled="true" class="md-account" md-whiteframe="5" layout="column" layout="center center" aria-label="Connecting '{{account.name}}' {{network.name}} {{account.type}} queue">
+        <md-tooltip>Connecting '{{account.name}}' {{network.name}} {{account.type}} queue</md-tooltip>
+        <img ng-src="{{account.image}}" alt="{{account.name}}">
+        <md-truncate>{{account.name}}</md-truncate>
+      </md-button>
+    </div>
+  </div>
+
+  <div layout="row" layout-align="center center" layout-padding="1" ng-if="showInstagramLogin">
+    <div layout="column" layout-align="center center">
+      <div layout="row" layout-xs="column" layout-align="start start" layout-padding="1">
+        <div flex>
+          <p style="font-weight:400">Please confirm that the Instagram account you're trying to connect meets following requirements.</p>
+          <ul>
+            <li>This Instagram account is not private</li>
+            <li>E-mail is linked to this Instagram account</li>
+            <li>I have access to the e-mail linked to this Instagram account</li>
+            <li>I have logged into the Instagram account lately</li>
+            <li>This Instagram account has at least 5 posts</li>
+            <li>Two-factor authentication is disabled for this Instagram account</li>
+          </ul>
+        </div>
+        <div flex>
+          <p>Friends+Me posts from various international locations. This includes United States, United Kingdom and Czech Republic. You may get a notification on Instagram saying 'There was an Android login attempt from X location', that's Friends+Me setting you up on a new secure device so please verify this on Instagram if this happens to you.</p>
+          <p style="margin-top:25px"><b style="font-weight:400">What is Instagram Username?</b> It's the highlighted part of the URL <i>https://www.instagram.com/<b>instagram</b>/</i> when you sign-in to your Instagram account in the browser.</p>
+        </div>
+      </div>
+
+      <div layout="row" layout-align="start start" layout-padding="1" style="margin-top: 20px;" ng-if="instaError">
+        <div flex ng-bind-html="instaError" class="error-block"></div>
+      </div>
+
+      <!--div style="margin-top: 30px">
+        <div ng-if="!instaLoading">
+          <form layout-gt-sm="column" autocomplete="off">
+            <input id="username" style="display:none" type="text" name="fakeusernameremembered">
+            <input id="password" style="display:none" type="password" name="fakepasswordremembered">
+
+            <md-input-container class="md-block" flex-gt-sm style="margin:0" ng-show="!showInstagramSecurityCode">
+              <label>Instagram Username</label>
+              <input type="text" autocomplete="nope" ng-model="instaUsername" ng-enter="instaUsername && instaPassword && connectInstagramAccount(instaUsername, instaPassword)" to-focus="showInstagramLogin">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm style="margin:0" ng-show="!showInstagramSecurityCode">
+              <label>Instagram Password</label>
+              <input type="password" autocomplete="new-password" ng-model="instaPassword" ng-enter="instaUsername && instaPassword && connectInstagramAccount(instaUsername, instaPassword)">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm style="margin:0" ng-show="showInstagramSecurityCode">
+              <label>Instagram Security Code</label>
+              <input type="text" autocomplete="nope" ng-model="instaSecurityCode" ng-enter="instaSecurityCode && connectInstagramAccount(null, null, instaSecurityCode)">
+            </md-input-container>
+          </form>
+
+          <md-button class="md-raised md-primary" md-autofocus ng-disabled="!instaPassword || !instaUsername"  ng-show="!showInstagramSecurityCode" ng-click="connectInstagramAccount(instaUsername, instaPassword)">Connect Account</md-button>
+          <md-button class="md-raised md-primary" md-autofocus ng-disabled="!instaSecurityCode"  ng-show="showInstagramSecurityCode" ng-click="connectInstagramAccount(null, null, instaSecurityCode)">Verify &amp; Connect Account</md-button>
+        </div>
+
+        <div layout="column" layout-align="center center" ng-if="instaLoading">
+          <h2 style="margin-bottom:20px">Verifying Instagram Account</h2>
+          <md-progress-linear class="md-accent" md-mode="buffer" value="{{instaProgress}}"
+                      md-buffer-value="{{instaProgressFast}}"></md-progress-linear>
+          <p style="margin-top: 20px">Instagram account verification may take up to 60 seconds.</p>
+          <p>Thank you for your patience.</p>
+        </div>
+      </div-->
+    </div>
+  </div>
+</div>

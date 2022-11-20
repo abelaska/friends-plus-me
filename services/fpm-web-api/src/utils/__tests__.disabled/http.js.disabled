@@ -1,0 +1,37 @@
+const { errorToStatusCode, extractScheduleArgs } = require('../http');
+
+test('should convert error to http status code', () => {
+  expect(errorToStatusCode('internal_error')).toBe(500);
+  expect(errorToStatusCode('invalid_auth')).toBe(401);
+  expect(errorToStatusCode('access_denied')).toBe(403);
+});
+
+test('should extract scheduling query', () => {
+  expect(extractScheduleArgs({ query: {} })).toEqual({
+    noChanneling: true,
+    publishAt: undefined,
+    repeat: false,
+    repeatCount: undefined,
+    repeatInterval: undefined,
+    repeatIntervalUnit: undefined,
+    schedule: 'now'
+  });
+
+  expect(
+    extractScheduleArgs({
+      query: {
+        repeat: true,
+        repeat_count: 10,
+        repeat_interval: '1h'
+      }
+    })
+  ).toEqual({
+    noChanneling: true,
+    publishAt: undefined,
+    repeat: true,
+    repeatCount: 10,
+    repeatInterval: 1,
+    repeatIntervalUnit: 'hours',
+    schedule: 'now'
+  });
+});

@@ -1,0 +1,29 @@
+<div class="profile-payments" ng-controller="InvoicesCtrl">
+
+  <div ng-include="'/views/team.menu.html'"></div>
+
+  <div class="loading-block enabled" ng-class="{'enabled':loading,'disabled':!loading}">
+    Loading invoices <i class="fa fa-spinner" ng-class="{'fa-spin':loading}"></i>
+  </div>
+
+  <div class="loading-block disabled" ng-class="{'enabled':!loading && transactions.length == 0,'disabled':loading || transactions.length > 0}">No invoice found</div>
+
+  <table class="table table-striped list" ng-show="transactions.length > 0">
+    <thead>
+      <tr>
+        <th>Paid on</th>
+        <th>Description</th>
+        <th style="text-align:right">Amount</th>
+        <th style="text-align:right">Download</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="t in transactions">
+        <td class="no-wrap" ng-bind="transactionDate(t)"></td>
+        <td ng-bind-html="transactionDesc(t)"></td>
+        <td class="no-wrap" style="text-align:right" ng-bind="transactionPrice(t)">
+        <td style="text-align:right"><a href="{{config.api.url}}/profile/invoice/{{t._id}}" target="_blank">Invoice</a></td>
+      </td></tr>
+    </tbody>
+  </table>
+</div>

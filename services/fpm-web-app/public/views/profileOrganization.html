@@ -1,0 +1,37 @@
+<div class="profile-organization" ng-controller="ProfileOrganizationCtrl">
+  <h1 class="sign" style="text-align: left;margin-bottom: 0;">Organization</h1>
+  <div layout="column" layout-gt-xs="row" layout-align="start start" layout-padding="10">
+    <div flex layout="column" style="width:100%">
+      <md-input-container style="width:100%">
+        <label>Organization Name</label>
+        <input type="text" ng-model="Google.profile.subject.org">
+      </md-input-container>
+
+      <md-input-container style="width:100%">
+        <label>Organization Address</label>
+        <textarea ng-model="billTo" rows="5"></textarea>
+      </md-input-container>
+    </div>
+
+    <div flex layout="column" style="width:100%">      
+      <md-input-container style="width:100%">
+        <label>VAT ID</label>
+        <input type="text" ng-model="Google.profile.subject.vatId" ng-disabled="!!!Google.profile.subject.country">
+      </md-input-container>
+
+      <md-input-container style="width:100%">
+        <label>Country</label>
+        <md-select ng-model="billingCountry" ng-init="billingCountry = countries.findSorted(Google.profile.subject.country)" ng-change="Google.profile.subject.country=billingCountry.code" required md-no-asterisk="false">
+            <md-option><em>-- Select Country --</em></md-option>
+            <md-option ng-repeat="c in countries.sorted" ng-value="c">
+              {{c.name}}
+            </md-option>
+          </md-select>
+      </md-input-container>
+
+      <div layout="row" layout-align="center center">
+        <md-button class="md-raised md-primary" ng-click="Google.profile.subject.country && save()" ng-disabled="!Google.profile.subject.country || saving">Save changes</md-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+[
+    {
+      "origin": ["https://app.friendsplus.me","https://staging.friendsplus.me","https://localhost:9000"],
+      "responseHeader": ["Accept","Content-Type","Access-Control-Allow-Origin"],
+      "method": ["GET", "HEAD", "OPTIONS", "POST", "PUT"],
+      "maxAgeSeconds": 3600
+    }
+]

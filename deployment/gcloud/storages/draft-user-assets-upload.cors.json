@@ -1,0 +1,8 @@
+[
+    {
+      "origin": ["https://draft.so","https://localhost:3000"],
+      "responseHeader": ["Accept","Content-Type","Access-Control-Allow-Origin"],
+      "method": ["GET", "HEAD", "OPTIONS", "POST", "PUT"],
+      "maxAgeSeconds": 3600
+    }
+]

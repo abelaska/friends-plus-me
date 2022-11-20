@@ -1,0 +1,82 @@
+{ code: 1,
+	message: "An unknown error has occurred." }
+
+{ code: 2,
+  message: "An unexpected error has occurred. Please retry your request later." }
+
+{ code: 100,
+  message: "(#100) The parameter link is required" }
+
+{ code: 100,
+  message: '(#100) picture URL is not properly formatted' }
+
+{ code: 100,
+  message: "(#100) The status you are trying to publish is a duplicate of, or too similar to, one that we recently posted to Twitter" }
+
+{ code: 100,
+  message: '(#100) FBCDN image is not allowed in stream: https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/188159_549011098457839_1656200092_n.jpg' }
+
+{ code: 100,
+  message: "(#100) action links must have string 'href' and 'text' attributes" }
+
+{ code: 100,
+  message: "(#100) Param message must be non-blank text." }
+
+{ code: 100,
+  message: "(#100) flash objects must have the 'source' and 'picture' attributes" }
+
+{ code: 200,
+  message: "(#200) The user hasn't authorized the application to perform this action" }
+
+{ code: 282,
+  message: '(#282) Requires extended permission: share_item' }
+
+{ code: 324,
+  message: '(#324) Missing or invalid image file' }
+
+{ code: 341,
+	message: "(#341) Feed action request limit reached"}
+
+{ code: 368,
+  message: "Warning: This Message Contains Blocked Content: Some content in this message has been reported as abusive by Facebook users."}
+
+{ code: 368,
+  message: '(#368) The action attempted has been deemed abusive or is otherwise disallowed' }
+
+{ code: 190,
+  error_subcode: 458,
+  message: "Error validating access token: User 100001614400654 has not authorized application 395022180558081." }
+
+{ code: 190,
+  error_subcode: 460,
+  message: "Error validating access token: Session does not match current stored session. This may be because the user changed the password since the time the session was created or Facebook has changed the session for security reasons."}
+
+{ code: 190,
+  error_subcode: 460,
+  message: "Error validating access token: The session has been invalidated because the user has changed the password."}
+
+{ code: 190,
+  error_subcode: 461
+  message: "Error validating access token: Session is invalid. This could be because the application was uninstalled after the session was created."}
+
+{ code: 190,
+  error_subcode: 463,
+  message: 'Error validating access token: Session has expired at unix time 1352940917. The current unix time is 1354674369.' }
+
+{ code: 190,
+  error_subcode: 464,
+  message: 'Error validating access token: Sessions for user with id 1003749337 are not allowed.' }
+  // asi se jedna o testovaciho Facebook uzivatele
+
+{ code: 803,
+  message: "(#803) Some of the aliases you requested do not exist: undefined"}
+
+{ code: 1500,
+  message: "(#1500) The url you supplied is invalid"}
+
+{ statusCode: 500,
+  error:{
+    message: "https: is an internal url, but this is an external request.",
+    type:"CurlUrlInvalidException"
+  }
+}

@@ -1,0 +1,46 @@
+[db]
+  url = "mongodb://backend:XXX@db.c.fpm-application.internal/fpm"
+
+[email]
+  debug = false
+
+[gcloud.key]
+  filename = "/app/conf/FPM - Cluster.json"
+
+[firebase]
+  # without / at the end
+  url = "https://fpm-prod.firebaseio.com"
+[firebase.session]
+  secret = "XXX"
+
+[google]
+  clientId = "XXX"
+  clientSecret = "XXX"
+
+[linkedin]
+  consumerKey = "XXX"
+  consumerSecret = "XXX"
+
+[redis]
+  url = "redis://redis-redis.default.svc.cluster.local:6379?password=XXX"
+
+[stats.http]
+  bind = "0.0.0.0"
+  port = 10001
+
+[system]
+  fake = false
+
+[log.logentries]
+  enabled = false
+  token = "XXX"
+
+[oauth.tokens.store.crypto]
+  key = "XXX"
+  iv = "XXX"
+
+[http.ui]
+  url = "https://app.friendsplus.me"
+
+[mobileproxy]
+  url = "http://mobile-proxy"

@@ -1,0 +1,9 @@
+[http]
+  bind = "0.0.0.0"
+
+[redis]
+  url = "redis://redis-redis.default.svc.cluster.local:6379?password=XXX"
+
+[log.logentries]
+  enabled = false
+  token = "XXX"

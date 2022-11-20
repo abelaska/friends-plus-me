@@ -1,0 +1,7 @@
+nexus 5
+---
+[ro.boot.serialno]: [0388d00a094b40d2]
+[ro.serialno]: [0388d00a094b40d2]
+
+adb shell su 0 setprop ro.serialno 0388d00a094b40d3
+adb shell su 0 setprop ro.boot.serialno 0388d00a094b40d3

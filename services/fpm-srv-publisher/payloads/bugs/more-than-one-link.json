@@ -1,0 +1,127 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"GZR2X3-UK6zXRwPjCsTmgE7l6CI/VdSv_6QU6tyxdKOIafyuWosU7ZM\"",
+    "title": "Reshared post from Carlos Morales Tapia\n \n\nLo leí en:\nwww.yoacuso.com.mx\nComenta, Opina, Difunde,...",
+    "published": "2012-10-23T02:57:22.639Z",
+    "updated": "2012-10-23T02:57:22.639Z",
+    "id": "z13ccxwgzwrusrvcq23qtvcovyytt1p2w",
+    "url": "https://plus.google.com/114458856608201314145/posts/4phModWbR91",
+    "actor": {
+      "id": "114458856608201314145",
+      "displayName": "Carlos Morales Tapia",
+      "name": {
+        "familyName": "Morales Tapia",
+        "givenName": "Carlos"
+      },
+      "url": "https://plus.google.com/114458856608201314145",
+      "image": {
+        "url": "https://lh4.googleusercontent.com/-PNtwXaKQco8/AAAAAAAAAAI/AAAAAAAAAAA/rHEgJY9C4Ow/photo.jpg?sz=50"
+      }
+    },
+    "verb": "share",
+    "object": {
+      "objectType": "activity",
+      "id": "z13awbqovlqez5rlx23qtvcovyytt1p2w",
+      "actor": {
+        "id": "114458856608201314145",
+        "displayName": "Carlos Morales Tapia",
+        "url": "https://plus.google.com/114458856608201314145",
+        "image": {
+          "url": "https://lh4.googleusercontent.com/-PNtwXaKQco8/AAAAAAAAAAI/AAAAAAAAAAA/rHEgJY9C4Ow/photo.jpg?sz=50"
+        }
+      },
+      "content": "Lo leí en:<br /><a href=\"http://www.yoacuso.com.mx\" >www.yoacuso.com.mx</a><br />Comenta, Opina, Difunde, Participa",
+      "url": "https://plus.google.com/114458856608201314145/posts/BKyAbF7XMUG",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13ccxwgzwrusrvcq23qtvcovyytt1p2w/comments"
+      },
+      "plusoners": {
+        "totalItems": 1,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13ccxwgzwrusrvcq23qtvcovyytt1p2w/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13ccxwgzwrusrvcq23qtvcovyytt1p2w/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "Cosas Pequeñas",
+          "content": "yo acuso | Columna, Radio &amp; Espacio Informativo es el resultado de varios años de manejo informativo, análisis y opinión, ahora, también presentamos algunos aspectos imteresantes del periodismo co...",
+          "url": "http://www.yoacuso.com.mx/index.php/columnistas/cosas-pequenas"
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fwww.yoacuso.com.mx%2Fimages%2Fcolumnistas%2Fjuan%2520antonio%2520nemi%2520dib.JPG",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://www.yoacuso.com.mx/index.php/columnistas/cosas-pequenas",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "annotation": "Comenta, Opina, Difunde, Participa",
+    "crosspostSource": "15510902357088055228",
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "items": [
+        {
+          "type": "public"
+        },
+        {
+          "type": "circle",
+          "id": "u5FsImfo2tiipjbz2l7xe95zxzZv4p8M"
+        },
+        {
+          "type": "circle",
+          "id": "u5FsImfo2tgXSBiAudpScMDC8XGupa8e"
+        },
+        {
+          "type": "circle",
+          "id": "u5FsImfo2thlQXHTonO_KjAdV-StM_3z"
+        },
+        {
+          "type": "circle",
+          "id": "u5FsImfo2tjnGiAnn923OnjYHUstomEp"
+        },
+        {
+          "type": "circle",
+          "id": "u5FsImfo2thUj2vol4EoiAfdJUcqrBGZ"
+        },
+        {
+          "type": "circle",
+          "id": "u5FsImfo2thauKpqlFFbEAORPwn6aTPt"
+        },
+        {
+          "type": "circle",
+          "id": "u5FsImfo2tjXmLjnNafq0zFNDHYikUC3"
+        },
+        {
+          "type": "circle",
+          "id": "u5FsImfo2tgDeKzjg4NObrMwVamLOmem"
+        },
+        {
+          "type": "person",
+          "id": "114458856608201314145"
+        }
+      ]
+    }
+  }
+}

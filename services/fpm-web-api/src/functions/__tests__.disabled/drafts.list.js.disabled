@@ -1,0 +1,501 @@
+/* eslint no-mixed-operators: "off" */
+const Promise = require('bluebird');
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { ObjectId, User, Profile, Post } = require('@fpm/db');
+const { testingBeforeAll,
+  testingAfterAll, testFunc, nockHydraTokenIntrospect } = require('../../utils/testing');
+const { unix, dateDaysBefore, dateMinusHours } = require('../../utils/time');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+
+test('should get list of drafts as a team owner', async () => {
+  const now = dateDaysBefore();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({ _id: dbTeamId, members: { owner: [dbUserId] } });
+
+  const drafts = [];
+  for (let i = 0; i < 10; i++) {
+    drafts.push({
+      pid: dbTeam._id,
+      aid: new ObjectId(),
+      state: States.post.draft.code,
+      createdBy: dbUser._id,
+      modifiedBy: dbUser._id,
+      createdAt: now,
+      modifiedAt: now
+    });
+  }
+  const dbDrafts = await Promise.map(drafts, draft => Post.create(draft));
+  const dbDraft = await Post.create({
+    pid: dbTeam._id,
+    aid: new ObjectId(),
+    state: States.post.draft.code,
+    createdBy: new ObjectId(),
+    modifiedBy: new ObjectId(),
+    createdAt: now,
+    modifiedAt: now
+  });
+
+  const posts = [
+    {
+      pid: dbTeam._id,
+      aid: new ObjectId(),
+      state: States.post.published.code,
+      createdBy: dbUser._id,
+      modifiedBy: dbUser._id,
+      createdAt: now,
+      modifiedAt: now
+    },
+    {
+      pid: new ObjectId(),
+      aid: new ObjectId(),
+      state: States.post.draft.code,
+      createdBy: new ObjectId(),
+      modifiedBy: new ObjectId(),
+      createdAt: now,
+      modifiedAt: now
+    },
+    {
+      pid: new ObjectId(),
+      aid: new ObjectId(),
+      state: States.post.published.code,
+      createdBy: new ObjectId(),
+      modifiedBy: new ObjectId(),
+      createdAt: now,
+      modifiedAt: now
+    },
+    {
+      pid: dbTeam._id,
+      aid: new ObjectId(),
+      state: States.post.published.code,
+      createdBy: new ObjectId(),
+      modifiedBy: new ObjectId(),
+      createdAt: now,
+      modifiedAt: now
+    }
+  ];
+  await Promise.map(posts, post => Post.create(post));
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.read',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'drafts.list',
+    req: {
+      qs: { access_token: token, team: dbTeam._id.toString() }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(false);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBeTruthy();
+  expect(reply.body.drafts.filter(d => d.draft_id === dbDraft._id.toString()).length).toBe(1);
+  expect(reply.body.drafts.length).toBe(dbDrafts.length + 1);
+});
+
+test('should get list of drafts as a team manager', async () => {
+  const now = dateDaysBefore();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { manager: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({ _id: dbTeamId, members: { manager: [dbUserId] } });
+
+  const drafts = [];
+  for (let i = 0; i < 10; i++) {
+    drafts.push({
+      pid: dbTeam._id,
+      aid: new ObjectId(),
+      state: States.post.draft.code,
+      createdBy: dbUser._id,
+      modifiedBy: dbUser._id,
+      createdAt: now,
+      modifiedAt: now
+    });
+  }
+  const dbDrafts = await Promise.map(drafts, draft => Post.create(draft));
+  const dbDraft = await Post.create({
+    pid: dbTeam._id,
+    aid: new ObjectId(),
+    state: States.post.draft.code,
+    createdBy: new ObjectId(),
+    modifiedBy: new ObjectId(),
+    createdAt: now,
+    modifiedAt: now
+  });
+
+  const posts = [
+    {
+      pid: dbTeam._id,
+      aid: new ObjectId(),
+      state: States.post.published.code,
+      createdBy: dbUser._id,
+      modifiedBy: dbUser._id,
+      createdAt: now,
+      modifiedAt: now
+    },
+    {
+      pid: new ObjectId(),
+      aid: new ObjectId(),
+      state: States.post.draft.code,
+      createdBy: new ObjectId(),
+      modifiedBy: new ObjectId(),
+      createdAt: now,
+      modifiedAt: now
+    },
+    {
+      pid: new ObjectId(),
+      aid: new ObjectId(),
+      state: States.post.published.code,
+      createdBy: new ObjectId(),
+      modifiedBy: new ObjectId(),
+      createdAt: now,
+      modifiedAt: now
+    },
+    {
+      pid: dbTeam._id,
+      aid: new ObjectId(),
+      state: States.post.published.code,
+      createdBy: new ObjectId(),
+      modifiedBy: new ObjectId(),
+      createdAt: now,
+      modifiedAt: now
+    }
+  ];
+  await Promise.map(posts, post => Post.create(post));
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.read',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'drafts.list',
+    req: {
+      qs: { access_token: token, team: dbTeam._id.toString() }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(false);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBeTruthy();
+  expect(reply.body.drafts.filter(d => d.draft_id === dbDraft._id.toString()).length).toBe(1);
+  expect(reply.body.drafts.length).toBe(dbDrafts.length + 1);
+});
+
+test('should get list of drafts as a team contributor', async () => {
+  const now = dateDaysBefore();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({ _id: dbTeamId, members: { contributor: [dbUserId] } });
+
+  const drafts = [];
+  for (let i = 0; i < 10; i++) {
+    drafts.push({
+      pid: dbTeam._id,
+      aid: new ObjectId(),
+      state: States.post.draft.code,
+      createdBy: dbUser._id,
+      modifiedBy: dbUser._id,
+      createdAt: now,
+      modifiedAt: now
+    });
+  }
+  const dbDrafts = await Promise.map(drafts, draft => Post.create(draft));
+
+  const posts = [
+    {
+      pid: dbTeam._id,
+      aid: new ObjectId(),
+      state: States.post.draft.code,
+      createdBy: new ObjectId(),
+      modifiedBy: new ObjectId(),
+      createdAt: now,
+      modifiedAt: now
+    },
+    {
+      pid: dbTeam._id,
+      aid: new ObjectId(),
+      state: States.post.published.code,
+      createdBy: dbUser._id,
+      modifiedBy: dbUser._id,
+      createdAt: now,
+      modifiedAt: now
+    },
+    {
+      pid: new ObjectId(),
+      aid: new ObjectId(),
+      state: States.post.draft.code,
+      createdBy: new ObjectId(),
+      modifiedBy: new ObjectId(),
+      createdAt: now,
+      modifiedAt: now
+    },
+    {
+      pid: new ObjectId(),
+      aid: new ObjectId(),
+      state: States.post.published.code,
+      createdBy: new ObjectId(),
+      modifiedBy: new ObjectId(),
+      createdAt: now,
+      modifiedAt: now
+    },
+    {
+      pid: dbTeam._id,
+      aid: new ObjectId(),
+      state: States.post.published.code,
+      createdBy: new ObjectId(),
+      modifiedBy: new ObjectId(),
+      createdAt: now,
+      modifiedAt: now
+    }
+  ];
+  await Promise.map(posts, post => Post.create(post));
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.read',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'drafts.list',
+    req: {
+      qs: { access_token: token, team: dbTeam._id.toString() }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(false);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBe(dbDrafts.length);
+});
+
+test('should check paging', async () => {
+  const now = dateDaysBefore();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({ _id: dbTeamId, members: { contributor: [dbUserId] } });
+
+  const drafts = [];
+  for (let i = 0; i < 10; i++) {
+    drafts.push({
+      pid: dbTeam._id,
+      aid: new ObjectId(),
+      state: States.post.draft.code,
+      createdBy: dbUser._id,
+      modifiedBy: dbUser._id,
+      html: `<p>draft #${i}</p>`,
+      createdAt: dateMinusHours(now, i),
+      modifiedAt: dateMinusHours(now, i)
+    });
+  }
+  const dbDrafts = await Promise.map(drafts, draft => Post.create(draft));
+
+  // console.log(
+  //   'dbDrafts',
+  //   dbDrafts.map(d =>
+  //     JSON.stringify(
+  //       {
+  //         draft_id: d._id.toString(),
+  //         html: d.html,
+  //         modifiedAt: unix(d.modifiedAt) + ' ' + d.modifiedAt.toISOString()
+  //       },
+  //       null,
+  //       2
+  //     )
+  //   )
+  // );
+
+  const list = async (args = {}) => {
+    const { token } = nockHydraTokenIntrospect({
+      active: true,
+      scope: 'drafts.read',
+      userId: dbUser._id.toString()
+    });
+    return testFunc({
+      name: 'drafts.list',
+      req: {
+        qs: { access_token: token, team: dbTeam._id.toString(), ...args }
+      }
+    });
+  };
+
+  let reply = await list({ count: 2 });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(true);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBe(2);
+  expect(reply.body.drafts[0].draft_id === dbDrafts[0]._id.toString()).toBeTruthy();
+  expect(reply.body.drafts[1].draft_id === dbDrafts[1]._id.toString()).toBeTruthy();
+
+  reply = await list({ count: 2, latest: reply.body.latest });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(true);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBe(2);
+  expect(reply.body.drafts[0].draft_id === dbDrafts[2]._id.toString()).toBeTruthy();
+  expect(reply.body.drafts[1].draft_id === dbDrafts[3]._id.toString()).toBeTruthy();
+
+  reply = await list({ count: 2, latest: reply.body.latest });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(true);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBe(2);
+  expect(reply.body.drafts[0].draft_id === dbDrafts[4]._id.toString()).toBeTruthy();
+  expect(reply.body.drafts[1].draft_id === dbDrafts[5]._id.toString()).toBeTruthy();
+
+  reply = await list({
+    count: 2,
+    latest: unix(drafts[3].modifiedAt),
+    oldest: unix(drafts[6].modifiedAt),
+    inclusive: true
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(true);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBe(2);
+  expect(reply.body.drafts[0].draft_id === dbDrafts[3]._id.toString()).toBeTruthy();
+  expect(reply.body.drafts[1].draft_id === dbDrafts[4]._id.toString()).toBeTruthy();
+
+  reply = await list({
+    count: 5,
+    latest: unix(drafts[3].modifiedAt),
+    oldest: unix(drafts[6].modifiedAt),
+    inclusive: true
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(false);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBe(4);
+  expect(reply.body.drafts[0].draft_id === dbDrafts[3]._id.toString()).toBeTruthy();
+  expect(reply.body.drafts[1].draft_id === dbDrafts[4]._id.toString()).toBeTruthy();
+  expect(reply.body.drafts[2].draft_id === dbDrafts[5]._id.toString()).toBeTruthy();
+  expect(reply.body.drafts[3].draft_id === dbDrafts[6]._id.toString()).toBeTruthy();
+
+  reply = await list({ count: 5, latest: unix(drafts[3].modifiedAt), oldest: unix(drafts[6].modifiedAt) });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(false);
+  expect(reply.body.drafts).toBeTruthy();
+  // console.log('reply.body.drafts', JSON.stringify(reply.body.drafts, null, 2));
+  expect(reply.body.drafts.length).toBe(2);
+  expect(reply.body.drafts[0].draft_id === dbDrafts[4]._id.toString()).toBeTruthy();
+  expect(reply.body.drafts[1].draft_id === dbDrafts[5]._id.toString()).toBeTruthy();
+
+  reply = await list({ count: 2, latest: reply.body.latest });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(true);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBe(2);
+  expect(reply.body.drafts[0].draft_id === dbDrafts[6]._id.toString()).toBeTruthy();
+  expect(reply.body.drafts[1].draft_id === dbDrafts[7]._id.toString()).toBeTruthy();
+
+  reply = await list({ count: 1, latest: reply.body.latest });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(true);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBe(1);
+  expect(reply.body.drafts[0].draft_id === dbDrafts[8]._id.toString()).toBeTruthy();
+
+  const latest = reply.body.latest;
+
+  reply = await list({ count: 2, latest });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(false);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBe(1);
+  expect(reply.body.drafts[0].draft_id === dbDrafts[9]._id.toString()).toBeTruthy();
+
+  reply = await list({ count: 2, latest, inclusive: true });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(true);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBe(2);
+  expect(reply.body.drafts[0].draft_id === dbDrafts[8]._id.toString()).toBeTruthy();
+  expect(reply.body.drafts[1].draft_id === dbDrafts[9]._id.toString()).toBeTruthy();
+
+  reply = await list({ count: 1, latest });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.has_more).toBe(true);
+  expect(reply.body.drafts).toBeTruthy();
+  expect(reply.body.drafts.length).toBe(1);
+  expect(reply.body.drafts[0].draft_id === dbDrafts[9]._id.toString()).toBeTruthy();
+});

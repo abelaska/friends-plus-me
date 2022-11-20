@@ -1,0 +1,142 @@
+<div class="posts-page" ng-controller="QueueCtrl" ng-init="init({isTimeline: true})">
+
+  <md-button class="md-fab" style="position:fixed;bottom:20px;z-index: 58;" ng-style="{'right':accountsMenuPinned?'340px':'20px'}" aria-label="Create New Post" ng-click="openEditor($event)" ng-if="isOwnerOrManager || isAccountManager">
+    <md-tooltip md-direction="left">Create New Post</md-tooltip>
+    <md-icon md-svg-src="/images/icons/pencil.svg"></md-icon>
+  </md-button>
+
+  <div layout="row" layout-align="center center" ng-if="loading">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+  </div>
+
+  <div layout="row" layout-align="start center" ng-if="!loading">
+    <div flex></div>
+
+    <md-button ng-click="manualRefresh()" class="md-icon-button" ng-disabled="loading">
+      <md-tooltip>Refresh Queue</md-tooltip>
+      <md-icon md-svg-src="/images/icons/refresh.svg"></md-icon>
+    </md-button>
+
+    <md-button ng-disabled="loading" class="md-icon-button" ng-if="days.length > 0 && collapsed" ng-click="expandDays()">
+      <md-tooltip>Expand All</md-tooltip>
+      <md-icon md-svg-src="/images/icons/plus-circle.svg"></md-icon>
+    </md-button>
+    <md-button ng-disabled="loading" class="md-icon-button" ng-if="days.length > 0 && !collapsed" ng-click="collapseDays()">
+      <md-tooltip>Collapse All</md-tooltip>
+      <md-icon md-svg-src="/images/icons/minus-circle-outline.svg"></md-icon>
+    </md-button>
+  </div>
+
+  <div layout="column" layout-align="center center" ng-if="days.length == 0 && !loading" style="min-height:400px">
+    <p>Timeline is Empty!</p>
+    <md-button ng-if="days.length == 0 && !loading && (isOwnerOrManager || isAccountManager)" ng-click="openEditor($event)" class="md-raised md-primary">Create New Post!</md-button>
+  </div>
+
+  <div layout="column" ng-repeat="day in days track by day._id" ng-if="days.length > 0">
+    <h2 ng-click="day.collapsed = !!!day.collapsed" style="margin:20px 0 20px 10px;font-size: 18px">
+      <span ng-bind-html="day.tmDay"></span>
+      <small style="display:inline-block">({{day.posts.length}})</small>
+      <md-icon ng-if="day.collapsed" md-svg-src="/images/icons/chevron-down.svg"></md-icon>
+      <md-icon ng-if="!day.collapsed" md-svg-src="/images/icons/chevron-up.svg"></md-icon>
+    </h2>
+
+    <div layout="column" ng-if="!day.collapsed">
+      <div layout="column" style="margin: 0 10px 20px 10px;max-width:800px;width: calc(100% - 40px);" layout-align="start start" md-whiteframe="1" ng-repeat="post in day.posts track by post._id+$index">
+
+        <div layout="row" layout-xs="column" style="margin: 0 0 10px 0;padding:0 10px 0 0;position: relative;min-height:38px;width:100%;">
+          <div flex layout="column" style="margin: 10px 0 0 0;">
+            <div flex ng-bind-html="post.htmlSafe" class="post-content" style="padding: 0 10px;cursor:pointer;overflow: hidden;font-size: 12px;max-height:128px;" ng-click="(isOwnerOrManager || isAccountManager) && !post.publishing && resharePost($event, post)"></div>
+
+            <a ng-if="post.isLinkAttached" md-truncate href="{{post.attachments.link.url}}" target="_blank" style="font-size:12px;margin:5px 10px 0 10px;max-width: calc(100% - 20px);padding: 0;">{{post.attachments.link.url}}</a>
+          </div>
+
+          <div layout-align-xs="center center" style="margin: 10px 0 0 10px;">
+            <img ng-if="post.showPhotoUrl" ng-src="{{post.showPhotoUrl}}" alt="Photo" style="border: 1px dashed rgba(0,0,0,0.05);object-fit: cover;overflow: hidden;" ng-click="(isOwnerOrManager || isAccountManager) && !post.publishing && resharePost($event, post)">
+          </div>
+
+          <div style="position: absolute; right: 10px; bottom: 0;">
+            <div class="destination active" style="margin: 0;cursor: default;" ng-if="post.createdBy._id">
+              <md-tooltip>Created By {{post.createdBy.name}}</md-tooltip>
+              <img ng-src="{{post.createdBy.image}}" style="border:0;width:28px;height:28px;">
+            </div>
+
+            <div class="destination active" style="margin: 0;cursor: default;" ng-if="post.modifiedBy._id && post.modifiedBy._id != post.createdBy._id">
+              <md-tooltip>Last Modified By {{post.modifiedBy.name}}</md-tooltip>
+              <img ng-src="{{post.modifiedBy.image}}" style="border:0;width:28px;height:28px;">
+            </div>
+          </div>
+        </div>
+
+        <div layout="row" layout-align="start center" style="width: 100%;padding:5px 5px 5px 10px;border-top: 1px solid rgba(0,0,0,0.05);background-color: rgba(0,0,0,0.02);">
+
+          <a ng-href="{{isOwnerOrManager || isAccountManager ? 'teams/'+Google.profile._id+'/queues/'+post.account._id+'/queue':''}}" class="destination active {{types.networkTypeNameOfAccount(post.account)}}" ng-class="{'disabled':post.account.state!=states.account.enabled.code}" style="margin: 0 5px 0 0;">
+            <md-tooltip>{{accountTitle(post.account)}}</md-tooltip>
+            <img ng-src="{{post.account.image}}">
+            <div class="network-icon" ng-switch on="types.networkTypeNameOfAccount(post.account)">
+              <i ng-switch-when="pinterest" class="fa fa-pinterest"></i>
+              <i ng-switch-when="facebook" class="fa fa-facebook"></i>
+              <i ng-switch-when="linkedin" class="fa fa-linkedin"></i>
+              <i ng-switch-when="twitter" class="fa fa-twitter"></i>
+              <i ng-switch-when="tumblr" class="fa fa-tumblr"></i>
+              <i ng-switch-when="google" class="fa fa-google-plus"></i>
+              <i ng-switch-when="instagram" class="fa fa-instagram"></i>
+            </div>
+          </a>
+
+          <md-button ng-href="{{post.url}}" target="_blank" md-no-ink="true" aria-label="Link To Published Post" style="min-width: 40px;margin: 0 0 0 5px;color: rgba(0,0,0,0.7);text-transform: lowercase;font-size: 13px;">
+            <md-tooltip>Link To Published Post</md-tooltip>
+            {{post.tmTime}}
+          </md-button>
+
+          <md-button ng-if="post.repost.is && post.repost.url" class="md-icon-button" ng-href="{{post.repost.url}}" target="_blank" style="font-size:10px;margin:0">
+            <md-tooltip>Link to Original Post</md-tooltip>
+            <md-icon md-svg-icon="/images/icons/link.svg"></md-icon>
+          </md-button>
+
+          <md-button class="md-icon-button" ng-click="showErrors($event, post)" ng-if="post.failures.length > 0 && (!post.isPublished || isAdmin())">
+            <md-tooltip>Show {{post.failures.length}} Publishing Error{{post.failures.length > 1 ? 's': ''}}</md-tooltip>
+            <md-icon md-svg-icon="/images/icons/alert.svg"></md-icon>
+          </md-button>
+
+          <div flex></div>
+
+          <md-button hide-xs style="color: rgba(0,0,0,0.7);font-size: 11px;margin: 0;min-width: 50px;" ng-click="redraftPost($event, post)" ng-disabled="publishing">Save as Draft</md-button>
+          <md-button hide-xs style="color: rgba(0,0,0,0.7);font-size: 11px;margin: 0;min-width: 50px;" ng-click="resharePost($event, post)" ng-if="isOwnerOrManager || isAccountManager" ng-disabled="publishing">Schedule Again</md-button>
+          <md-button hide-xs style="color: rgba(0,0,0,0.7);font-size: 11px;margin: 0;min-width: 50px;" ng-if="post.isStateFailed && (isOwnerOrManager || isAccountManager)" ng-disabled="publishing" ng-click="publishPost(post)">Publish Now</md-button>
+
+          <md-menu show-xs hide-gt-xs ng-if="isOwnerOrManager || isAccountManager">
+            <md-button class="md-icon-button" md-no-ink="true" aria-label="Post Operations" ng-click="$mdMenu.open($event)" style="margin:0 4px 0 0">
+              <md-tooltip>Operations</md-tooltip>
+              <md-icon md-svg-icon="/images/icons/dots-vertical.svg"></md-icon>
+            </md-button>
+            <md-menu-content width="4">
+              <md-menu-item ng-if="post.isStateFailed">
+                <md-button ng-click="publishPost(post)" ng-disabled="publishing">
+                  <md-icon md-svg-icon="/images/icons/send.svg"></md-icon>
+                  Publish Now
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="resharePost($event, post)" ng-disabled="publishing">
+                  <md-icon md-svg-icon="/images/icons/send.svg"></md-icon>
+                  Schedule Again
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="redraftPost($event, post)" ng-disabled="publishing">
+                  <md-icon md-svg-icon="/images/icons/pencil-box-outline.svg"></md-icon>
+                  Save as Draft
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div layout="row" layout-wrap layout-margin="20" ng-if="loadMorePossible">
+    <md-tooltip>Load More Posts...</md-tooltip>
+    <md-button class="md-raised" ng-click="loadMore()" ng-disabled="loading">Load More Posts...</md-button>
+  </div>
+</div>

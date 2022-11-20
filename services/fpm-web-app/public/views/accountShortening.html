@@ -1,0 +1,10 @@
+<div ng-controller="AccountShorteningCtrl" class="shortening"> <div class="row">
+  <div layout="column">
+    <h1 class="sign" style="text-align:left">Link Shortener</h1>
+    <p>You can switch to Bit.ly link shortener for a shorter and nicer links with advanced analytics support.</p>
+    <md-radio-group ng-model="account.shortener.type" class="md-primary">
+      <md-radio-button value="none" ng-click="useNone(account)">None</md-radio-button>
+      <md-radio-button value="bitly" ng-click="useBitly(account)">Bit.ly <small ng-if="account.shortener.bitly.id">({{account.shortener.bitly.name||account.shortener.bitly.id}})</small></md-radio-button>
+    </md-radio-group>
+  </div>
+</div>

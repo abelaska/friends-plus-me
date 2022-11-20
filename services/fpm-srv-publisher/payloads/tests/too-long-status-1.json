@@ -1,0 +1,65 @@
+{
+ "kind": "plus#activity",
+ "etag": "\"pzun2rYt9W8DY66yH3ZMOmQ7pA0/qqrR_MlSwdbvpaUvGQZrfapgLDI\"",
+ "title": "\"There are 70,000 bridges classified as “structurally deficient” in the United States, and while that...",
+ "published": "2013-02-20T21:10:07.364Z",
+ "updated": "2013-02-20T21:10:07.364Z",
+ "id": "z13whplivu3shvpf222yjzipmtavfn0mf",
+ "url": "https://plus.google.com/114926686316396507343/posts/HWDo3wZVC6j",
+ "actor": {
+  "id": "114926686316396507343",
+  "displayName": "Andre Delattre",
+  "url": "https://plus.google.com/114926686316396507343",
+  "image": {
+   "url": "https://lh5.googleusercontent.com/-AXT4VvIbxuE/AAAAAAAAAAI/AAAAAAAAAAA/58tGC3mja5s/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": "&quot;There are 70,000 bridges classified as “structurally deficient” in the United States, and while that does not mean that all of them are unsafe, it does suggest an urgency in the kinds of repairs that could keep them from becoming unsafe.&quot;",
+  "url": "https://plus.google.com/114926686316396507343/posts/HWDo3wZVC6j",
+  "replies": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13whplivu3shvpf222yjzipmtavfn0mf/comments"
+  },
+  "plusoners": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13whplivu3shvpf222yjzipmtavfn0mf/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13whplivu3shvpf222yjzipmtavfn0mf/people/resharers"
+  },
+  "attachments": [
+   {
+    "objectType": "article",
+    "displayName": "Obama to Flesh Out Plans for Infrastructure Projects",
+    "content": "A draft of the plan includes initiatives intended to minimize the need for Congressional approval and which can capitalize on private investment.",
+    "url": "http://www.nytimes.com/2013/02/20/us/politics/obama-to-flesh-out-plans-for-infrastructure-projects.html?smid=go-share",
+    "image": {
+     "url": "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?url=http://graphics8.nytimes.com/images/icons/t_logo_2048_black.png&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_h=150&resize_w=150&no_expand=1",
+     "type": "image/jpeg",
+     "height": 150,
+     "width": 150
+    },
+    "fullImage": {
+     "url": "http://graphics8.nytimes.com/images/icons/t_logo_2048_black.png",
+     "type": "image/jpeg"
+    }
+   }
+  ]
+ },
+ "provider": {
+  "title": "Google+"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

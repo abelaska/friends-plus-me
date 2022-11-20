@@ -1,0 +1,65 @@
+{
+ "kind": "plus#activity",
+ "etag": "\"9gbOFFuoDEFIkhx8VeqGHyzQdbY/6Q_1ODhhX-zfPL7VlXgw-HIZ0lc\"",
+ "title": "ਗੁਰਦਾਸ ਮਾਨ ਇਕ ਮਹਾਨ ਕਲਾਕਾਰ ਹੀ ਨਹੀਂ ਬਲ ਕੇ  ਅਜ਼ੀਮ ਸ਼ਕਸ਼ੀਅਤ ਦਾ ਮਾਲਿਕ ਵੀ ਹੈ | ਸੋਨੀਆ ਦੇਓਲ ਦੀ ਬੀ ਬੀ ਸੀ ਲਈ ਕੀਤੀ ...",
+ "published": "2013-03-02T10:17:45.901Z",
+ "updated": "2013-03-02T10:17:45.901Z",
+ "id": "z12zwpohsuvojf3ls223fvepbl2fedv5v04",
+ "url": "https://plus.google.com/101643175524362502063/posts/APQFuyGjE9U",
+ "actor": {
+  "id": "101643175524362502063",
+  "displayName": "Mandeep Singh",
+  "url": "https://plus.google.com/101643175524362502063",
+  "image": {
+   "url": "https://lh6.googleusercontent.com/-yHPcdV21jKQ/AAAAAAAAAAI/AAAAAAAAP7U/QtYpUOELJN4/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": "ਗੁਰਦਾਸ ਮਾਨ ਇਕ ਮਹਾਨ ਕਲਾਕਾਰ ਹੀ ਨਹੀਂ ਬਲ ਕੇ  ਅਜ਼ੀਮ ਸ਼ਕਸ਼ੀਅਤ ਦਾ ਮਾਲਿਕ ਵੀ ਹੈ | ਸੋਨੀਆ ਦੇਓਲ ਦੀ <b>ਬੀ ਬੀ ਸੀ</b> ਲਈ ਕੀਤੀ ਇਹ ਖਾਸ ਮੁਲਾਕਾਤ ਦੋ ਕੁ ਮਹੀਨੇ ਪੁਰਾਣੀ ਹੈ |",
+  "url": "https://plus.google.com/101643175524362502063/posts/APQFuyGjE9U",
+  "replies": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z12zwpohsuvojf3ls223fvepbl2fedv5v04/comments"
+  },
+  "plusoners": {
+   "totalItems": 2,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z12zwpohsuvojf3ls223fvepbl2fedv5v04/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z12zwpohsuvojf3ls223fvepbl2fedv5v04/people/resharers"
+  },
+  "attachments": [
+   {
+    "objectType": "video",
+    "displayName": "BBC Asian Network Sonia Deol, In Conversation with Gurdas Maan",
+    "content": "THIS VIDEO IS A PROPERTY OF BBC ASIAN NETWORK, ALL RIGHTS BELONGS TO THEM.",
+    "url": "http://www.youtube.com/watch?v=N9_-DVMMOk4",
+    "image": {
+     "url": "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?url=http://i3.ytimg.com/vi/N9_-DVMMOk4/hqdefault.jpg&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_w=497",
+     "type": "image/jpeg",
+     "height": 279,
+     "width": 497
+    },
+    "embed": {
+     "url": "http://www.youtube.com/v/N9_-DVMMOk4?version=3&autohide=1",
+     "type": "application/x-shockwave-flash"
+    }
+   }
+  ]
+ },
+ "provider": {
+  "title": "Google+"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

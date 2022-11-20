@@ -1,0 +1,72 @@
+{
+
+ "kind": "plus#activity",
+ "etag": "\"rzsMXcCxI6zcaueXOWrwmdMoXlA/PICvfdIQdkKuchlaLxu8WVOmvB8\"",
+ "title": "I keep hearing about people who think they're superior because they buy Apple products, but I never ...",
+ "published": "2014-10-18T04:23:54.546Z",
+ "updated": "2014-10-18T04:23:54.546Z",
+ "id": "z12jxja4dna0vha0y23bx35hyvahft3fu",
+ "url": "https://plus.google.com/115157882097089845153/posts/63tY4ej9yC2",
+ "actor": {
+  "id": "115157882097089845153",
+  "displayName": "Mitch Wagner",
+  "url": "https://plus.google.com/115157882097089845153",
+  "image": {
+   "url": "https://lh6.googleusercontent.com/-DgGWPlzxwiY/AAAAAAAAAAI/AAAAAAAAbR4/VbaDnPpeLU8/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": "I keep hearing about people who think they&#39;re superior because they buy Apple products, but I never encounter them. <br /><br />I do frequently encounter people who think they&#39;re superior because they <i>don&#39;t</i> buy Apple products. They brag about how Apple users are brainwashed, but they (the unbrainwashed few) are superior enough to think for themselves. <br /><br />These wonderful evolved self-thinkers all sound alike. You can hear them for yourselves in the comments on the article I&#39;ve linked to here. <br /><br />Apple users are no different than anyone else.  We live in a consumer culture. You are part of it if you buy, no matter what you choose to buy. Don&#39;t think you&#39;re superior to the other guy because of what you choose to buy. <br /><br />I&#39;m part of consumer culture. I bought a new teapot just before leaving on this trip, and a new iPad while on the trip. They&#39;ll be waiting for me when I&#39;m home and I&#39;m looking forward to using both every day when I&#39;m home. <br /><br />I&#39;m not saying it&#39;s wrong to hate Apple and its products. My friend +Ellis Booker won&#39;t touch them. He&#39;s a Linux and Android guy. And that&#39;s ok. <br /><br />When my MacBook Pro finally dies (probably soon -- it&#39;s four years old) my next computer will likely be a Windows machine. I&#39;m disappointed in that but it&#39;s not a big deal. And it might be fun to see what Windows has been up to in the last 7 years (I hear it&#39;s been up to no good, alas).<br /><br />\ufeff",
+  "url": "https://plus.google.com/115157882097089845153/posts/63tY4ej9yC2",
+  "replies": {
+   "totalItems": 7,
+   "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12jxja4dna0vha0y23bx35hyvahft3fu/comments"
+  },
+  "plusoners": {
+   "totalItems": 2,
+   "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12jxja4dna0vha0y23bx35hyvahft3fu/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 1,
+   "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12jxja4dna0vha0y23bx35hyvahft3fu/people/resharers"
+  },
+  "statusForViewer": {
+   "resharingDisabled": false,
+   "canComment": true,
+   "canPlusone": true,
+   "isPlusOned": false,
+   "canUpdate": false
+  },
+  "attachments": [
+   {
+    "objectType": "article",
+    "displayName": "Yes, Apple Rocks Design. Rocks Communication Even More! | Avinash Kaushik | LinkedIn",
+    "url": "https://www.linkedin.com/today/post/article/20141016200452-2434720-yes-apple-rocks-design-rocks-communication-even-more?_mSplash=1",
+    "image": {
+     "url": "https://lh6.googleusercontent.com/proxy/1OkcQnWryzSpoxAE1ZOv35depZZwzjEU3Rr7idBkEruOoqpCOySfhNn_CaavC6QGs72wnU1dd2io0rhrQPZZKm7e5NcvcYNwgaxVU2A=w506-h303-p",
+     "type": "image/jpeg",
+     "height": 303,
+     "width": 506
+    },
+    "fullImage": {
+     "url": "http://m.c.lnkd.licdn.com/mpr/mpr/p/6/005/091/2a2/3b12793.jpg",
+     "type": "image/jpeg"
+    }
+   }
+  ]
+ },
+ "provider": {
+  "title": "Google+"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

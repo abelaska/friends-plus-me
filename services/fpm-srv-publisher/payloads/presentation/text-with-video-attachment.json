@@ -1,0 +1,73 @@
+{
+
+   "kind": "plus#activity",
+   "etag": "\"rzsMXcCxI6zcaueXOWrwmdMoXlA/eLxYOncAuzm0-0w0p9k3jWexmyo\"",
+   "title": "Why you should use Friends+Me? Check this quick video review.\n\nPing +Mark Timberlake ",
+   "published": "2014-06-27T18:19:45.043Z",
+   "updated": "2014-06-27T18:19:45.043Z",
+   "id": "z12mghkzizqft3jg504cgv2wrxa2t5aaq0o",
+   "url": "https://plus.google.com/105750980959577516811/posts/PKuCiBm36BV",
+   "actor": {
+    "id": "105750980959577516811",
+    "displayName": "Friends+Me",
+    "url": "https://plus.google.com/105750980959577516811",
+    "image": {
+     "url": "https://lh3.googleusercontent.com/-dHBGGCq7AD4/AAAAAAAAAAI/AAAAAAAAAV0/z3sDZkVsswU/photo.jpg?sz=50"
+    }
+   },
+   "verb": "post",
+   "object": {
+    "objectType": "note",
+    "content": "<b>Why you should use Friends+Me?</b> Check this quick video review.<br /><br />Ping <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a class=\"proflink\" href=\"https://plus.google.com/110256277832745362774\" oid=\"110256277832745362774\">Mark Timberlake</a></span> \ufeff",
+    "url": "https://plus.google.com/105750980959577516811/posts/PKuCiBm36BV",
+    "replies": {
+     "totalItems": 22,
+     "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12mghkzizqft3jg504cgv2wrxa2t5aaq0o/comments"
+    },
+    "plusoners": {
+     "totalItems": 22,
+     "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12mghkzizqft3jg504cgv2wrxa2t5aaq0o/people/plusoners"
+    },
+    "resharers": {
+     "totalItems": 8,
+     "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12mghkzizqft3jg504cgv2wrxa2t5aaq0o/people/resharers"
+    },
+    "statusForViewer": {
+     "resharingDisabled": false,
+     "canComment": true,
+     "canPlusone": true,
+     "isPlusOned": false,
+     "canUpdate": false
+    },
+    "attachments": [
+     {
+      "objectType": "video",
+      "displayName": "Resharing Google+ Posts With Friends+me",
+      "content": "In this video we discuss Friends+Me and auto sharing to multiple social media platforms.",
+      "url": "http://www.youtube.com/watch?v=3d1YtMUvWqY",
+      "image": {
+       "url": "https://lh3.googleusercontent.com/proxy/ffjYGKUOQtbA45doHOavgaOfrdJZbd8h4yCTJEra1HBZrh9oyehE-IbS5quq5JeSa4cG813aa8phdyQrpi3E77s--KI=w506-h284-n",
+       "type": "image/jpeg",
+       "height": 284,
+       "width": 506
+      },
+      "embed": {
+       "url": "https://www.youtube.com/embed/3d1YtMUvWqY",
+       "type": "application/x-shockwave-flash"
+      }
+     }
+    ]
+   },
+   "provider": {
+    "title": "Google+"
+   },
+   "access": {
+    "kind": "plus#acl",
+    "description": "Public",
+    "items": [
+     {
+      "type": "public"
+     }
+    ]
+   }
+  }

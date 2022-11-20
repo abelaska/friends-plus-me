@@ -1,0 +1,216 @@
+// google profile
+// ctx.session {
+//   "authz": null,
+//   "state": null,
+//   "grant": {
+//     "provider": "google",
+//     "state": "43e6fed3f221977e2c09",
+//     "response": {
+//       "access_token": "ya29.XXX...",
+//       "refresh_token": "1/XXX",
+//       "raw": {
+//         "access_token": "ya29.XXX...",
+//         "token_type": "Bearer",
+//         "expires_in": "3600",
+//         "id_token": "XXX...",
+//         "refresh_token": "1/XXX"
+//       }
+//     }
+//   }
+// }
+
+// google page
+// ctx.session {
+//   "authz": null,
+//   "state": null,
+//   "grant": {
+//     "provider": "google",
+//     "override": "page",
+//     "state": "b228528ae0a5d76a0200",
+//     "response": {
+//       "access_token": "ya29.XXX-XXX...",
+//       "raw": {
+//         "access_token": "ya29.XXX-XXX...",
+//         "token_type": "Bearer",
+//         "expires_in": "3600",
+//         "id_token": "XXX..."
+//       }
+//     }
+//   }
+// }
+
+// tumblr profile
+// ctx.session {
+//   "authz": null,
+//   "state": null,
+//   "grant": {
+//     "provider": "tumblr",
+//     "step1": {
+//       "oauth_token": "XXX",
+//       "oauth_token_secret": "XXX",
+//       "oauth_callback_confirmed": "true"
+//     },
+//     "response": {
+//       "access_token": "XXX",
+//       "access_secret": "XXX",
+//       "raw": {
+//         "oauth_token": "XXX",
+//         "oauth_token_secret": "XXX"
+//       }
+//     }
+//   }
+// }
+
+// tumblr cancel
+// ctx.session {
+//   "authz": null,
+//   "state": null,
+//   "grant": {
+//     "provider": "tumblr",
+//     "step1": {
+//       "oauth_token": "XXX",
+//       "oauth_token_secret": "XXX",
+//       "oauth_callback_confirmed": "true"
+//     }
+//   }
+// }
+// ctx.query { 'error[error]': 'Grant: OAuth1 missing oauth_token parameter' }
+
+// linkedin profile
+// ctx.session {
+//   "authz": null,
+//   "state": null,
+//   "grant": {
+//     "provider": "linkedin",
+//     "state": "a51b96caa21c2c3619a8",
+//     "response": {
+//       "access_token": "XXX...",
+//       "raw": {
+//         "access_token": "XXX...",
+//         "expires_in": "5183999"
+//       }
+//     }
+//   }
+// }
+
+// linkedin company page
+// ctx.session {
+//   "authz": null,
+//   "state": null,
+//   "grant": {
+//     "provider": "linkedin",
+//     "override": "page",
+//     "state": "6ca066439ca726cbbf01",
+//     "response": {
+//       "access_token": "XXX-XXX...",
+//       "raw": {
+//         "access_token": "XXX-XXX...",
+//         "expires_in": "5183999"
+//       }
+//     }
+//   }
+// }
+
+// linkedin cancel
+// ctx.session {
+//   "authz": null,
+//   "state": null,
+//   "grant": {
+//     "provider": "linkedin",
+//     "state": "80cc5de710615fced962"
+//   }
+// }
+// ctx.query { 'error[error]': 'access_denied',
+//   'error[error_description]': 'the user denied your request',
+//   'error[state]': '80cc5de710615fced962' }
+
+// pinterest profile
+// ctx.session {
+//   "authz": null,
+//   "state": null,
+//   "grant": {
+//     "provider": "pinterest",
+//     "state": "e1e59629957d3f1a43fc",
+//     "response": {
+//       "access_token": "XXX",
+//       "raw": {
+//         "access_token": "XXX",
+//         "token_type": "bearer",
+//         "scope": [
+//           "read_public",
+//           "write_public",
+//           "read_private",
+//           "write_private",
+//           "read_write_all"
+//         ]
+//       }
+//     }
+//   }
+// }
+
+// pinterest cancel
+// ctx.session {
+//   "authz": null,
+//   "state": null,
+//   "grant": {
+//     "provider": "pinterest",
+//     "state": "26814aad27d54fca52b8"
+//   }
+// }
+// ctx.query { 'error[state]': '26814aad27d54fca52b8' }
+
+// facebook profile
+// ctx.session {
+//   "authz": null,
+//   "state": null,
+//   "grant": {
+//     "provider": "facebook",
+//     "state": "a09a995f477164ff65ba",
+//     "response": {
+//       "access_token": "XXX..",
+//       "raw": {
+//         "access_token": "XXX.."
+//       }
+//     }
+//   }
+// }
+
+// twitter
+// ctx.session {
+//   "authz": null,
+//   "state": null,
+//   "grant": {
+//     "provider": "twitter",
+//     "step1": {
+//       "oauth_token": "XXX",
+//       "oauth_token_secret": "XXX",
+//       "oauth_callback_confirmed": "true"
+//     },
+//     "response": {
+//       "access_token": "XXX-XXX",
+//       "access_secret": "XXX",
+//       "raw": {
+//         "oauth_token": "XXX-XXX",
+//         "oauth_token_secret": "XXX",
+//         "user_id": "719853337",
+//         "screen_name": "FriendsPlusMe",
+//         "x_auth_expires": "0"
+//       }
+//     }
+//   }
+// }
+
+// twitter canceled
+// ctx.query { 'error[denied]': 'bqXuTAAAAAAALZl1AAABVaa2pZY' }
+// ctx.session {
+//   "authz": null,
+//   "state": null,
+//   "grant": {
+//     "provider": "twitter",
+//     "step1": {
+//       "oauth_token": "XXX",
+//       "oauth_token_secret": "XXX",
+//       "oauth_callback_confirmed": "true"
+//     }
+//   }
+// }

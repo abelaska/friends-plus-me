@@ -1,0 +1,65 @@
+{
+ "kind": "plus#activity",
+ "etag": "\"TJ4YjXUi1XCM_G3FJ4uiPX8m6Fk/e05_FXUwHudQfnOH3B4eUXyhD_E\"",
+ "title": "Hier j'ai regardé la nouvelle emission de La Télé Pub fiction c'est vraiment triste de faire peur aux...",
+ "published": "2013-03-03T08:36:27.700Z",
+ "updated": "2013-03-03T08:36:27.700Z",
+ "id": "z13zhvdjcqjwhrrlb23ihr3y3wfhup03n",
+ "url": "https://plus.google.com/117233039609954792793/posts/7eXc1wU7npd",
+ "actor": {
+  "id": "117233039609954792793",
+  "displayName": "Julien Ferla",
+  "url": "https://plus.google.com/117233039609954792793",
+  "image": {
+   "url": "https://lh3.googleusercontent.com/-a9GLfENXyXA/AAAAAAAAAAI/AAAAAAAAKLg/S7XvvYJeP_w/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": "Hier j&#39;ai regardé la nouvelle emission de La Télé <b>Pub fiction</b> c&#39;est vraiment triste de faire peur aux gens à propos d&#39;internet avec des mots alarmant comme <b>espionner</b> <b>danger</b> <b> installation de fichiers</b> <b>récolte de données</b><br /><br />Plutôt que de faire peur aux gens, il serait peut-être plus intelligent d&#39;expliquer comment cela fonctionne, réellement, comment tirer avantage et ainsi mieux contrôler sa présence numérique.<br /><br />Il aurait été possible de donner des astuces simples à mettre en place pour mieux gérer ses données et sa répuation.<br /><br />Je ne comprend pas pourquoi c&#39;est une avocate spécialisée dans l&#39;immobilier et la construction qui nous parle de cela,... Il y a tant de spécialistes de la sécurité de l&#39;information, des accompagnateurs, des coachs, des formateurs qui auraient été plus à même de s&#39;exprimer sur ce domaine aussi important et précis.<br /><br />Oui, il faut faire attention à comment on utilise internet mais comme tout les outils, il faut apprendre à les utiliser auparavant,...<br /><br />Internet c&#39;est comme une voiture, si vous ne savez pas conduire et que délibérément vous fermez les yeux en vous répétant, c&#39;est dangereux,  c&#39;est dangereux !! Ça ne peut que mal se passer !<br /><br />A bon entendeur !<br /><br /> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23education\">#education</a>   <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23internet\">#internet</a>  ",
+  "url": "https://plus.google.com/117233039609954792793/posts/7eXc1wU7npd",
+  "replies": {
+   "totalItems": 1,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13zhvdjcqjwhrrlb23ihr3y3wfhup03n/comments"
+  },
+  "plusoners": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13zhvdjcqjwhrrlb23ihr3y3wfhup03n/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13zhvdjcqjwhrrlb23ihr3y3wfhup03n/people/resharers"
+  },
+  "attachments": [
+   {
+    "objectType": "article",
+    "displayName": "Cliquez ici pour découvrir la vidéo",
+    "content": "Toutes nos émissions à découvrir ou à faire découvrir.",
+    "url": "http://goo.gl/2Brzs",
+    "image": {
+     "url": "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?url=http://www.latele.ch/sites/all/themes/latelech/logo.png&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_h=150&resize_w=150&no_expand=1",
+     "type": "image/jpeg",
+     "height": 150,
+     "width": 150
+    },
+    "fullImage": {
+     "url": "http://www.latele.ch/sites/all/themes/latelech/logo.png",
+     "type": "image/jpeg"
+    }
+   }
+  ]
+ },
+ "provider": {
+  "title": "Google+"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

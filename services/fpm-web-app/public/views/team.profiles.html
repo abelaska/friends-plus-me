@@ -1,0 +1,58 @@
+<div class="team" ng-controller="TeamProfilesCtrl">
+
+  <div ng-include="'/views/team.menu.html'"></div>
+
+  <!--div class="row metrics">
+    <div class="col-lg-6 col-md-6 col-xs-12" style="margin-bottom:30px">
+      <div class="metric">
+        <div class="metric-name">Connected<span ng-if="isPaywyum()"> / Billable <i class="fa fa-question-circle" aria-hidden="true"><md-tooltip>At the end of the month you'll be charged for every social profile connected for more than 24 hours. Even if deleted afterward.</md-tooltip></i></span> Social Profiles</div>
+        <div class="metric-value">{{activeProfiles()}}<span ng-if="isPaywyum()"> / {{billableProfiles()}}</span></div>
+        <i class="fa fa-plug metric-icon" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-12" style="margin-bottom:30px" ng-if="isPaywyum()">
+      <div class="metric">
+        <div class="metric-name">Monthly Price</div>
+        <div class="metric-value">{{monthlyPrice()}}</div>
+        <i class="fa fa-dollar metric-icon" aria-hidden="true"></i>
+      </div>
+    </div>
+  </div-->
+
+  <div layout="column" layout-margin>
+    <h1>Social Accounts <small>({{Google.profile.profiles.length}})</small></h1>
+    <div class="text-center" ng-show="Google.profile.profiles.length == 0">
+      <p>No Social Account Found!</p>
+      <md-button href="teams/{{Google.profile._id}}/queues/add" class="md-raised md-primary">Add Your First Queue</md-button>
+    </div>
+
+    <md-list ng-show="Google.profile.profiles.length > 0" style="max-width: 800px;">
+      <md-list-item ng-repeat="p in Google.profile.profiles" layout="row" layout-align="center center" style="margin-bottom: 5px">
+
+        <a href="{{p.url}}" target="_blank" class="destination active {{types.networkTypeNameOfAccount(p)}}" style="margin: 0 10px 0 0;">
+          <img alt="{{accountTypeName(p)}} - {{p.name}}" ng-src="{{p.image}}" style="border-radius: 50%">
+          <span class="network fa-stack" ng-switch="" on="types.networkTypeNameOfAccount(p)">
+            <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+            <i ng-switch-when="facebook" class="fa fa-facebook fa-stack-1x"></i>
+            <i ng-switch-when="pinterest" class="fa fa-pinterest fa-stack-1x"></i>
+            <i ng-switch-when="linkedin" class="fa fa-linkedin fa-stack-1x"></i>
+            <i ng-switch-when="twitter" class="fa fa-twitter fa-stack-1x"></i>
+            <i ng-switch-when="tumblr" class="fa fa-tumblr fa-stack-1x"></i>
+            <i ng-switch-when="google" class="fa fa-google-plus fa-stack-1x"></i>
+            <i ng-switch-when="instagram" class="fa fa-instagram fa-stack-1x"></i>
+          </span>
+        </a>
+
+        <div flex md-truncate layout="column">
+          <div>{{p.name}}</div>
+          <div style="font-size:80%;color: rgba(0,0,0,0.5);">{{types.networkNameOfAccount(p)}}</div>
+        </div>
+
+        <div style="min-width: 50px;text-align: right;font-size: 90%;"><b>{{accountsCount(p)}}</b> dependant account{{accountsCount(p) == 1 ? '': 's'}}</div>
+
+        <md-button ng-if="isOwnerOrManager" class="md-raised" ng-class="{'md-warn':accountsCount(p)>0}" ng-click="removeProfile(p)">Disconnect</md-button>
+
+      </md-list-item>
+    </md-list>
+  </div>
+</div>

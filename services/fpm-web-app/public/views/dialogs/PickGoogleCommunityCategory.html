@@ -1,0 +1,29 @@
+<md-dialog aria-label="Choose Google+ Community Category">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Choose Google+ Community Category</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="$mdDialog.cancel()">
+          <md-icon md-svg-src="/images/icons/close.svg" aria-label="Close Dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content layout="row" style="padding: 10px 10px 0 10px;">
+      <md-input-container flex md-no-float>
+          <md-select ng-model="category" placeholder="Choose Google+ Community Category">
+            <md-option ng-repeat="category in categories" ng-value="category">
+              {{category.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button class="md-raised" ng-click="$mdDialog.cancel()">Cancel</md-button>
+      <span flex></span>
+      <md-button class="md-raised md-primary" ng-click="$mdDialog.hide(category)" ng-disabled="!category">Confirm</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

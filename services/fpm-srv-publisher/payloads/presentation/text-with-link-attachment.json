@@ -1,0 +1,72 @@
+{
+
+ "kind": "plus#activity",
+ "etag": "\"rzsMXcCxI6zcaueXOWrwmdMoXlA/7B7FqS2CFIRGaIqOjLaRXjtnUzo\"",
+ "title": "Next step, Friends+Me Chrome extension\n\nDo you want to know what's the Friends+Me future gonna look ...",
+ "published": "2014-09-29T12:59:21.108Z",
+ "updated": "2014-09-29T12:59:21.108Z",
+ "id": "z13ihnkbsyu3f1orz04cgv2wrxa2t5aaq0o",
+ "url": "https://plus.google.com/105750980959577516811/posts/jm4e5Eb2VzT",
+ "actor": {
+  "id": "105750980959577516811",
+  "displayName": "Friends+Me",
+  "url": "https://plus.google.com/105750980959577516811",
+  "image": {
+   "url": "https://lh3.googleusercontent.com/-dHBGGCq7AD4/AAAAAAAAAAI/AAAAAAAAAV0/z3sDZkVsswU/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": "<b>Next step, Friends+Me Chrome extension</b><br /><br />Do you want to know what&#39;s the Friends+Me future gonna look like? Sure you do :) <b>Hit the link and read all about it!</b><br /><br /> <a rel=\"nofollow\" class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23FriendsPlusMe\">#FriendsPlusMe</a>   <a rel=\"nofollow\" class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23future\">#future</a>   <a rel=\"nofollow\" class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23chrome\">#chrome</a>\ufeff",
+  "url": "https://plus.google.com/105750980959577516811/posts/jm4e5Eb2VzT",
+  "replies": {
+   "totalItems": 8,
+   "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13ihnkbsyu3f1orz04cgv2wrxa2t5aaq0o/comments"
+  },
+  "plusoners": {
+   "totalItems": 36,
+   "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13ihnkbsyu3f1orz04cgv2wrxa2t5aaq0o/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 10,
+   "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13ihnkbsyu3f1orz04cgv2wrxa2t5aaq0o/people/resharers"
+  },
+  "statusForViewer": {
+   "resharingDisabled": false,
+   "canComment": true,
+   "canPlusone": true,
+   "isPlusOned": false,
+   "canUpdate": false
+  },
+  "attachments": [
+   {
+    "objectType": "article",
+    "displayName": "Next step, Friends+Me Chrome extension | Friends+Me Blog",
+    "url": "http://blog.friendsplus.me/2014/09/next-step-chrome-extension.html",
+    "image": {
+     "url": "https://lh3.googleusercontent.com/proxy/6Dx4vhx9jJN87_A8y3yEz6sdgmnHeAOBTaKwQUJiDtWI468UUUGK_DGbAFOpfONOr-f6PCcgx4mLtjbAcZsNC8ifnBq7qk7QOLU1OxL-rbeWhI1IBC6eFBpAUzlWKAhzd6MP5JI40QslTAF_9TVRmcDUPU976h94KCyC3zBEP33eHw=w506-h303-p",
+     "type": "image/jpeg",
+     "height": 303,
+     "width": 506
+    },
+    "fullImage": {
+     "url": "http://1.bp.blogspot.com/-85bdcdRdrKo/VClMNsVJPwI/AAAAAAAAMpw/G4ZF4s3bju0/s1600/fpm-extension-screenshot-big-1.png",
+     "type": "image/jpeg"
+    }
+   }
+  ]
+ },
+ "provider": {
+  "title": "Google+"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

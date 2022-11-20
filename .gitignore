@@ -1,0 +1,20 @@
+.DS_Store
+node_modules/
+*.log
+*.log.*
+*.cache
+dist/
+.tmp
+dump.rdb
+.sass-cache
+/.package.json
+__obsolete__/
+flow-typed/
+
+# yarn2 https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*

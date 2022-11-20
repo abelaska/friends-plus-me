@@ -1,0 +1,132 @@
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { ObjectId, User, Profile } = require('@fpm/db');
+const { testingBeforeAll, testingAfterAll, testFunc, nockHydraTokenIntrospect } = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should update draft html', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({ _id: dbTeamId, members: { owner: [dbUserId] } });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  let reply = await testFunc({
+    name: 'drafts.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token, team: dbTeam._id.toString() },
+      body: { html: '<p>html</p>' }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  const { draft } = reply.body;
+  expect(draft).toBeTruthy();
+
+  const { token: infoToken } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  reply = await testFunc({
+    name: 'drafts.update',
+    req: {
+      method: 'POST',
+      qs: { access_token: infoToken, draft: draft.draft_id },
+      body: {
+        html: '<p>html2</p>'
+      }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.draft.html).toBe('<p>html2</p>');
+});
+
+test('should update draft link attachment', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  expect(dbTeamId).toBeTruthy();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({ _id: dbTeamId, members: { owner: [dbUserId] } });
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+  let reply = await testFunc({
+    name: 'drafts.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token, team: dbTeam._id.toString() },
+      body: { html: '<p>html</p>' }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  const { draft } = reply.body;
+  expect(draft).toBeTruthy();
+  const { token: infoToken } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+  reply = await testFunc({
+    name: 'drafts.update',
+    req: {
+      method: 'POST',
+      qs: { access_token: infoToken, draft: draft.draft_id },
+      body: {
+        link: 'https://friendsplus.me'
+      }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.draft.html).toBe('<p>html</p>');
+  expect(reply.body.draft.attachments).toBeTruthy();
+  expect(reply.body.draft.attachments.length).toBe(1);
+
+  const att = reply.body.draft.attachments[0];
+  expect(att.type).toBe('link');
+  expect(att.url).toBe('https://friendsplus.me');
+  expect(att.title).toBe('Friends+Me - Share to ANYWHERE. Because sharing is caring.');
+  expect(att.description).toBe(
+    'Publish at the right time, reach more customers and increase engagement. The right cross-promotion, content management and scheduling solution for you. Ramp Up Sales!'
+  );
+  expect(att.picture).toBeTruthy();
+  expect(att.picture.url).toBeTruthy();
+  expect(att.picture.width).toBeTruthy();
+  expect(att.picture.height).toBeTruthy();
+  expect(att.picture.content_type).toBeTruthy();
+});

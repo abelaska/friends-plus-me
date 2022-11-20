@@ -1,0 +1,15 @@
+# https://cloud.google.com/container-builder/docs/
+#
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/mongodb-old:$_VER', '.' ]
+  id: 'build'
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['tag', 'gcr.io/$PROJECT_ID/mongodb-old:$_VER', 'gcr.io/$PROJECT_ID/mongodb-old:latest']
+  wait_for: ['build']
+  id: 'latest'
+
+images:
+- 'gcr.io/$PROJECT_ID/mongodb-old:latest'
+- 'gcr.io/$PROJECT_ID/mongodb-old:$_VER'

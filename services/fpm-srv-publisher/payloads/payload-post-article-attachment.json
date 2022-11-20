@@ -1,0 +1,76 @@
+{
+  "account": {
+    "_id": "1",
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "access": {
+      "items": [
+        {
+          "type": "public"
+        },
+        {
+          "id": "103778702993142591484",
+          "type": "person"
+        }
+      ],
+      "kind": "plus#acl"
+    },
+    "provider": {
+      "title": "Mobile"
+    },
+    "crosspostSource": "1347657950236.RbT4YE7LkHNHOLvtBOIValgpqSW71B9T",
+    "object": {
+      "attachments": [
+        {
+          "url": "http://feedproxy.google.com/~r/dailyjs/~3/Mqy4xiukJfU/functional-programming",
+          "content": "JavaScript has two parents: Scheme and Self. We can thank Self for all of the object-orientedness of JavaScript and indeed we do in our code and our tutorials. However, Scheme played just as important...",
+          "displayName": "DailyJS: Functional Programming in JavaScript",
+          "objectType": "article"
+        }
+      ],
+      "resharers": {
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12ti5pz1zyhtz40422nv5giqoq0fvhgn04/people/resharers",
+        "totalItems": 0
+      },
+      "plusoners": {
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12ti5pz1zyhtz40422nv5giqoq0fvhgn04/people/plusoners",
+        "totalItems": 0
+      },
+      "replies": {
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12ti5pz1zyhtz40422nv5giqoq0fvhgn04/comments",
+        "totalItems": 0
+      },
+      "url": "https://plus.google.com/103778702993142591484/posts/1h36ckrTrA5",
+      "originalContent": "",
+      "content": "",
+      "objectType": "note"
+    },
+    "verb": "post",
+    "actor": {
+      "image": {
+        "url": "https://lh6.googleusercontent.com/-TBgNki-dgJs/AAAAAAAAAAI/AAAAAAAAAAA/mXv7j83sQC8/photo.jpg?sz=50"
+      },
+      "url": "https://plus.google.com/103778702993142591484",
+      "name": {
+        "givenName": "Alois",
+        "familyName": "Bělaška"
+      },
+      "displayName": "Alois Bělaška",
+      "id": "103778702993142591484"
+    },
+    "url": "https://plus.google.com/103778702993142591484/posts/1h36ckrTrA5",
+    "id": "z12ti5pz1zyhtz40422nv5giqoq0fvhgn04",
+    "updated": "2012-09-14T21:26:01.349Z",
+    "published": "2012-09-14T21:26:01.000Z",
+    "title": "",
+    "etag": "\"PUsAXp2BLQtA2N3E4rX4j93V7TM/aZonrJ18AkV_ZaIkjum3plH6n9A\"",
+    "kind": "plus#activity"
+  }
+}

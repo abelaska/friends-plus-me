@@ -1,0 +1,47 @@
+.create-account {
+	
+	h1 {
+		color:@white;
+		
+		small {
+			color:@grayLighter;
+			margin-top:@baseLineHeight;
+		}
+	}
+	
+	header {
+		background:@blueGray;
+		padding:@baseLineHeight;
+		.border-top-radius(16px);
+	}
+	
+	.create-account-form {
+		background:@grayLighter;
+		padding-bottom:@baseLineHeight;
+		.border-bottom-radius(16px);
+		
+		input {
+			width:98%;
+			margin-bottom:@baseLineHeight;
+		}
+		
+		input[type="password"] {
+			width:46%;
+			float:left;
+			display: inline;
+			margin-right:@baseLineHeight/2;
+		}
+		
+	}
+	
+	.create-account-body:last-of-type {
+		//padding-top:@baseLineHeight*2;
+		//border-top:1px solid @grayLight;
+	}
+	
+	.create-account-desc,
+	.create-account-fields {
+		padding:@baseLineHeight;
+	}
+	
+}

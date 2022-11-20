@@ -1,0 +1,31 @@
+@font-family-sans-serif:  "Open Sans","Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@mce-font-family-sans-serif:  Arial, sans-serif;
+
+// Friends+Me
+
+@import "mixins.less";
+@import "autocompleted.less";
+
+html {
+    cursor:                 text;
+}
+
+.mce-content-body {
+    font-family:            @mce-font-family-sans-serif;
+    font-size:              14px;
+    color:                  rgba(0,0,0,0.7);
+
+    // zakazani drag'n'drop textu a obrazku, jenze pak ani nejde vybrat text, takze disabluju
+    // pointer-events:         none;
+
+    p {
+        margin:             0;
+    }
+    input {
+        font-size:          14px;
+    }
+    span.link {
+        border-bottom:      1px dotted rgba(0,0,0,0.7);
+    }
+}

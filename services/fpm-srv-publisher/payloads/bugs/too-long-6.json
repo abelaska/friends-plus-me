@@ -1,0 +1,89 @@
+{
+  "account": {
+    "shortener": {
+      "type": "none"
+    },
+    "id": 103778702993142591484,
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"bivPgL73S7bmqjYdi7PUoppwbqc/P9K0BzwR3KozhfjZC-hV2YoqcHo\"",
+    "title": "This is taken few weeks ago, in one of the two days we had snow in Copenhagen this winter.\n\n#MonochromeMonday...",
+    "published": "2013-01-06T14:25:19.254Z",
+    "updated": "2013-01-06T14:25:19.254Z",
+    "id": "z12iv3fb4mznyhrj304cglnqxvrizxthiqo0k",
+    "url": "https://plus.google.com/114197358633834273250/posts/f6J3KEhQ98p",
+    "actor": {
+      "id": "114197358633834273250",
+      "displayName": "Richard Bajic",
+      "url": "https://plus.google.com/114197358633834273250",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-QLJgyig_lDQ/AAAAAAAAAAI/AAAAAAAAA4o/35I6Egh25mM/photo.jpg?sz=50"
+      }
+    },
+    "verb": "share",
+    "object": {
+      "objectType": "activity",
+      "id": "z12oi1bzazryhh4l023wgf5b3pvoif4az04",
+      "actor": {
+        "id": "114993049360168606780",
+        "displayName": "Dragos Ioneanu",
+        "url": "https://plus.google.com/114993049360168606780",
+        "image": {
+          "url": "https://lh5.googleusercontent.com/-nwPPfVM8Na4/AAAAAAAAAAI/AAAAAAAAAAA/9cs3g1HRFgs/photo.jpg?sz=50"
+        }
+      },
+      "content": "This is taken few weeks ago, in one of the two days we had snow in Copenhagen this winter.<br /><br /><a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23MonochromeMonday\">#MonochromeMonday</a> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/100721197069868019681\" class=\"proflink\" oid=\"100721197069868019681\">Monochrome Monday</a></span> by <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/117470753717431753548\" class=\"proflink\" oid=\"117470753717431753548\">Hans Berendsen</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/110041558267751969861\" class=\"proflink\" oid=\"110041558267751969861\">Jerry Johnson</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/109633732820372995629\" class=\"proflink\" oid=\"109633732820372995629\">Manuel Votta</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/102479713175050730556\" class=\"proflink\" oid=\"102479713175050730556\">Nurcan Azaz</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/116985892549750076024\" class=\"proflink\" oid=\"116985892549750076024\">Steve Barge</a></span><br /><a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23LeadingLinesMonday\">#LeadingLinesMonday</a> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/108127039931400009413\" class=\"proflink\" oid=\"108127039931400009413\">Pam Chalkley-Boling</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/100784425740559013107\" class=\"proflink\" oid=\"100784425740559013107\">Andreas Levi</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/114830458019096176470\" class=\"proflink\" oid=\"114830458019096176470\">David Murphy</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/108092188319505624535\" class=\"proflink\" oid=\"108092188319505624535\">Elle Rogers</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/104355888553035365377\" class=\"proflink\" oid=\"104355888553035365377\">Michael B. Stuart</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/113111857754202208081\" class=\"proflink\" oid=\"113111857754202208081\">Simos Xenakis</a></span><br />For  <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23MinimalMonday\">#MinimalMonday</a>    curated by  <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/102349305007676725479\" class=\"proflink\" oid=\"102349305007676725479\">Olivier Du Tré</a></span> <br /> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23ZenSunday\">#ZenSunday</a>  <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/102518571087840972824\" class=\"proflink\" oid=\"102518571087840972824\">Charlotte Therese Björnström</a></span>  and <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/118157387696493740638\" class=\"proflink\" oid=\"118157387696493740638\">Simon Kitcher</a></span> <br /> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/105588730866970114510\" class=\"proflink\" oid=\"105588730866970114510\">Landscape Photography</a></span>    <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23landscapephotography\">#landscapephotography</a>    by <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/107958599012052618167\" class=\"proflink\" oid=\"107958599012052618167\">Margaret Tompkins</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/117168509187848497030\" class=\"proflink\" oid=\"117168509187848497030\">Ke Zeng</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/116905863525318361853\" class=\"proflink\" oid=\"116905863525318361853\">Carra Riley</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/117626170065323169600\" class=\"proflink\" oid=\"117626170065323169600\">paul t beard</a></span>   and <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/101783485458458787405\" class=\"proflink\" oid=\"101783485458458787405\">David Heath Williams</a></span> <br /> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23EuropeanPhotography\">#EuropeanPhotography</a>   <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/104010212384246027900\" class=\"proflink\" oid=\"104010212384246027900\">European Photo</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/111107669191473126601\" class=\"proflink\" oid=\"111107669191473126601\">Janusz Brakoniecki</a></span>  <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/118092317058592595356\" class=\"proflink\" oid=\"118092317058592595356\">Jean-Louis LAURENCE</a></span>  <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/108669135724096561175\" class=\"proflink\" oid=\"108669135724096561175\">Manuella Betaille</a></span> <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/114491493858756989707\" class=\"proflink\" oid=\"114491493858756989707\">Michael Muraz</a></span>  <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/107700027720351417295\" class=\"proflink\" oid=\"107700027720351417295\">Susanne Ramharter</a></span> <br /> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23HQSPMonochrome\">#HQSPMonochrome</a>   by <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/111892763335178073075\" class=\"proflink\" oid=\"111892763335178073075\">Blake Harrold</a></span>  <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/102386532708336673488\" class=\"proflink\" oid=\"102386532708336673488\">Luis Vivanco</a></span> <br /> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23hqsplandscape\">#hqsplandscape</a>   by <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/102524999789475312953\" class=\"proflink\" oid=\"102524999789475312953\">Eric Delcour</a></span>  <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/108234356355413839968\" class=\"proflink\" oid=\"108234356355413839968\">Ara MO</a></span>  <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/105341725780301729437\" class=\"proflink\" oid=\"105341725780301729437\">Rodolfo Seide</a></span>  <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/110673815601430443389\" class=\"proflink\" oid=\"110673815601430443389\">John Minor</a></span>  <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23copenhagen\">#copenhagen</a>   <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23denmarkmonday\">#denmarkmonday</a>   <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23denmark\">#denmark</a>  ",
+      "url": "https://plus.google.com/114993049360168606780/posts/6NrdzUzWJM5",
+      "replies": {
+        "totalItems": 1,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12iv3fb4mznyhrj304cglnqxvrizxthiqo0k/comments"
+      },
+      "plusoners": {
+        "totalItems": 5,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12iv3fb4mznyhrj304cglnqxvrizxthiqo0k/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12iv3fb4mznyhrj304cglnqxvrizxthiqo0k/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "photo",
+          "id": "114993049360168606780.5830337944884690914",
+          "content": "DSC_0524.jpg",
+          "url": "https://plus.google.com/photos/114993049360168606780/albums/5830337945171118081/5830337944884690914?authkey=XXX",
+          "image": {
+            "url": "https://lh3.googleusercontent.com/-QWs6gnxUyWM/UOmFeG1VP-I/AAAAAAAAG7U/pZdVxH8ZUX0/w497-h373/DSC_0524.jpg",
+            "type": "image/jpeg",
+            "height": 373,
+            "width": 497
+          },
+          "fullImage": {
+            "url": "https://lh3.googleusercontent.com/-QWs6gnxUyWM/UOmFeG1VP-I/AAAAAAAAG7U/pZdVxH8ZUX0/DSC_0524.jpg",
+            "type": "image/jpeg",
+            "height": 500,
+            "width": 1000
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Reshared Post"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    },
+    "userId": "503b653a4a28d1b17b00000b",
+    "dbId": "50e98a6b89bfc7254d0014fd"
+  }
+}

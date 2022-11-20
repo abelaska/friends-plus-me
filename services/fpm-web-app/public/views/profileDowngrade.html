@@ -1,0 +1,12 @@
+<div ng-controller="ProfileDowngradeCtrl">
+  <div layout="column" layout-align="center center">
+    <header>
+      <h2 ng-show="isDowngradePossible()">Confirm downgrade to FREE plan!</h2>
+      <h2 ng-hide="isDowngradePossible()">You already are subscribed to FREE plan!</h2>
+    </header>
+    <p ng-show="isDowngradePossible()" style="margin:20px 0">Do you really want to downgrade your account from <strong>{{config.plans[Google.profile.plan.name].name||Google.profile.plan.name}}</strong> to <b>FREE</b> plan?</p>
+    <md-button ng-click="downgrade()" ng-show="isDowngradePossible()" class="md-raised md-warn">
+      <strong>Cancel Subscription</strong>
+    </md-button>
+  </div>
+</div>

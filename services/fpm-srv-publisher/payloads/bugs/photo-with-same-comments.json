@@ -1,0 +1,79 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"IvoOG8kWYW4qgwO0sQ5WhoG33pY/kKMcwvDTKG6grXR7xJD7L02AUYc\"",
+    "title": "The Stephen King family is an American literary dynasty.\n\nThe New York Times profiles the King clan...",
+    "published": "2013-08-03T20:25:26.643Z",
+    "updated": "2013-08-03T20:25:26.643Z",
+    "id": "z12mw1bray20zvxjj04cgzogprvgtpj4hjc",
+    "url": "https://plus.google.com/115157882097089845153/posts/h8YNnSKr4MA",
+    "actor": {
+      "id": "115157882097089845153",
+      "displayName": "Mitch Wagner",
+      "url": "https://plus.google.com/115157882097089845153",
+      "image": {
+        "url": "https://lh6.googleusercontent.com/-DgGWPlzxwiY/AAAAAAAAAAI/AAAAAAAASQM/LK40R9GzZTk/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "<b>The Stephen King family is an American literary dynasty.</b><br /><br />The New York Times profiles the King clan. All but one are successful novelists. They are King&#39;s wife Tabitha, son Joe Hill, daughter-in-law Kelly Braffet, son Owen, and daughter Naomi, the black sheep of the family -- she&#39;s a minister.<br /><br />Son Joe Hill was so eager to escape charges of nepotism that he changed his last name. But he could not escape the uncanny resemblance to his father as a young man.<br /><br />&gt; <i>At times in his life, Hill actually contemplated hiring an actor to do readings of his work, to conceal that unmistakable resemblance to his father. By the time “Heart-Shaped Box” was published and he had forged ahead with some readings, his alias had been blown. In the end, in light of the book’s success, that did not seem to matter; now he’s comfortable writing in a genre his father dominates. “Sometimes I think the kid who’s like, ‘I’m never going to be like my dad in any way whatsoever,’ is less his own person,” he said.</i><br /><br />Tabitha King says all children have fathers who cast shadows. The father may be a doctor who&#39;s never home, or the town minister, or the town drunk. In all cases, fathers influence their children, in ways both positive and negative.<br /><br />This is a good profile, but it leaves one big question unanswered: None of the King children will ever have to worry about money. How has that influenced their careers? <br /><br /><a href=\"http://www.nytimes.com/2013/08/04/magazine/stephen-kings-family-business.html?pagewanted=all&amp;src=longreads\" class=\"ot-anchor\" rel=\"nofollow\">http://www.nytimes.com/2013/08/04/magazine/stephen-kings-family-business.html?pagewanted=all&amp;src=longreads</a>",
+      "url": "https://plus.google.com/115157882097089845153/posts/h8YNnSKr4MA",
+      "replies": {
+        "totalItems": 7,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12mw1bray20zvxjj04cgzogprvgtpj4hjc/comments"
+      },
+      "plusoners": {
+        "totalItems": 1,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12mw1bray20zvxjj04cgzogprvgtpj4hjc/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12mw1bray20zvxjj04cgzogprvgtpj4hjc/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "photo",
+          "displayName": "The Stephen King family is an American literary dynasty. The New York Times profiles the King clan. All but one are successful novelists. They are King's wife Tabitha, son Joe Hill, daughter-in-law Kelly Braffet, son Owen, and daughter Naomi, the black sheep of the family -- she's a minister. Son Joe Hill was so eager to escape charges of nepotism that he changed his last name. But he could not escape the uncanny resemblance to his father as a young man. > At times in his life, Hill actually contemplated hiring an actor to do readings of his work, to conceal that unmistakable resemblance to his father. By the time “Heart-Shaped Box” was published and he had forged ahead with some readings, his alias had been blown. In the end, in light of the book’s success, that did not seem to matter; now he’s comfortable writing in a genre his father dominates. “Sometimes I think the kid who’s like, ‘I’m never going to be like my dad in any way whatsoever,’ is less his own person,” he said. Tabitha King says all children have fathers who cast shadows. The father may be a doctor who's never home, or the town minister, or the town drunk. In all cases, fathers influence their children, in ways both positive and negative. This is a good profile, but it leaves one big question unanswered: None of the King children will ever have to worry about money. How has that influenced their careers? http://www.nytimes.com/2013/08/04/magazine/stephen-kings-family-business.html?pagewanted=all&src=longreads",
+          "id": "115157882097089845153.5907991765096223490",
+          "content": "8/3/13 - 1",
+          "url": "https://plus.google.com/photos/115157882097089845153/albums/5907991763514399457/5907991765096223490",
+          "image": {
+            "url": "https://lh5.googleusercontent.com/-oCRp90djueM/Uf1nNV5-UwI/AAAAAAAAVHI/0vpgNUpV8KY/w506-h750/photo.jpg",
+            "type": "image/jpeg",
+            "height": 750,
+            "width": 506
+          },
+          "fullImage": {
+            "url": "https://lh5.googleusercontent.com/-oCRp90djueM/Uf1nNV5-UwI/AAAAAAAAVHI/0vpgNUpV8KY/photo.jpg",
+            "type": "image/jpeg",
+            "height": 449,
+            "width": 600
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Mobile"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

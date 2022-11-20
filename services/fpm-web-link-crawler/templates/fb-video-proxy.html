@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Article">
+<head prefix="og: http://ogp.me/ns# video: http://ogp.me/ns/video#">
+  <title><%= title %></title>
+  <meta name="description" content="<%= description %>" />
+  <meta itemprop="name" content="<%= title %>" />
+  <meta itemprop="description" content="<%= description %>" />
+  <meta itemprop="image" content="<%= image %>" />
+  <meta property="og:url" content="<%= fullUrl || url %>" />
+  <meta property="og:title" content="<%= title %>" />
+  <meta property="og:description" content="<%= description %>" />
+  <meta property="og:image" content="<%= image %>" />
+  <meta property="og:image:url" content="<%= image %>" />
+  <meta property="og:image:alt" content="<%= title %>" /><% _.forEach(videos, function(video) { %>
+  <meta property="og:video" content="<%= video.url %>" />
+  <meta property="og:video:url" content="<%= video.url %>" />
+  <meta property="og:video:secure_url" content="<%= video.url %>" />
+  <meta property="og:video:height" content="<%= video.height %>" />
+  <meta property="og:video:width" content="<%= video.width %>" />
+  <meta property="og:video:type" content="<%= video.type %>" />
+  <% }); %><meta property="og:type" content="video.other" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="<%= title %>" />
+  <meta name="twitter:description" content="<%= description %>" />
+  <meta name="twitter:image" content="<%= image %>" />
+  <meta name="viewport" content="width=320, initial-scale=1" />
+  <style type="text/css">
+    html {height: 100%;width: 100%;}
+    body {background-color: #000;box-sizing: border-box;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-flex: 0;-ms-flex: 0 1 auto;flex: 0 1 auto;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;-ms-flex-wrap: wrap;flex-wrap: wrap;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;text-align: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;min-height: 100%;min-width: 100%;padding: 0;margin: 0;}
+    .video-container {position: relative;padding-bottom: 56.25%;padding-top: 30px;overflow: hidden;height: 0;width: 100%;}
+    .video-container iframe,.video-container object,.video-container embed {position: absolute;top: 0;left: 0;width: 100%;height: 100%;border:0;}
+    @-moz-document url-prefix() { .video-container { position: inherit; } }
+  </style>
+</head>
+<body><div class="video-container"><iframe src="<%= embed %>" allowfullscreen></iframe></div></body>
+</html>

@@ -1,0 +1,61 @@
+<div ng-controller="TeamMenuCtrl">
+  <md-nav-bar md-selected-nav-item="currentState" nav-bar-aria-label="navigation links">
+    <md-nav-item md-nav-sref="profiles.pid.members" sref-opts="currentParams" name="profiles.pid.members">
+      Members
+    </md-nav-item>
+
+    <md-nav-item md-nav-sref="profiles.pid.profiles" sref-opts="currentParams" name="profiles.pid.profiles">
+      Accounts
+    </md-nav-item>
+
+    <md-nav-item hide-xs md-nav-sref="profiles.pid.billing" sref-opts="currentParams" name="profiles.pid.billing">
+      Billing
+    </md-nav-item>
+
+    <md-nav-item hide-xs hide-sm md-nav-sref="profiles.pid.settings" sref-opts="currentParams" name="profiles.pid.settings">
+      Settings
+    </md-nav-item>
+
+    <md-nav-item hide-xs hide-sm hide-md md-nav-sref="profiles.pid.invoices" sref-opts="currentParams" name="profiles.pid.invoices">
+      Invoices
+    </md-nav-item>
+
+    <md-menu style="padding: 3px 0px;">
+      <md-button aria-label="Team Menu" class="md-icon-button" ng-click="$mdMenu.open($event)">
+        <md-icon md-menu-origin md-svg-icon="/images/icons/dots-vertical.svg"></md-icon>
+      </md-button>
+      <md-menu-content width="4" style="max-height: 400px;">
+
+        <md-menu-item hide-gt-xs>
+          <md-button ng-href="/teams/{{currentParams.pid}}/billing">
+            <md-icon md-svg-icon="/images/icons/currency-usd.svg"></md-icon>
+            Billing
+          </md-button>
+        </md-menu-item>
+
+        <md-menu-item hide-gt-sm>
+          <md-button ng-href="/teams/{{currentParams.pid}}/settings">
+            <md-icon md-svg-icon="/images/icons/settings.svg"></md-icon>
+            Settings
+          </md-button>
+        </md-menu-item>
+
+        <md-menu-item hide-gt-md>
+          <md-button ng-href="/teams/{{currentParams.pid}}/invoices">
+            <md-icon md-svg-icon="/images/icons/receipt.svg"></md-icon>
+            Invoices
+          </md-button>
+        </md-menu-item>
+
+        <md-menu-divider hide-gt-md></md-menu-divider>
+
+        <md-menu-item>
+          <md-button ng-click="deleteProfile()">
+            <md-icon md-svg-icon="/images/icons/delete.svg"></md-icon>
+            Delete Team
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </md-nav-bar>
+</div>

@@ -1,0 +1,4 @@
+packages:
+  - "packages/**"
+  - "services/**"
+  - "!services/fpm-web-app/public/**"

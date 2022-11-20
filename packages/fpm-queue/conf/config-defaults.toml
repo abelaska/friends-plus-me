@@ -1,0 +1,19 @@
+[db.options]
+  useMongoClient = true
+  native_parser = true
+  poolSize = 1
+  reconnectInterval = 2000
+  reconnectTries = 180000000
+  autoReconnect = false
+  keepAlive = 120
+  noDelay = true
+  autoIndex = false
+[db.options.config]
+  autoIndex = false
+
+[log.file]
+  level = "debug"
+  maxFiles = 25
+  maxSize = 10485760
+[log.logentries]
+  level = "info"

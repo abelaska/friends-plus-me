@@ -1,0 +1,57 @@
+<div class="account-setup" ng-controller="AccountSetupCtrl">
+
+  <div layout="column" ng-if="isPublishingAvailable()">
+    <h1 class="sign" style="text-align:left">Preset</h1>
+    <h3 style="margin-top: 0;margin-bottom: 20px;">Pick one preset that suits your social media strategy for this <b>{{accountSourceOrDestination}}</b> {{accountNetworkName}} queue.</h3>
+    <md-radio-group ng-model="account.preset" class="md-primary">
+      <md-radio-button value="google-growth" class="md-align-top-left" ng-click="changePreset('google-growth')" style="max-width:950px">Grow<br/>
+        <p class="ipsum" ng-show="isGoogleNetwork">Repost every new Google+ post and always append back-link to the original Google+ post. This preset will help you to grow your Google+ channel.</p>
+        <p class="ipsum" ng-hide="isGoogleNetwork">Reposts are always appended with back-link to the original Google+ post. This preset will help you to grow your Google+ channel.</p>
+      </md-radio-button>
+      <md-radio-button value="mirroring" class="md-align-top-left" ng-click="changePreset('mirroring')" style="max-width:550px">Mirror<br/>
+        <p class="ipsum" ng-show="isGoogleNetwork">Repost every new post and link to the shared content instead of the original post.</p>
+        <p class="ipsum" ng-hide="isGoogleNetwork || isTwitterNetwork">Reposts link to the shared content instead of the original post, back-link is never appended.</p>
+        <p class="ipsum" ng-show="isTwitterNetwork">Reposts link to the shared content instead of the original post. Back-link is appended only in case no photo or link is attached and the text for status is shortened to fit 280 characters.</p>
+      </md-radio-button>
+    </md-radio-group>
+  </div>
+
+  <div layout="column" ng-show="showAdvancedSetup">
+    <h1 class="sign" style="text-align:left">Advanced Settings</h1>
+
+    <md-switch ng-show="showRepostFromCommunity" ng-model="account.repCommunity" ng-disabled="pushing" ng-class="{'md-primary': account.repCommunity}" aria-label="Repost new posts I publish to public Google+ Communities" md-invert style="margin-bottom:30px;white-space: normal;line-height: normal;">
+      Repost new posts I publish to public Google+ Communities
+      <small style="display: block;line-height: 90%;color: #888;margin-top: 5px;">Friends+Me reposts all new posts you publish to public Google+ Communities.</small>
+    </md-switch>
+
+    <md-switch ng-show="showLimitMsgLength" ng-model="account.limitMsgLen" ng-disabled="pushing" ng-class="{'md-primary': account.limitMsgLen}" aria-label="Limit repost length to 250 characters" md-invert style="margin-bottom:30px;white-space: normal;line-height: normal;">
+      Limit repost length to 250 characters
+      <small style="display: block;line-height: 90%;color: #888;margin-top: 5px;">Limited tweet length improves retweet experience.</small>
+    </md-switch>
+
+    <md-switch ng-show="showTwForceLink" ng-model="account.twForceLink" ng-disabled="pushing" ng-class="{'md-primary': account.twForceLink}" aria-label="Force Twitter Card for posts with attached link" md-invert style="margin-bottom:30px;white-space: normal;line-height: normal;">
+      Force Twitter Card for posts with attached link
+      <small style="display: block;line-height: 90%;color: #888;margin-top: 5px;">Posts with attached link will be published as Twitter Card and not as photo status.</small>
+    </md-switch>
+
+    <div layout="row" layout-align="start center" ng-show="showAppendHashtag" style="margin-bottom:30px">
+      <span style="margin-right: 10px;">Append detected hashtag from the Google+ message<br>
+        <small style="display: block;color: #888;margin-top: 5px;">Should Friends+Me append any hashtag from a Google+ post to the new Twitter status.</small>
+      </span>
+      <md-select ng-model="account.appendHashtag" ng-disabled="pushing" style="margin:0" aria-label="Append detected hashtag from the Google+ message">
+        <md-option value="false"><em>Disabled&nbsp;</em></md-option>
+        <md-option value="first">Append First Hashtag</md-option>
+        <md-option value="last">Append Last Hashtag</md-option>
+      </md-select>
+    </div>
+
+    <div layout="row" layout-align="start center" ng-show="showPrivacySettings" style="margin-bottom:30px">
+      <span style="margin-right: 10px;">Reposts are visible to<br>
+        <small style="display: block;color: #888;margin-top: 5px;">Choose who will be able to see your reposts.</small>
+      </span>
+      <md-select ng-model="account.privacy" ng-disabled="pushing" style="margin:0" aria-label="Reposts are visible to">
+        <md-option ng-value="p.value" ng-repeat="p in privacySettings">{{p.text}}</md-option>
+      </md-select>
+    </div>
+  </div>
+</div>

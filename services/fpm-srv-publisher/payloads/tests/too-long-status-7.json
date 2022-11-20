@@ -1,0 +1,55 @@
+{
+ "kind": "plus#activity",
+ "etag": "\"TJ4YjXUi1XCM_G3FJ4uiPX8m6Fk/V3FxC_CrqX03znb3yiJaV53Dgeg\"",
+ "title": "https://developers.google.com/+/api/latest/people/search Find people by name in Google plus. Lets rescue...",
+ "published": "2013-03-16T03:29:20.858Z",
+ "updated": "2013-03-16T03:29:20.858Z",
+ "id": "z12vzddooo2hdd1jw04cjlu4cp2dgbrowsw0k",
+ "url": "https://plus.google.com/102671888506044386836/posts/jA7BZQH9Hs4",
+ "actor": {
+  "id": "102671888506044386836",
+  "displayName": "Richard Mo",
+  "url": "https://plus.google.com/102671888506044386836",
+  "image": {
+   "url": "https://lh4.googleusercontent.com/-CASNjfVHKyI/AAAAAAAAAAI/AAAAAAAAC-U/NvrP2ji8TzE/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": "<a href=\"https://developers.google.com/+/api/latest/people/search\" class=\"ot-anchor\" rel=\"nofollow\">https://developers.google.com/+/api/latest/people/search</a> Find people by name in Google plus. Lets rescue all of the FaceBookers from being hermits and help them make the switch! I would like 100 more people in circles for the interesting factor. ",
+  "url": "https://plus.google.com/102671888506044386836/posts/jA7BZQH9Hs4",
+  "replies": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z12vzddooo2hdd1jw04cjlu4cp2dgbrowsw0k/comments"
+  },
+  "plusoners": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z12vzddooo2hdd1jw04cjlu4cp2dgbrowsw0k/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z12vzddooo2hdd1jw04cjlu4cp2dgbrowsw0k/people/resharers"
+  },
+  "attachments": [
+   {
+    "objectType": "article",
+    "displayName": "People: search",
+    "content": "Parameter name, Value, Description. Required parameters. query, string, Specify a query string for full text search of public text in all profiles. Optional parameters. language, string, Specify the p...",
+    "url": "https://developers.google.com/+/api/latest/people/search"
+   }
+  ]
+ },
+ "provider": {
+  "title": "Google+"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

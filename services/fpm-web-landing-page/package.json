@@ -1,0 +1,38 @@
+{
+  "name": "@fpm/web-landing-page",
+  "version": "3.12.0",
+  "private": true,
+  "author": "Alois Bělaška <alois@loysoft.com>",
+  "license": "UNLICENSED",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node .",
+    "clean": "pnpm build:clean",
+    "next:build": "NODE_ENV=production next build",
+    "deploy": "/bin/bash scripts/deploy.sh",
+    "build": "pnpm next:build",
+    "build:clean": "rm -rf 'out' '.next' '*.log'",
+    "eslint": "exit 0",
+    "flow": "exit 0",
+    "test": "exit 0",
+    "test:watch": "exit 0"
+  },
+  "dependencies": {
+    "app-root-dir": "1.0.2",
+    "express": "4.18.1",
+    "next": "12.1.6",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-styled-flexboxgrid": "^2.0.3",
+    "react-tooltip": "^3.4.0",
+    "request": "2.88.2",
+    "styled-components": "5.3.5"
+  },
+  "devDependencies": {
+    "@babel/core": "7.14.5",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.0",
+    "babel-plugin-styled-components": "^1.12.0"
+  }
+}

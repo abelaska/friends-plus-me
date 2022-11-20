@@ -1,0 +1,73 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "tokens": {
+      "livt": "anyone"
+    },
+    "use": {
+      "bitly": true
+    },
+    "shortener": {
+      "type": "bitly",
+      "bitly": {
+        "username": "abelaska",
+        "apiKey": "XXX"
+      }
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"f7U2cUeZRqWrbGtO2t6ZzlW2A8I/gto41ylj3sk3bhD0NycdfBeJISQ\"",
+    "title": "Guns don't kill people, Apples do! #applemaps   #ftl  ",
+    "published": "2012-12-10T14:48:49.393Z",
+    "updated": "2012-12-10T14:48:49.393Z",
+    "id": "z121znxgyvaejhqlv23otplwgrq1glmex",
+    "url": "https://plus.google.com/100112006895404998094/posts/AzGNgRAHXTQ",
+    "actor": {
+      "id": "100112006895404998094",
+      "displayName": "Greig McKean",
+      "url": "https://plus.google.com/100112006895404998094",
+      "image": {
+        "url": "https://lh4.googleusercontent.com/-oE9kQqL4v4w/AAAAAAAAAAI/AAAAAAAACBU/DZRio5NxqUM/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "Guns don&#39;t kill people, Apples do!  <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23applemaps\">#applemaps</a>   <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23ftl\">#ftl</a>  ",
+      "url": "https://plus.google.com/100112006895404998094/posts/AzGNgRAHXTQ",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z121znxgyvaejhqlv23otplwgrq1glmex/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z121znxgyvaejhqlv23otplwgrq1glmex/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z121znxgyvaejhqlv23otplwgrq1glmex/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "Police warn over Apple Maps error",
+          "content": "Inaccuracies in Apple Maps could be \"life-threatening\" to motorists in Australia's searing heat, police warn.",
+          "url": "http://www.bbc.co.uk/news/technology-20663447#sa-ns_mchannel=rss&ns_source=PublicRSS20-sa"
+        }
+      ]
+    },
+    "provider": {
+      "title": "Google Reader"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

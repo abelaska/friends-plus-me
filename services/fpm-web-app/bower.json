@@ -1,0 +1,38 @@
+{
+  "name": "fpm-app",
+  "version": "2.0.0",
+  "dependencies": {
+    "angular": "1.4.14",
+    "angular-cookies": "1.4.14",
+    "angular-sanitize": "1.4.14",
+    "angular-animate": "1.4.14",
+    "angular-aria": "1.4.14",
+    "angular-messages": "1.4.14",
+    "angular-ui-router": "0.2.11",
+    "angular-ui-tinymce": "0.0.18",
+    "angular-loading-bar": "0.8.0",
+    "angular-bootstrap-datetimepicker": "0.4.0",
+    "angular-material": "1.1.4",
+    "flexboxgrid": "6.3.1",
+    "tinymce": "4.6.5",
+    "stacktrace.js": "https://github.com/stacktracejs/stacktrace.js.git#0.6.2",
+    "angular-hotkeys": "https://github.com/chieffancypants/angular-hotkeys.git#1.4.5",
+    "angular-file-upload": "https://github.com/danialfarid/ng-file-upload.git#12.2.13",
+    "tinymce-mention": "https://github.com/CogniStreamer/tinyMCE-mention.git#018fb4391c6c1fdeb2b13af3575585ed5cfb5aa0",
+    "twitter-text": "https://github.com/twitter/twitter-text.git#v1.14.3",
+    "bootstrap": "3.3.4",
+    "async": "^1.5.0",
+    "string": "3.3.1",
+    "underscore": "1.8.3",
+    "moment": "2.10.6",
+    "moment-timezone": "0.4.1",
+    "jquery": "2.1.4"
+  },
+  "devDependencies": {},
+  "resolutions": {
+    "angular": "1.4.14",
+    "moment": "2.10.6",
+    "jquery": "2.1.4",
+    "tinymce": "4.6.5"
+  }
+}

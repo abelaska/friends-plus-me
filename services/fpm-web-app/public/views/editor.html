@@ -1,0 +1,224 @@
+<md-dialog class="editor" flex={80} style="height:100%;{{isShareLite?'max-width:100%;max-height:100%;box-shadow: none;border-radius: 0;':'max-width:800px;'}}{{activateDnd && abs(dndPos.x) > 0 && abs(dndPos.y) > 0?'left:'+dndPos.x+'px;top:'+dndPos.y+'px':''}}" aria-label="{{title()}}" ngf-drop="onFileSelect($files)">
+  <md-toolbar>
+    <div class="md-toolbar-tools" ng-mousedown="activateDnd && dndStart($event)" style="{{activateDnd && !isShareLite?'cursor:move':''}}">
+
+      <div class="destination active {{types.networkTypeNameOfAccount(account)}}" ng-if="account" style="margin-bottom: 0;margin-right: 16px;cursor: default;">
+        <md-tooltip>Destination <b>{{account.name}}</b> / <small>{{types.typeNameOfAccount(account)}}</small></md-tooltip>
+        <img ng-src="{{account.image}}">
+        <div class="network-icon" ng-switch on="types.networkTypeNameOfAccount(account)" style="left: 20px;">
+          <i ng-switch-when="pinterest" class="fa fa-pinterest"></i>
+          <i ng-switch-when="facebook" class="fa fa-facebook"></i>
+          <i ng-switch-when="linkedin" class="fa fa-linkedin"></i>
+          <i ng-switch-when="twitter" class="fa fa-twitter"></i>
+          <i ng-switch-when="tumblr" class="fa fa-tumblr"></i>
+          <i ng-switch-when="google" class="fa fa-google-plus"></i>
+          <i ng-switch-when="instagram" class="fa fa-instagram"></i>
+        </div>
+      </div>
+
+      <h2>{{title()}}</h2>
+      <span flex></span>
+
+      <md-menu style="max-width:200px" ng-if="!editDraft && !creatDraftOnly && !account">
+        <md-button layout="row" layout-align="center center" md-no-ink="true" aria-label="Switch Team" ng-click="$mdMenu.open($event)" class="dropdown" style="margin: 0;padding: 0 6px 0 6px;text-align: left;max-width: 200px;">
+          <md-tooltip>{{profile.name}}</md-tooltip>
+          <span md-truncate style="max-width: 170px;">{{profile.name}}</span>
+          <md-icon md-svg-icon="/images/icons/menu-down.svg"></md-icon>
+        </md-button>
+        <md-menu-content width="4" style="max-height:600px">
+          <md-menu-item ng-repeat="p in Google.profiles | orderBy: 'name' track by p._id">
+            <md-button ng-click="switchEditorProfile(p);" style="{{p._id==profile._id?'font-weight:bold':''}}">{{p.name}}</md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+
+      <md-button class="md-icon-button" ng-click="cancel($event)" ng-if="!isShareLite || isSharePopup">
+        <md-icon md-svg-src="/images/icons/close.svg" aria-label="Close Dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content flex layout="column" style="overflow:hidden;overflow-y:auto">
+    <div class="main-dialog-destinations {{showAllDestinations?'all':''}}" style="padding-bottom: 0;" ng-hide="hideDestinations || !accounts.length || isContributor() || !Google.user">
+      <div class="destination" ng-click="showAllDestinations=!!!showAllDestinations" style="width: 32px;height: 32px;position: absolute;">
+        <i class="fa {{showAllDestinations ? 'fa-minus': 'fa-plus'}}" style="font-size:16px;position: absolute;top: 7px;left: 8px;"></i>
+      </div>
+      <div style="margin-left:30px;display:inline-block;">&nbsp;</div>
+      <div class="destination {{types.networkTypeNameOfAccount(acc)}}" ng-repeat="acc in accounts track by (acc._id || acc.uid)+'-'+$index" ng-class="{'active':acc.picked&&!acc.skip,'with-feature':isWithFeature(acc),'used-feature':isFeatureUsed(acc),'selected':acc.selected,'warning':acc.picked && acc.warning,'danger':acc.picked && acc.danger}" ng-click="pick(acc)">
+        <md-tooltip>Post to <b>{{acc.name}}</b> / <small>{{types.typeNameOfAccount(acc)}}</small></md-tooltip>
+        <img ng-src="{{acc.image}}">
+        <div class="network-icon" ng-switch on="types.networkTypeNameOfAccount(acc)" style="left: 20px;">
+          <i ng-switch-when="pinterest" class="fa fa-pinterest"></i>
+          <i ng-switch-when="facebook" class="fa fa-facebook"></i>
+          <i ng-switch-when="linkedin" class="fa fa-linkedin"></i>
+          <i ng-switch-when="twitter" class="fa fa-twitter"></i>
+          <i ng-switch-when="tumblr" class="fa fa-tumblr"></i>
+          <i ng-switch-when="google" class="fa fa-google-plus"></i>
+          <i ng-switch-when="instagram" class="fa fa-instagram"></i>
+        </div>
+      </div>
+    </div>
+
+    <md-button class="md-raised md-primary" ng-click="goShareLogin()" style="margin: 10px;" ng-hide="Google.user">Sign-In to Friends+Me!</md-button>
+
+    <md-content flex class="editor-content" layout="column" style="position: relative;overflow: hidden;overflow-y: auto;background-color: #fff;" >
+      <textarea flex class="tinymce-editor" ui-tinymce="tinymceConfig()" ng-model="tinymceModel" placeholder="Your message..." style="width:100%;border: 0" autocapitalize="off" autocomplete="off" spellcheck="true" autocorrect="off"></textarea>
+
+      <div layout="row" layout-align="start center" style="position:absolute;bottom: 8px;right: 8px;background-color: rgba(0,0,0,0.8);border-radius: 4px;">
+        <md-button class="md-icon-button" aria-label="Bold" ng-click="textBold()" ng-show="isHighlighted">
+          <!--md-tooltip md-direction="top">Bold</md-tooltip-->
+          <md-icon md-menu-origin md-svg-icon="/images/icons/format-bold.svg" style="color:#fff"></md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="Italic" ng-click="textItalic()" ng-show="isHighlighted">
+          <!--md-tooltip md-direction="top">Italic</md-tooltip-->
+          <md-icon md-menu-origin md-svg-icon="/images/icons/format-italic.svg" style="color:#fff"></md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="StrikeThrough" ng-click="textStrikeThrough()" ng-show="isHighlighted">
+          <!--md-tooltip md-direction="top">StrikeThrough</md-tooltip-->
+          <md-icon md-menu-origin md-svg-icon="/images/icons/format-strikethrough.svg" style="color:#fff"></md-icon>
+        </md-button>
+      </div>
+
+      <div style="height:0px;overflow:hidden">
+         <input type="file" id="fileSelect" ngf-select="onFileSelect($files)">
+      </div>
+    </md-content>
+
+    <div layout="row" layout-align="start center" ng-show="attachLink && !link && !linkPreviewInProgress" style="padding: 10px;">
+      <md-button aria-label="Close Link Input" class="md-icon-button" ng-click="closeLinkInput()" ng-disabled="linkPreviewInProgress" style="max-height: 36px;margin-right: 10px;">
+        <!--md-tooltip>Close Link Input</md-tooltip-->
+        <md-icon md-svg-icon="/images/icons/close.svg"></md-icon>
+      </md-button>
+
+      <md-input-container flex style="margin-bottom:0" class="md-block" md-no-float style="margin-bottom: 0;margin-top: 0;height: 36px;">
+        <input ng-model="appendLinkUrl" ng-enter="linkPreview(appendLinkUrl)" ng-disabled="linkPreviewInProgress" delayed-focus="focusLinkInput" placeholder="Enter or Paste a Link">
+      </md-input-container>
+
+      <md-button aria-label="Attach Link" class="md-icon-button md-primary" ng-click="linkPreview(appendLinkUrl)" ng-disabled="linkPreviewInProgress"style="max-height: 36px;">
+        <!--md-tooltip>Attach Link</md-tooltip-->
+        <md-icon md-svg-icon="/images/icons/plus.svg"></md-icon>
+      </md-button>
+    </div>
+
+    <div class="main-dialog-attachment-link" ng-if="uploadedUrl && !attachLink" style="text-align:center">
+      <div style="position: relative;display: inline-block;min-width: 80px;min-height: 40px;">
+        <img ng-src="{{uploadedUrl}}" style="max-width: 250px;max-height: 200px;border-radius: 2px;">
+        <md-button class="md-icon-button" aria-label="Remove Attached Photo" style="position:absolute;top:0;right:0;" ng-click="removeAttachment()" ng-hide="editDraft.reshare.is">
+          <!--md-tooltip>Remove Attached Photo</md-tooltip-->
+          <md-icon style="color: rgba(0,0,0,0.8);border-radius: 50%;background-color: rgba(255,255,255,0.9);border-color: rgba(0,0,0,0.8);border-width: 2px;border-style: solid;" md-svg-icon="/images/icons/close-circle.svg"></md-icon>
+        </md-button>
+      </div>
+    </div>
+
+    <div class="main-dialog-attachment-link" ng-show="linkPreviewInProgress || (attachLink && link)">
+
+      <div layout="column" layout-align="center center" ng-show="linkPreviewInProgress">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        <span style="color:rgba(0,0,0,0.4);margin:20px;">Link preview in progress...</span>
+      </div>
+
+      <div layout="row" layout-align="start stretch" ng-show="link" style="position: relative">
+
+        <div style="position: relative;display: inline-block;margin-right:10px;" ng-if="uploadedUrl || link.photo.url">
+          <img ng-src="{{uploadedUrl || link.photo.url}}" style="max-width: 250px;max-height: 200px;border-radius: 2px;">
+          <md-button class="md-icon-button" aria-label="Remove Attached Photo" style="position:absolute;top:0;right:0;" ng-click="linkPhotoRemove()">
+            <!--md-tooltip>Remove Attached Photo</md-tooltip-->
+            <md-icon style="color: rgba(0,0,0,0.8);border-radius: 50%;background-color: rgba(255,255,255,0.9);" md-svg-icon="/images/icons/close-circle.svg"></md-icon>
+          </md-button>
+        </div>
+
+        <div style="position: relative;display: inline-block;margin-right:10px;min-width: 100px;width: 30%;max-width: 250px;" ng-if="link.photoIdx > -1 && link.photos">
+          <img ng-src="{{link.photos[link.photoIdx].url}}" style="width:100%;max-width: 250px;max-height: 200px;border-radius: 2px;">
+
+          <md-button class="md-icon-button" aria-label="Next Photo" style="position:absolute;top:0;left:0;" ng-click="linkPhotoNext()" ng-if="link.photos.length > 1">
+            <!--md-tooltip>Next Photo</md-tooltip-->
+            <md-icon style="color: rgba(0,0,0,0.8);border-radius: 50%;background-color: rgba(255,255,255,0.9);" md-svg-icon="/images/icons/swap-horizontal.svg"></md-icon>
+          </md-button>
+
+          <md-button class="md-icon-button" aria-label="Remove Attached Photo" style="position:absolute;top:0;right:0;" ng-click="linkPhotoRemove()" ng-hide="editDraft.reshare.is">
+            <!--md-tooltip>Remove Attached Photo</md-tooltip-->
+            <md-icon style="color: rgba(0,0,0,0.8);border-radius: 50%;background-color: rgba(255,255,255,0.9);" md-svg-icon="/images/icons/close-circle.svg"></md-icon>
+          </md-button>
+        </div>
+
+        <div layout="column" layout-align="start start" flex>
+          <input readonly type="text" style="width: 100%;border:0;height:auto !important;background-color:transparent;" ng-model="link.title" placeholder="Link Title" />
+          <a href="{{link.short.url || link.url}}" target="_blank" ng-bind-html="urlDomain(link.short.url || link.url)"></a>
+          <textarea readonly flex placeholder="Link Description" style="width: 100%;border:0;margin-top:10px;resize:none;display:block;background-color:transparent;" ng-model="link.description"></textarea>
+        </div>
+
+        <md-button class="md-icon-button" aria-label="Remove Attached Link" style="position:absolute;top:-10px;right:-10px;" ng-click="removeAttachment()" ng-hide="editDraft.reshare.is">
+          <!--md-tooltip>Remove Attached Link</md-tooltip-->
+          <md-icon style="color: rgba(0,0,0,0.8);border-radius: 50%;background-color: rgba(255,255,255,0.9);" md-svg-icon="/images/icons/close-circle.svg"></md-icon>
+        </md-button>
+      </div>
+    </div>
+  </md-dialog-content>
+
+  <md-dialog-actions layout="row" ng-hide="attachLink && !link" ng-mousedown="dndStart($event)" style="padding-left:0;border-top: 1px dotted rgba(0, 0, 0, 0.1);">
+    <div flex layout="row" layout-align="space-between center" layout-nowrap>
+      <div>
+        <md-button class="md-icon-button" aria-label="Attach a Photo" ng-click="onAttachPhoto()" ng-hide="attachedLink || editDraft.reshare.is">
+          <!--md-tooltip md-direction="top">Attach a Photo</md-tooltip-->
+          <md-icon md-menu-origin md-svg-icon="/images/icons/image.svg"></md-icon>
+        </md-button>
+
+        <md-button class="md-icon-button" aria-label="Attach a Link" ng-click="onAttachLink()" ng-if="isAttachLinkVisible() && !editDraft.reshare.is">
+          <!--md-tooltip md-direction="top">Attach a Link</md-tooltip-->
+          <md-icon md-menu-origin md-svg-icon="/images/icons/link-variant.svg"></md-icon>
+        </md-button>
+      </div>
+
+      <div flex>&nbsp;</div>
+
+      <div style="cursor: default;">
+        <!--md-tooltip md-direction="top">{{textLengthMax>-1?'Max. length is '+textLengthMax+' characters':'Unlimited length'}}</md-tooltip-->
+        <span class="label {{textLengthLabel}}">{{textLength}}</span>
+      </div>
+
+      <md-progress-circular md-mode="indeterminate" md-diameter="36px" ng-if="savingDraft || publishing || uploading" style="margin: 10px 0 10px 10px;"></md-progress-circular>
+
+      <div id="recaptcha" class="g-recaptcha" style="margin: 10px 0 10px 10px;"></div>
+
+      <md-button class="md-raised md-primary" ng-click="draftEditSave()" ng-disabled="isNotSaveable() || savingDraft || publishing || uploading" ng-if="captchaNotVisible && editDraft && !isShareDraft && canEdit()">Save Changes</md-button>
+      <md-button class="md-raised md-primary" ng-click="shareNow()" ng-disabled="isNotPublishable() || publishing" ng-if="captchaNotVisible && isOnlyShareNowAllowed() || !Google.user">Publish Now</md-button>
+
+      <div layout-xs="column" layout="row">
+        <md-button class="md-raised md-primary" md-colors="{background: 'green-500'}" ng-click="saveDraft()" ng-disabled="isNotSaveable() || savingDraft || publishing || uploading" ng-if="captchaNotVisible && !editDraft">Save as Draft</md-button>
+
+        <div layout="row" layout="center center" ng-if="captchaNotVisible && !isContributor()">
+          <md-button class="md-raised md-primary" md-colors="{background: 'orange2-500'}" style="box-shadow: 0 0;padding-left:15px;border-bottom-right-radius: 0;border-top-right-radius: 0;" ng-click="addToQueue()" ng-disabled="isNotPublishable() || savingDraft || publishing || uploading" ng-if="isShareDraft || (!isDraftEdit && !editDraft)">Add to Queue</md-button>
+
+          <md-menu ng-show="Google.user && !isOnlyShareNowAllowed()" ng-if="!creatDraftOnly && !hidePublishingButtons" style="height:36px;margin-bottom: 8px;margin-left: 0;margin-right: 0;margin-top: 8px;">
+            <md-button class="md-raised md-primary md-icon-button" md-colors="{background: 'orange2-500'}" style="box-shadow: 0 0;border-radius: 2px;height: 36px;margin: 0;padding: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;" aria-label="Scheduling and Publishing Features" ng-click="$mdMenu.open($event)" ng-disabled="isNotPublishable() || savingDraft || publishing || uploading || (editDraft && isNotPublishable())">
+              <!--md-tooltip>Scheduling and Publishing Features</md-tooltip-->
+              <md-icon md-menu-origin md-svg-icon="/images/icons/menu-down.svg"></md-icon>
+            </md-button>
+            <md-menu-content width="4">
+              <md-menu-item>
+                <md-button aria-label="Share Now" ng-click="shareNow()" ng-disabled="isNotPublishable()">
+                  Publish Now
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button aria-label="Share Next" ng-click="shareNext()" ng-disabled="isNotPublishable()">
+                  Publish Next
+                </md-button>
+              </md-menu-item>
+              <md-menu-item ng-if="isDraftEdit && !isShareDraft">
+                <md-button aria-label="Share Later" ng-click="addToQueue()" ng-disabled="isNotPublishable()">
+                  Publish Later
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button aria-label="Share Exactly At…" ng-click="schedulePost()" ng-disabled="isNotPublishable()">
+                  Publish At…
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </div>
+      </div>
+    </div>
+  </md-dialog-actions>
+</md-dialog>

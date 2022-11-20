@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title></title>
+  <style type="text/css">
+    body { margin: 0; padding: 0; font-family: Helvetica Heue, Helvetica, Arial, sans-serif; }
+  </style>
+</head>
+<body style="font-family: Helvetica Heue, Helvetica, Arial, sans-serif; margin: 0; padding: 0">
+  <div id="EmailBody" style="color: #0F0F0F; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 16px">
+    <div>
+      <table id="outer_container" style="color: #637280; font-size: 16px; line-height: 24px; width: 100%">
+        <tr>
+          <td height="30"></td>
+        </tr>
+        <tr>
+          <td align="center" style="width: 100%">
+            <!--[if (gte mso 9)|(IE)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="600"><tr><td align="center" valign="top" width="600"><![endif]-->
+            <table id="content_wrapper" style="margin: 0 auto; max-width: 600px; width: 100%">
+              <tr>
+                <td id="header" style="vertical-align: middle; width: 100%" valign="middle">
+                  <a href="https://app.friendsplus.me/" style="border: none"><img alt="Friends+Me" src="https://storage.googleapis.com/static.friendsplus.me/images/logo-text-black.png" style="border: none; display: inline-block; vertical-align: middle" width="150" height="38"></a>
+                </td>
+              </tr>
+              <tr>
+                <td height="20"></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" id="message" style="background-color: #ffffff; border-color: #dde5ed; border-radius: 3px; border-style: solid; border-width: 1px 1px 2px; width: 100%">
+                  <table style="width: 100%">
+                    <tr>
+                      <td height="30"></td>
+                    </tr>
+                    <tr>
+                      <td id="summary" style="padding: 0px 30px; vertical-align: top; width: 100%" valign="top">
+                        <table style="margin-top: 15px; width: 100%">
+                          <tr>
+                            <td>
+                              <img alt="${account_name}" height="50" src="${account_avatar}" width="50">
+                            </td>
+                            <td style="padding-left: 12px; width: 100%">
+                              <h2 style="color: #283544; font-size: 18px; font-weight: bold; letter-spacing: 0.2; line-height: 24px; margin: 0; padding: 0">Failed to publish post to ${account_network_name} queue "${account_name}"</h2>
+                            </td>
+                          </tr>
+                        </table>
+                        <div id="divider" style="border-bottom-color: #dde5ed; border-bottom-style: solid; border-bottom-width: 1px; padding-top: 20px"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="20"></td>
+                    </tr>
+                    <tr>
+                      <td id="body" style="padding: 0px 30px; vertical-align: top; width: 100%" valign="top">
+                        <p style="color: #637280; font-size: 16px; line-height: 24px; margin: 0; padding-bottom: 20px"><b>Post must be re-scheduled manually.</b></p>
+                        <pre style="color: #637280; font-size: 16px; line-height: 24px; margin: 0; padding-bottom: 20px">${post_html}</pre>
+                        <% post_link && print('<div style="padding-bottom: 10px;"><a href="'+post_link+'">'+post_link+'</a></div>') %>
+                        <% post_link_title && print('<div style="padding-bottom: 10px;">'+post_link_title+'</div>') %>
+                        <% (post_picture || post_link_picture) && print('<div style="padding-bottom: 20px;"><img src="'+(post_picture || post_link_picture)+'=s400"></div>') %>
+                        <p style="color: #637280; font-size: 16px; line-height: 24px; margin: 0; padding-bottom: 20px">Click the button below to see the failed post.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td id="action" style="padding: 0px 30px; vertical-align: top; width: 100%" valign="top">
+                        <a href="https://app.friendsplus.me/teams/${team_id}/queues/${account_id}/timeline/${post_id}" id="cta" style="-webkit-text-size-adjust: none; background-color: #1F8DED; border-color: #1f8ded; border-radius: 5px; border-style: solid; border-width: 14px 24px; color: #FFFFFF; display: inline-block; font-size: 16px; line-height: 24px; text-align: center; text-decoration: none">Show Failed Post</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="30"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table><!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+        <tr>
+          <td height="40"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

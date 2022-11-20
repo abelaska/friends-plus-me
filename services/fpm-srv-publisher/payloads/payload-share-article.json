@@ -1,0 +1,93 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"rAkZ68WkBwC0pXAvw6k5w0cLkbc/nx51392PY2l2YwLR4Xt83qHPf1c\"",
+    "title": "Intriguing #wearable concept, I like it! \"A Wearable SIM Could Let You Use One Number With Any Device...",
+    "published": "2014-06-11T05:13:49.784Z",
+    "updated": "2014-06-11T05:13:49.784Z",
+    "id": "z12ahrty3lbhdtu2a23pexlopqm3zpy5004",
+    "url": "https://plus.google.com/112580063909169692065/posts/CqzF6etoygP",
+    "actor": {
+      "id": "112580063909169692065",
+      "displayName": "Danie van der Merwe",
+      "url": "https://plus.google.com/112580063909169692065",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-2sc4TO3aEnE/AAAAAAAAAAI/AAAAAAAAeq0/cnJmdvAVjek/photo.jpg?sz=50"
+      }
+    },
+    "verb": "share",
+    "object": {
+      "objectType": "activity",
+      "id": "z12msheqixiqvha5u04cdzbwzrfuzjcba3w",
+      "actor": {
+        "id": "109649111560196889557",
+        "displayName": "South Africa Android Developers",
+        "url": "https://plus.google.com/109649111560196889557",
+        "image": {
+          "url": "https://lh3.googleusercontent.com/-LWT5WRRAd1c/AAAAAAAAAAI/AAAAAAAAACU/5lJXzcVDdC8/photo.jpg?sz=50"
+        }
+      },
+      "content": "Intriguing <a rel=\"nofollow\" class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23wearable\">#wearable</a> concept, I like it! &quot;A Wearable SIM Could Let You Use One Number With Any Device <a href=\"http://buff.ly/1u0O4Ko\">http://buff.ly/1u0O4Ko</a>&quot;\ufeff",
+      "url": "https://plus.google.com/109649111560196889557/posts/Y9HUvsb7rmz",
+      "replies": {
+        "totalItems": 2,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12ahrty3lbhdtu2a23pexlopqm3zpy5004/comments"
+      },
+      "plusoners": {
+        "totalItems": 3,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12ahrty3lbhdtu2a23pexlopqm3zpy5004/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 2,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12ahrty3lbhdtu2a23pexlopqm3zpy5004/people/resharers"
+      },
+      "statusForViewer": {
+        "resharingDisabled": false,
+        "canComment": true,
+        "canPlusone": true,
+        "isPlusOned": false,
+        "canUpdate": false
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "A Wearable SIM Could Let You Use One Number With Any Device",
+          "content": "Japanese carrier Docomo has announced an interesting concept design that could change the way we use mobile devices: a wearable that takes the SIM out of your phone and puts it onto your wrist to create an authentication device for all your hardware.",
+          "url": "http://gizmodo.com/a-wearable-sim-could-let-you-use-one-number-with-any-de-1588530832?utm_content=buffer0629f&utm_medium=social&utm_source=plus.google.com&utm_campaign=buffer",
+          "image": {
+            "url": "https://lh5.googleusercontent.com/proxy/n8NhWla3I86EyPy203dZZGvif0BBW3CxBAZ3xJZLBtThxGJrWxgDttZaZUqbC8OTJfiMRbzrDu4u58OfmFpNZ9yys27UkdNXOdVMrKFWupDlG1LPjdPnrRhZuVYrtjz9oJ3CryO4ug=w120-h120",
+            "type": "image/jpeg",
+            "height": 120,
+            "width": 120
+          },
+          "fullImage": {
+            "url": "http://i.kinja-img.com/gawker-media/image/upload/s--LmlejOWW--/abuhylfkxwf76umyi2xp.jpg",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "annotation": "<b>A Wearable SIM Could Let You Use One Number With Any Device</b><br><br>&quot;It&#39;s calling it the Portable SIM, and it takes the SIM card usually found within your smartphone and puts it into a Bluetooth- and NFC-equipped wearable. The prototype allows the device—a card or smartwatch-style bracelet—to be waved over any tablet or smartphone to allow it connect and login to phone networks.&quot;<br><br>Sounds interesting but fraught with possible complications. I&#39;m assuming that Bluetooth sets up the trusted connection.",
+    "provider": {
+      "title": "Reshared Post"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

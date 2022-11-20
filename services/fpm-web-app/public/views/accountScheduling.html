@@ -1,0 +1,170 @@
+<div class="account-scheduling" ng-controller="AccountSchedulingCtrl">
+
+  <div layout="row" layout-align="center center" ng-if="loading" style="margin-top: 20px;">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+  </div>
+
+  <div ng-hide="loading" layout="row" layout-xs="column" layout-align="start start">
+    <div flex style="margin-top: 15px;margin-bottom: 15px;padding-right: 15px;">
+      <h1 class="sign" style="text-align: left">Post Scheduling</h1>
+      <p style="text-align: justify">Choose your timezone, schedule your times and Friends+Me will make sure your content is always fresh.</p>
+      <p style="text-align:justify;">Focus on the content, not the time of day or day of the week when publishing.</p>  
+    </div>
+    <div flex style="max-width: 300px;margin-top:50px">
+      <md-input-container style="width:100%">
+        <label>Schedule Timezone</label>
+        <md-select ng-model="scheduling.tz" ng-change="schedulingTzChange()" aria-label="Timezone">
+          <md-option ng-value="tz" ng-repeat="tz in timezones">{{tz}}</md-option>
+        </md-select>
+      </md-input-container>
+      <p ng-hide="scheduling.tz" style="font-weight:400">To enable scheduling you have to select timezone first!</p>
+      <p ng-show="scheduling.tz" style="margin-bottom:0;font-size:12px">The local time is currently {{tzLocalTime}}</p>
+    </div>
+  </div>
+
+  <!-- -->
+
+  <div ng-hide="loading || !isCountsAvailable" style="padding-top: 30px; margin-bottom: 15px;">
+    <label layout="row" layout-align="start center" style="cursor:pointer">
+      <input type="radio" name="ngType" ng-model="ngType" value="counts" ng-change="ngTypeChange()" style="margin: 15px 15px 15px 10px;">
+      <h1 class="sign" style="text-align: left; margin: 0;text-decoration: underline;" ng-style="{color:ngType === 'counts'?'#606973':'rgba(0, 0, 0, 0.15)'}">Publish Evenly Through the Day</h1>
+    </label>
+  </div>
+
+  <div ng-hide="loading || !isCountsAvailable" layout="column" ng-style="{opacity:ngType === 'counts'?'1':'0.2'}">
+    <p style="text-align:justify;"><b style="font-weight:400">Set a maximum number of posts scheduled per weekday</b> and Friends+Me will distribute posts evenly through the day for you.</p>
+    <p style="text-align:justify;">The daily limit does not apply to posts scheduled for immediate publishing or scheduled for custom date and time.</p>
+    <h2 style="text-align: center;color: rgb(96, 105, 115);font-weight: 300;max-width:1000px">Number of Posts per Week Day</h2>
+    <div flex layout="row" layout-wrap layout-align="space-between start" class="account-schedule-row">
+      <div layout="column" class="account-schedule-col" ng-repeat="day in days">
+        <label>
+          <div class="day-block">
+            <md-tooltip>{{day}}{{ngSchEvery[$index] ? ' - Publish Post Every '+ngSchEvery[$index] : ''}}</md-tooltip>
+            {{day.substr(0, 3)}}
+          </div>
+          <div class="input-block">
+            <input type="number" required placeholder="0" ng-model="ngSch[$index]" ng-change="ngSchUpdated(day.toLowerCase())" step="1" min="0" max="{{ngSchMax}}" />
+          </div>
+        </label>
+      </div>
+      <div layout="column" class="account-schedule-col week">
+        <label>
+          <div class="day-block">
+            <md-tooltip>Week in Total</md-tooltip>
+            Week
+          </div>
+          <div class="input-block">
+            <input type="number" required placeholder="0" ng-model="ngSchWeek" ng-change="ngSchUpdated('week')" step="1" min="0" max="{{ngSchWeekMax}}" />
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- -->
+    
+  <div ng-hide="loading || !isTimesAvailable" ng-style="{'margin-top':ng?'0':'30px'}" style="margin-bottom: 10px;">
+    <label layout="row" layout-align="start center" style="cursor:pointer">
+      <input type="radio" name="ngType" ng-model="ngType" value="times" ng-change="ngTypeChange()" style="margin: 15px 15px 15px 10px;">
+      <h1 class="sign" style="text-align: left; margin: 0;text-decoration: underline;" ng-style="{color:ngType === 'times'?'#606973':'rgba(0, 0, 0, 0.15)'}">Publish at Predefined Times</h1>
+    </label>
+  </div>
+  
+  <div ng-hide="loading || !isTimesAvailable" ng-style="{opacity:ngType === 'times'?'1':'0.2'}">
+    <p style="text-align:justify">More schedules allows you to define specific times for every single day separately.</p>
+    <ul class="nav nav-pills schedules" style="margin-top: 15px;">
+      <li role="presentation" ng-class="{'active':scheduleIndex==$index}" ng-repeat="sch in scheduling.schedules">
+        <a class="schedule" ng-class="{'removable':scheduling.schedules.length>1}" ng-click="selectSchedule($index)">
+          <i class="fa fa-calendar"></i>
+          <i class="fa fa-times-circle remove-schedule" ng-if="scheduling.schedules.length>1" ng-click="deleteSchedule($index)"><md-tooltip>Delete schedule</md-tooltip></i>
+          {{scheduleTitle(sch)}}
+        </a>
+      </li>
+      <li role="presentation">
+        <a ng-click="newSchedule()">
+          <md-tooltip>You may want to post on different times each day</md-tooltip>
+          <i class="fa fa-plus"></i>&nbsp;New posting schedule</a>
+      </li>
+    </ul>
+
+    <div class="btn-group">
+      <span class="btn btn-default btn-sm" ng-class="{'btn-primary':schedule.mon}" ng-click="dayChanged('mon')">
+        <md-tooltip>Monday</md-tooltip>
+        Mon
+      </span>
+      <span class="btn btn-default btn-sm" ng-class="{'btn-primary':schedule.tue}" ng-click="dayChanged('tue')">
+        <md-tooltip>Tuesday</md-tooltip>
+        Tue
+      </span>
+      <span class="btn btn-default btn-sm" ng-class="{'btn-primary':schedule.wed}" ng-click="dayChanged('wed')">
+        <md-tooltip>Wednesday</md-tooltip>
+        Wed
+      </span>
+      <span class="btn btn-default btn-sm" ng-class="{'btn-primary':schedule.thu}" ng-click="dayChanged('thu')">
+        <md-tooltip>Thursday</md-tooltip>
+        Thu
+      </span>
+      <span class="btn btn-default btn-sm" ng-class="{'btn-primary':schedule.fri}" ng-click="dayChanged('fri')">
+        <md-tooltip>Friday</md-tooltip>
+        Fri
+      </span>
+      <span class="btn btn-default btn-sm" ng-class="{'btn-primary':schedule.sat}" ng-click="dayChanged('sat')">
+        <md-tooltip>Saturday</md-tooltip>
+        Sat
+      </span>
+      <span class="btn btn-default btn-sm" ng-class="{'btn-primary':schedule.sun}" ng-click="dayChanged('sun')">
+        <md-tooltip>Sunday</md-tooltip>
+        Sun
+      </span>
+    </div>
+
+    <p style="margin: 20px 0 10px 0;">Repost at these times <strong>{{scheduleTitle(schedule)}}</strong></p>
+
+    <md-chips class="times" ng-model="schedule.times" md-removable="!updating" readonly="updating" md-on-add="ng ? updateQueueDetails() : updateDb()" md-on-remove="ng ? updateQueueDetails() : updateDb()" md-transform-chip="transformChip($chip)" md-removable="true" placeholder="Click and enter time in format 10:45am, 8:35pm, 10:45 or 20:35">
+      <md-chip-template>{{timeTitle($chip)}}</md-chip-template>
+    </md-chips>
+  </div>
+
+  <!-- -->
+
+  <div ng-hide="loading || !isDelayAvailable" style="margin-top: 30px;margin-bottom: 50px;">
+    <label layout="row" layout-align="start center" style="cursor:pointer">
+      <input type="radio" name="ngType" ng-model="ngType" value="delay" ng-change="ngTypeChange()" style="margin: 15px 15px 15px 10px;">
+      <h1 class="sign" style="text-align: left; margin: 0;text-decoration: underline;" ng-style="{color:ngType === 'delay'?'#606973':'rgba(0, 0, 0, 0.15)'}">Publish with Delay</h1>
+    </label>
+    <div layout="row" layout-xs="column" layout-align="start center" ng-style="{opacity:ngType === 'delay'?'1':'0.2'}">
+      <p style="text-align:justify;margin: 0 10px 0 0;">Schedule posts with delay of</p>
+      <md-input-container style="margin:0">
+        <md-select ng-model="scheduling.delay" ng-change="schedulingDelayChange()" aria-label="Delays" convert-to-number>
+          <md-option value="0" ng-if="isNotFree">0 minutes</md-option>
+          <md-option value="60">1 minute</md-option>
+          <md-option value="180">3 minutes</md-option>
+          <md-option value="300">5 minutes</md-option>
+          <md-option value="600">10 minutes</md-option>
+          <md-option value="900">15 minutes</md-option>
+          <md-option value="1800">30 minutes</md-option>
+          <md-option value="2700">45 minutes</md-option>
+          <md-option value="3600">1 hour</md-option>
+          <md-option value="7200">2 hours</md-option>
+          <md-option value="10800">3 hours</md-option>
+          <md-option value="14400">4 hours</md-option>
+          <md-option value="21600">6 hours</md-option>
+          <md-option value="28800">8 hours</md-option>
+          <md-option value="36000">10 hours</md-option>
+          <md-option value="43200">12 hours</md-option>
+          <md-option value="57600">16 hours</md-option>
+          <md-option value="72000">20 hours</md-option>
+          <md-option value="86400">1 day</md-option>
+          <md-option value="172800">2 days</md-option>
+          <md-option value="259200">3 days</md-option>
+          <md-option value="432000">5 days</md-option>
+          <md-option value="604800">1 week</md-option>
+          <md-option value="1209600">2 weeks</md-option>
+          <md-option value="1814400">3 weeks</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+  </div>
+
+  <div style="height:100px">&nbsp;</div>
+</div>

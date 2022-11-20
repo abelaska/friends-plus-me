@@ -1,0 +1,1 @@
+export { default as Auth0Mgmt } from './Auth0Mgmt';

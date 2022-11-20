@@ -1,0 +1,90 @@
+{
+  "account": {
+    "shortener": {
+      "type": "none"
+    },
+    "id": 103778702993142591484,
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"sJt1VilOvxUfDlfPWeqwjvyqpgI/OW30s6xTcd9VJrl31qAPTPMZM_k\"",
+    "title": "Параллельные миры Роджера Меррифилда. Parallel worlds Roger Merrifield. \nПутешествуя по Шотландии, 46...",
+    "published": "2013-01-03T13:35:28.437Z",
+    "updated": "2013-01-03T13:35:28.437Z",
+    "id": "z13gxx0ztomlfhidc234gxrixvrziffpp04",
+    "url": "https://plus.google.com/114197358633834273250/posts/7mQLS2xbZD2",
+    "actor": {
+      "id": "114197358633834273250",
+      "displayName": "Richard Bajic",
+      "url": "https://plus.google.com/114197358633834273250",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-QLJgyig_lDQ/AAAAAAAAAAI/AAAAAAAAA4o/35I6Egh25mM/photo.jpg?sz=50"
+      }
+    },
+    "verb": "share",
+    "object": {
+      "objectType": "activity",
+      "id": "z13hhdpyvoqujdzqq04cgvvruouqtffgmks0k",
+      "actor": {
+        "id": "104196223082232220103",
+        "displayName": "Viktor Ledentsov",
+        "url": "https://plus.google.com/104196223082232220103",
+        "image": {
+          "url": "https://lh6.googleusercontent.com/-cLWl0asGHaU/AAAAAAAAAAI/AAAAAAAAAAA/KIedWlp3xVw/photo.jpg?sz=50"
+        }
+      },
+      "content": "<b>Параллельные миры Роджера Меррифилда. Parallel worlds Roger Merrifield.</b> <br /><b>Путешествуя по Шотландии, 46-летний фотограф-любитель Роджер Меррифилд (Roger Merrifield) решил сосредоточить свое внимание на озерах, которыми так богат край.</b> Гладкая поверхность воды прекрасно отражала пейзажи, создавая иллюзию параллельных миров. <b>По словам Меррифилда, его гипнотические фотографии требовали немало терпения, ведь подходящие погодные условия без туманов, дождей и сильных ветров бывают редко на Туманном Альбионе.</b><br /><a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23EarthMyMother\">#EarthMyMother</a>  <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23photo\">#photo</a>   <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23ForFriends\">#ForFriends</a>  ",
+      "url": "https://plus.google.com/104196223082232220103/posts/cxgpwfLTjLd",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13gxx0ztomlfhidc234gxrixvrziffpp04/comments"
+      },
+      "plusoners": {
+        "totalItems": 1,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13gxx0ztomlfhidc234gxrixvrziffpp04/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13gxx0ztomlfhidc234gxrixvrziffpp04/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "photo",
+          "displayName": "Параллельные миры Роджера Меррифилда. Parallel worlds Roger Merrifield. Source:http://goo.gl/L2kYJ",
+          "id": "104196223082232220103.5829184642882094178",
+          "content": "00 Гленко-Лохан..jpg",
+          "url": "https://plus.google.com/photos/104196223082232220103/albums/5829184637672641377/5829184642882094178",
+          "image": {
+            "url": "https://lh4.googleusercontent.com/-GDhVFHt5OkY/UOVsjGEmRGI/AAAAAAADIqk/_FeoDus-mA4/w497-h373/photo.jpg",
+            "type": "image/jpeg",
+            "height": 373,
+            "width": 497
+          },
+          "fullImage": {
+            "url": "https://lh4.googleusercontent.com/-GDhVFHt5OkY/UOVsjGEmRGI/AAAAAAADIqk/_FeoDus-mA4/photo.jpg",
+            "type": "image/jpeg",
+            "height": 704,
+            "width": 990
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Reshared Post"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    },
+    "userId": "503b653a4a28d1b17b00000b",
+    "dbId": "50e58a345245e33a04000ede"
+  }
+}

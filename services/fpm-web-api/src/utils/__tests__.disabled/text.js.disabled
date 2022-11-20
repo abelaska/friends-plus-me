@@ -1,0 +1,15 @@
+const { sanitizeObj } = require('../text');
+
+test('should sanitize object', () => {
+  expect(sanitizeObj({ a: '<script>alert("xss");</script>' })).toEqual({
+    a: '&lt;script&gt;alert("xss");&lt;/script&gt;'
+  });
+  expect(sanitizeObj({ a: { b: '<script>alert("xss");</script>' } })).toEqual({
+    a: { b: '&lt;script&gt;alert("xss");&lt;/script&gt;' }
+  });
+  expect(
+    sanitizeObj({ a: { b: '<script>alert("xss");</script>', html: '<script>alert("xss");</script>' } }, 'html')
+  ).toEqual({
+    a: { b: '&lt;script&gt;alert("xss");&lt;/script&gt;', html: '<script>alert("xss");</script>' }
+  });
+});

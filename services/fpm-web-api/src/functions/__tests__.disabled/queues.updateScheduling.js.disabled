@@ -1,0 +1,731 @@
+/* eslint no-mixed-operators: "off" */
+const nanoid = require('nanoid');
+const { States, Types } = require('@fpm/constants');
+const { ObjectId, User, Profile, Queue } = require('@fpm/db');
+const {
+  testingDeps,
+  testingBeforeAll,
+  testingAfterAll,
+  testFunc,
+  nockHydraTokenIntrospect
+} = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+beforeEach(async () => Promise.all(await Queue.find().exec(), q => q.remove()));
+
+test('should try to update queue scheduling without required properties in request', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'queues.write',
+    userId: dbUser._id.toString()
+  });
+
+  let reply = await testFunc({
+    name: 'queues.updateScheduling',
+    req: {
+      method: 'POST',
+      qs: {
+        access_token: token,
+        queue: dbQueueId.toString()
+      },
+      body: {
+        type: 'times'
+      }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBeFalsy();
+  expect(reply.body).toEqual({
+    error: 'invalid_request',
+    error_description: "body should have required property 'schedules'",
+    ok: false
+  });
+
+  reply = await testFunc({
+    name: 'queues.updateScheduling',
+    req: {
+      method: 'POST',
+      qs: {
+        access_token: token,
+        queue: dbQueueId.toString()
+      },
+      body: {
+        type: 'counts'
+      }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBeFalsy();
+  expect(reply.body).toEqual({
+    error: 'invalid_request',
+    error_description: "body should have required property 'counts'",
+    ok: false
+  });
+
+  reply = await testFunc({
+    name: 'queues.updateScheduling',
+    req: {
+      method: 'POST',
+      qs: {
+        access_token: token,
+        queue: dbQueueId.toString()
+      },
+      body: {
+        type: 'delay'
+      }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBeFalsy();
+  expect(reply.body).toEqual({
+    error: 'invalid_request',
+    error_description: "body should have required property 'delay'",
+    ok: false
+  });
+
+  reply = await testFunc({
+    name: 'queues.updateScheduling',
+    req: {
+      method: 'POST',
+      qs: {
+        access_token: token,
+        queue: dbQueueId.toString()
+      },
+      body: {
+        timezone: 'Europe/Berlin',
+        type: 'delay'
+      }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBeFalsy();
+  expect(reply.body).toEqual({
+    error: 'invalid_request',
+    error_description: "body should have required property 'delay'",
+    ok: false
+  });
+});
+
+test('should update queue scheduling', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        _id: dbQueueId,
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        creator: dbUserId,
+        name: 'queue name',
+        state: States.account.enabled.code,
+        picture: 'picture',
+        uid: 'uid',
+        url: 'url',
+        scheduling: { stype: 't', tz: 'Europe/Prague', schedules: [[0, 60, 120]] }
+      }
+    ]
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'queues.write',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'queues.updateScheduling',
+    req: {
+      method: 'POST',
+      qs: {
+        access_token: token,
+        queue: dbQueueId.toString()
+      },
+      body: {
+        timezone: 'Europe/Berlin',
+        type: 'times',
+        schedules: [{ days: ['mon'], times: ['10:00', '20:00'] }]
+      }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.queue).toEqual({
+    queue_id: dbQueueId.toString(),
+    created_by: {
+      user_id: dbUserId.toString(),
+      name: dbUser.name,
+      avatar: dbUser.image
+    },
+    name: dbTeam.accounts[0].name,
+    state: 'enabled',
+    service: {
+      type: 'google',
+      category: 'page',
+      id: dbTeam.accounts[0].uid,
+      url: dbTeam.accounts[0].url
+    },
+    scheduling: {
+      timezone: 'Europe/Berlin',
+      type: 'times',
+      schedules: [
+        {
+          days: ['mon'],
+          times: ['10:00', '20:00']
+        }
+      ]
+    },
+    size: 0
+  });
+
+  const dbTeamUpdated = await Profile.findById(dbTeamId).exec();
+  expect(dbTeamUpdated).toBeTruthy();
+  expect(dbTeamUpdated.accounts[0].scheduling.tz).toBe('Europe/Berlin');
+  expect(dbTeamUpdated.accounts[0].scheduling.schedules.length).toBe(1);
+  expect(dbTeamUpdated.accounts[0].scheduling.schedules.toObject()).toEqual([[600, 1200]]);
+});
+
+test('should update queue scheduling, counts', async () => {
+  const { queueManager } = testingDeps();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        ng: true,
+        _id: dbQueueId,
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        creator: dbUserId,
+        name: 'queue name',
+        state: States.account.enabled.code,
+        picture: 'picture',
+        uid: 'uid',
+        url: 'url',
+        scheduling: { stype: 't', tz: 'Europe/Prague', schedules: [[0, 60, 120]] }
+      }
+    ]
+  });
+  const dbQueueInfo = await queueManager.createQueue({
+    id: dbQueueId,
+    pid: dbTeam._id,
+    tz: 'Europe/Prague',
+    type: Types.createCodeByName('google', 'page'),
+    postsLimit: 100,
+    scheduler: { type: 'times', schedules: [[0, 60, 120]] }
+  });
+  expect(dbQueueInfo).toBeTruthy();
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'queues.write',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'queues.updateScheduling',
+    req: {
+      method: 'POST',
+      qs: {
+        access_token: token,
+        queue: dbQueueId.toString()
+      },
+      body: {
+        timezone: 'Europe/Berlin',
+        type: 'counts',
+        counts: {
+          mon: 1,
+          tue: 2,
+          wed: 3,
+          thu: 4,
+          fri: 5,
+          sat: 6,
+          sun: 7
+        }
+      }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.queue).toEqual({
+    queue_id: dbQueueId.toString(),
+    created_by: {
+      user_id: dbUserId.toString(),
+      name: dbUser.name,
+      avatar: dbUser.image
+    },
+    name: dbTeam.accounts[0].name,
+    state: 'enabled',
+    service: {
+      type: 'google',
+      category: 'page',
+      id: dbTeam.accounts[0].uid,
+      url: dbTeam.accounts[0].url
+    },
+    scheduling: {
+      timezone: 'Europe/Berlin',
+      type: 'counts',
+      counts: {
+        mon: 1,
+        tue: 2,
+        wed: 3,
+        thu: 4,
+        fri: 5,
+        sat: 6,
+        sun: 7
+      }
+    },
+    limits: {
+      posts_per_day: 500,
+      queue_size: 100,
+      shortest_time_between_posts: 60
+    },
+    size: 0
+  });
+
+  const dbTeamUpdated = await Profile.findById(dbTeamId).exec();
+  expect(dbTeamUpdated).toBeTruthy();
+  expect(dbTeamUpdated.accounts[0].scheduling.tz).toBe('Europe/Berlin');
+  expect(dbTeamUpdated.accounts[0].scheduling.schedules.length).toBe(1);
+  expect(dbTeamUpdated.accounts[0].scheduling.schedules.toObject()).toEqual([[0, 60, 120]]);
+
+  const dbQueueInfoUpdated = await Queue.findById(dbQueueId)
+    .lean()
+    .exec();
+  expect(dbQueueInfoUpdated).toBeTruthy();
+  expect(dbQueueInfoUpdated.tz).toBe('Europe/Berlin');
+  expect(dbQueueInfoUpdated.scheduler.type).toBe('counts');
+  expect(dbQueueInfoUpdated.scheduler.postsPerWeekDay.length).toBe(7);
+  expect(dbQueueInfoUpdated.scheduler.postsPerWeekDay).toEqual([1, 2, 3, 4, 5, 6, 7]);
+});
+
+test('should update queue scheduling timezone only', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        _id: dbQueueId,
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        creator: dbUserId,
+        name: 'queue name',
+        state: States.account.enabled.code,
+        picture: 'picture',
+        uid: 'uid',
+        url: 'url',
+        scheduling: { stype: 't', tz: 'Europe/Prague', schedules: [[0, 60, 120]] }
+      }
+    ]
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'queues.write',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'queues.updateScheduling',
+    req: {
+      method: 'POST',
+      qs: {
+        access_token: token,
+        queue: dbQueueId.toString()
+      },
+      body: {
+        timezone: 'Europe/Berlin'
+      }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.queue).toEqual({
+    queue_id: dbQueueId.toString(),
+    created_by: {
+      user_id: dbUserId.toString(),
+      name: dbUser.name,
+      avatar: dbUser.image
+    },
+    name: dbTeam.accounts[0].name,
+    state: 'enabled',
+    service: {
+      type: 'google',
+      category: 'page',
+      id: dbTeam.accounts[0].uid,
+      url: dbTeam.accounts[0].url
+    },
+    scheduling: {
+      timezone: 'Europe/Berlin',
+      type: 'times',
+      schedules: [
+        {
+          days: ['mon'],
+          times: ['00:00', '01:00', '02:00']
+        }
+      ]
+    },
+    size: 0
+  });
+
+  const dbTeamUpdated = await Profile.findById(dbTeamId).exec();
+  expect(dbTeamUpdated).toBeTruthy();
+  expect(dbTeamUpdated.accounts[0].scheduling.tz).toBe('Europe/Berlin');
+  expect(dbTeamUpdated.accounts[0].scheduling.schedules.length).toBe(1);
+  expect(dbTeamUpdated.accounts[0].scheduling.schedules.toObject()).toEqual([[0, 60, 120]]);
+});
+
+test('should clear queue scheduling', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        _id: dbQueueId,
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        creator: dbUserId,
+        name: 'queue name',
+        state: States.account.enabled.code,
+        picture: 'picture',
+        uid: 'uid',
+        url: 'url',
+        scheduling: { stype: 't', tz: 'Europe/Prague', schedules: [[0, 60, 120]] }
+      }
+    ]
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'queues.write',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'queues.updateScheduling',
+    req: {
+      method: 'POST',
+      qs: {
+        access_token: token,
+        queue: dbQueueId.toString()
+      },
+      body: {
+        timezone: 'Europe/Berlin',
+        type: 'times',
+        schedules: []
+      }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.queue).toEqual({
+    queue_id: dbQueueId.toString(),
+    created_by: {
+      user_id: dbUserId.toString(),
+      name: dbUser.name,
+      avatar: dbUser.image
+    },
+    name: dbTeam.accounts[0].name,
+    state: 'enabled',
+    service: {
+      type: 'google',
+      category: 'page',
+      id: dbTeam.accounts[0].uid,
+      url: dbTeam.accounts[0].url
+    },
+    scheduling: {
+      timezone: 'Europe/Berlin',
+      type: 'times',
+      schedules: []
+    },
+    size: 0
+  });
+
+  const dbTeamUpdated = await Profile.findById(dbTeamId).exec();
+  expect(dbTeamUpdated).toBeTruthy();
+  expect(dbTeamUpdated.accounts[0].scheduling.tz).toBe('Europe/Berlin');
+  expect(dbTeamUpdated.accounts[0].scheduling.schedules.length).toBe(0);
+  expect(dbTeamUpdated.accounts[0].scheduling.schedules.toObject()).toEqual([]);
+});
+
+test('should update ng queue scheduling', async () => {
+  const { queueManager } = testingDeps();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        ng: true,
+        _id: dbQueueId,
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        creator: dbUserId,
+        name: 'queue name',
+        state: States.account.enabled.code,
+        picture: 'picture',
+        uid: 'uid',
+        url: 'url',
+        scheduling: { stype: 't', tz: 'Europe/Prague', schedules: [[0, 60, 120]] }
+      }
+    ]
+  });
+  const dbQueueInfo = await queueManager.createQueue({
+    id: dbQueueId,
+    pid: dbTeam._id,
+    tz: 'Europe/Prague',
+    type: Types.createCodeByName('google', 'page'),
+    postsLimit: 100,
+    scheduler: { type: 'times', schedules: [[0, 60, 120]] }
+  });
+  expect(dbQueueInfo).toBeTruthy();
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'queues.write',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'queues.updateScheduling',
+    req: {
+      method: 'POST',
+      qs: {
+        access_token: token,
+        queue: dbQueueId.toString()
+      },
+      body: {
+        timezone: 'Europe/Berlin',
+        type: 'times',
+        schedules: [{ days: ['mon'], times: ['10:00', '20:00'] }]
+      }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.queue).toEqual({
+    queue_id: dbQueueId.toString(),
+    created_by: {
+      user_id: dbUserId.toString(),
+      name: dbUser.name,
+      avatar: dbUser.image
+    },
+    name: dbTeam.accounts[0].name,
+    state: 'enabled',
+    service: {
+      type: 'google',
+      category: 'page',
+      id: dbTeam.accounts[0].uid,
+      url: dbTeam.accounts[0].url
+    },
+    scheduling: {
+      timezone: 'Europe/Berlin',
+      type: 'times',
+      schedules: [
+        {
+          days: ['mon'],
+          times: ['10:00', '20:00']
+        }
+      ]
+    },
+    limits: {
+      posts_per_day: 500,
+      queue_size: 100,
+      shortest_time_between_posts: 60
+    },
+    size: 0
+  });
+
+  const dbTeamUpdated = await Profile.findById(dbTeamId)
+    .lean()
+    .exec();
+  expect(dbTeamUpdated).toBeTruthy();
+  expect(dbTeamUpdated.accounts[0].scheduling.tz).toBe('Europe/Berlin');
+  expect(dbTeamUpdated.accounts[0].scheduling.schedules.length).toBe(1);
+  expect(dbTeamUpdated.accounts[0].scheduling.schedules).toEqual([[600, 1200]]);
+
+  const dbQueueInfoUpdated = await Queue.findById(dbQueueId)
+    .lean()
+    .exec();
+  expect(dbQueueInfoUpdated).toBeTruthy();
+  expect(dbQueueInfoUpdated.tz).toBe('Europe/Berlin');
+  expect(dbQueueInfoUpdated.scheduler.type).toBe('times');
+  expect(dbQueueInfoUpdated.scheduler.schedules.length).toBe(1);
+  expect(dbQueueInfoUpdated.scheduler.schedules).toEqual([[600, 1200]]);
+});
+
+test('should fail on update ng queue scheduling with times type', async () => {
+  const { queueManager } = testingDeps();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        ng: true,
+        _id: dbQueueId,
+        network: Types.network.instagram.code,
+        account: Types.account.blog.code,
+        creator: dbUserId,
+        name: 'queue name',
+        state: States.account.enabled.code,
+        picture: 'picture',
+        uid: 'uid',
+        url: 'url',
+        scheduling: { stype: 't', tz: 'Europe/Prague', schedules: [[0, 60, 120]] }
+      }
+    ]
+  });
+  const dbQueueInfo = await queueManager.createQueue({
+    id: dbQueueId,
+    pid: dbTeam._id,
+    tz: 'Europe/Prague',
+    type: Types.createCodeByName('instagram', 'blog'),
+    postsLimit: 100,
+    scheduler: { type: 'counts', postsPerWeekDay: [2, 2, 2, 2, 2, 2, 2] }
+  });
+  expect(dbQueueInfo).toBeTruthy();
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'queues.write',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'queues.updateScheduling',
+    req: {
+      method: 'POST',
+      qs: {
+        access_token: token,
+        queue: dbQueueId.toString()
+      },
+      body: {
+        timezone: 'Europe/Berlin',
+        type: 'times',
+        schedules: [{ days: ['mon'], times: ['10:00', '20:00'] }]
+      }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(false);
+  expect(reply.body.error).toBe('invalid_request');
+  expect(reply.body.error_description).toBe('Instagram queue supports only "counts" scheduler (INVALID_SCHEDULER)');
+});

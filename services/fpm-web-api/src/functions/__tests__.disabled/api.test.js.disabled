@@ -1,0 +1,47 @@
+const { testFuncWithReply } = require('../../utils/testing');
+
+test('should return error', async () => {
+  let query = { error: 'error-code', foo: 'bar' };
+  await testFuncWithReply({
+    name: 'api.test',
+    req: {
+      method: 'GET',
+      qs: query
+    },
+    statusCode: 200,
+    res: { ok: false, error: query.error, args: query }
+  });
+  query = { error: 'error-code' };
+  await testFuncWithReply({
+    name: 'api.test',
+    req: {
+      method: 'GET',
+      qs: query
+    },
+    statusCode: 200,
+    res: { ok: false, error: query.error, args: query }
+  });
+});
+
+test('should return success', async () => {
+  let query = { foo: 'bar' };
+  await testFuncWithReply({
+    name: 'api.test',
+    req: {
+      method: 'GET',
+      qs: query
+    },
+    statusCode: 200,
+    res: { ok: true, args: query }
+  });
+  query = {};
+  await testFuncWithReply({
+    name: 'api.test',
+    req: {
+      method: 'GET',
+      qs: query
+    },
+    statusCode: 200,
+    res: { ok: true, args: query }
+  });
+});

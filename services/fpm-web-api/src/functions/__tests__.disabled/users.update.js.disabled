@@ -1,0 +1,111 @@
+/* eslint no-mixed-operators: "off" */
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { ObjectId, User, Profile } = require('@fpm/db');
+const { testingBeforeAll, testingAfterAll, testFunc, nockHydraTokenIntrospect } = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should update existing notification', async () => {
+  const now = new Date();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser2Id = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] },
+    notifications: {
+      'legacy-notification': false,
+      'post-publishing-failed': false
+    }
+  });
+  await User.create({
+    _id: dbUser2Id,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'team owner',
+    image: 'owner image',
+    email: 'owner@domain.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+  await Profile.create({
+    _id: dbTeamId,
+    name: 'team name',
+    created: new Date(now * 1000),
+    members: { contributor: [dbUserId, dbUser2Id] }
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'users.write',
+    userId: dbUser._id.toString()
+  });
+
+  let reply = await testFunc({
+    name: 'users.update',
+    req: {
+      method: 'POST',
+      qs: {
+        access_token: token
+      },
+      body: {
+        notifications: {
+          unknown: true,
+          'legacy-notification': true,
+          'post-publishing-failed': true
+        }
+      }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+
+  let u = await User.findOne({ _id: dbUser._id }).exec();
+  expect(u).toBeTruthy();
+  expect(u.notifications).toBeTruthy();
+  expect(Object.keys(u.notifications).length).toBe(2);
+  expect(u.notifications['post-publishing-failed']).toBe(true);
+  expect(u.notifications['legacy-notification']).toBe(false);
+
+  reply = await testFunc({
+    name: 'users.update',
+    req: {
+      method: 'POST',
+      qs: {
+        access_token: token
+      },
+      body: {
+        notifications: {
+          unknown: true,
+          'legacy-notification': false,
+          'post-publishing-failed': false
+        }
+      }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+
+  u = await User.findOne({ _id: dbUser._id }).exec();
+  expect(u).toBeTruthy();
+  expect(u.notifications).toBeTruthy();
+  expect(Object.keys(u.notifications).length).toBe(2);
+  expect(u.notifications['post-publishing-failed']).toBe(false);
+  expect(u.notifications['legacy-notification']).toBe(false);
+});

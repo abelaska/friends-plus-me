@@ -1,0 +1,49 @@
+[db]
+  url = "mongodb://localhost/fpmtest"
+
+[log.file]
+  path = "fpm-test.log"
+[log.logentries]
+  enabled = false
+
+[email]
+  debug = true
+
+[redis]
+  auth_pass = ""
+  host = "localhost"
+  port = 6379
+
+[facebook]
+  clientId = "XXX"
+  clientSecret = "XXX"
+
+[google]
+  clientId = "XXX-XXX.apps.googleusercontent.com"
+  clientSecret = "XXX"
+
+[http.api]
+  url = "https://localhost:9000"
+[http.auth]
+  url = "https://localhost:9000/auth.html"
+[http.ui]
+  url = "https://localhost:9000"
+
+[linkedin]
+  apiKey = "XXX"
+  secretKey = "XXX"
+
+[sendy]
+  list = "XXX"
+
+[braintree]
+  environment = "Sandbox"
+[braintree.merchant.default]
+  merchantId = "XXX"
+  privateKey = "XXX"
+  publicKey = "XXX"
+[braintree.merchant.default.account]
+  default = "XXX"
+
+[api]
+  url = "http://localhost:3000"

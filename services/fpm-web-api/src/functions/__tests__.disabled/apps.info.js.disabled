@@ -1,0 +1,115 @@
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { ObjectId, User } = require('@fpm/db');
+const {
+  testingBeforeAll,
+  testingAfterAll,
+  testFunc,
+  testFuncWithReply,
+  nockHydraCreateApplication
+} = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should fetch application info', async () => {
+  const user = await User.create({ auth0Id: nanoid(32), actorId: nanoid(32), state: States.user.enabled.code });
+
+  const client = {
+    name: nanoid(32),
+    description: 'app description',
+    url: 'https://domain.com',
+    callbacks: ['https://domain.com/callback']
+  };
+
+  const { token } = nockHydraCreateApplication({
+    client,
+    active: true,
+    scope: 'apps',
+    userId: user._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'apps.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token },
+      body: client
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  const { body } = reply;
+  expect(body).toBeTruthy();
+  expect(body.ok).toBe(true);
+
+  const { app } = body;
+  expect(app).toBeTruthy();
+  expect(app.app_id).toBeTruthy();
+
+  await testFuncWithReply({
+    name: 'apps.info',
+    req: { qs: { access_token: token, app: app.app_id } },
+    statusCode: 200,
+    res: {
+      ok: true,
+      app
+    }
+  });
+});
+
+test('should fail on app_not_found with apps.read scope', async () => {
+  const user = await User.create({ auth0Id: nanoid(32), actorId: nanoid(32), state: States.user.enabled.code });
+
+  const client = {
+    name: nanoid(32),
+    description: 'app description',
+    url: 'https://domain.com',
+    callbacks: ['https://domain.com/callback']
+  };
+
+  const { token } = nockHydraCreateApplication({
+    client,
+    active: true,
+    scope: 'apps.read',
+    userId: user._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'apps.info',
+    req: { qs: { access_token: token, app: new ObjectId().toString() } },
+    statusCode: 200,
+    res: {
+      ok: false,
+      error: 'app_not_found'
+    }
+  });
+});
+
+test('should fail on app_not_found with apps scope', async () => {
+  const user = await User.create({ auth0Id: nanoid(32), actorId: nanoid(32), state: States.user.enabled.code });
+
+  const client = {
+    name: nanoid(32),
+    description: 'app description',
+    url: 'https://domain.com',
+    callbacks: ['https://domain.com/callback']
+  };
+
+  const { token } = nockHydraCreateApplication({
+    client,
+    active: true,
+    scope: 'apps',
+    userId: user._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'apps.info',
+    req: { qs: { access_token: token, app: new ObjectId().toString() } },
+    statusCode: 200,
+    res: {
+      ok: false,
+      error: 'app_not_found'
+    }
+  });
+});

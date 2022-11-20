@@ -1,0 +1,56 @@
+{
+ "kind": "plus#activity",
+ "etag": "\"ykanyQOMSyGCBt3STw3rY6kLgQ0/EQ2kI0H3RgEwttbZX8LipR6WPBA\"",
+ "title": "G+ API improvements: \"Come learn about interactive posts with me!\"",
+ "published": "2013-02-26T20:55:25.303Z",
+ "updated": "2013-02-26T20:55:25.303Z",
+ "id": "z13qw33rrmu0ilnn022nsti5tqi0gnd2o",
+ "url": "https://plus.google.com/116563369376278600467/posts/HAJ2TU7Nswa",
+ "actor": {
+  "id": "116563369376278600467",
+  "displayName": "Christoph Lühr",
+  "url": "https://plus.google.com/116563369376278600467",
+  "image": {
+   "url": "https://lh3.googleusercontent.com/-UA8PdEbgEO8/AAAAAAAAAAI/AAAAAAAAAEs/ABqgRmDt4to/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": "G+ API improvements: &quot;Come learn about interactive posts with me!&quot;",
+  "url": "https://plus.google.com/116563369376278600467/posts/HAJ2TU7Nswa",
+  "replies": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13qw33rrmu0ilnn022nsti5tqi0gnd2o/comments"
+  },
+  "plusoners": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13qw33rrmu0ilnn022nsti5tqi0gnd2o/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13qw33rrmu0ilnn022nsti5tqi0gnd2o/people/resharers"
+  },
+  "attachments": [
+   {
+    "displayName": "Sharing interactive posts",
+    "url": "https://developers.google.com/+/web/share/interactive",
+    "image": {
+     "url": "https://developers.google.com/+/images/interactive_posts.png"
+    }
+   }
+  ]
+ },
+ "provider": {
+  "title": "Google+ documentation code samples"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

@@ -1,0 +1,28 @@
+<div ng-controller="ProfileCCChangeCtrl">
+  <div class="row">
+    <div class="center col-sm-12 col-md-12" style="margin-bottom:20px;">
+      <header>
+        <h2>Update Subscription Payment Method</h2>
+      </header>
+      <p>Change or create a new payment method.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <form ng-submit="updating=true" ng-hide="updated">
+
+        <div id="dropin-container" ng-hide="updating"></div>
+
+        <div class="center" ng-show="prepared">
+          <button type="submit" class="btn btn-primary btn-lg" ng-disabled="!prepared || updating">
+            <ng-switch on="updating">
+              <span ng-switch-when="false">Confirm Payment Method Update</span>
+              <span ng-switch-when="true">Updating Payment Method... <i class="fa fa-spinner fa-spin" style="margin-left:6px"></i></span>
+            </ng-switch>
+          </button>
+        </div>
+      </form>
+      <p class="alert alert-success center" ng-show="updated">Payment method successfully updated.</p>
+    </div>
+  </div>
+</div>

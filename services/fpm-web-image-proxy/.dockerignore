@@ -1,0 +1,8 @@
+# Standard Ignore
+.DS_Store
+.git/
+node_modules/
+*.log
+*.log.*
+bin/
+fpm-web-image-proxy

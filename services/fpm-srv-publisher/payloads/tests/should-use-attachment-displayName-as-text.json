@@ -1,0 +1,65 @@
+{
+ "kind": "plus#activity",
+ "etag": "\"l9gWq2lTiBDNZWBx8kpM7h7VNYs/xgkxQsdiSp0WdOBYbxrTYW50_Gk\"",
+ "title": "#ft  ",
+ "published": "2013-02-14T21:31:48.021Z",
+ "updated": "2013-02-14T21:31:48.021Z",
+ "id": "z12twndbtr33hrird04cinaqblmys5madfo",
+ "url": "https://plus.google.com/100112006895404998094/posts/g3qqLnRTPUE",
+ "actor": {
+  "id": "100112006895404998094",
+  "displayName": "Greig McKean",
+  "url": "https://plus.google.com/100112006895404998094",
+  "image": {
+   "url": "https://lh4.googleusercontent.com/-oE9kQqL4v4w/AAAAAAAAAAI/AAAAAAAAAAA/uBHBuPLHtYs/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": " <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23ft\">#ft</a>  ",
+  "url": "https://plus.google.com/100112006895404998094/posts/g3qqLnRTPUE",
+  "replies": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z12twndbtr33hrird04cinaqblmys5madfo/comments"
+  },
+  "plusoners": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z12twndbtr33hrird04cinaqblmys5madfo/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z12twndbtr33hrird04cinaqblmys5madfo/people/resharers"
+  },
+  "attachments": [
+   {
+    "objectType": "video",
+    "displayName": "George Carlin - Arrogance of mankind",
+    "content": "save the wales, save those snails...",
+    "url": "http://www.youtube.com/watch?v=2cjRGee5ipM",
+    "image": {
+     "url": "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?url=http://i3.ytimg.com/vi/2cjRGee5ipM/hqdefault.jpg&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_w=497",
+     "type": "image/jpeg",
+     "height": 372,
+     "width": 497
+    },
+    "embed": {
+     "url": "http://www.youtube.com/v/2cjRGee5ipM?version=3&autohide=1",
+     "type": "application/x-shockwave-flash"
+    }
+   }
+  ]
+ },
+ "provider": {
+  "title": "Google+"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

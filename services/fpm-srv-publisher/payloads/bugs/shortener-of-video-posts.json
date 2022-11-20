@@ -1,0 +1,87 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "twal": false
+    }
+  },
+  "activity": {
+    "dbId": "50c95e4d36627ef44a00d4b7",
+    "kind": "plus#activity",
+    "etag": "\"vOizmBw459qRNcWY-IdfxxuCIbk/QyO8Fk-rUcIE7S6sFydgJWdUepc\"",
+    "title": "It’s here. Google Maps for iPhone with voice navigation, local search, Street View, public transit and...",
+    "published": "2012-12-13T04:35:26.192Z",
+    "updated": "2012-12-13T04:36:32.000Z",
+    "id": "z12fcxxj0trlhfmhj04cifyicl3qh3byh0o",
+    "url": "https://plus.google.com/107085977904914121234/posts/WNJZSKSTdXT",
+    "actor": {
+      "id": "107085977904914121234",
+      "displayName": "Eiji Kitamura",
+      "url": "https://plus.google.com/107085977904914121234",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-QUjZQxwJSFs/AAAAAAAAAAI/AAAAAAAACKs/gf3Kvc6-ZgI/photo.jpg?sz=50"
+      }
+    },
+    "verb": "share",
+    "object": {
+      "objectType": "activity",
+      "id": "z13ysdqi0wjbv33oy04cdd1opm3cjzlbjjk",
+      "actor": {
+        "id": "111401917971052287374",
+        "displayName": "Google Maps",
+        "url": "https://plus.google.com/111401917971052287374",
+        "image": {
+          "url": "https://lh4.googleusercontent.com/-EirTMc5lnZQ/AAAAAAAAAAI/AAAAAAAAAAA/KQhgaz4sCyk/photo.jpg?sz=50"
+        }
+      },
+      "content": "It’s here. Google Maps for iPhone with voice navigation, local search, Street View, public transit and more. Get the <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23GoogleMaps\">#GoogleMaps</a> app at <a href=\"http://goo.gl/9eLEC\" class=\"ot-anchor\">http://goo.gl/9eLEC</a>",
+      "url": "https://plus.google.com/111401917971052287374/posts/TStXVr9XVWk",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12fcxxj0trlhfmhj04cifyicl3qh3byh0o/comments"
+      },
+      "plusoners": {
+        "totalItems": 4,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12fcxxj0trlhfmhj04cifyicl3qh3byh0o/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 2,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12fcxxj0trlhfmhj04cifyicl3qh3byh0o/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "video",
+          "displayName": "Google Maps for iPhone is here.",
+          "content": "Google Maps for iPhone is here. Download now on the App Store http://goo.gl/ABDWm. Navigate your world with built-in Google local search, voice-guided turn-b...",
+          "url": "http://www.youtube.com/watch?v=KEz1sSKCpIc",
+          "image": {
+            "url": "https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?url=http://i4.ytimg.com/vi/KEz1sSKCpIc/hqdefault.jpg&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_w=497",
+            "type": "image/jpeg",
+            "height": 279,
+            "width": 497
+          },
+          "embed": {
+            "url": "http://www.youtube.com/v/KEz1sSKCpIc?version=3&autohide=1",
+            "type": "application/x-shockwave-flash"
+          }
+        }
+      ]
+    },
+    "annotation": "Google Maps for iPhone登場！",
+    "provider": {
+      "title": "Reshared Post"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

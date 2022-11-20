@@ -1,0 +1,56 @@
+{
+ "kind": "plus#activity",
+ "etag": "\"TJ4YjXUi1XCM_G3FJ4uiPX8m6Fk/BXNwFcAEtKmmxPbTemEaBUnylxo\"",
+ "title": "Os círculos são uma maneira muito fácil de organizar as pessoas que você se relaciona no Google+. Do ...",
+ "published": "2013-03-18T20:06:17.873Z",
+ "updated": "2013-03-18T20:06:17.873Z",
+ "id": "z12fcz4hxlagudxo304cgxexyozgercwhng0k",
+ "url": "https://plus.google.com/111990119466909509786/posts/P4q5Kq7s5nd",
+ "actor": {
+  "id": "111990119466909509786",
+  "displayName": "Alex Rodrigues",
+  "url": "https://plus.google.com/111990119466909509786",
+  "image": {
+   "url": "https://lh4.googleusercontent.com/-dnC9tZLuAEs/AAAAAAAAAAI/AAAAAAAAkO8/V-zd0a-LJc4/photo.jpg?sz=50"
+  }
+ },
+ "verb": "share",
+ "object": {
+  "objectType": "activity",
+  "id": "z13mtvugcozzejjo504cdv15bwexef5jxto0k",
+  "actor": {
+   "id": "107558061013247958406",
+   "displayName": "Google Brasil",
+   "url": "https://plus.google.com/107558061013247958406",
+   "image": {
+    "url": "https://lh6.googleusercontent.com/-X0SnHLtbZZc/AAAAAAAAAAI/AAAAAAAAXGU/l_vfdgKEVms/photo.jpg?sz=50"
+   }
+  },
+  "content": "Os <b>círculos</b> são uma maneira muito fácil de organizar as pessoas que você se relaciona no Google+. Do mesmo jeito que acontece na vida real com os &quot;círculos de amizade&quot;, aqui você pode escolher com que grupo você quer compartilhar informações, notícias ou pensamentos. Assim, você também escolhe quem você quer acompanhar, ver as últimas atualizações dos seus amigos mais próximos ou ser inspirado por um pouco de arte durante a tarde.<br /><br />E se você gosta de arte urbana, por exemplo, mas ainda não segue nenhum artista no Google+, aqui vão algumas indicações para você começar um novo círculo. É só dar um nome para o círculo e selecionar os perfis que você quer seguir. ;-)<br /><br /><a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23streetart\">#streetart</a>",
+  "url": "https://plus.google.com/107558061013247958406/posts/PKzP5vUg2Sp",
+  "replies": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z12fcz4hxlagudxo304cgxexyozgercwhng0k/comments"
+  },
+  "plusoners": {
+   "totalItems": 1,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z12fcz4hxlagudxo304cgxexyozgercwhng0k/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z12fcz4hxlagudxo304cgxexyozgercwhng0k/people/resharers"
+  }
+ },
+ "provider": {
+  "title": "Reshared Post"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

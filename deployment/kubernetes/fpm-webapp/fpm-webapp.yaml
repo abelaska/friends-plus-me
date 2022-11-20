@@ -1,0 +1,89 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  labels:
+    app: fpm-webapp
+  name: fpm-webapp
+data:
+  PORT: "8080"
+  HELPSCOUT_PORT: "10000"
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: fpm-webapp
+  name: fpm-webapp
+spec:
+  type: NodePort
+  sessionAffinity: None
+  selector:
+    app: fpm-webapp
+  ports:
+    - name: service
+      protocol: TCP
+      targetPort: 8080
+      port: 8080
+    - name: helpscout
+      protocol: TCP
+      targetPort: 10000
+      port: 10000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fpm-webapp
+  name: fpm-webapp
+spec:
+  replicas: 1
+  progressDeadlineSeconds: 600
+  selector:
+    matchLabels:
+      app: fpm-webapp
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: fpm-webapp
+      name: fpm-webapp
+    spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: webapp
+          image: gcr.io/fpm-application/fpm-web-app:3.1.0
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: fpm-webapp
+            - secretRef:
+                name: fpm-database
+          ports:
+            - containerPort: 10000
+              name: helpscout
+              protocol: TCP
+            - containerPort: 8080
+              name: service
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 8
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            requests:
+              cpu: 1m
+              memory: 200Mi

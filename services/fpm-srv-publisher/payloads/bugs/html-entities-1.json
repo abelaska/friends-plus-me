@@ -1,0 +1,86 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true,
+      "bitly": true
+    },
+    "tokens": {
+      "twal": false
+    },
+    "shortener": {
+      "type": "bitly",
+      "bitly": {
+        "username": "abelaska",
+        "apiKey": "XXX"
+      }
+    }
+  },
+  "activity": {
+    "dbId": "50ead3bd89bfc7254d009495",
+    "userId": "5075d9530f878dd35000024f",
+    "kind": "plus#activity",
+    "etag": "\"HdljS4mne1kKyBywkMXLFJaUB0A/2V4YQfXUbnLdSFb-ELl_q2C7fOY\"",
+    "title": "Google+ IS Going to Prevail - Even if Silicon Valley & Media Don't See It Yet - and Here's Why .\n\nI'm...",
+    "published": "2013-01-07T13:52:09.132Z",
+    "updated": "2013-01-07T13:52:09.132Z",
+    "id": "z131chwpdnyigp0r304cerq4asmqulgwclk0k",
+    "url": "https://plus.google.com/104900061350675990148/posts/eyP2vNpNLeV",
+    "actor": {
+      "id": "104900061350675990148",
+      "displayName": "Jessica Obermayer",
+      "url": "https://plus.google.com/104900061350675990148",
+      "image": {
+        "url": "https://lh4.googleusercontent.com/-WO25mtwgtjk/AAAAAAAAAAI/AAAAAAAAB0s/R8MuLLjGFWE/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "<b>Google+ IS Going to Prevail - Even if Silicon Valley &amp; Media Don&#39;t See It Yet - and Here&#39;s Why</b> .<br /><br />I&#39;m amazed by how many bright guys just don&#39;t get the strategy of what Google is doing with Plus. Aren&#39;t you??<br /><br />Here&#39;s one guy who gets it ... in his own way.  And then he lays out the carrots...<br /><br />Excerpt:<br /><br /><i>Google knows when they have failed (Buzz, Wave, etc). It shoots those products in the head like zombies, and they move on.</i><br /><br /><i>So then why didn’t Google shut down Google Plus if it was purportedly such a colossal flop? Why is the team working on it the size of the contracting team building the Death Star? And why is Google integrating its other products with Google Plus at a freakish, breakneck pace? Is Google just rearranging deck chairs on the Titanic? No--because it wasn’t not a flop at all, and its adoption rate was what Google expected.</i><br /><br /><i>Google Plus never was, and will never be, only about competing directly with Facebook.</i><br /><br /><i>From its launch through today, everyone viewed Google Plus as &quot;Google’s version of Facebook,&quot; because that’s the only sticky, simple headline that we can wrap our brain around. Most people believe it’s just another social networking service where all of our friends are supposed to join and share photos, status updates, and messages with each other. <b>But it’s really not that at all.</b></i><br /><br /><br /><a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23LeverageTech\">#LeverageTech</a> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23disruption\">#disruption</a> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23plusbusinessguide\">#plusbusinessguide</a> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23CompetitiveAdvantage\">#CompetitiveAdvantage</a> <br />",
+      "url": "https://plus.google.com/104900061350675990148/posts/eyP2vNpNLeV",
+      "replies": {
+        "totalItems": 4,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z131chwpdnyigp0r304cerq4asmqulgwclk0k/comments"
+      },
+      "plusoners": {
+        "totalItems": 7,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z131chwpdnyigp0r304cerq4asmqulgwclk0k/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 5,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z131chwpdnyigp0r304cerq4asmqulgwclk0k/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "Plus-One This: Proof That Google Plus Will Prevail",
+          "content": "Remember when Google Plus “flopped\"? Well, it didn’t. In fact, it was, and still is, just part of Google’s plan--but everyone (including the media) has trouble seeing it as anything other than a swin...",
+          "url": "http://www.fastcompany.com/3004448/plus-one-proof-google-plus-will-prevail",
+          "image": {
+            "url": "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?url=http://www.fastcompany.com/multisite_files/fastcompany/imagecache/thumbnail/poster/2013/01/3004448-poster-1280-proof-google-plus-will-prevail.jpg&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_h=150&resize_w=150&no_expand=1",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          },
+          "fullImage": {
+            "url": "http://www.fastcompany.com/multisite_files/fastcompany/imagecache/thumbnail/poster/2013/01/3004448-poster-1280-proof-google-plus-will-prevail.jpg",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Mobile"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

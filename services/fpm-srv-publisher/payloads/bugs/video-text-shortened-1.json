@@ -1,0 +1,87 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true,
+      "bitly": true
+    },
+    "tokens": {
+      "twal": true
+    },
+    "shortener": {
+      "type": "googl",
+      "bitly": {
+        "username": "abelaska",
+        "apiKey": "XXX"
+      }
+    }
+  },
+  "activity": {
+    "dbId": "50dc4aff5f68b5cf0c0058c2",
+    "kind": "plus#activity",
+    "etag": "\"sJt1VilOvxUfDlfPWeqwjvyqpgI/0f76Hl0ShI9x9skphRqPbbrpKss\"",
+    "title": "No, they aren't really using claws to remove illegally parked cars.\n\nI just saw this on +Good Morning...",
+    "published": "2012-12-27T13:16:07.815Z",
+    "updated": "2012-12-27T13:16:07.815Z",
+    "id": "z13vjxwrrrbljbfkz22ftldijxzwtdlar04",
+    "url": "https://plus.google.com/102898672602346817738/posts/6FJ3EpMxc1K",
+    "actor": {
+      "id": "102898672602346817738",
+      "displayName": "Dan McDermott",
+      "url": "https://plus.google.com/102898672602346817738",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-hpbYXldYEDQ/AAAAAAAAAAI/AAAAAAAAG1Q/xl2KVqSSjrM/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "<b>No, they aren&#39;t really using claws to remove illegally parked cars.</b><br /><br />I just saw this on <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/116806352365658350717\" class=\"proflink\" oid=\"116806352365658350717\">Good Morning America</a></span> as &quot;How they deal with illegally parked cars in Russia.&quot;<br /><br />Here&#39;s what it actually is, according to multiple accounts in the video description: &quot;These new Mazdas were being delivered aboard the ferry Cougar Ace, which partially sank off of the Aleutian Islands during a ballast transfer. Because of the damage they sustained when the ship rolled over, the cars were deemed a safety hazard, and the entire cargo was ordered destroyed. THAT is what you&#39;re seeing here.&quot;<br /><br />More in the second-to-last paragraph here:<br /><br /><a href=\"http://www.caranddriver.com/features/cougar-ace-the-great-103-million-snafu-at-sea-breaking-down-the-cars-page-5\" class=\"ot-anchor\">http://www.caranddriver.com/features/cougar-ace-the-great-103-million-snafu-at-sea-breaking-down-the-cars-page-5</a>",
+      "url": "https://plus.google.com/102898672602346817738/posts/6FJ3EpMxc1K",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13vjxwrrrbljbfkz22ftldijxzwtdlar04/comments"
+      },
+      "plusoners": {
+        "totalItems": 1,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13vjxwrrrbljbfkz22ftldijxzwtdlar04/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13vjxwrrrbljbfkz22ftldijxzwtdlar04/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "video",
+          "displayName": "A Radical Way To Deal With Illegal Parking",
+          "content": "Meanwhile in Russia.",
+          "url": "http://www.youtube.com/watch?v=Y1WItaegeUc",
+          "image": {
+            "url": "https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?url=http://i2.ytimg.com/vi/Y1WItaegeUc/hqdefault.jpg&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_w=497",
+            "type": "image/jpeg",
+            "height": 372,
+            "width": 497
+          },
+          "embed": {
+            "url": "http://www.youtube.com/v/Y1WItaegeUc?autohide=1&version=3",
+            "type": "application/x-shockwave-flash"
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    },
+    "userId": "50b909df3c15fd9762000053",
+    "dbId": "50dc4aff5f68b5cf0c0058c2"
+  }
+}

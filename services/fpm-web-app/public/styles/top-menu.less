@@ -1,0 +1,142 @@
+.top-menu {
+
+  background-color:     @main-menu-highlighted-bg;
+
+  .left, .right {
+    float:              left;
+    width:              50%;
+    text-align:         center;
+  }
+  .top-menu-item {
+    border-top:         4px solid transparent;
+    padding:            23px 0;
+    color:              @menu-item-color;
+    transition:         all 0.2s ease-in-out;
+    cursor:             pointer;
+    font-size:          20px;
+    line-height:        20px;
+    height:             70px;
+
+    &.selected, &:hover {
+      color:            @menu-item-hover-color;
+      border-top:       4px solid @heart-color;
+    }
+    &.selected {
+      background-color: @main-menu-bg;
+    }
+  }
+
+  .left .top-menu-item {
+  }
+  .right .top-menu-item {
+    padding:            20px 0;
+
+    img {
+      width:            25px
+    }
+  }
+}
+
+.accounts-menu-list, .main-menu {
+  transition:       opacity 0.4s ease-in-out;
+  z-index:          1000;
+}
+
+.accounts-menu-list.full, .main-menu.full, .main-menu:not(.none):not(.full) {
+  opacity:          1;
+  z-index:          1000;
+}
+
+.accounts-menu-list:not(.none):not(.full), .accounts-menu-list.none, .main-menu.none {
+  opacity:          0;
+  z-index:          0;
+}
+
+.navbar .nav {
+
+  > li > a.selected, > li > a:hover,
+  > li > .menu-item:hover,
+  li.open > .dropdown-toggle,
+  li.active > .dropdown-toggle,
+  li.open.active > .dropdown-toggle,
+  li.dropdown.open > .dropdown-toggle,
+  li.dropdown.active > .dropdown-toggle,
+  li.dropdown.open.active > .dropdown-toggle {
+    background-color: transparent;
+    border-color: #427fed;
+    color: #222;
+    -webkit-transition: border-color .218s;
+    transition: border-color .218s;
+  }
+
+  .dropdown-menu > li > a {
+    font-size: 15px;
+    font-weight: 200;
+  }
+
+  .dropdown-menu.right > li > a {
+
+    text-align: right;
+    font-size: 15px;
+    font-weight: 200;
+    padding: 3px 0;
+  }
+
+  > li > a, > li > .menu-item {
+    color: #737373;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 8px 0 6px;
+    margin-left: 15px;
+    white-space: nowrap;
+
+    -webkit-transition: border-color .218s;
+    transition: border-color .218s;
+    border-bottom: 2px solid transparent;
+
+    max-width: 180px;
+    min-width: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  > li > .menu-item {
+    cursor: pointer;
+    display: block;
+  }
+}
+
+nav#main-nav {
+  position:     fixed;
+
+  .menu {
+  }
+
+  .menu.collapsed {
+  }
+}
+
+#credit {
+  display: block;
+  height: 36px;
+  width: 36px;
+  border-radius: 100%;
+  position: relative;
+  border: 4px solid #5cb85c;
+  clear:both;
+}
+#credit:after {
+  position: absolute;
+  display: block;
+  width: 36px;
+  height: 36px;
+  left: 50%;
+  top: 50%;
+  content: attr(data-val);
+  margin-top: -18px;
+  margin-left: -18px;
+  border-radius: 100%;
+  line-height: 36px;
+  text-align: center;
+  font-size: 9px;
+}

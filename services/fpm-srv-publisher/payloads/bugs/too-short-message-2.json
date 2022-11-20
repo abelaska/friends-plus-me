@@ -1,0 +1,67 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true,
+      "bitly": true
+    },
+    "tokens": {
+      "twal": false
+    },
+    "shortener": {
+      "type": "googl",
+      "bitly": {
+        "username": "abelaska",
+        "apiKey": "XXX"
+      }
+    }
+  },
+  "activity": {
+    "dbId": "50cb43791e5e4beb59002277",
+    "kind": "plus#activity",
+    "etag": "\"vOizmBw459qRNcWY-IdfxxuCIbk/Sr7237n5badWjD6FYywwp0ODY54\"",
+    "title": "ਆਸ਼ਿਕ ਹੋਵੇਂ ਤਾਂ ਇਸ਼ਕ ਕਮਾਵੇਂ — عاشق ہوویں تاں عشق کماویں\n\nYou would be seeking love if you were a true lover...",
+    "published": "2012-12-14T15:13:50.635Z",
+    "updated": "2012-12-14T15:13:50.635Z",
+    "id": "z13zfpyydl30ylwvb223fvepbl2fedv5v04",
+    "url": "https://plus.google.com/101643175524362502063/posts/JP1Q86Av4yj",
+    "actor": {
+      "id": "101643175524362502063",
+      "displayName": "Mandeep Singh",
+      "url": "https://plus.google.com/101643175524362502063",
+      "image": {
+        "url": "https://lh6.googleusercontent.com/-yHPcdV21jKQ/AAAAAAAAAAI/AAAAAAAAP7U/QtYpUOELJN4/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "ਆਸ਼ਿਕ ਹੋਵੇਂ ਤਾਂ ਇਸ਼ਕ ਕਮਾਵੇਂ — عاشق ہوویں تاں عشق کماویں<br /><br />You would be seeking love if you were a true lover.<br /><br />— Shah Hussain<br /><i>(via Sohail Abid)</i><br /> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23Punjabi\">#Punjabi</a>",
+      "url": "https://plus.google.com/101643175524362502063/posts/JP1Q86Av4yj",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13zfpyydl30ylwvb223fvepbl2fedv5v04/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13zfpyydl30ylwvb223fvepbl2fedv5v04/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13zfpyydl30ylwvb223fvepbl2fedv5v04/people/resharers"
+      }
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

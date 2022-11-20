@@ -1,0 +1,31 @@
+[db]
+  url = "mongodb://api:XXX@db.c.fpm-application.internal/fpm"
+
+[redis]
+  auth_pass = "XXX"
+  host = "redis-redis.default.svc.cluster.local"
+  port = 6379
+
+[auth0]
+  clientId = "XXX"
+  clientSecret = "XXX-XXX-XXX-XXX"
+
+[oauth.tokens.store.crypto]
+  key = "XXX"
+  iv = "XXX"
+
+[session]
+  secret = "XXX"
+
+[log.logentries]
+  enabled = false
+  token = "XXX"
+
+[hydra]
+  url = "http://fpm-hydra-hydra:4444"
+
+[fpm.app]
+  redirectUrl = "https://app.friendsplus.me/signin"
+
+[sendy]
+  enabled = true

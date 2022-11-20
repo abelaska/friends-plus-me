@@ -1,0 +1,84 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "analyticsId": "2c06c8d4d77a408fbcc506ee0083241a",
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"KWuGbDKa9n7BACsiv34_Xr85BJM/hJAjFB_8RQnqgOvB22yTHmTZH3Q\"",
+    "title": "New Friends+Me comes with more powerful features.\n\nCheck your new dashboard https://app.friendsplus.me...",
+    "published": "2015-04-13T19:37:56.117Z",
+    "updated": "2015-04-13T19:40:01.000Z",
+    "id": "z13jflkafrqufhjpr04cgv2wrxa2t5aaq0o",
+    "url": "https://plus.google.com/+FriendsPlusMe/posts/Xh4WWbDWv3o",
+    "actor": {
+      "id": "105750980959577516811",
+      "displayName": "Friends+Me",
+      "url": "https://plus.google.com/105750980959577516811",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-dHBGGCq7AD4/AAAAAAAAAAI/AAAAAAAABN0/EjsC-pGr0RY/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "<b>New Friends+Me comes with more powerful features.</b><br /><br />Check your new dashboard <a href=\"https://app.friendsplus.me\">https://app.friendsplus.me</a><br /><br />It’s been awhile and a lot has changed. The plans are bigger, the vision is wider, the user base is growing and I’ve finally released the new Friends+Me version I promised you all for so long. You know… :)<br /><br />Wanna you know what I am up to with this and other upcoming Friends+Me releases?<br /><br />Friends+Me will become the best tool for publishing to Google+, social networks and other platforms.<br /><br />Don’t forget to tell your boss, colleagues, friends, mothers, fathers, well everybody about Friends+Me because <b>I need your help</b> to finish this quest.<br /><br />I bet you wanna know more about the new version of Friends+Me, right? Let’s see what we have here.<br /><br />Complete redesign of the landing page and the web application. We’re again a bit closer to the perfect user experience. Hard to achieve but we’re getting there.<br /><br />Schedule/publish new posts for every connected account without even leaving the Friends+Me web application. No exceptions. Publishing to Google+ profiles will be available soon.<br /><br /><b>Friends+Me can now satisfy your social media publishing needs.</b><br /><br />Here’s just a short list of new features:<br /><br />* Publish/schedule a post for every connected account.<br />* Manage queue and timeline of all accounts from one place.<br />* More powerful reposts routing. Control hashtags can be configured to override default destination accounts.<br />* Pause a queue per account, in case you want to temporarily stop publishing to a specific account.<br />* Draft your posts before you publish them.<br />* Prepare a post, pick the destination accounts and schedule or publish the new post immediately by the new share dialog.<br />* Use the post editor with autocomplete for Google+ mentions and hashtags.<br />* And much more!<br /><br />If you hit any problem with the new version, let me know and I’ll fix it asap.<br /><br /><b>Have fun!</b><br /><br /> <a rel=\"nofollow\" class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23friendsplusme\">#friendsplusme</a>   <a rel=\"nofollow\" class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23socialmedia\">#socialmedia</a>   <a rel=\"nofollow\" class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23socialmediamarketing\">#socialmediamarketing</a>   <a rel=\"nofollow\" class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23socialmediatips\">#socialmediatips</a>  \ufeff",
+      "url": "https://plus.google.com/+FriendsPlusMe/posts/Xh4WWbDWv3o",
+      "replies": {
+        "totalItems": 4,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13jflkafrqufhjpr04cgv2wrxa2t5aaq0o/comments"
+      },
+      "plusoners": {
+        "totalItems": 15,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13jflkafrqufhjpr04cgv2wrxa2t5aaq0o/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13jflkafrqufhjpr04cgv2wrxa2t5aaq0o/people/resharers"
+      },
+      "statusForViewer": {
+        "resharingDisabled": false,
+        "canComment": true,
+        "canPlusone": true,
+        "isPlusOned": false,
+        "canUpdate": false
+      },
+      "attachments": [
+        {
+          "objectType": "photo",
+          "id": "105750980959577516811.6137310161627991042",
+          "content": "52469ce4-abd8-4762-841f-6d7ccb0bd21a",
+          "url": "https://plus.google.com/photos/105750980959577516811/albums/6137310161802779713/6137310161627991042",
+          "image": {
+            "url": "https://lh3.googleusercontent.com/-9NgriHCKyRU/VSwbEzw7TAI/AAAAAAAABas/jSOyDjoutrg/w506-h750/52469ce4-abd8-4762-841f-6d7ccb0bd21a",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "https://lh3.googleusercontent.com/-9NgriHCKyRU/VSwbEzw7TAI/AAAAAAAABas/jSOyDjoutrg/w600-h368/52469ce4-abd8-4762-841f-6d7ccb0bd21a",
+            "type": "image/jpeg",
+            "height": 368,
+            "width": 600
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": ""
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

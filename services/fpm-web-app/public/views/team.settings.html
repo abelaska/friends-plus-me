@@ -1,0 +1,48 @@
+<div class="team" ng-controller="TeamSettingsCtrl">
+
+  <div ng-include="'/views/team.menu.html'"></div>
+
+  <div layout="column" layout-align="start start" layout-margin>
+    <h1>Team Settings</h1>
+  </div>
+
+  <div layout="row" layout-align="start start" layout-margin>
+    <div flex="45" flex-sm="100" flex-xs="100" layout="column" layout-margin="10" style="margin-top: 0">
+      <div layout="row" layout-align="space-between center" style="margin-top: 0;margin-bottom: 0;">
+        <div flex layout="row" layout-align="start end">
+          <span>Team Name</span>
+          <span flex style="border-bottom: 1px dotted #000;margin: 0 0 5px 10px;"></span>
+        </div>
+        <md-button style="text-transform: initial; margin-right: 0;" ng-click="renameProfile($event)" ng-disabled="updating">
+          <md-tooltip>Change Team Name</md-tooltip>
+          <md-icon md-svg-src="/images/icons/pencil.svg" style="zoom: 60%;color: rgba(0,0,0,0.8);"></md-icon>
+          {{Google.profile.name}}
+        </md-button>
+      </div>
+
+      <div layout="row" layout-align="space-between center" style="margin-top: 0;margin-bottom: 0;">
+        <div flex layout="row" layout-align="start end">
+          <span>Contact Name</span>
+          <span flex style="border-bottom: 1px dotted #000;margin: 0 0 5px 10px;"></span>
+        </div>
+        <md-button style="text-transform: initial; margin-right: 0;" ng-click="changeProfileContactName($event)" ng-disabled="updating">
+          <md-tooltip>Change Contact Name</md-tooltip>
+          <md-icon md-svg-src="/images/icons/pencil.svg" style="zoom: 60%;color: rgba(0,0,0,0.8);"></md-icon>
+          {{(Google.profile.contact && Google.profile.contact.name) || user.name}}
+        </md-button>
+      </div>
+
+      <div layout="row" layout-align="space-between center" style="margin-top: 0;margin-bottom: 0;">
+        <div flex layout="row" layout-align="start end">
+          <span>Contact E-mail</span>
+          <span flex style="border-bottom: 1px dotted #000;margin: 0 0 5px 10px;"></span>
+        </div>
+        <md-button style="text-transform: initial; margin-right: 0;" ng-click="changeProfileContactEmail($event)" ng-disabled="updating">
+          <md-tooltip>Change Contact E-mail</md-tooltip>
+          <md-icon md-svg-src="/images/icons/pencil.svg" style="zoom: 60%;color: rgba(0,0,0,0.8);"></md-icon>
+          {{(Google.profile.contact && Google.profile.contact.email) || user.email}}
+        </md-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+*.log
+.git
+.tmp
+docs
+specs
+payloads
+templates
+node_modules
+conf/config-test.toml
+conf/config-development.toml

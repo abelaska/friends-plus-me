@@ -1,0 +1,45 @@
+[http]
+  port = 8080
+
+[image.fetch]
+  tries = 3
+  max = 16
+  parallel = 12
+  timeout = 30000
+  userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36"
+  #userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/603.2.4 (KHTML, like Gecko)"
+[image.fetch.min]
+  width = 16
+  height = 16
+
+[crawler]
+  tries = 2
+  maxRedirects = 4
+  timeout = 30000
+  userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+  #userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36"
+  #userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/603.2.4 (KHTML, like Gecko)"
+
+[crawler.cache]
+  # cached records TTL in seconds (24 hours)
+  ttl = 86400
+  provider = "redis"
+
+# www.incapsula.com protector workaround
+# took this cookie from my personal browser
+[crawler.incapsula]
+  cookie = "XXX=XXX+XXX=="
+
+[crawler.akamaighost]
+  cookie = "ak_bmsc=XXX"
+
+[youtube]
+  apiKey = "XXX-XXX-XXX"
+
+[log.file]
+  level = "debug"
+  maxFiles = 20
+  maxSize = 5294080
+[log.logentries]
+  level = "info"
+  secure = true

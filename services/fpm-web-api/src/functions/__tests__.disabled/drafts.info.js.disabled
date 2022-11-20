@@ -1,0 +1,58 @@
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { ObjectId, User, Profile } = require('@fpm/db');
+const { testingBeforeAll, testingAfterAll, testFunc, nockHydraTokenIntrospect } = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should get draft info', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({ _id: dbTeamId, members: { owner: [dbUserId] } });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  let reply = await testFunc({
+    name: 'drafts.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token, team: dbTeam._id.toString() },
+      body: { html: '<p>html</p>' }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  const { draft } = reply.body;
+  expect(draft).toBeTruthy();
+
+  const { token: infoToken } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.read',
+    userId: dbUser._id.toString()
+  });
+
+  reply = await testFunc({
+    name: 'drafts.info',
+    req: { qs: { access_token: infoToken, draft: draft.draft_id } }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.draft).toEqual(draft);
+});

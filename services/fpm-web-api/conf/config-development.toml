@@ -1,0 +1,26 @@
+[db]
+  url = "mongodb://localhost/fpm"
+
+[redis]
+  url = "redis://localhost:6379"
+
+[oauth.tokens.store.crypto]
+  key = "XXX"
+  iv = "XXX"
+
+[braintree]
+  environment = "Sandbox"
+[braintree.merchant.default]
+  merchantId = "XXX"
+  privateKey = "XXX"
+  publicKey = "XXX"
+[braintree.merchant.default.account]
+  default = "XXX"
+  amex = "amex"
+
+[email]
+  debug = true
+
+[auth0]
+  clientId = "XXX"
+  clientSecret = "XXX-XXX"

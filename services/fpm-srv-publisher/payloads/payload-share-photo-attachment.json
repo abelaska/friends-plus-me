@@ -1,0 +1,96 @@
+{
+  "account": {
+    "_id": "1",
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "access": {
+      "items": [
+        {
+          "type": "public"
+        },
+        {
+          "id": "114197358633834273250",
+          "type": "person"
+        }
+      ],
+      "kind": "plus#acl"
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "crosspostSource": "11519078443389635637",
+    "annotation": "",
+    "object": {
+      "attachments": [
+        {
+          "fullImage": {
+            "width": 761,
+            "height": 666,
+            "type": "image/jpeg",
+            "url": "https://lh5.googleusercontent.com/-OLlp0vtXzmA/UFLn6-__10I/AAAAAAAAsGg/Ica7uXYvBc4/Screen%2BShot%2B2012-09-14%2Bat%2B1.16.13%2BAM.png"
+          },
+          "image": {
+            "width": 137,
+            "height": 120,
+            "type": "image/jpeg",
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=https%3A%2F%2Flh5.googleusercontent.com%2F-OLlp0vtXzmA%2FUFLn6-__10I%2FAAAAAAAAsGg%2FIca7uXYvBc4%2Fw288-h288%2FScreen%252BShot%252B2012-09-14%252Bat%252B1.16.13%252BAM.png"
+          },
+          "url": "https://plus.google.com/photos/111091089527727420853/albums/5787943470071144481/5787943471654360898",
+          "content": "Screen Shot 2012-09-14 at 1.16.13 AM.png",
+          "objectType": "photo"
+        }
+      ],
+      "resharers": {
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z132yphaznegcpqov04cglnqxvrizxthiqo0k/people/resharers",
+        "totalItems": 0
+      },
+      "plusoners": {
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z132yphaznegcpqov04cglnqxvrizxthiqo0k/people/plusoners",
+        "totalItems": 0
+      },
+      "replies": {
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z132yphaznegcpqov04cglnqxvrizxthiqo0k/comments",
+        "totalItems": 0
+      },
+      "url": "https://plus.google.com/111091089527727420853/posts/gW1AmzjSUdW",
+      "content": "<b>Think iPhone wouldn&#39;t sell? It already is sold out</b><br /><br />In just about an hour Apple sold out all of its &quot;ship first day&quot; inventory. The only way to get one the first day now is to wait in line at the store. If you buy on the Apple.com page now you&#39;ll get yours in about two weeks.<br /><br />Like I said. Love it or hate it, this is going to be the fastest selling product in history. By far. <br /><br />By the way, I didn&#39;t get one. Verizon has me locked out of my account because I couldn&#39;t remember my password and it locked me out. Stupid me for not figuring that out. It&#39;s really lame that Verizon didn&#39;t have tech support on phone. I have to call back in the morning. I forget that not every company has <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/100698655987920162334\" class=\"proflink\" oid=\"100698655987920162334\">Rackspace Hosting</a></span>&#39;s 24-hour-a-day customer support on phone. Sigh.<br /><br />Before you ask, if I do wait in line for mine, it will be the Palo Alto University Avenue store. I have a box of wine that <a href=\"http://us.nakedwines.com/\" >http://us.nakedwines.com/</a> sent me and I&#39;ve been looking for a reason to share it. Might just have a wine tasting there next Thursday night. :-)",
+      "actor": {
+        "image": {
+          "url": "https://lh6.googleusercontent.com/-Mfw7CEq4mT4/AAAAAAAAAAI/AAAAAAAAAAA/tFCKAy4NBtY/photo.jpg?sz=50"
+        },
+        "url": "https://plus.google.com/111091089527727420853",
+        "displayName": "Robert Scoble",
+        "id": "111091089527727420853"
+      },
+      "id": "z12wtrbp0wz4z34zg04cffurjy3rwli5eyk0k",
+      "objectType": "activity"
+    },
+    "verb": "share",
+    "actor": {
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-QLJgyig_lDQ/AAAAAAAAAAI/AAAAAAAAAAA/pg3N6aIEiWk/photo.jpg?sz=50"
+      },
+      "url": "https://plus.google.com/114197358633834273250",
+      "name": {
+        "givenName": "Richard",
+        "familyName": "Bajic"
+      },
+      "displayName": "Richard Bajic",
+      "id": "114197358633834273250"
+    },
+    "url": "https://plus.google.com/114197358633834273250/posts/T3XEwvYje7N",
+    "id": "z132yphaznegcpqov04cglnqxvrizxthiqo0k",
+    "updated": "2012-09-14T09:24:01.725Z",
+    "published": "2012-09-14T09:24:01.725Z",
+    "title": "Reshared post from Robert Scoble\n \n\nThink iPhone wouldn't sell? It already is sold out\n\nIn just a...",
+    "etag": "\"PUsAXp2BLQtA2N3E4rX4j93V7TM/lMwb3pOLTnJTLOGdIrUOUQvMBZo\"",
+    "kind": "plus#activity"
+  }
+}

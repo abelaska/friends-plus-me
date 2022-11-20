@@ -1,0 +1,33 @@
+<div class="install-extension" ng-controller="ExtensionCtrl">
+  <div layout="row" layout-align="center center">
+    <div class="text-center">
+      <h1 style="margin-top:0;"><strong>Install</strong> Browser Extension!</h1>
+      <p>The easiest way to share content.</p>
+    </div>
+  </div>
+
+  <div layout="column" layout-gt-sm="row" layout-align="center center" layout-align-gt-sm="space-around start" layout-padding="50">
+
+    <div flex layout="column" layout-align="center center" style="margin-bottom: 30px;">
+      <h2>Mobile Application</h2>
+      <p>Share content from your mobile devices.</p>
+      <md-content layout="row" layout-align="space-around center">
+        <a href="https://itunes.apple.com/us/app/friends+me/id1164926573?ls=1&amp;mt=8" target="_blank" ng-click="downloadMobileApp('ios')"><img alt="Get it on Apple Store" src="//linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg" style="display: inline-block; overflow: hidden; width: 117px"></a>
+        <a href="https://play.google.com/store/apps/details?id=me.friendsplus&amp;utm_campaign=webapp" target="_blank"  ng-click="downloadMobileApp('android')" style="overflow: hidden;width: 126px;"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" style="border-width: 0; display: inline-block; overflow: hidden; padding: 0; width: 135px;"></a>
+      </md-content>
+    </div>
+
+    <div flex layout="column" layout-align="center center" style="margin-bottom: 20px;">
+      <h2>Browser Extension</h2>
+      <p>Share content from anywhere on the web.</p>
+      <div ng-if="!isBrowserSupported">
+        <b>This browser is not supported.</b>
+      </div>
+      <div ng-if="isBrowserSupported">
+        <md-button ng-click="installExtension()" ng-disabled="installing" class="md-raised" style="padding-right: 10px">
+          Install {{browser}} Extension
+        </md-button>
+      </div>
+    </div>
+  </div>
+</div>

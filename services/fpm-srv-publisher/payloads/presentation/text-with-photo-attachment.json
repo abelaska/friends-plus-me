@@ -1,0 +1,74 @@
+{
+
+ "kind": "plus#activity",
+ "etag": "\"rzsMXcCxI6zcaueXOWrwmdMoXlA/NA0O14BfuTiEvHLPEjdNzyY7Syk\"",
+ "title": "One more thing. friendsplus.me application got a redesign!\n\nEnjoy :)\n\nThanks +Dustin W. Stout for the...",
+ "published": "2014-10-07T12:20:47.675Z",
+ "updated": "2014-10-07T13:05:04.000Z",
+ "id": "z132zrcidla2thni404cgv2wrxa2t5aaq0o",
+ "url": "https://plus.google.com/105750980959577516811/posts/ZtJ5dUL3WBE",
+ "actor": {
+  "id": "105750980959577516811",
+  "displayName": "Friends+Me",
+  "url": "https://plus.google.com/105750980959577516811",
+  "image": {
+   "url": "https://lh3.googleusercontent.com/-dHBGGCq7AD4/AAAAAAAAAAI/AAAAAAAAAV0/z3sDZkVsswU/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": "One more thing. <b><a href=\"http://friendsplus.me\">friendsplus.me</a></b><b> application got a redesign!</b><br /><br />Enjoy :)<br /><br />Thanks <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a class=\"proflink\" href=\"https://plus.google.com/107665939201638457855\" oid=\"107665939201638457855\">Dustin W. Stout</a></span> for the inspiration!\ufeff",
+  "url": "https://plus.google.com/105750980959577516811/posts/ZtJ5dUL3WBE",
+  "replies": {
+   "totalItems": 5,
+   "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z132zrcidla2thni404cgv2wrxa2t5aaq0o/comments"
+  },
+  "plusoners": {
+   "totalItems": 53,
+   "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z132zrcidla2thni404cgv2wrxa2t5aaq0o/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 7,
+   "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z132zrcidla2thni404cgv2wrxa2t5aaq0o/people/resharers"
+  },
+  "statusForViewer": {
+   "resharingDisabled": false,
+   "canComment": true,
+   "canPlusone": true,
+   "isPlusOned": false,
+   "canUpdate": false
+  },
+  "attachments": [
+   {
+    "objectType": "photo",
+    "displayName": "One more thing. Friends+Me application got a redesign!\n\nEnjoy :)\n\nThanks +Dustin W. Stout for the inspiration!",
+    "id": "105750980959577516811.6067432653419568610",
+    "content": "fpm-screenshot-app-2014-10-07.png",
+    "url": "https://plus.google.com/photos/105750980959577516811/albums/6067432649018775089/6067432653419568610",
+    "image": {
+     "url": "https://lh3.googleusercontent.com/-l3sLYbUw33c/VDPZ2gWt3eI/AAAAAAAABLQ/Qlj4eHUz120/w506-h750/fpm-screenshot-app-2014-10-07.png",
+     "type": "image/jpeg"
+    },
+    "fullImage": {
+     "url": "https://lh3.googleusercontent.com/-l3sLYbUw33c/VDPZ2gWt3eI/AAAAAAAABLQ/Qlj4eHUz120/w1126-h695/fpm-screenshot-app-2014-10-07.png",
+     "type": "image/jpeg",
+     "height": 695,
+     "width": 1126
+    }
+   }
+  ]
+ },
+ "provider": {
+  "title": "Google+"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

@@ -1,0 +1,11 @@
+<div ng-controller="UserNotificationsCtrl">
+  <div style="padding: 0 20px;max-width: 700px">
+    <div layout="row" layout-align="start center" layout-nowrap>
+      <div layout="column" flex>
+        <div style="color: rgba(0,0,0,0.8);font-size: 18px;line-height: 28px;">Publish Failures</div>
+        <div style="color: rgba(0,0,0,0.5);font-size: 13px;">Notify me when a post fails to publish</div>
+      </div>
+      <md-switch ng-model="notifications['post-publishing-failed']" ng-change="update('post-publishing-failed')" aria-label="Notify me when a post fails to publish" style="margin: 0"></md-switch>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+# https://cloud.google.com/container-builder/docs/
+#
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "gcr.io/$PROJECT_ID/fpm-landing-page:$_VER",
+        "-f",
+        "services/fpm-web-landing-page/Dockerfile",
+        ".",
+      ]
+    id: "build"
+
+images:
+  - "gcr.io/$PROJECT_ID/fpm-landing-page:$_VER"

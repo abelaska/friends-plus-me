@@ -1,0 +1,67 @@
+{
+  "kind": "plus#activity",
+  "etag": "\"TJ4YjXUi1XCM_G3FJ4uiPX8m6Fk/I1EwqIb67yveA1fWRP1XUH4GMP4\"",
+  "title": "We finally covered the pipes (https://picasaweb.google.com/117350118960665012351/ApartmentsOnSvobodyS...",
+  "published": "2013-03-13T14:27:05.584Z",
+  "updated": "2013-03-13T14:27:05.584Z",
+  "id": "z13ugb5zhp2kffdqd04cfltpwu3kidtq4h4",
+  "url": "https://plus.google.com/117350118960665012351/posts/afs5PcmVGZR",
+  "actor": {
+    "id": "117350118960665012351",
+    "displayName": "Alexander Steshenko",
+    "url": "https://plus.google.com/117350118960665012351",
+    "image": {
+      "url": "https://lh4.googleusercontent.com/-xKhgxMUU5w0/AAAAAAAAAAI/AAAAAAAAHlU/nvfSlhIZfiY/photo.jpg?sz=50"
+    }
+  },
+  "verb": "post",
+  "object": {
+    "objectType": "note",
+    "content": "We finally covered the pipes (<a href=\"https://picasaweb.google.com/117350118960665012351/ApartmentsOnSvobodyStreetYeysk#5764323092062905650\" class=\"ot-anchor\" rel=\"nofollow\">https://picasaweb.google.com/117350118960665012351/ApartmentsOnSvobodyStreetYeysk#5764323092062905650</a>). The flowers aren&#39;t ours - a neighbor asked to look after those for a month.",
+    "url": "https://plus.google.com/117350118960665012351/posts/afs5PcmVGZR",
+    "replies": {
+      "totalItems": 2,
+      "selfLink": "https://www.googleapis.com/plus/v1/activities/z13ugb5zhp2kffdqd04cfltpwu3kidtq4h4/comments"
+    },
+    "plusoners": {
+      "totalItems": 0,
+      "selfLink": "https://www.googleapis.com/plus/v1/activities/z13ugb5zhp2kffdqd04cfltpwu3kidtq4h4/people/plusoners"
+    },
+    "resharers": {
+      "totalItems": 0,
+      "selfLink": "https://www.googleapis.com/plus/v1/activities/z13ugb5zhp2kffdqd04cfltpwu3kidtq4h4/people/resharers"
+    },
+    "attachments": [
+      {
+        "objectType": "photo",
+        "id": "117350118960665012351.5854833301518116898",
+        "content": "SDC19754.JPG",
+        "url": "https://plus.google.com/photos/117350118960665012351/albums/5854833303726062193/5854833301518116898?authkey=XXX",
+        "image": {
+          "url": "https://lh4.googleusercontent.com/-IfaJ4GIga6s/UUCL3hQdaCI/AAAAAAAAJJ4/gqBfjLOlPbc/w497-h373/SDC19754.JPG",
+          "type": "image/jpeg",
+          "height": 373,
+          "width": 497
+        },
+        "fullImage": {
+          "url": "https://lh4.googleusercontent.com/-IfaJ4GIga6s/UUCL3hQdaCI/AAAAAAAAJJ4/gqBfjLOlPbc/SDC19754.JPG",
+          "type": "image/jpeg",
+          "height": 973,
+          "width": 1299
+        }
+      }
+    ]
+  },
+  "provider": {
+    "title": "Google+"
+  },
+  "access": {
+    "kind": "plus#acl",
+    "description": "Public",
+    "items": [
+      {
+        "type": "public"
+      }
+    ]
+  }
+}

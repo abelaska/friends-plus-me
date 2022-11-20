@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html ng-app="fpmApp" ng-strict-di="false" ng-class="bodyClass" lang="en">
+  <head>
+    <base href="/" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <link rel="dns-prefetch" href="//images.friendsplus.me" />
+
+    <title ng-bind="'Friends+Me' + title">Friends+Me</title>
+
+    <meta name="robots" content="index,follow" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@FriendsPlusMe" />
+    <meta name="twitter:creator" content="@FriendsPlusMe" />
+
+    <link
+      rel="chrome-webstore-item"
+      href="https://chrome.google.com/webstore/detail/pjdlcblehpgcjmpmopkipiinbdeemmaa"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" itemprop="url" content="https://friendsplus.me" />
+    <meta property="og:site_name" itemprop="name" content="Friends+Me" />
+    <meta
+      property="og:image"
+      itemprop="image"
+      content="https://s3.amazonaws.com/static.friendsplus.me/images/promo.jpg"
+    />
+    <meta property="og:title" content="Friends+Me - Share to ANYWHERE" />
+    <meta
+      property="og:description"
+      itemprop="description"
+      name="description"
+      content="The right cross-promotion and content scheduling solution for you. Increase user engagement across all your social networks."
+    />
+    <meta
+      name="keywords"
+      content="Google+ to Twitter, Google+ to Facebook, Google+ to Linkedin, repost, cross-post, connect, Facebook, Twitter, Linkedin"
+    />
+    <link href="https://plus.google.com/+AloisBělaška" rel="publisher" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- build:css({.tmp,public}) /styles/main-vendor.css -->
+    <link
+      href="components/angular-material/angular-material.css"
+      rel="stylesheet"
+    />
+    <link
+      href="components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css"
+      rel="stylesheet"
+    />
+    <link href="/styles/main-vendor.css" rel="stylesheet" />
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp,public}) /styles/main.css -->
+    <link href="/styles/main.css" rel="stylesheet" />
+    <!-- endbuild -->
+
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/apple-touch-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/apple-touch-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/apple-touch-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/apple-touch-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/apple-touch-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/apple-touch-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/apple-touch-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/apple-touch-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon-180x180.png"
+    />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/android-chrome-192x192.png"
+      sizes="192x192"
+    />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#d40000" />
+    <meta name="apple-mobile-web-app-title" content="Friends+Me" />
+    <meta name="application-name" content="Friends+Me" />
+    <meta name="msapplication-TileColor" content="#2d89ef" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <script
+      src="https://cdn.ravenjs.com/3.16.1/raven.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://www.google.com/recaptcha/api.js?render=explicit"
+      async
+      defer
+    ></script>
+  </head>
+
+  <body ng-class="bodyClass" initial-state="{}" style="overflow: hidden">
+    <!-- build:js({.tmp,public}) /scripts/main-raven.js -->
+    <script src="scripts/vendors/deepmerge.js"></script>
+    <!-- @if ENV == 'development' -->
+    <script src="conf/development.js"></script>
+    <!-- @endif -->
+    <!-- @if ENV == 'production' -->
+    <script src="conf/production.js"></script>
+    <!-- @endif -->
+    <!-- @if ENV == 'staging' -->
+    <script src="conf/staging.js"></script>
+    <!-- @endif -->
+    <script src="scripts/initialState.js"></script>
+    <script src="scripts/raven.js"></script>
+    <!-- endbuild -->
+
+    <!--[if lt IE 9]>
+      <p class="chromeframe">
+        You are using an outdated browser.
+        <a href="http://browsehappy.com/">Upgrade your browser today</a> or
+        <a href="https://www.google.com/chromeframe/?redirect=true"
+          >install Google Chrome Frame</a
+        >
+        to better experience this site.
+      </p>
+    <![endif]-->
+
+    <div ng-include="'/views/main.html'"></div>
+
+    <!--div style="overflow: hidden;overflow-y: auto;" ui-view></div-->
+
+    <div class="loading-overlay" ng-class="{'loaded':appLoaded}">
+      <div class="center-logo">
+        <img
+          src="/apple-touch-icon-144x144.png"
+          alt="Friends+Me"
+          class="pulsate"
+        />
+      </div>
+    </div>
+
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
+    <script>
+      try {
+        const { ipcRenderer } = require("electron");
+        window.ipcRenderer = ipcRenderer;
+      } catch (e) {}
+    </script>
+
+    <!-- build:js({.tmp,public}) /scripts/vendor.js -->
+    <script src="components/underscore/underscore.js"></script>
+    <script src="components/jquery/dist/jquery.js"></script>
+    <script src="components/angular/angular.js"></script>
+    <script src="components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="components/angular-cookies/angular-cookies.js"></script>
+    <script src="components/angular-animate/angular-animate.js"></script>
+    <script src="components/angular-aria/angular-aria.js"></script>
+    <script src="components/angular-messages/angular-messages.js"></script>
+    <script src="components/angular-material/angular-material.js"></script>
+    <script src="components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="components/angular-hotkeys/build/hotkeys.js"></script>
+    <script src="components/angular-file-upload/dist/ng-file-upload.js"></script>
+    <script src="components/moment/moment.js"></script>
+    <script src="components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
+    <script src="components/stacktrace.js/stacktrace.js"></script>
+    <script src="components/async/lib/async.js"></script>
+    <script src="components/string/dist/string.js"></script>
+    <script src="components/bootstrap/js/dropdown.js"></script>
+    <script src="components/twitter-text/js/twitter-text.js"></script>
+    <script src="components/tinymce/tinymce.js"></script>
+    <script src="components/tinymce/themes/modern/theme.js"></script>
+    <script src="components/tinymce/plugins/autoresize/plugin.js"></script>
+    <script src="components/tinymce/plugins/paste/plugin.js"></script>
+    <script src="components/tinymce-mention/mention/plugin.js"></script>
+    <script src="scripts/vendors/angular-ui-tinymce.js"></script>
+    <script src="scripts/vendors/angular-bootstrap-datetimepicker.js"></script>
+    <script src="scripts/vendors/ui-bootstrap-custom-tpls-0.12.0.js"></script>
+    <script src="scripts/vendors/le.js"></script>
+    <script src="scripts/vendors/jstz.js"></script>
+    <script src="scripts/vendors/papaparse.js"></script>
+    <!-- endbuild -->
+
+    <script src="https://js.braintreegateway.com/web/dropin/1.6.1/js/dropin.min.js"></script>
+
+    <!-- build:js({.tmp,public}) /scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/factories/initialState.js"></script>
+    <script src="scripts/factories/isMobile.js"></script>
+    <script src="scripts/factories/routes.js"></script>
+    <script src="scripts/factories/jquery.js"></script>
+    <script src="scripts/factories/le.js"></script>
+    <script src="scripts/factories/flash.js"></script>
+    <script src="scripts/factories/jstz.js"></script>
+    <script src="scripts/factories/lodash.js"></script>
+    <script src="scripts/factories/moment.js"></script>
+    <script src="scripts/factories/types.js"></script>
+    <script src="scripts/factories/states.js"></script>
+    <script src="scripts/factories/countries.js"></script>
+    <script src="scripts/factories/dialogs.js"></script>
+    <script src="scripts/factories/urls.js"></script>
+    <script src="scripts/factories/accounts.js"></script>
+    <script src="scripts/factories/apply.js"></script>
+    <script src="scripts/factories/stacktrace.js"></script>
+    <script src="scripts/factories/async.js"></script>
+    <script src="scripts/factories/tinymce.js"></script>
+    <script src="scripts/factories/string.js"></script>
+    <script src="scripts/factories/twttr.js"></script>
+    <script src="scripts/factories/papa.js"></script>
+    <script src="scripts/providers/log.js"></script>
+    <script src="scripts/providers/events.js"></script>
+    <script src="scripts/providers/online.js"></script>
+    <script src="scripts/providers/analytics.js"></script>
+    <script src="scripts/providers/crawler.js"></script>
+    <script src="scripts/providers/image.js"></script>
+    <script src="scripts/providers/google.js"></script>
+    <script src="scripts/providers/premium.js"></script>
+    <script src="scripts/providers/braintree.js"></script>
+    <script src="scripts/providers/intercom.js"></script>
+    <script src="scripts/providers/exceptionHandler.js"></script>
+    <script src="scripts/providers/extension.js"></script>
+    <script src="scripts/providers/tinymceMention.js"></script>
+    <script src="scripts/providers/auth.js"></script>
+    <script src="scripts/ui/mdTooltip.js"></script>
+    <script src="scripts/controllers/dialogs/bitly.js"></script>
+    <script src="scripts/controllers/dialogs/googl.js"></script>
+    <script src="scripts/controllers/dialogs/premiumRequired.js"></script>
+    <script src="scripts/controllers/dialogs/deleteProfile.js"></script>
+    <script src="scripts/controllers/dialogs/cancelSubscription.js"></script>
+    <script src="scripts/controllers/dialogs/dateTimePicker.js"></script>
+    <script src="scripts/controllers/dialogs/PickAccountPanelCtrl.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/accounts.js"></script>
+    <script src="scripts/controllers/accountsAdd.js"></script>
+    <script src="scripts/controllers/accountTimeline.js"></script>
+    <script src="scripts/controllers/accountScheduling.js"></script>
+    <script src="scripts/controllers/accountQueue.js"></script>
+    <script src="scripts/controllers/accountShortening.js"></script>
+    <script src="scripts/controllers/accountSetup.js"></script>
+    <script src="scripts/controllers/accountReconnect.js"></script>
+    <script src="scripts/controllers/profileOrganization.js"></script>
+    <script src="scripts/controllers/profileCCChange.js"></script>
+    <script src="scripts/controllers/profileCCSuccess.js"></script>
+    <script src="scripts/controllers/profilePayPalSuccess.js"></script>
+    <script src="scripts/controllers/profileDowngradeSuccess.js"></script>
+    <script src="scripts/controllers/profileDowngrade.js"></script>
+    <script src="scripts/controllers/profile.js"></script>
+    <script src="scripts/controllers/team.menu.js"></script>
+    <script src="scripts/controllers/team.members.js"></script>
+    <script src="scripts/controllers/team.profiles.js"></script>
+    <script src="scripts/controllers/team.settings.js"></script>
+    <script src="scripts/controllers/extension.js"></script>
+    <script src="scripts/controllers/editor.js"></script>
+    <script src="scripts/controllers/share.js"></script>
+    <script src="scripts/controllers/queue.js"></script>
+    <script src="scripts/controllers/bulk-schedule.js"></script>
+    <script src="scripts/controllers/adminUserSwitch.js"></script>
+    <script src="scripts/controllers/adminSaaS.js"></script>
+    <script src="scripts/controllers/billing.js"></script>
+    <script src="scripts/controllers/invoices.js"></script>
+    <script src="scripts/controllers/user.js"></script>
+    <script src="scripts/controllers/user.notifications.js"></script>
+    <!-- endbuild -->
+
+    <script>
+      if (window.module) module = window.module;
+    </script>
+
+    <!--script src="//localhost:35729/livereload.js"></script-->
+
+    <!-- @if ENV == 'production' -->
+    <script type="text/javascript">
+      var _iub = _iub || [];
+      _iub.csConfiguration = {
+        cookiePolicyId: 367858,
+        siteId: 31414,
+        lang: "en",
+        priorConsent: false,
+      };
+    </script>
+    <script
+      type="text/javascript"
+      src="//cdn.iubenda.com/cookie_solution/safemode/iubenda_cs.js"
+      charset="UTF-8"
+      async
+    ></script>
+    <!-- @endif -->
+  </body>
+</html>

@@ -1,0 +1,20 @@
+# [oauth.tokens.store.crypto]
+#   key = "1234567890"
+#   iv = "0123456789012345"
+[oauth.tokens.store.crypto]
+  key = "XXX"
+  iv = "XXX"
+
+[redis]
+  auth_pass = "XXX"
+  host = "pub-redis-XXX.us-central1-1-1.gce.garantiadata.com"
+  port = 16307
+
+[api]
+  url = "http://localhost:3000"
+
+[http]
+  url = "http://localhost:3000"
+
+[session]
+  secret = "XXX"

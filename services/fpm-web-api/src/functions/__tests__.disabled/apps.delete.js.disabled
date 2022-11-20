@@ -1,0 +1,82 @@
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { ObjectId, OAuthApp, User } = require('@fpm/db');
+const {
+  testingBeforeAll,
+  testingAfterAll,
+  testFuncWithReply,
+  nockHydraDeleteApplication
+} = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should fail on app_not_found', async () => {
+  const user = await User.create({ auth0Id: nanoid(32), actorId: nanoid(32), state: States.user.enabled.code });
+
+  const client = {
+    name: nanoid(32),
+    description: 'app description',
+    url: 'https://domain.com',
+    callbacks: ['https://domain.com/callback']
+  };
+
+  const { token } = nockHydraDeleteApplication({
+    client,
+    active: true,
+    scope: 'apps.write',
+    userId: user._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'apps.delete',
+    req: { qs: { access_token: token, app: new ObjectId().toString() } },
+    statusCode: 200,
+    res: {
+      ok: false,
+      error: 'app_not_found'
+    }
+  });
+});
+
+test('should successfully delete application', async () => {
+  const user = await User.create({ auth0Id: nanoid(32), actorId: nanoid(32), state: States.user.enabled.code });
+
+  const client = {
+    name: nanoid(32),
+    description: 'app description',
+    url: 'https://domain.com',
+    callbacks: ['https://domain.com/callback']
+  };
+
+  const { token, clientId } = nockHydraDeleteApplication({
+    client,
+    active: true,
+    scope: 'apps.write',
+    userId: user._id.toString()
+  });
+
+  const dbOAuthApp = await OAuthApp.create({ clientId, createdBy: user._id, name: nanoid(48) });
+
+  await testFuncWithReply({
+    name: 'apps.delete',
+    req: { qs: { access_token: token, app: dbOAuthApp._id.toString() } },
+    statusCode: 200,
+    res: {
+      ok: true,
+      deleted: true
+    }
+  });
+
+  expect(await OAuthApp.findById(dbOAuthApp._id).exec()).toBeNull();
+
+  await testFuncWithReply({
+    name: 'apps.delete',
+    req: { qs: { access_token: token, app: dbOAuthApp._id.toString() } },
+    statusCode: 200,
+    res: {
+      ok: false,
+      error: 'app_not_found'
+    }
+  });
+});

@@ -1,0 +1,392 @@
+const nanoid = require('nanoid');
+const { States, Types } = require('@fpm/constants');
+const { ObjectId, User, Profile, Post, Queue } = require('@fpm/db');
+const {
+  testingBeforeAll,
+  testingAfterAll,
+  testingDeps,
+  testFunc,
+  nockHydraTokenIntrospect
+} = require('../../utils/testing');
+const { unix } = require('../../utils/time');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+beforeEach(async () => Promise.all([Queue.find().exec(), q => q.remove(), Post.find().exec(), q => q.remove()]));
+
+test('should schedule a draft', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        _id: dbQueueId,
+        uid: nanoid(32),
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        scheduling: { tz: 'Europe/Prague', schedules: [[0]] }
+      }
+    ]
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  const html = '<p>html</p>';
+
+  let reply = await testFunc({
+    name: 'drafts.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token, team: dbTeam._id.toString() },
+      body: { html }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  const { draft } = reply.body;
+  expect(draft).toBeTruthy();
+
+  const { token: infoToken } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'posts.schedule',
+    userId: dbUser._id.toString()
+  });
+
+  reply = await testFunc({
+    name: 'drafts.schedule',
+    req: { qs: { access_token: infoToken, draft: draft.draft_id, queue: dbQueueId.toString() } }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.post).toBeTruthy();
+  expect(reply.body.post.queue_id).toBe(dbQueueId.toString());
+  expect(reply.body.post.team_id).toBe(dbTeamId.toString());
+  expect(reply.body.post.state).toBe('scheduled');
+  expect(reply.body.post.html).toBe(html);
+  expect(reply.body.post.created_by).toBeTruthy();
+  expect(reply.body.post.created_by.user_id).toBe(dbUser._id.toString());
+  expect(reply.body.post.modified_by).toBeFalsy();
+  expect(reply.body.post.service).toEqual({ id: dbTeam.accounts[0].uid, type: 'google', category: 'page' });
+
+  const dbPost = await Post.findById(reply.body.post.post_id).exec();
+  expect(dbPost).toBeTruthy();
+  expect(dbPost.html).toBe(html);
+  expect(dbPost.source).toBe('api');
+  expect(dbPost.appendNoShare).toBe(true);
+  expect(dbPost.processor).toBe('post:google:page');
+  expect(dbPost.state).toBe(States.post.scheduledByUser.code);
+  expect(dbPost.blockedAt).toBe(null);
+  expect(dbPost.ng).toBeFalsy();
+});
+
+test('should schedule a draft for ng queue', async () => {
+  const { queueManager } = testingDeps({ queueManager: { now: '2018-02-13T00:00:00Z' } });
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        ng: true,
+        _id: dbQueueId,
+        uid: nanoid(32),
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        scheduling: { tz: 'Europe/Prague', schedules: [[0]] }
+      }
+    ]
+  });
+  const dbQueueInfo = await queueManager.createQueue({
+    id: dbQueueId,
+    pid: dbTeam._id,
+    tz: 'Europe/Prague',
+    type: Types.createCodeByName('google', 'page'),
+    postsLimit: 100,
+    scheduler: { type: 'counts', postsPerWeekDay: [2, 2, 2, 2, 2, 2, 2] }
+  });
+  expect(dbQueueInfo).toBeTruthy();
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  const html = '<p>html</p>';
+
+  let reply = await testFunc({
+    name: 'drafts.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token, team: dbTeam._id.toString() },
+      body: { html }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  const { draft } = reply.body;
+  expect(draft).toBeTruthy();
+  expect(draft.draft_id).toBeTruthy();
+
+  const { token: infoToken } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'posts.schedule',
+    userId: dbUser._id.toString()
+  });
+
+  reply = await testFunc({
+    name: 'drafts.schedule',
+    req: { qs: { access_token: infoToken, draft: draft.draft_id, queue: dbQueueId.toString(), schedule: 'first' } }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.post).toBeTruthy();
+  expect(reply.body.post.post_id).not.toBe(draft.draft_id);
+  expect(reply.body.post.queue_id).toBe(dbQueueId.toString());
+  expect(reply.body.post.team_id).toBe(dbTeamId.toString());
+  expect(reply.body.post.state).toBe('scheduled');
+  expect(reply.body.post.html).toBe(html);
+  expect(reply.body.post.created_by).toBeTruthy();
+  expect(reply.body.post.created_by.user_id).toBe(dbUser._id.toString());
+  expect(reply.body.post.modified_by).toBeFalsy();
+  expect(reply.body.post.service).toEqual({ id: dbTeam.accounts[0].uid, type: 'google', category: 'page' });
+
+  const dbDraft = await Post.findById(draft.draft_id).exec();
+  expect(dbDraft).toBeTruthy();
+
+  const dbPost = await Post.findById(reply.body.post.post_id).exec();
+  expect(dbPost).toBeTruthy();
+  expect(dbPost.html).toBe(html);
+  expect(dbPost.source).toBe('api');
+  expect(dbPost.appendNoShare).toBe(true);
+  expect(dbPost.processor).toBe('post:google:page');
+  expect(dbPost.state).toBe(States.post.scheduled.code);
+  expect(dbPost.blockedAt).toBeTruthy();
+  expect(dbPost.ng).toBeTruthy();
+
+  const q = await Queue.findById(dbQueueId).exec();
+  expect(q).toBeTruthy();
+  expect(q.posts.count).toBe(1);
+  expect(q.posts.checkedAt).toBeTruthy();
+  expect(q.posts.checkedAt.toISOString()).toBe('2018-02-13T00:00:00.000Z');
+  expect(q.posts.nextAt).toBeTruthy();
+  expect(q.posts.nextAt.toISOString()).toBe('2018-02-13T11:30:00.000Z');
+  expect(q.posts.list).toBeTruthy();
+  expect(q.posts.list.length).toBe(1);
+  expect(q.posts.list[0]._id.toString()).toBe(reply.body.post.post_id);
+  expect(q.posts.list[0].at.toISOString()).toBe('2018-02-13T11:30:00.000Z');
+});
+
+test('should schedule a draft with enabled channeling', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        _id: dbQueueId,
+        uid: nanoid(32),
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        scheduling: { tz: 'Europe/Prague', schedules: [[0]] }
+      }
+    ]
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  const html = '<p>html</p>';
+
+  let reply = await testFunc({
+    name: 'drafts.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token, team: dbTeam._id.toString() },
+      body: { html }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  const { draft } = reply.body;
+  expect(draft).toBeTruthy();
+
+  const { token: infoToken } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'posts.schedule',
+    userId: dbUser._id.toString()
+  });
+
+  reply = await testFunc({
+    name: 'drafts.schedule',
+    req: { qs: { access_token: infoToken, draft: draft.draft_id, queue: dbQueueId.toString(), no_channeling: false } }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.post).toBeTruthy();
+  expect(reply.body.post.queue_id).toBe(dbQueueId.toString());
+  expect(reply.body.post.team_id).toBe(dbTeamId.toString());
+  expect(reply.body.post.state).toBe('scheduled');
+  expect(reply.body.post.html).toBe(html);
+  expect(reply.body.post.created_by).toBeTruthy();
+  expect(reply.body.post.created_by.user_id).toBe(dbUser._id.toString());
+  expect(reply.body.post.modified_by).toBeFalsy();
+  expect(reply.body.post.service).toEqual({ id: dbTeam.accounts[0].uid, type: 'google', category: 'page' });
+
+  const dbPost = await Post.findById(reply.body.post.post_id).exec();
+  expect(dbPost).toBeTruthy();
+  expect(dbPost.html).toBe(html);
+  expect(dbPost.source).toBe('api');
+  expect(dbPost.appendNoShare).toBe(false);
+  expect(dbPost.processor).toBe('post:google:page');
+  expect(dbPost.state).toBe(States.post.scheduledByUser.code);
+  expect(dbPost.blockedAt).toBe(null);
+  expect(dbPost.ng).toBeFalsy();
+});
+
+test('should schedule a draft at', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        _id: dbQueueId,
+        uid: nanoid(32),
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        scheduling: { tz: 'Europe/Prague', schedules: [[0]] }
+      }
+    ]
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  const html = '<p>html</p>';
+
+  let reply = await testFunc({
+    name: 'drafts.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token, team: dbTeam._id.toString() },
+      body: { html }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  const { draft } = reply.body;
+  expect(draft).toBeTruthy();
+
+  const { token: infoToken } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'posts.schedule',
+    userId: dbUser._id.toString()
+  });
+
+  const publishAt = unix(new Date()) + 60;
+
+  reply = await testFunc({
+    name: 'drafts.schedule',
+    req: {
+      qs: {
+        access_token: infoToken,
+        draft: draft.draft_id,
+        queue: dbQueueId.toString(),
+        schedule: 'at',
+        publish_at: publishAt
+      }
+    }
+  });
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.post).toBeTruthy();
+  expect(reply.body.post.queue_id).toBe(dbQueueId.toString());
+  expect(reply.body.post.team_id).toBe(dbTeamId.toString());
+  expect(reply.body.post.state).toBe('scheduled');
+  expect(reply.body.post.html).toBe(html);
+  expect(reply.body.post.publish_at).toBe(publishAt);
+  expect(reply.body.post.created_by).toBeTruthy();
+  expect(reply.body.post.created_by.user_id).toBe(dbUser._id.toString());
+  expect(reply.body.post.modified_by).toBeFalsy();
+  expect(reply.body.post.service).toEqual({ id: dbTeam.accounts[0].uid, type: 'google', category: 'page' });
+
+  const dbPost = await Post.findById(reply.body.post.post_id).exec();
+  expect(dbPost).toBeTruthy();
+  expect(dbPost.html).toBe(html);
+  expect(dbPost.source).toBe('api');
+  expect(dbPost.appendNoShare).toBe(true);
+  expect(dbPost.processor).toBe('post:google:page');
+  expect(unix(dbPost.publishAt)).toBe(publishAt);
+  expect(dbPost.state).toBe(States.post.scheduledByUser.code);
+  expect(dbPost.blockedAt).toBe(null);
+  expect(dbPost.ng).toBeFalsy();
+});

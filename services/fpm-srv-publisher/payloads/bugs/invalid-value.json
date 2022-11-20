@@ -1,0 +1,83 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"FUQYB12pbGMhJ3PGFs0mQ-7H6Zw/_WtE9zcUyA21KWpBdM8fNRdHtA4\"",
+    "title": "Join us on BlogTalkRadio Live - Saturday 4/26/14 -12:30 PM - http://prestwickcomputer.com - Prestwick...",
+    "published": "2014-04-24T13:59:34.003Z",
+    "updated": "2014-04-24T13:59:34.003Z",
+    "id": "z13dwrfh0wvwxrt4w04cj5qbjm2rypnytmw0k",
+    "url": "https://plus.google.com/106464045528628561416/posts/TE2gS61REnn",
+    "actor": {
+      "id": "106464045528628561416",
+      "displayName": "Chuck Boschen",
+      "url": "https://plus.google.com/106464045528628561416",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-nriRZCHT-CQ/AAAAAAAAAAI/AAAAAAAAAEs/XGEOE4-ATas/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "<b>Join us on BlogTalkRadio Live - Saturday 4/26/14 -12:30 PM - </b><b><a href=\"http://prestwickcomputer.com\">http://prestwickcomputer.com</a></b><b> - Prestwick Computer Geek Radio Show.</b> Your Questions &amp; Our Answers. Question/Topic of the Week - Malware and Anti-Virus Software <a rel=\"nofollow\" class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23fg\">#fg</a>\ufeff",
+      "url": "https://plus.google.com/106464045528628561416/posts/TE2gS61REnn",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13dwrfh0wvwxrt4w04cj5qbjm2rypnytmw0k/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13dwrfh0wvwxrt4w04cj5qbjm2rypnytmw0k/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13dwrfh0wvwxrt4w04cj5qbjm2rypnytmw0k/people/resharers"
+      },
+      "statusForViewer": {
+        "resharingDisabled": false,
+        "canComment": true,
+        "canPlusone": true,
+        "isPlusOned": false,
+        "canUpdate": false
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "Your Tech Questions & Our Answers + Tech News 4/26/14 – 84",
+          "content": "We discuss all the tech news from the past week, select the Geek Pick Of The Week, elaborate on the ?Big Tech Question/Topic Of The Week? and share your \"help!\" questions and input. This Week: Google Encrypts Gmail end to end, Apple TV adds channels, Netflix price increase?, Exploit of ?Jailbroken? Iphones, IOS 7.1.1 arrives, SIRI on Apple TV, Apple continues to make plenty of money, Windows 8.1 gets a Start Menu in August 2014, OS X security upd...",
+          "url": "http://www.blogtalkradio.com/prestwickcomputergeek/2014/04/26/your-tech-questions-our-answers-tech-news-42614-84",
+          "image": {
+            "url": "https://lh4.googleusercontent.com/proxy/tXPeiLEp7hk0cMzVLE2hxBs-JTq0V6xmJsZ6YfDpD0LSuK652VK5xjOuLXhE5r8iEc84F3YxpUyQE17r5igpqKxb9Y0EbshirGke9tf4vXGrFMCsgb3q2RFGi8TEpHJXPiUlP_wO5DB7gA=w120-h120",
+            "type": "image/jpeg",
+            "height": 120,
+            "width": 120
+          },
+          "fullImage": {
+            "url": "http://cdn.btrcdn.com/pics/hostpics/fe9ce393-f045-470e-ba31-860db790ed50_blogtalkradio.jpg",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

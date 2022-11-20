@@ -1,0 +1,101 @@
+<div flex layout="column">
+  <md-toolbar class="md-theme-indigo shadow" ng-if="!mainMenuPinned">
+    <div class="md-toolbar-tools" style="padding-left: 10px;">
+      <span>Friends+Me <span style="font-size:8px;color: rgba(255,255,255,0.5);">{{config.version}}</span></span>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="togglePinMainMenu()">
+        <md-tooltip>Pin Main Menu</md-tooltip>
+        <md-icon md-svg-icon="/images/icons/pin.svg"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-content flex ng-click="toggleMainMenu(true)">
+    <md-list flex style="padding-top:0">
+      <md-list-item ng-href="teams/{{Google.profile._id}}/drafts">
+        <md-icon md-svg-icon="/images/icons/pencil-box-outline.svg"></md-icon>
+        <div flex>Drafts</div>
+      </md-list-item>
+      <md-list-item ng-href="teams/{{Google.profile._id}}/queue">
+        <md-icon md-svg-icon="/images/icons/clock.svg"></md-icon>
+        <div flex>Queue</div>
+        <div md-colors="::{background: 'orange-800'}" class="badge" tooltip="Queue Size" ng-bind-html="queuedPostsCount()" ng-if="queuedPostsCount()>0"></div>
+      </md-list-item>
+      <md-list-item ng-href="teams/{{Google.profile._id}}/timeline">
+        <md-icon md-svg-icon="/images/icons/archive.svg"></md-icon>
+        <div flex>Timeline</div>
+      </md-list-item>
+      <md-list-item ng-href="teams/{{Google.profile._id}}/bulk-schedule" ng-if="existsFileReader && (isOwnerOrManager || isAccountManager)">
+        <md-icon md-svg-icon="/images/icons/database.svg"></md-icon>
+        <div flex>Bulk Schedule</div>
+      </md-list-item>
+      <md-list-item ng-href="teams/{{Google.profile._id}}/extension" ng-if="isOwnerOrManager">
+        <md-icon md-svg-icon="/images/icons/puzzle.svg"></md-icon>
+        <div flex>Extension &amp; Apps</div>
+        <md-icon md-svg-icon="/images/icons/circle.svg" md-colors="{color: extensionAvailable ? 'green-600': 'red-600'}" style="margin-left: 16px;"></md-icon>
+      </md-list-item>
+
+      <md-divider ng-if="isOwnerOrManager"></md-divider>
+
+      <md-list-item ng-href="teams/{{Google.profile._id}}/members" ng-if="isOwnerOrManager">
+        <md-icon md-svg-icon="/images/icons/account-multiple.svg"></md-icon>
+        <div flex>Team</div>
+      </md-list-item>
+
+      <md-list-item ng-href="teams/{{Google.profile._id}}/billing" ng-if="isOwnerOrManager">
+        <md-icon md-menu-align-target md-svg-icon="/images/icons/currency-usd.svg"></md-icon>
+        <div flex>Billing</div>
+      </md-list-item>
+      <md-list-item ng-href="teams/{{Google.profile._id}}/organization" ng-if="isOwnerOrManager && !isPaywyum()">
+        <md-icon md-svg-icon="/images/icons/domain.svg"></md-icon>
+        <div flex>Organization</div>
+      </md-list-item>
+      <md-list-item ng-href="http://help.friendsplus.me" target="_blank">
+        <md-icon md-svg-icon="/images/icons/help-circle.svg"></md-icon>
+        <div flex>Help</div>
+      </md-list-item>
+
+      <md-divider ng-if="isAdmin()"></md-divider>
+
+      <md-list-item ng-href="/administration/user/switch" ng-if="isAdmin()">
+        <md-icon md-svg-icon="/images/icons/account-switch.svg"></md-icon>
+        <div flex>Switch User</div>
+      </md-list-item>
+      <md-list-item ng-href="/administration/saas" ng-if="isAdmin()">
+        <md-icon md-svg-icon="/images/icons/chart-bar.svg"></md-icon>
+        <div flex>SaaS</div>
+      </md-list-item>
+    </md-list>
+  </md-content>
+
+  <md-toolbar class="md-theme-indigo shadow">
+    <div layout="row" class="md-toolbar-tools">
+      <img class="md-avatar" alt="{{Google.user.name}}" ng-src="{{Google.user.image}}" style="width: 32px;height: 32px;border-radius: 50%;outline: 0;">
+
+      <span flex md-truncate>
+        <div style="max-width: 100%;padding-left: 8px;font-size: 13px;" md-truncate>{{Google.user.name}}</div>
+      </span>
+
+      <md-menu>
+        <md-button aria-label="User" class="md-icon-button" ng-click="$mdMenu.open($event)">
+          <md-icon md-menu-origin md-svg-icon="/images/icons/dots-vertical.svg"></md-icon>
+        </md-button>
+        <md-menu-content width="4" ng-click="toggleMainMenu(true)">
+          <md-menu-item>
+            <md-button aria-label="User Settings" ng-href="/user">
+              <md-icon md-svg-icon="/images/icons/settings.svg" md-menu-align-target></md-icon>
+              User Settings
+            </md-button>
+          </md-menu-item>
+          <md-menu-divider></md-menu-divider>
+          <md-menu-item>
+            <md-button aria-label="Sign Out" ng-click="signout()">
+              <md-icon md-svg-icon="/images/icons/logout.svg" md-menu-align-target></md-icon>
+              Logout
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+  </md-toolbar>
+</div>

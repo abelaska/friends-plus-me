@@ -1,0 +1,71 @@
+{
+  "account": {
+    "_id": "1",
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "placeName": "Helser's On Alberta",
+    "address": "1538 Northeast Alberta Street",
+    "geocode": "45.558974 -122.648871",
+    "access": {
+      "items": [
+        {
+          "type": "public"
+        },
+        {
+          "id": "104885503987247937188",
+          "type": "person"
+        }
+      ],
+      "kind": "plus#acl"
+    },
+    "provider": {
+      "title": "Google Check-ins"
+    },
+    "crosspostSource": "997090406",
+    "object": {
+      "resharers": {
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13vc1v4dwmispzpg04cfncxzvfej5pihrs0k/people/resharers",
+        "totalItems": 0
+      },
+      "plusoners": {
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13vc1v4dwmispzpg04cfncxzvfej5pihrs0k/people/plusoners",
+        "totalItems": 0
+      },
+      "replies": {
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13vc1v4dwmispzpg04cfncxzvfej5pihrs0k/comments",
+        "totalItems": 0
+      },
+      "url": "https://plus.google.com/104885503987247937188/posts/VwAvsLkLmWm",
+      "originalContent": "",
+      "content": "",
+      "objectType": "note"
+    },
+    "verb": "checkin",
+    "actor": {
+      "image": {
+        "url": "https://lh4.googleusercontent.com/-4VAbgzoWu8s/AAAAAAAAAAI/AAAAAAAAAAA/Ni-NHTTMQW4/photo.jpg?sz=50"
+      },
+      "url": "https://plus.google.com/104885503987247937188",
+      "name": {
+        "givenName": "Emiliano",
+        "familyName": "Brock de Corona"
+      },
+      "displayName": "Emiliano Brock de Corona",
+      "id": "104885503987247937188"
+    },
+    "url": "https://plus.google.com/104885503987247937188/posts/VwAvsLkLmWm",
+    "id": "z13vc1v4dwmispzpg04cfncxzvfej5pihrs0k",
+    "updated": "2012-09-14T18:44:03.802Z",
+    "published": "2012-09-14T18:44:03.000Z",
+    "title": "",
+    "etag": "\"PUsAXp2BLQtA2N3E4rX4j93V7TM/kMhi8wdAS2tASlHnb1Ycs-3r-uU\"",
+    "kind": "plus#activity"
+  }
+}

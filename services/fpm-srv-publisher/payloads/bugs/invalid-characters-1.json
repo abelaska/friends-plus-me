@@ -1,0 +1,87 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"sJt1VilOvxUfDlfPWeqwjvyqpgI/83VjfZFQ9vTyr0jlUnWsiMu-U3Y\"",
+    "title": "[Public Service Announcement.]\n\nWe all get \"passionate\" from time to time. The result most often is that...",
+    "published": "2012-12-26T16:44:33.506Z",
+    "updated": "2012-12-26T16:44:33.506Z",
+    "id": "z12wzblxcpazztssm235h1k4jq2pcdahp04",
+    "url": "https://plus.google.com/110869331997840554198/posts/49CaNdoqZRi",
+    "actor": {
+      "id": "110869331997840554198",
+      "displayName": "Manuel T Ortega",
+      "url": "https://plus.google.com/110869331997840554198",
+      "image": {
+        "url": "https://lh4.googleusercontent.com/--iHLFc5rj-k/AAAAAAAAAAI/AAAAAAAAAPI/HEkfcuMc-AE/photo.jpg?sz=50"
+      }
+    },
+    "verb": "share",
+    "object": {
+      "objectType": "activity",
+      "id": "z12ihfb5pr23elslq22tg314iz2zgxj1v",
+      "actor": {
+        "id": "105279625231358353479",
+        "displayName": "Avinash Kaushik",
+        "url": "https://plus.google.com/105279625231358353479",
+        "image": {
+          "url": "https://lh6.googleusercontent.com/-1MJtdd0educ/AAAAAAAAAAI/AAAAAAAAAAA/t_3ZrEPbVGo/photo.jpg?sz=50"
+        }
+      },
+      "content": "[Public Service Announcement.]<br /><br />We all get &quot;passionate&quot; from time to time. The result most often is that our language goes to heck very quickly. Common problem. But in a work environment you can imagine this could be a big problem.<br /><br />I found this little cheat sheet to be quite handy. It is a great way to ensure you still communicate your feelings, but take the foul language out.<br /><br />Admittedly this will reduce some of the &quot;passion&quot; you meant to express, but on the bight side you&#39;ll still have a job!<br /><br />I hope you find it to be helpful.<br /><br />Source: Imgur: <a href=\"http://goo.gl/FN4xK\" class=\"ot-anchor\">http://goo.gl/FN4xK</a>",
+      "url": "https://plus.google.com/105279625231358353479/posts/AAKViADgygo",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12wzblxcpazztssm235h1k4jq2pcdahp04/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12wzblxcpazztssm235h1k4jq2pcdahp04/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12wzblxcpazztssm235h1k4jq2pcdahp04/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "photo",
+          "id": "105279625231358353479.5826227838400921378",
+          "content": "translation_advice.jpg",
+          "url": "https://plus.google.com/photos/105279625231358353479/albums/5826227837726645425/5826227838400921378",
+          "image": {
+            "url": "https://lh4.googleusercontent.com/-bIg3-kb_aDw/UNrrWbBg_yI/AAAAAAAALvs/4M2zjr8_lZY/w497-h373/photo.jpg",
+            "type": "image/jpeg",
+            "height": 373,
+            "width": 497
+          },
+          "fullImage": {
+            "url": "https://lh4.googleusercontent.com/-bIg3-kb_aDw/UNrrWbBg_yI/AAAAAAAALvs/4M2zjr8_lZY/photo.jpg",
+            "type": "image/jpeg",
+            "height": 1024,
+            "width": 768
+          }
+        }
+      ]
+    },
+    "annotation": "Fucking funny...😜😂",
+    "provider": {
+      "title": "Reshared Post"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    },
+    "userId": "50c589460c1d8aa904009b7c",
+    "dbId": "50db298f1751137d5d0070fa"
+  }
+}

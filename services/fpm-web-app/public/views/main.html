@@ -1,0 +1,107 @@
+<div layout="column" class="main-body" ng-controller="MainMenuCtrl as main" md-theme="{{currentTheme || 'default'}}" md-theme-watch="true">
+  <md-toolbar class="shadow">
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Main Menu" ng-click="toggleMainMenu()">
+        <md-tooltip ng-if="!mainMenuPinned">Open Menu</md-tooltip>
+        <md-tooltip ng-if="mainMenuPinned">Un-pin Menu</md-tooltip>
+        <md-icon ng-if="!mainMenuPinned" md-svg-icon="/images/icons/menu.svg"></md-icon>
+        <md-icon ng-if="mainMenuPinned" md-svg-icon="/images/icons/pin-off.svg"></md-icon>
+      </md-button>
+
+      <div class="destination active {{types.networkTypeNameOfAccount(account)}}" ng-class="{'disabled':account.state!=states.account.enabled.code}" style="margin: 0 15px 0 0;cursor:default;min-width:30px;" ng-if="!!account">
+        <md-tooltip md-placement="bottom">{{accountTitle(account)}}</md-tooltip>
+        <img ng-src="{{account.image}}" style="border-radius: 50%;width:30px;height:30px;">
+        <div class="network-icon" ng-switch on="types.networkTypeNameOfAccount(account)" style="left: 20px;">
+          <i ng-switch-when="pinterest" class="fa fa-pinterest"></i>
+          <i ng-switch-when="facebook" class="fa fa-facebook"></i>
+          <i ng-switch-when="linkedin" class="fa fa-linkedin"></i>
+          <i ng-switch-when="twitter" class="fa fa-twitter"></i>
+          <i ng-switch-when="tumblr" class="fa fa-tumblr"></i>
+          <i ng-switch-when="google" class="fa fa-google-plus"></i>
+          <i ng-switch-when="instagram" class="fa fa-instagram"></i>
+        </div>
+      </div>
+
+      <h2 flex md-truncate ng-bind-html="menuName"></h2>
+
+      <md-button hide-xs class="md-warn md-raised" aria-label="Billing" href="teams/{{Google.profile._id}}/billing" ng-if="isTrial()">{{trialExpirationText()}}</md-button>
+
+      <md-button hide-xs style="font-weight:bold" aria-label="Upgrade Now" href="teams/{{Google.profile._id}}/billing" ng-if="!isTrial() && !Google.isSubscribed()">UPGRADE</md-button>
+
+      <md-menu style="max-width:200px">
+
+        <md-button layout="row" layout-align="center center" md-no-ink="true" aria-label="Switch Team" ng-click="$mdMenu.open($event)" class="dropdown" style="margin: 0;padding: 0 6px 0 6px;text-align: left;max-width: 200px;">
+          <md-tooltip>{{Google.profile.name}}</md-tooltip>
+          <span md-truncate style="max-width: 170px;">{{Google.profile.name}}</span>
+          <md-icon md-svg-icon="/images/icons/menu-down.svg"></md-icon>
+        </md-button>
+
+        <md-menu-content width="4" style="max-height:600px">
+          <md-menu-item ng-repeat="p in Google.profiles | orderBy: 'name' track by p._id">
+            <md-button ng-click="switchToProfile(p);" style="{{p._id==Google.profile._id?'font-weight:bold':''}}">{{p.name}}</md-button>
+          </md-menu-item>
+          <md-divider ng-if="Google.profiles.length > 0"></md-divider>
+          <md-menu-item>
+            <md-button ng-click="createProfile($event)" style="font-style: italic;" aria-label="Create New Team" ng-disabled="creatingProfile">
+              Create New Team
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+
+      <md-button ng-href="teams/{{Google.profile._id}}/members" class="md-icon-button" ng-if="isOwnerOrManager">
+        <md-tooltip>Team Settings</md-tooltip>
+        <md-icon md-svg-icon="/images/icons/settings.svg"></md-icon>
+      </md-button>
+
+      <!--div style="position:relative">
+        <md-button id="help-button" class="md-icon-button" aria-label="Help" ng-click="toggleHelp()">
+          <md-icon md-svg-icon="/images/icons/help-circle.svg"></md-icon>
+        </md-button>
+        <div ng-show="notificationsCount>0" layout="row" layout-align="center center" style="font-size:13px;position: absolute;top: 0;right: 0;border-radius: 50%;background-color: red;width: 1.4em;height: 1.4em;">{{notificationsCount}}</div>
+      </div-->
+
+      <md-button class="md-icon-button" aria-label="Queues" ng-click="toggleAccountsMenu()" ng-if="isOwnerOrManager || isAccountManager">
+        <md-tooltip ng-if="!accountsMenuPinned">Open Queues</md-tooltip>
+        <md-tooltip ng-if="accountsMenuPinned">Un-pin Queues</md-tooltip>
+        <md-icon ng-if="!accountsMenuPinned" md-svg-icon="/images/icons/apps.svg"></md-icon>
+        <md-icon ng-if="accountsMenuPinned" md-svg-icon="/images/icons/pin-off.svg"></md-icon>
+      </md-button>
+
+      <!--md-menu>
+        <md-button md-no-ink="true" aria-label="{{Google.user.name}}" ng-click="$mdMenu.open($event)" style="min-width: 36px;padding: 0;">
+          <md-tooltip>{{Google.user.name}}</md-tooltip>
+          <img class="md-avatar" alt="{{Google.user.name}}" ng-src="{{Google.user.image}}" style="width: 32px;height: 32px;border-radius: 50%;outline: 0;">
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button aria-label="Logout" ng-click="signout()">
+              <md-icon md-svg-icon="/images/icons/logout.svg" md-menu-align-target></md-icon>
+              Logout
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu-->
+    </div>
+  </md-toolbar>
+
+  <md-sidenav class="md-sidenav-left" layout="column" md-component-id="menu" md-whiteframe="4" ng-if="!mainMenuPinned" ng-include="'/views/mainMenu.html'"></md-sidenav>
+
+  <md-sidenav class="md-sidenav-right" md-component-id="accounts" md-whiteframe="4" ng-if="!accountsMenuPinned" ng-include="'/views/accountsMenu.html'"></md-sidenav>
+
+  <div flex layout="row">
+
+    <md-content layout="column" ng-show="mainMenuPinned" md-whiteframe="4" style="margin-right:5px" ng-include="'/views/mainMenu.html'"></md-content>
+
+    <md-content id="main-content" flex layout="column" class="main-content" style="opacity:0;-webkit-transition: all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;-ms-transition: all 0.2s ease-in-out;-o-transition: all 0.2s ease-in-out;transition: all 0.2s ease-in-out;" ng-style="{'opacity':appLoaded?'1':'0'}">
+      <div style="width:100%;height:100%;" class="main-content-view bg main-content-{{stateNameFixed}}" ui-view></div>
+    </md-content>
+
+    <md-content layout="column" ng-show="accountsMenuPinned" md-whiteframe="4" style="min-width:320px" ng-include="'/views/accountsMenu.html'"></md-content>
+  </div>
+
+  <div ng-if="isOffline" layout="column" layout-align="center center" style="z-index: 99999;position:fixed;bottom:0;top:0;left:0;right:0;background-color:rgba(0,0,0,0.8);text-align:center;color:#fff;">
+    <h1 style="font-weight: bold;font-size: 50px;">You are offline!</h1>
+    <h2>Please restore the Internet connection.</h2>
+  </div>
+</div>

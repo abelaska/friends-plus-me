@@ -1,0 +1,17 @@
+{
+  "name": "@fpm/web-image-proxy",
+  "private": true,
+  "version": "0.3.8",
+  "description": "Friends+Me Image Proxy Service",
+  "scripts": {
+    "build": "exit 0 || go build -o fpm-web-image-proxy .",
+    "dev": "BUCKET_NAME='fpm-user-assets' CLIENT_TOKEN='client_token' dev_appserver.py --port 8181 app.yaml",
+    "get": "/bin/bash ./bin/get.sh",
+    "deploy": "gcloud --project fpm-application app deploy --no-promote .",
+    "build:clean": "rm -f fpm-web-image-proxy",
+    "eslint": "exit 0",
+    "flow": "exit 0",
+    "test": "exit 0",
+    "test:watch": "exit 0"
+  }
+}

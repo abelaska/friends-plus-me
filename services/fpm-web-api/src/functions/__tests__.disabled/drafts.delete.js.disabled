@@ -1,0 +1,193 @@
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { ObjectId, User, Profile, Post } = require('@fpm/db');
+const {
+  testingBeforeAll,
+  testingAfterAll,
+  testFunc,
+  testFuncWithReply,
+  nockHydraTokenIntrospect
+} = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should not find draft', async () => {
+  const dbUser = await User.create({
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'drafts.delete',
+    req: { qs: { access_token: token, draft: new ObjectId().toString() } },
+    statusCode: 200,
+    res: { ok: false, error: 'draft_not_found' }
+  });
+});
+
+test('should delete draft', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({ _id: dbTeamId, members: { owner: [dbUserId] } });
+  const dbDraft = await Post.create({ state: States.post.draft.code, createdBy: dbUser._id, pid: dbTeam._id });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'drafts.delete',
+    req: { qs: { access_token: token, draft: dbDraft._id.toString() } }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  const { body } = reply;
+  expect(body).toBeTruthy();
+  expect(body.ok).toBe(true);
+  expect(body.deleted).toBe(true);
+
+  expect(await Post.findById(dbDraft._id).exec()).toBeFalsy();
+});
+
+test('should delete draft in role of contributor', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({ _id: dbTeamId, members: { contributor: [dbUserId] } });
+  const dbDraft = await Post.create({ state: States.post.draft.code, createdBy: dbUser._id, pid: dbTeam._id });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'drafts.delete',
+    req: { qs: { access_token: token, draft: dbDraft._id.toString() } }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  const { body } = reply;
+  expect(body).toBeTruthy();
+  expect(body.ok).toBe(true);
+  expect(body.deleted).toBe(true);
+
+  expect(await Post.findById(dbDraft._id).exec()).toBeFalsy();
+});
+
+test('should delete draft as the team owner', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({ _id: dbTeamId, members: { owner: [dbUserId] } });
+  const dbDraft = await Post.create({ state: States.post.draft.code, createdBy: new ObjectId(), pid: dbTeam._id });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'drafts.delete',
+    req: { qs: { access_token: token, draft: dbDraft._id.toString() } }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  const { body } = reply;
+  expect(body).toBeTruthy();
+  expect(body.ok).toBe(true);
+  expect(body.deleted).toBe(true);
+
+  expect(await Post.findById(dbDraft._id).exec()).toBeFalsy();
+});
+
+test('should delete draft as the team manager', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { manager: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({ _id: dbTeamId, members: { manager: [dbUserId] } });
+  const dbDraft = await Post.create({ state: States.post.draft.code, createdBy: new ObjectId(), pid: dbTeam._id });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'drafts.delete',
+    req: { qs: { access_token: token, draft: dbDraft._id.toString() } }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  const { body } = reply;
+  expect(body).toBeTruthy();
+  expect(body.ok).toBe(true);
+  expect(body.deleted).toBe(true);
+
+  expect(await Post.findById(dbDraft._id).exec()).toBeFalsy();
+});
+
+test('should fail on not being a team member', async () => {
+  const dbUser = await User.create({
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code
+  });
+  const dbTeam = await Profile.create({ members: {} });
+  const dbDraft = await Post.create({ state: States.post.draft.code, createdBy: dbUser._id, pid: dbTeam._id });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'drafts.delete',
+    req: { qs: { access_token: token, draft: dbDraft._id.toString() } },
+    statusCode: 200,
+    res: { ok: false, error: 'access_denied' }
+  });
+});

@@ -1,0 +1,45 @@
+<md-dialog aria-label="Subscription Cancelation">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>It's not you, it's me!</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="/images/icons/close.svg" aria-label="Close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content style="padding: 10px">
+      <p>Help us to by stating the reason why you decided to cancel your subscription. <b>Thank you!</b></p>
+
+    	<div ng-hide="reason1=='not_using_enough'">
+    		<h3>Please help us improve by stating the reason (Required)</h3>
+        <md-radio-group ng-model="reason1" class="md-primary">
+          <md-radio-button value="missing_features">Friends+Me is missing features we need</md-radio-button>
+          <md-radio-button value="not_using_enough">Not using it enough (or at all)</md-radio-button>
+          <md-radio-button value="too_hard_to_use">Too hard to use</md-radio-button>
+          <md-radio-button value="choosed_other_tool">We choosed some other tool/product</md-radio-button>
+        </md-radio-group>
+    	</div>
+
+    	<div ng-show="reason1=='not_using_enough'">
+    		<h3>Why were you not using Friends+Me? (Required)</h3>
+        <md-radio-group ng-model="reason2" class="md-primary">
+          <md-radio-button value="too_difficult_setup">Too difficult set up and get started</md-radio-button>
+          <md-radio-button value="no_time_to_setup">Haven't had time to get set up</md-radio-button>
+          <md-radio-button value="not_enough_business">Not enough business (business is slow)</md-radio-button>
+          <md-radio-button value="other">Other</md-radio-button>
+        </md-radio-group>
+    	</div>
+
+    	<textarea ng-model="reason3" placeholder="Please, help us improve with additional details" style="width: 100%;border-color: rgba(0,0,0,0.1);border-radius: 2px;"></textarea>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" style="padding-right: 10px;padding-left: 10px;">
+      <md-button class="md-raised" ng-click="cancel()" ng-disabled="downgrading" md-autofocus style="margin-left:0">Nevermind. I don't want to cancel</md-button>
+      <span flex></span>
+      <md-button class="md-raised" ng-click="downgrade(reason1,reason2,reason3)" ng-disabled="downgrading">CANCEL MY SUBSCRIPTION</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

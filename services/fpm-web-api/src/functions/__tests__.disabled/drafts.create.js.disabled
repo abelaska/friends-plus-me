@@ -1,0 +1,113 @@
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { ObjectId, User, Profile, Post } = require('@fpm/db');
+const {
+  testingBeforeAll,
+  testingAfterAll,
+  testFunc,
+  testFuncWithReply,
+  nockHydraTokenIntrospect
+} = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should fail on team_not_found', async () => {
+  const dbUser = await User.create({
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'drafts.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token, team: new ObjectId().toString() },
+      body: { html: '<p>html</p>' }
+    },
+    statusCode: 200,
+    res: { ok: false, error: 'team_not_found' }
+  });
+});
+
+test('should fail on not being a team member', async () => {
+  const dbUser = await User.create({
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { owner: [new ObjectId()] }
+  });
+  const dbTeam = await Profile.create({ members: { owner: [new ObjectId()] } });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'drafts.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token, team: dbTeam._id.toString() },
+      body: { html: '<p>html</p>' }
+    },
+    statusCode: 200,
+    res: { ok: false, error: 'access_denied' }
+  });
+});
+
+test('should create a new draft', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({ _id: dbTeamId, members: { owner: [dbUserId] } });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'drafts.create',
+    req: {
+      method: 'POST',
+      qs: { access_token: token, team: dbTeam._id.toString() },
+      body: { html: '<p>html</p>' }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  const { body } = reply;
+  expect(body).toBeTruthy();
+  expect(body.ok).toBe(true);
+  expect(body.draft.html).toBe('<p>html</p>');
+  expect(body.draft.team_id).toBe(dbTeam._id.toString());
+  expect(body.draft.created_by).toBeTruthy();
+  expect(body.draft.created_by.user_id).toBe(dbUser._id.toString());
+  expect(body.draft.modified_by).toBeFalsy();
+
+  const dbDraft = await Post.findById(reply.body.draft.draft_id).exec();
+  expect(dbDraft).toBeTruthy();
+  expect(dbDraft.source).toBe('api');
+  expect(dbDraft.state).toBe(States.post.draft.code);
+  expect(dbDraft.html).toBe('<p>html</p>');
+  expect(dbDraft.pid.toString()).toBe(dbTeam._id.toString());
+  expect(dbDraft.createdBy.toString()).toBe(dbUser._id.toString());
+  expect(dbDraft.modifiedBy).toBeFalsy();
+});

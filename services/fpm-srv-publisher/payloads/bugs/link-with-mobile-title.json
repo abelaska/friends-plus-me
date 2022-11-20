@@ -1,0 +1,58 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"r6E4NfYOn5dpL2w8XGt_3gHVskk/4UkEsZxI_bBB_YSYDt3UWkBtXHI\"",
+    "title": "Millie and I are still learning to communicate.\n\nMore breakthroughs this morning: Millie was excited...",
+    "published": "2013-08-30T15:51:51.150Z",
+    "updated": "2013-08-30T15:51:51.150Z",
+    "id": "z12fh5yptpfxsz3cf23bx35hyvahft3fu",
+    "url": "https://plus.google.com/115157882097089845153/posts/2ri6SmDcS5s",
+    "actor": {
+      "id": "115157882097089845153",
+      "displayName": "Mitch Wagner",
+      "url": "https://plus.google.com/115157882097089845153",
+      "image": {
+        "url": "https://lh6.googleusercontent.com/-DgGWPlzxwiY/AAAAAAAAAAI/AAAAAAAASQM/LK40R9GzZTk/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "<b>Millie and I are still learning to communicate.</b><br /><br />More breakthroughs this morning: Millie was excited to see me when I woke up! She was waiting by the back door, so I praised her and got the leash and we went out. But she didn&#39;t do her business.<br /><br />I hope we don&#39;t have another accident indoors today. She knows she&#39;s supposed to do it outdoors. We just haven&#39;t figured out how to communicate when it&#39;s time for her to go.<br /><br />She seemed to want to run. I&#39;m looking forward to teaching her her name and &quot;come&quot; so we can let her off the leash and go. Might be a few weeks. Or just a couple of days. She seems to be a fast learner. <br /><br />She is testing her limits -- literally. She thinks she&#39;s only allowed in the sunroom. Or that&#39;s the only place she&#39;s comfortable. She takes a step or two into the kitchen and then turns around and goes back into the sunroom. She followed me all the way into the living room and led me back to the sunroom and then went into her crate and laid down. I don&#39;t know what she wanted. Maybe for me to get into the crate with her.<br /><br />I fed her and gave her fresh water. When I&#39;ve had my tea I&#39;ll try taking her outside again. This time we&#39;ll leave the yard and make it a walk. ",
+      "url": "https://plus.google.com/115157882097089845153/posts/2ri6SmDcS5s",
+      "replies": {
+        "totalItems": 2,
+        "selfLink": "https://content.googleapis.com/plus/v1/activities/z12fh5yptpfxsz3cf23bx35hyvahft3fu/comments"
+      },
+      "plusoners": {
+        "totalItems": 2,
+        "selfLink": "https://content.googleapis.com/plus/v1/activities/z12fh5yptpfxsz3cf23bx35hyvahft3fu/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plus/v1/activities/z12fh5yptpfxsz3cf23bx35hyvahft3fu/people/resharers"
+      }
+    },
+    "provider": {
+      "title": "Mobile"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

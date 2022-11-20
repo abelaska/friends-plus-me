@@ -1,0 +1,87 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"5NTCbsXue5u92XtxuV0QeM_x9B4/ZmD1awrEX8fMAnI54mnR1Q42Fsc\"",
+    "title": "Reshared post from GDL",
+    "published": "2012-10-11T00:32:45.755Z",
+    "updated": "2012-10-11T00:32:45.755Z",
+    "id": "z12ww1zheui4zdjah04cftkbvmrfw1mgqzw0k",
+    "url": "https://plus.google.com/103772069584080057731/posts/bNNdj2HF9DJ",
+    "actor": {
+      "id": "103772069584080057731",
+      "displayName": "Wolff Dobson",
+      "name": {
+        "familyName": "Dobson",
+        "givenName": "Wolff"
+      },
+      "url": "https://plus.google.com/103772069584080057731",
+      "image": {
+        "url": "https://lh4.googleusercontent.com/-B_PiUbiWDNw/AAAAAAAAAAI/AAAAAAAAAAA/EuGLWZjHLrY/photo.jpg?sz=50"
+      }
+    },
+    "verb": "share",
+    "object": {
+      "objectType": "activity",
+      "id": "z134izryypy5trfiy04cfznqwrircpgyrh4",
+      "actor": {
+        "id": "104600989437225677892",
+        "displayName": "GDL",
+        "url": "https://plus.google.com/104600989437225677892",
+        "image": {
+          "url": "https://lh4.googleusercontent.com/-BM4Mhhoj-pE/AAAAAAAAAAI/AAAAAAAAAAA/BSjSbKwcbVQ/photo.jpg?sz=50"
+        }
+      },
+      "content": "",
+      "url": "https://plus.google.com/104600989437225677892/posts/eC75J66RjBm",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12ww1zheui4zdjah04cftkbvmrfw1mgqzw0k/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12ww1zheui4zdjah04cftkbvmrfw1mgqzw0k/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12ww1zheui4zdjah04cftkbvmrfw1mgqzw0k/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "Google Games Chat #6",
+          "url": "events/cthlr3h951la632jqcnn4msdtgs"
+        }
+      ]
+    },
+    "annotation": "We&#39;re up again tomorrow!  Despite this graphic, I believe we are not going to DJ, but instead discuss games.  However, if it would be anyone dropping some beats, it would be John &quot;Grandmaster NaCL&quot; McCutcheon.",
+    "crosspostSource": "8714713970083778995",
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "items": [
+        {
+          "type": "public"
+        },
+        {
+          "type": "person",
+          "id": "106737154382790678002"
+        },
+        {
+          "type": "person",
+          "id": "103772069584080057731"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true,
+      "bitly": true
+    },
+    "tokens": {
+      "twal": true
+    },
+    "shortener": {
+      "type": "googl",
+      "bitly": {
+        "username": "abelaska",
+        "apiKey": "XXX"
+      }
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"sJt1VilOvxUfDlfPWeqwjvyqpgI/a91t0xNbM-VcU0LtRJDv3gQHO5A\"",
+    "title": "U.S. Government is Collecting More Data on Americans Than Any Other Government .\n\n\nInteresting post...",
+    "published": "2012-12-30T18:45:58.870Z",
+    "updated": "2012-12-30T18:45:58.870Z",
+    "id": "z125fz5wyob2dt0tt22pxl1q4pqofb24g04",
+    "url": "https://plus.google.com/104900061350675990148/posts/AYDWWfMHgSd",
+    "actor": {
+      "id": "104900061350675990148",
+      "displayName": "Jessica Obermayer",
+      "url": "https://plus.google.com/104900061350675990148",
+      "image": {
+        "url": "https://lh4.googleusercontent.com/-WO25mtwgtjk/AAAAAAAAAAI/AAAAAAAAB0s/R8MuLLjGFWE/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "<b>U.S. Government is Collecting More Data on Americans Than Any Other Government</b> .<br /><br /><br />Interesting post.. unclear if all references check out, but highly likely.<br /><br />Makes it more critical than ever to ensure our legislative branch gets on top of the bureaucracies...<br /><br /><br />Excerpted:<br /><br /><i>Indeed, the American government has more information on the average American than Stalin had on Russians, Hitler had on German citizens, or any other government has ever had on its people.</i><br /><br /><i>The American government is collecting and storing virtually every phone call, purchases, email,  text message, internet searches, social media communications, health information,  employment history, travel and student records, and virtually all other information of every American.</i><br /><br /><i>Some also claim that the government is also using facial recognition software and surveillance cameras to track where everyone is going.  Moreover, cell towers track where your phone is at any moment, and the major cell carriers, including Verizon and AT&amp;T, responded to at least 1.3 million law enforcement requests for cell phone locations and other data in 2011. And – given that your smartphone routinely sends your location information back to Apple or Google – it would be child’s play for the government to track your location that way.</i><br /><br /><i>As the top spy chief at the U.S. National Security Agency explained this week, the American government is collecting some 100 billion 1,000-character emails per day, and 20 trillion communications of all types per year.</i><br /><br /><i>He says that the government has collected all of the communications of congressional leaders, generals and everyone else in the U.S. for the last 10 years.</i><br /><br /><i>He further explains that he set up the NSA’s system so that all of the information would automatically be encrypted, so that the government had to obtain a search warrant based upon probably cause before a particular suspect’s communications could be decrypted.  But the NSA now collects all data in an unencrypted form, so that no probable cause is needed to view any citizen’s information.  He says that it is actually cheaper and easier to store the data in an encrypted format: so the government’s current system is being done for political – not practical – purposes.</i><br /><br /><a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23privacy\">#privacy</a><br /><a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23security\">#security</a><br /><a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23NSA\">#NSA</a><br /><br /><br /><br />",
+      "url": "https://plus.google.com/104900061350675990148/posts/AYDWWfMHgSd",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z125fz5wyob2dt0tt22pxl1q4pqofb24g04/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z125fz5wyob2dt0tt22pxl1q4pqofb24g04/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z125fz5wyob2dt0tt22pxl1q4pqofb24g04/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "Americans Are The Most Spied On People In World History | The Big Picture",
+          "content": "More Spying On Citizens than in Stasi East Germany TechDirt notes: In a radio interview, Wall Street Journal reporter Julia Angwin (who’s been one of the",
+          "url": "http://www.ritholtz.com/blog/2012/12/americans-are-the-most-spied-on-people-in-world-history/?utm_source=twitterfeed&utm_medium=twitter",
+          "image": {
+            "url": "https://images3-focus-opensocial.googleusercontent.com/gadgets/proxy?url=http://www.ritholtz.com/blog/wp-content/themes/thebigpicture/images/bailout_book.png&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_h=150&resize_w=150&no_expand=1",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          },
+          "fullImage": {
+            "url": "http://www.ritholtz.com/blog/wp-content/themes/thebigpicture/images/bailout_book.png",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Mobile"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    },
+    "userId": "5075d9530f878dd35000024f",
+    "dbId": "50e08cd821ded85a53004570"
+  }
+}

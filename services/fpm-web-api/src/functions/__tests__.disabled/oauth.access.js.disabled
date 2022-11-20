@@ -1,0 +1,161 @@
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { ObjectId, User, OAuthAppUser } = require('@fpm/db');
+const {
+  testingBeforeAll,
+  testingAfterAll,
+  testFuncWithReply,
+  nockHydraAuthCodeXchange,
+  nockHydraTokenIntrospect
+} = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should xchange authorization code for access token', async () => {
+  const dbUser = await User.create({
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code
+  });
+
+  const code = nanoid(32);
+  const scope = 'drafts.write';
+  const redirectUri = 'https://friendsplus.me/callback';
+
+  const { token, clientId, clientSecret } = nockHydraAuthCodeXchange({ code, scope, redirectUri });
+  nockHydraTokenIntrospect({
+    scope,
+    token,
+    clientId,
+    clientSecret,
+    active: true,
+    userId: dbUser._id.toString()
+  });
+
+  expect(await OAuthAppUser.findOne({ clientId, uid: dbUser._id }).exec()).toBeFalsy();
+
+  await testFuncWithReply({
+    name: 'oauth.access',
+    req: {
+      qs: { code, client_id: clientId, client_secret: clientSecret, redirect_uri: redirectUri }
+    },
+    statusCode: 200,
+    res: {
+      ok: true,
+      access_token: token,
+      expires_in: 3599,
+      token_type: 'bearer',
+      scope
+    }
+  });
+
+  const dbOAuthAppUser = await OAuthAppUser.findOne({ clientId, uid: dbUser._id }).exec();
+  expect(dbOAuthAppUser).toBeTruthy();
+  expect(dbOAuthAppUser.scope).toBe(scope);
+});
+
+test('should xchange authorization code for access token with OAuthAppUser update', async () => {
+  const dbUser = await User.create({
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code
+  });
+
+  const code = nanoid(32);
+  const scope = 'drafts.write';
+  const redirectUri = 'https://friendsplus.me/callback';
+
+  const { token, clientId, clientSecret } = nockHydraAuthCodeXchange({ code, scope, redirectUri });
+  nockHydraTokenIntrospect({
+    scope,
+    token,
+    clientId,
+    clientSecret,
+    active: true,
+    userId: dbUser._id.toString()
+  });
+
+  await OAuthAppUser.create({ clientId, uid: dbUser._id, scope: 'invalid_scope' });
+
+  await testFuncWithReply({
+    name: 'oauth.access',
+    req: {
+      qs: { code, client_id: clientId, client_secret: clientSecret, redirect_uri: redirectUri }
+    },
+    statusCode: 200,
+    res: {
+      ok: true,
+      access_token: token,
+      expires_in: 3599,
+      token_type: 'bearer',
+      scope
+    }
+  });
+
+  const dbOAuthAppUser = await OAuthAppUser.findOne({ clientId, uid: dbUser._id }).exec();
+  expect(dbOAuthAppUser).toBeTruthy();
+  expect(dbOAuthAppUser.scope).toBe(scope);
+});
+
+test('should fail on user_not_found', async () => {
+  const code = nanoid(32);
+  const scope = 'drafts.write';
+  const redirectUri = 'https://friendsplus.me/callback';
+
+  const { token, clientId, clientSecret } = nockHydraAuthCodeXchange({ code, scope, redirectUri });
+  nockHydraTokenIntrospect({
+    scope,
+    token,
+    clientId,
+    clientSecret,
+    active: true,
+    userId: new ObjectId().toString()
+  });
+
+  await testFuncWithReply({
+    name: 'oauth.access',
+    req: {
+      qs: { code, client_id: clientId, client_secret: clientSecret, redirect_uri: redirectUri }
+    },
+    statusCode: 200,
+    res: {
+      ok: false,
+      error: 'user_not_found'
+    }
+  });
+});
+
+test('should fail on user_inactive', async () => {
+  const dbUser = await User.create({
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.blocked.code
+  });
+
+  const code = nanoid(32);
+  const scope = 'drafts.write';
+  const redirectUri = 'https://friendsplus.me/callback';
+
+  const { token, clientId, clientSecret } = nockHydraAuthCodeXchange({ code, scope, redirectUri });
+  nockHydraTokenIntrospect({
+    scope,
+    token,
+    clientId,
+    clientSecret,
+    active: true,
+    userId: dbUser._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'oauth.access',
+    req: {
+      qs: { code, client_id: clientId, client_secret: clientSecret, redirect_uri: redirectUri }
+    },
+    statusCode: 200,
+    res: {
+      ok: false,
+      error: 'user_inactive'
+    }
+  });
+});

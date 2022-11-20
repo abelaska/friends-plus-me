@@ -1,0 +1,414 @@
+.dotted-list {
+  color:            #606973;
+  font-weight:      300;
+  .inner {
+    position:       relative;
+  }
+  .step {
+    display:            inline-block;
+    width:              24px;
+    height:             24px;
+    background-color:   @blue;
+    color:              #fff;
+    font-size:          16px;
+    line-height:        24px;
+    text-align:         center;
+    border-radius:      12px;
+  }
+  i.fa-question-circle {
+    color:              #ccc;
+  }
+  h4 {
+    margin:         15px 0 6px 0;
+    font-size:      20px;
+
+    i {
+      font-size:    16px;
+    }
+  }
+  dl {
+    position:       relative;
+    width:          100%;
+    border-bottom:  1px solid #fff;
+    margin:         0;
+  }
+  dd {
+    position:       relative;
+    line-height:    1.2em;
+    padding:        0 5em 0 0;
+    text-align:     left;
+    border-bottom:  1px dotted #000;
+    clear:          both;
+    margin:         0 0 .4em 0;
+    min-height:     0;
+  }
+  dt {
+    position:       absolute;
+    background:     #fff;
+    padding:        0 0 1px 5px;
+    bottom:         0;
+    right:          -1px;
+    z-index:        2;
+  }
+  dd span, dd label {
+    position:       relative;
+    margin:         0;
+    top:            .25em;
+    padding:        0 5px 0 0;
+    background:     #fff;
+  }
+  dt input.input-mini {
+    width:          40px;
+    line-height:    16px;
+    font-size:      12px;
+    margin-bottom:  0;
+    padding:        2px;
+  }
+  dd label {
+    display:        inline-block;
+    margin:         0;
+    font-weight:    300;
+    line-height:    16px;
+
+    input {
+      margin:       0;
+    }
+  }
+}
+
+.main-content.profile {
+
+  .app-version {
+    font-size:        10px;
+    color:            #aaa;
+  }
+
+  .dotted-list.new-premium {
+    dt {
+      font-weight:    300;
+    }
+    dl.final-price {
+      margin-top:       10px;
+
+      dt {
+        font-size:      120%;
+        font-weight:    bold;
+      }
+    }
+  }
+
+  .account-detail {
+
+    cursor:             default;
+    margin-top:         4px;
+
+    .navbar {
+      margin-bottom:    0;
+    }
+
+    .header {
+
+      &.navbar {
+        min-height:         44px;
+      }
+
+      .image {
+        float:              left;
+
+        img {
+          .round-square-image(50px);
+        }
+      }
+
+      .detail {
+        float:            left;
+        margin-left:      16px;
+        white-space:      nowrap;
+
+        .name, .network {
+          max-width:      185px;
+          min-width:      20px;
+          overflow:       hidden;
+          text-overflow:  ellipsis;
+        }
+
+        .name {
+          padding:        8px 0 2px 0;
+          font-size:      14px;
+          line-height:    18px;
+          font-weight:    bold;
+          display:        block;
+        }
+
+        .network {
+          color:          #777;
+          font-size:      12px;
+          line-height:    18px;
+        }
+      }
+
+      .nav {
+
+        > li > a {
+          padding: 8px 0 6px;
+          margin-left: 15px;
+        }
+
+        .dropdown-menu .divider {
+          height: 1px;
+          margin: 4px 1px;
+        }
+      }
+
+      .nav.left {
+        float:        left;
+
+        > li > a {
+          margin: 0 15px 0 0;
+        }
+      }
+
+      .nav.right {
+        float:        right;
+        margin:       0 0 0 20px;
+
+        > li > a {
+          margin: 0 0 0 15px;
+        }
+
+        .dropdown-menu.right > li > a {
+          padding: 8px 10px;
+
+          .fa {
+            margin-left:    3px;
+          }
+        }
+      }
+    }
+
+    .content {
+
+      font-size:    14px;
+      padding-top:  10px;
+
+      sup {
+        color: red;
+      }
+
+      a {
+        color: @blue;
+      }
+
+      p.policy {
+        text-align:     justify;
+        padding-bottom: 10px;
+        font-size:      15px
+      }
+
+      .prices {
+
+        h2 {
+          margin:         0;
+        }
+
+        h2, .plan {
+          border-bottom:  1px solid @blue10;
+        }
+
+        .plan {
+          padding: 15px 20px 10px 20px;
+        }
+
+        .plan:last-of-type {
+          border:         0;
+          margin-bottom:  20px;
+        };
+
+        .desc {
+          margin-bottom: 15px;
+        }
+
+        .then-pay {
+          padding:   10px 10px 0 10px;
+          font-size: 85%;
+        }
+
+        .btn.subscribed {
+          padding: 15px 0 15px 0;
+        }
+
+        .btn.subscribe {
+          padding: 15px;
+        }
+
+        .btn .big {
+          font-size: 20px;
+        }
+      }
+
+      .btn-link {
+        font-weight: 200;
+      }
+
+      .paypal-info-block {
+        text-align:   center;
+
+        .alert {
+          margin:     0 0 20px 0;
+          padding:    8px;
+          font-size:  13px;
+        }
+      }
+
+      .payment-form {
+        margin-top: 0;
+      }
+
+      .pay-with.btn-group {
+
+        width:          100%;
+        margin-bottom:  10px;
+
+        .btn {
+          width:  50%;
+        }
+      }
+
+      .payment-form {
+
+        background-color:       @blue10;
+        border:                 1px solid @blue20;
+        padding:                10px;
+        margin:                 0 0 10px 0;
+        -webkit-border-radius:  3px;
+           -moz-border-radius:  3px;
+                border-radius:  3px;
+
+        label, select, input {
+          font-size:      12px;
+          margin-bottom:  3px;
+          border-color: @blue30;
+        }
+
+        .tooltip {
+
+          .tooltip-inner {
+
+            min-width: 300px;
+            max-width: 600px;
+            font-size: 13px;
+            text-align: left;
+
+            h2 {
+              font-size: 15px;
+              font-weight: bold;
+              line-height: 15px;
+              text-align: center;
+              color: #eee;
+              padding-bottom: 15px;
+              border-bottom: 1px solid #666;
+            }
+
+            li {
+              color: #eee;
+            }
+          }
+        }
+
+        .control-group {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .account-detail .header .navbar-nav {
+      margin: 0;
+    }
+  }
+}
+
+.confirm-subscription.modal-body {
+  font-size: 16px;
+}
+
+.profile-content {
+}
+
+.profile-top-menu, .account-top-menu {
+  background-color:   #fff;
+  z-index:            100;
+  margin-bottom:      20px;
+  //transition:       left 0.2s ease-in-out, left 0.2s ease-in-out;
+}
+
+.team {
+
+  h3 {
+    line-height:      18px;
+    margin:           0 0 15px 0;
+  }
+
+  a:link, a:hover, a:active, a:focus, a:visited {
+    text-decoration:  none;
+  }
+
+  a, .btn-link {
+    transition:       color 0.2s ease-in-out;
+    color:            #666;
+
+    &:hover {
+      color:          #222;
+      text-decoration:none;
+    }
+  }
+
+  .members-row {
+    margin-top:       20px;
+  }
+
+  .btn-invite {
+    margin-top:       8px;
+  }
+
+  table.members {
+    margin-bottom:    40px;
+
+    td {
+      line-height:    32px;
+      font-size:      12px;
+      padding:        4px;
+    }
+  }
+
+  table.members td.image, .assigned-accounts .image {
+    width:            48px;
+    text-align:       center;
+
+    img {
+      .round-square-image(32px);
+    }
+  }
+
+  .invite-block {
+    label {
+      font-weight:    300;
+      strong {
+        font-weight:  400;
+      }
+      strong.bold {
+        font-weight:  bold;
+      }
+    }
+  }
+
+  .assigned-accounts {
+    p {
+      margin:         0;
+    }
+    .name strong {
+      font-weight:    400;
+    }
+  }
+}

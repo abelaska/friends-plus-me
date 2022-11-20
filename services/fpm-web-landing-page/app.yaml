@@ -1,0 +1,113 @@
+runtime: go
+api_version: go1
+threadsafe: yes
+service: landing-page
+
+handlers:
+
+- url: /(premium|team|contact|help|faq|privacy|plus|share)
+  secure: always
+  script: _go_app
+
+- url: /(_ah|1)/.*
+  secure: always
+  script: _go_app
+
+- url: /(.*\.(xml))$
+  static_files: out/static/\1
+  upload: out/static/.*\.(xml)$
+  expiration: "15m"
+  http_headers:
+    Content-Type: application/xml
+    x-content-type-options: nosniff
+    x-frame-options: SAMEORIGIN
+    x-xss-protection: 1; mode=block
+
+- url: /(.*\.(txt))$
+  static_files: out/static/\1
+  upload: out/static/.*\.(txt)$
+  expiration: "15m"
+  http_headers:
+    Content-Type: text/plain
+    x-content-type-options: nosniff
+    x-frame-options: SAMEORIGIN
+    x-xss-protection: 1; mode=block
+
+- url: /(.*\.(json))$
+  static_files: out/static/\1
+  upload: out/static/.*\.(json)$
+  expiration: "15m"
+  http_headers:
+    Content-Type: application/json; charset=utf-8
+    x-content-type-options: nosniff
+    x-frame-options: SAMEORIGIN
+    x-xss-protection: 1; mode=block
+
+- url: /(XXX.html)$
+  static_files: out/static/\1
+  upload: out/static/.*\.(html)$
+  expiration: "15m"
+  http_headers:
+    strict-transport-security: max-age=31536000
+    x-content-type-options: nosniff
+    x-frame-options: SAMEORIGIN
+    x-xss-protection: 1; mode=block
+
+- url: /
+  static_files: out/index.html
+  upload: out/index.html
+  expiration: "15m"
+  http_headers:
+    Content-Type: text/html; charset=utf-8
+    x-content-type-options: nosniff
+    x-frame-options: SAMEORIGIN
+    x-xss-protection: 1; mode=block
+
+- url: /(.+)/
+  static_files: out/\1/index.html
+  upload: out/(.+)/index.html
+  expiration: "15m"
+  http_headers:
+    Content-Type: text/html; charset=utf-8
+    x-content-type-options: nosniff
+    x-frame-options: SAMEORIGIN
+    x-xss-protection: 1; mode=block
+
+- url: /([^\.]+)([^/])
+  static_files: out/\1\2/index.html
+  upload: out/(.+)
+  expiration: "15m"
+  http_headers:
+    Content-Type: text/html; charset=utf-8
+    x-content-type-options: nosniff
+    x-frame-options: SAMEORIGIN
+    x-xss-protection: 1; mode=block
+
+- url: /(.*\.(gif|png|jpg|ico|css|js|otf|eot|svg|ttf|woff|woff2))$
+  static_files: out/\1
+  upload: out/.*\.(gif|png|jpg|ico|css|js|otf|eot|svg|ttf|woff|woff2)$
+  expiration: "30d"
+  http_headers:
+    strict-transport-security: max-age=31536000
+    x-content-type-options: nosniff
+    x-frame-options: SAMEORIGIN
+    x-xss-protection: 1; mode=block
+
+- url: /.*
+  secure: always
+  script: _go_app
+
+inbound_services:
+- warmup
+
+skip_files:
+- ^node_modules$
+- ^components$
+- ^pages$
+- ^static$
+- ^server.js$
+- ^next.config.js$
+- ^package.json$
+- ^\..*$
+- ^.*\.(lock|md)$
+- ^(.*/)?.*\.sh$

@@ -1,0 +1,86 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true,
+      "bitly": true
+    },
+    "tokens": {
+      "twal": false
+    },
+    "shortener": {
+      "type": "none",
+      "bitly": {
+        "username": "abelaska",
+        "apiKey": "XXX"
+      }
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"bivPgL73S7bmqjYdi7PUoppwbqc/8IcQA6v2UYKIiXRPMccWXKsMTY0\"",
+    "title": "10 banks agree to pay $8.5B for foreclosure abuse\n\nUnder the new settlement, people who were wrongfully...",
+    "published": "2013-01-07T16:54:49.058Z",
+    "updated": "2013-01-07T16:54:49.058Z",
+    "id": "z13rg1oxgqvaylke022ftldijxzwtdlar04",
+    "url": "https://plus.google.com/102898672602346817738/posts/BnsNijApDpq",
+    "actor": {
+      "id": "102898672602346817738",
+      "displayName": "Dan McDermott",
+      "url": "https://plus.google.com/102898672602346817738",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-hpbYXldYEDQ/AAAAAAAAAAI/AAAAAAAARf4/H1HWuAULtJI/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "<b>10 banks agree to pay $8.5B for foreclosure abuse</b><br /><br />Under the new settlement, people who were wrongfully foreclosed on could receive from $1,000 up to $125,000. Failing to offer someone a loan modification would be considered a lighter offense; unfairly seizing and selling a person&#39;s home would entitle that person to the biggest payment, according to guidelines released last summer by the Office of the Comptroller of the Currency.",
+      "url": "https://plus.google.com/102898672602346817738/posts/BnsNijApDpq",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13rg1oxgqvaylke022ftldijxzwtdlar04/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13rg1oxgqvaylke022ftldijxzwtdlar04/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13rg1oxgqvaylke022ftldijxzwtdlar04/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "10 banks agree to pay $8.5B for foreclosure abuse",
+          "content": "WASHINGTON (AP) — Ten major banks and mortgage companies have agreed to pay $8.5 billion to settle complaints that they wrongfully foreclosed on homeowners who should have been allowed to stay in thei...",
+          "url": "http://bigstory.ap.org/article/10-banks-agree-pay-85b-foreclosure-abuse",
+          "image": {
+            "url": "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?url=http://bigstory.ap.org/sites/bigstory/files/styles/ap_photo_detail/public/photos/AP_RGB.png&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_h=150&resize_w=150&no_expand=1",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          },
+          "fullImage": {
+            "url": "http://bigstory.ap.org/sites/bigstory/files/styles/ap_photo_detail/public/photos/AP_RGB.png",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    },
+    "userId": "50b909df3c15fd9762000053",
+    "dbId": "50eafe08901a82c55c00077d"
+  }
+}

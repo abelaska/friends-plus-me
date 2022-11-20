@@ -1,0 +1,27 @@
+runIntegrationTests = true
+
+[db]
+  url = "mongodb://localhost/fpmtest"
+
+[google]
+  clientId = "XXX"
+  clientSecret = "XXX"
+
+[googl]
+  key = "XXX"
+  timeout = 15000
+  workers = 5
+
+[linkedin]
+  consumerKey = "XXX"
+  consumerSecret = "XXX"
+
+[log.file]
+  path = "fpm-publisher-test.log"
+[log.logentries]
+  enabled = false
+
+[redis]
+  auth_pass = ""
+  host = "localhost"
+  port = 6379

@@ -1,0 +1,89 @@
+{
+  "account": {
+    "shortener": {
+      "type": "none"
+    },
+    "id": 103778702993142591484,
+    "tokens": {
+      "livt": "anyone"
+    },
+    "url": "https://hud.iron.io/tq/projects/50124cab0008f20896004ec7/jobs/50e7151c4f870b74780db5cf"
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"sJt1VilOvxUfDlfPWeqwjvyqpgI/9xIGbFazrfpYOPrkreSvDsIhPCM\"",
+    "title": "An interesting (objective) blog post from an iPhone lover who moved to the Nexus 4. Worth a read.\n\n+Heather...",
+    "published": "2013-01-04T17:44:04.759Z",
+    "updated": "2013-01-04T17:44:04.759Z",
+    "id": "z13ffp4y3trce1to204cipfqamqucjyrso00k",
+    "url": "https://plus.google.com/112580063909169692065/posts/NsuwqBChiQm",
+    "actor": {
+      "id": "112580063909169692065",
+      "displayName": "Danie van der Merwe",
+      "url": "https://plus.google.com/112580063909169692065",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-2sc4TO3aEnE/AAAAAAAAAAI/AAAAAAAAeq0/cnJmdvAVjek/photo.jpg?sz=50"
+      }
+    },
+    "verb": "share",
+    "object": {
+      "objectType": "activity",
+      "id": "z12ayptglsu0ix0qb04cgpji5obpc1fpufw",
+      "actor": {
+        "id": "108489782256316824947",
+        "displayName": "Martijn van der Meulen",
+        "url": "https://plus.google.com/108489782256316824947",
+        "image": {
+          "url": "https://lh5.googleusercontent.com/-KFZPgY2_NFM/AAAAAAAAAAI/AAAAAAAAAAA/byfzO-cszB0/photo.jpg?sz=50"
+        }
+      },
+      "content": "An interesting (objective) blog post from an iPhone lover who moved to the Nexus 4. Worth a read.<br /><br /><span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/110289555232886706044\" class=\"proflink\" oid=\"110289555232886706044\">Heather Jones</a></span> You moved from the iPhone to the Nexus 4. How does it compare?<br /><span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/112587204667754240077\" class=\"proflink\" oid=\"112587204667754240077\">Ron Festejo</a></span> Tempted?",
+      "url": "https://plus.google.com/108489782256316824947/posts/aHmRoq1HVhE",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13ffp4y3trce1to204cipfqamqucjyrso00k/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13ffp4y3trce1to204cipfqamqucjyrso00k/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13ffp4y3trce1to204cipfqamqucjyrso00k/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "An iPhone lover's confession: I switched to the Nexus 4. Completely.",
+          "content": "First things first, I'd love to get in touch on Google+ and Twitter (@ralf). Over the past few years I've invested a lot into Apple products and services.",
+          "url": "http://www.24100.net/2013/01/an-iphone-lovers-confession-i-switched-to-the-nexus-4-completely/",
+          "image": {
+            "url": "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?url=http://www.24100.net/wp-content/uploads/2013/01/n4-google-now.png&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_h=150&resize_w=150&no_expand=1",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          },
+          "fullImage": {
+            "url": "http://www.24100.net/wp-content/uploads/2013/01/n4-google-now.png",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "annotation": "<b>An iPhone lover’s confession: I switched to the Nexus 4. Completely.</b><br><br>A very interesting read... key for him seems to be the big advances with Jelly Bean and the  use of a stock Google Nexus phone versus another manufacturer&#39;s interface... I&#39;d venture to say though that a Galaxy S3 is still fine as you can use the Samsung Touchwiz or easily replace it with many top notch launchers such as Apex or Nova... For me the S Pen and great camera functions on the Samsung are keeping me hooked on the Samsung software for now...<br><br>The one thing he misses though is iMessenger... now this is the same reason why I have resisted using the Samsung message app (whatever it&#39;s name is) as I don&#39;t want to be locked into one manufacturer so I&#39;d rather use GMail, or WhatsApp, etc that I know will work on a different device (even an iPhone if I choose another one down the line)...<br><br>The link is going viral so you may need to try a few times before the page loads...",
+    "provider": {
+      "title": "Reshared Post"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    },
+    "userId": "50c5728e0c1d8aa90400904c",
+    "dbId": "50e7151c21ff03ef20000e15"
+  }
+}

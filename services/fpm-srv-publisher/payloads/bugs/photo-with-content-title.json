@@ -1,0 +1,76 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"IvoOG8kWYW4qgwO0sQ5WhoG33pY/TVgEjDy01XtE276cvFOexkA6J3c\"",
+    "title": "The Dachau camp library was accessible to all prisoners except Jews and those in the isolation and punishment...",
+    "published": "2013-08-03T18:03:59.804Z",
+    "updated": "2013-08-03T18:03:59.804Z",
+    "id": "z13bxncplrm5gplf323bx35hyvahft3fu",
+    "url": "https://plus.google.com/115157882097089845153/posts/HehTFdtfMyp",
+    "actor": {
+      "id": "115157882097089845153",
+      "displayName": "Mitch Wagner",
+      "url": "https://plus.google.com/115157882097089845153",
+      "image": {
+        "url": "https://lh6.googleusercontent.com/-DgGWPlzxwiY/AAAAAAAAAAI/AAAAAAAASQM/LK40R9GzZTk/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "The Dachau camp library was accessible to all prisoners except Jews and those in the isolation and punishment blocks.",
+      "url": "https://plus.google.com/115157882097089845153/posts/HehTFdtfMyp",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13bxncplrm5gplf323bx35hyvahft3fu/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13bxncplrm5gplf323bx35hyvahft3fu/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13bxncplrm5gplf323bx35hyvahft3fu/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "",
+          "content": "bookpatrol:\n“ Dachau Concentration Camp Library\n”",
+          "url": "http://mostlysignssomeportents.tumblr.com/post/57224532827",
+          "image": {
+            "url": "https://lh3.googleusercontent.com/proxy/TzXJGLC2E0bmKqyztUtyIcGsJrTB5Dg1OsNui0h0ILBgnUKNCIiVyowK429nuUQbVqiuDprMO92ssgtnZW7ZE0WvY705oz4HMRIjJn-RWUN9BbTUEVLX5rX7RTBFUORtl5IpazY6WJkudr7CYurL=w120-h120",
+            "type": "image/jpeg",
+            "height": 120,
+            "width": 120
+          },
+          "fullImage": {
+            "url": "http://31.media.tumblr.com/fc561440337abb70edc89a87950133af/tumblr_mqv7liJXbK1qz56bgo1_1280.jpg",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Mobile"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

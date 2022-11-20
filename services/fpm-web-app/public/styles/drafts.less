@@ -1,0 +1,189 @@
+.drafts-page, .posts-page {
+
+	.page-title {
+		margin-top:				20px;
+	}
+
+	.draft, .post {
+
+		@borderColor:			#eee;
+		@lightColor:			#999;
+		@darkColor:	  		#333;
+
+		position:					relative;
+		border-top:     	1px solid @borderColor;
+		padding:					10px 0 35px 0;
+
+		.ago, .repost, .repost a {
+			color:					@lightColor;
+			font-size:			13px;
+		}
+		.repost a:hover {
+			color:					@darkColor;
+		}
+		.message, .message * {
+			color:					#000;
+			font-weight:		400;
+		}
+		.message {
+			padding-top:		10px;
+		}
+		.post-url {
+			text-decoration: none;
+			color:					@lightColor;
+		}
+		.post-url:hover {
+			color:					@darkColor;
+		}
+		.attachment-link {
+			display:				inline-block;
+			margin-left:		5px;
+			color:					@lightColor;
+			font-weight:		300;
+
+			.fa {
+				margin-right:	5px;
+			}
+		}
+		.reschedule-post {
+			white-space: 		nowrap;
+		}
+		a.attachment-link, a.attachment-link:hover, a.attachment-link:active {
+			text-decoration:none;
+		}
+		.image {
+			text-align:			right;
+			margin-bottom:	10px;
+			padding: 				0 10px;
+
+			img {
+				max-width:		100px;
+				max-height:		100px;
+	      .box-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+			}
+		}
+		.editor {
+			margin-bottom:		10px;
+		}
+		.draft-tools, .post-list-tools {
+			position:					absolute;
+			right:						15px;
+			opacity:					0;
+			transition:       opacity 0.1s ease-in-out;
+
+			a {
+				text-decoration:none;
+				margin-left:		10px;
+			}
+		}
+
+		.draft-tools, .post-list-tools, .ago {
+			.fa, a:not(.label) {
+				color:					#737373;
+			}
+			a:not(.label) {
+				padding-bottom: 2px;
+				//border-bottom: 	2px solid transparent;				
+			}
+			.fa:hover, a:not(.label):hover, a:not(.label):hover .fa {
+				color:					#222;
+				//border-color: 	#427fed;
+			}
+		}
+
+		.draft-tools.top, .post-list-tools.top {
+			top:						10px;
+
+			.fa {
+				float:				right;
+				font-size:		24px;
+			}
+		}
+		.draft-tools.bottom, .post-list-tools.bottom {
+			bottom:					10px;
+		}
+
+		&.not-editing {
+			transition:       background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+		}
+		&.not-editing:hover {
+			.draft-tools, .post-list-tools {
+				opacity:				1;
+			}
+			.image {
+				opacity:				0.2;
+			}
+		}
+	}
+	.post.not-editing {
+		//cursor:						move;
+	}
+	.draft.not-editing {
+		cursor:						pointer;
+	}
+	.draft:first-child, .post:first-child {
+		border-top:     	1px solid transparent;
+	}
+}
+
+.posts-page {
+
+	a .fa-refresh {
+		color:									#737373;
+	}
+	a:hover .fa-refresh {
+		color:									#222;
+	}
+
+	.days {
+		.day {
+			margin: 							0;
+			.day-title {
+				padding: 						0 0 15px;
+				font-size: 					24px;
+				font-weight: 				400;
+			}
+		}
+	}
+
+	.post-list-content {
+		overflow: 							hidden;
+
+		.post-list-account, .post-list-message {
+			display: 							table-cell;
+			vertical-align: 			top;
+		}
+		.post-list-message {
+			width:								100%;
+
+			.message {
+				transition:       	background-color 0.1s ease-in-out;
+
+				p {
+					margin:						0;
+					padding: 					0 0 10px;
+				}
+			}
+			.message.editable {
+				cursor:							text;
+			}
+			.message.editable:hover {
+				background-color:		rgba(0,0,0,0.03);
+			}
+		}
+
+		.post-list-account {
+			width: 								45px;
+			padding-right:				10px;
+			text-align:						center;
+
+			.destination {
+				opacity:            1;
+			}
+
+			.ago {
+				margin:							5px 0;
+			}
+		}
+	}
+}

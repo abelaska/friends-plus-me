@@ -1,0 +1,64 @@
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { User, OAuthAppUser } = require('@fpm/db');
+const {
+  testingBeforeAll,
+  testingAfterAll,
+  testFuncWithReply,
+  nockHydraTokenIntrospect
+} = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should deauthorize application', async () => {
+  const dbUser = await User.create({
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code
+  });
+
+  const { token, clientId } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  await OAuthAppUser.create({ clientId, uid: dbUser._id, scope: 'invalid_scope' });
+
+  await testFuncWithReply({
+    name: 'oauth.deauthorize',
+    req: { qs: { access_token: token } },
+    statusCode: 200,
+    res: {
+      ok: true,
+      deauthorized: true
+    }
+  });
+
+  expect(await OAuthAppUser.findOne({ clientId, uid: dbUser._id }).exec()).toBeFalsy();
+});
+
+test('should not deauthorize application', async () => {
+  const dbUser = await User.create({
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    state: States.user.enabled.code
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'drafts.write',
+    userId: dbUser._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'oauth.deauthorize',
+    req: { qs: { access_token: token } },
+    statusCode: 200,
+    res: {
+      ok: true,
+      deauthorized: false
+    }
+  });
+});

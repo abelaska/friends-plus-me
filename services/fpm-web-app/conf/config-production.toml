@@ -1,0 +1,130 @@
+[db]
+  url = "mongodb://api:XXX@db.c.fpm-application.internal/fpm"
+
+# [google.api]
+#   # GCE Europe
+#   proxy = "http://google-api-proxy.c.fpm-application.internal"
+
+[gcloud.key]
+  filename = "/app/services/fpm-web-app/conf/FPM - Cluster-XXX.json"
+
+[extension]
+  id = "XXX"
+
+[cookie]
+  secret = "XXX"
+
+[email]
+  debug = false
+
+[recaptcha]
+  secret = "XXX"
+
+[affiliate]
+  sandbox = false
+  url = "https://app.friendsplus.me/1/affiliate/XXX"
+
+[redis]
+  auth_pass = "XXX"
+  host = "redis-redis.default.svc.cluster.local"
+  port = 6379
+
+[analytics.ga]
+  domain = "app.friendsplus.me"
+  token = "UA-XXX-10"
+
+[braintree]
+  environment = "Production"
+[braintree.merchant.default]
+  merchantId = "XXX"
+  privateKey = "XXX"
+  publicKey = "XXX"
+[braintree.merchant.default.account]
+  default = "USD"
+[braintree.merchant.old]
+  merchantId = "XXX"
+  privateKey = "XXX"
+  publicKey = "XXX"
+[braintree.merchant.old.account]
+  default = "USD"
+
+[cdn]
+  url = "https://cdn.friendsplus.me"
+
+[http]
+  bind = "0.0.0.0"
+  port = 8080
+[http.api]
+  url = "https://app.friendsplus.me"
+[http.api.public]
+  url = "https://api.friendsplus.me"
+[http.landingpage]
+  force = "https://app.friendsplus.me/force"
+  signin = "https://app.friendsplus.me/signin"
+  url = "https://friendsplus.me"
+[http.ui]
+  url = "https://app.friendsplus.me"
+[http.ui.redirect]
+  url = "https://app.friendsplus.me/?url="
+
+[log.logentries]
+  enabled = false
+  token = "XXX"
+
+[sendy]
+  enabled = true
+
+[linkedin]
+  apiKey = "XXX"
+  secretKey = "XXX"
+
+[facebook]
+  clientId = "XXX"
+  clientSecret = "XXX"
+
+[postsReady]
+  cron = "0,30 * * * * * *"
+
+[oauth.tokens.store.crypto]
+  key = "XXX"
+  iv = "XXX"
+
+[auth0]
+  clientId = "XXX"
+  clientSecret = "XXX-XXX-XXX-XXX"
+
+[grant.server]
+  host = "app.friendsplus.me"
+[grant.facebook]
+  key = "XXX"
+  secret = "XXX"
+[grant.google]
+  key = "XXX-XXX.apps.googleusercontent.com"
+  secret = "XXX-XXX"
+[grant.linkedin]
+  key = "XXX"
+  secret = "XXX"
+[grant.pinterest]
+  key = "XXX"
+  secret = "XXX"
+[grant.twitter]
+  key = "XXX"
+  secret = "XXX"
+[grant.tumblr]
+  key = "XXX"
+  secret = "XXX"
+
+[quickbooks]
+  companyId = "XXX"
+  clientId = "XXX"
+  clientSecret = "XXX"
+  callbackUrl = "https://quickbooks.friendsplus.me/callback"
+
+[mobileproxy]
+  url = "http://mobile-proxy"
+
+[login]
+  url = "https://login.friendsplus.me"
+
+[api]
+  url = "https://api.friendsplus.me"

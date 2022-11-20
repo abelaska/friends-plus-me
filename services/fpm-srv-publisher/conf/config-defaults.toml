@@ -1,0 +1,226 @@
+[db.options]
+  useMongoClient = true
+  native_parser = true
+  poolSize = 32
+  reconnectInterval = 2000
+  reconnectTries = 180000000
+  autoReconnect = true
+  keepAlive = 120
+  noDelay = true
+[db.options.config]
+  autoIndex = false
+
+[defaults.network]
+  timeout = 20000
+[defaults.onUncaughtException]
+  code = 1
+  exit = false
+
+[app]
+  maxMemory = 1500
+
+[lock.account]
+  ttl = 5000
+  maxAttempts = 40
+  wait = 250
+
+[bitly]
+  timeout = 15000
+  workers = 5
+
+[googl]
+  key = "XXX"
+  timeout = 15000
+  workers = 5
+[googl.retry]
+  timeout = 5000
+  wait = 1000
+
+[cluster.notifier]
+  clearCron = "0 */5 * * * *"
+  notifyCron = "*/10 * * * * *"
+  removeDeadAfterSeconds = 86400
+  state1afterSeconds = 180
+  state2afterSeconds = 600
+
+[gcloud]
+  projectid = "friendspme"
+
+[image.proxy]
+  url = "https://image-proxy-dot-fpm-application.appspot.com"
+  token = "XXX"
+  timeout = 60000
+[image.upload]
+  projectId = "fpm-application"
+  bucket = "fpm-user-assets-upload"
+  uploadUrlTTL = 60000 # 1h
+
+[facebook]
+  timeout = 60000
+
+[pinterest]
+  timeout = 60000
+  consumerKey = "XXX"
+  consumerSecret = "XXX"
+  scope = ["read_public","write_public"]
+
+[google]
+  timeout = 30000
+[google.refresh]
+  timeout = 3000
+[google.fetch]
+  timeout = 50000
+  batchingIntervalSeconds = 10
+  exitAfterSecondsWithoutActivity = 600
+  firstFetchActivities = 50
+  minBatchSize = 20
+  nextFetchActivities = 25
+[google.fetch.activityLockCache.evictor]
+  intervalSecs = 30
+  maxAgeSecs = 12600
+[google.fetch.activityLockCache.expiration]
+  initialSecs = 300
+  nextSecs = 11700
+[google.refreshToken]
+  maxTries = 1
+  timeout = 50000
+
+[log.file]
+  level = "debug"
+  maxFiles = 25
+  maxSize = 10485760
+[log.logentries]
+  level = "info"
+  secure = true
+
+[stats]
+  enabled = true
+[stats.http]
+  port = 10000
+[system]
+  version = 3
+
+[tumblr]
+  consumerKey = "XXX"
+  consumerSecret = "XXX"
+  timeout = 180000
+
+[twitter]
+  consumerKey = "XXX"
+  consumerSecret = "XXX"
+  timeout = 120000
+[twitter.imageFetch]
+  timeout = 80000
+
+[linkedin]
+  timeout = 30000
+
+[agents.shortener]
+  secure = false
+  maxSockets = 500
+  maxFreeSockets = 100
+  keepAlive = false
+  keepAliveMsecs = 30000
+
+[agents.google]
+  secure = true
+  maxSockets = 1000
+  maxFreeSockets = 200
+  keepAlive = false
+  keepAliveMsecs = 30000
+
+[agents.bitly]
+  secure = true
+  maxSockets = 200
+  maxFreeSockets = 50
+  keepAlive = false
+  keepAliveMsecs = 30000
+
+[agents.twitter]
+  secure = true
+  maxSockets = 200
+  maxFreeSockets = 50
+  keepAlive = false
+  keepAliveMsecs = 30000
+
+[agents.facebook]
+  secure = true
+  maxSockets = 200
+  maxFreeSockets = 50
+  keepAlive = false
+  keepAliveMsecs = 30000
+
+[agents.linkedin]
+  secure = true
+  maxSockets = 200
+  maxFreeSockets = 50
+  keepAlive = false
+  keepAliveMsecs = 30000
+
+[agents.tumblr]
+  secure = true
+  maxSockets = 200
+  maxFreeSockets = 50
+  keepAlive = false
+  keepAliveMsecs = 30000
+
+[post]
+  # timeout ulozeni postu do databaze (ms)
+  storeTimeout = 10000
+  # maximalni pocet pokusu o publikovani jednoho postu, pak je vyzadovan manualni restart
+  maxTries = 9
+  # pocatecni hodnota pro delay v sekundach pro dalsi pokus
+  nextTryOffset = 0
+  # exponent, delay = nextTryOffset + pow(tries, lockTimeBase) * 60
+  lockTimeBase = 2.4
+  # kolik maximalne muze byt postu pro kazdy ucet v odpovedi na pozadavek pro ziskani postu k publikovani
+  maxPostsPerAccountPerFetch = 1
+[post.network.instagram.profile]
+  # delays in hours 0.05, 0.10, 0.19, 1, 7.05, 37.05, 148.37
+  maxTries = 7
+  nextTryOffset = 180
+  lockTimeBase = 7.2
+[post.network.google.circle]
+  maxTries = 30
+  lockTimeBase = 1.3
+[post.network.google.profile]
+  maxTries = 30
+  lockTimeBase = 1.3
+[post.network.google.community]
+  maxTries = 30
+  lockTimeBase = 1.3
+[post.network.google.collection]
+  maxTries = 30
+  lockTimeBase = 1.3
+
+[publisher]
+  # pocet konkurentne zpracovavanych postu per publisher
+  workers = 4
+  # ms interval mezi fetchy novych postu k publikovani
+  delay = 5000
+  # maximapni pocet postu, ktere se maji kazdych {delay} ziskat z db k publikovani
+  maxPostsPerRun = 20
+[publisher.linkshortener]
+  # regExp array
+  skip = ["youtube\\..+\\/watch\\?","youtube\\..+\\/attribution_link\\?","youtube\\..+\\/embed\\/","\\/\\/youtu\\.be\\/"]
+
+[convertor.video]
+  # seznam regularnich vyrazu pro identifikaci video url
+  urls = ["youtube\\..+\\/watch\\?","youtube\\..+\\/attribution_link\\?","youtube\\..+\\/embed\\/","\\/\\/youtu\\.be\\/","\\/\\/vimeo\\.com\\/"]
+  youtube = ["youtube\\..+\\/watch\\?","youtube\\..+\\/attribution_link\\?","youtube\\..+\\/embed\\/","\\/\\/youtu\\.be\\/"]
+
+[intercom]
+  token = "XXX"
+
+[email]
+  bcc = ""
+  sender = "Friends+Me <please-reply@friendsplus.me>"
+[email.team.invite]
+  bcc = ""
+  sender = "Friends+Me <team-invitation@friendsplus.me>"
+[email.invoice]
+  sender = "Friends+Me Billing <support@friendsplus.me>"
+  subject = "Friends+Me Invoice"
+[email.transports.mailgun.auth]
+  api_key = "key-XXX"
+  domain = "friendsplus.me"

@@ -1,0 +1,72 @@
+<div ng-controller="AccountsCtrl">
+  <md-nav-bar md-selected-nav-item="currentState" nav-bar-aria-label="navigation links">
+    <md-nav-item md-nav-sref="profiles.pid.queues.aid.queue" sref-opts="currentParams" name="profiles.pid.queues.aid.queue" ng-if="isSchedulingSupported(account) && account.state != states.account.blocked.code">
+      <md-tooltip ng-if="account.state==states.account.disabled.code">This Queue is Paused</md-tooltip>
+      <span ng-if="account.state == states.account.disabled.code">!</span>
+      Queue
+      <span md-colors="::{background: 'orange-800'}" class="badge" style="margin-left:5px;min-width: 35px">
+        <md-tooltip>Queue Size</md-tooltip>
+        {{account.queue && account.queue.size != null ? (account.queue.size > 99 ? '99+' : account.queue.size) : '…'}}
+      </span>
+    </md-nav-item>
+    <md-nav-item md-nav-sref="profiles.pid.queues.aid.timeline" sref-opts="currentParams" name="profiles.pid.queues.aid.timeline" ng-if="isPublishingAvailable(account)">
+      Timeline
+    </md-nav-item>
+    <md-nav-item hide-xs md-nav-sref="profiles.pid.queues.aid.scheduling" sref-opts="currentParams" name="profiles.pid.queues.aid.scheduling" ng-if="isSchedulingSupported(account)">
+      Schedule
+    </md-nav-item>
+    <md-nav-item hide-xs md-nav-sref="profiles.pid.queues.aid.setup" sref-opts="currentParams" name="profiles.pid.queues.aid.setup">
+      Settings
+    </md-nav-item>
+    <md-nav-item hide-xs hide-sm md-nav-sref="profiles.pid.queues.aid.shortening" sref-opts="currentParams" name="profiles.pid.queues.aid.shortening">
+      Link Shortening
+    </md-nav-item>
+    <md-menu style="padding: 3px 0px;">
+      <md-button aria-label="Queues" class="md-icon-button" ng-click="$mdMenu.open($event)">
+        <md-icon md-menu-origin md-svg-icon="/images/icons/dots-vertical.svg"></md-icon>
+      </md-button>
+      <md-menu-content width="4" style="max-height: 400px;">
+        <md-menu-item hide-gt-xs ng-if="isSchedulingSupported(account)">
+          <md-button ng-href="teams/{{currentParams.pid}}/queues/{{currentParams.aid}}/scheduling">
+            <md-icon md-svg-icon="/images/icons/calendar-clock.svg"></md-icon>
+            Schedule
+          </md-button>
+        </md-menu-item>
+        <md-menu-item hide-gt-xs>
+          <md-button ng-href="teams/{{currentParams.pid}}/queues/{{currentParams.aid}}/setup">
+            <md-icon md-svg-icon="/images/icons/settings.svg"></md-icon>
+            Settings
+          </md-button>
+        </md-menu-item>
+        <md-menu-item hide-gt-sm>
+          <md-button ng-href="teams/{{currentParams.pid}}/queues/{{currentParams.aid}}/shortening">
+            <md-icon md-svg-icon="/images/icons/arrow-compress.svg"></md-icon>
+            Link Shortening
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-href="{{account.url}}" target="_blank">
+            <md-icon md-svg-icon="/images/icons/link-variant.svg"></md-icon>
+            Link
+          </md-button>
+        </md-menu-item>
+        <md-menu-divider ng-if="account.state != states.account.blocked.code && isReconnectVisible(account)"></md-menu-divider>
+        <md-menu-item ng-if="account.state != states.account.blocked.code && isReconnectVisible(account)">
+          <md-button ng-href="teams/{{currentParams.pid}}/queues/{{currentParams.aid}}/reconnect">
+            <md-icon md-svg-icon="/images/icons/autorenew.svg"></md-icon>
+            Reconnect Queue
+          </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+          <md-button ng-click="removeAccount(account)">
+            <md-icon md-svg-icon="/images/icons/delete.svg"></md-icon>
+            Delete Queue
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </md-nav-bar>
+
+  <div ui-view class="second-level accounts" />
+</div>

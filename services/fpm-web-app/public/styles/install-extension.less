@@ -1,0 +1,53 @@
+.extension-installed {
+	display:					inline-block;
+	color:						#ffffff;
+	background-color:	#5cb85c;
+	padding:					10px 16px;
+	font-size:				18px;
+	line-height:			1.33;
+	border-radius:		6px;
+}
+
+.install-extension {
+
+	.extension-status {
+
+		margin-top: 				10px;
+
+		.dotted-list {
+
+			h4 {
+				margin-top: 		30px;
+
+				.count {
+					font-weight:	bold;
+				}
+				.detail {
+					float:				right;
+				}
+			}
+			dt.ok, h4 .detail.ok, h4 .count.ok {
+				color:					@brand-success;
+			}
+			dt.error, h4 .detail.error, h4 .count.error {
+				color:					@brand-danger;
+			}
+			dd {
+				a {
+					color:				#666;
+				}
+				a:hover {
+					color:				#000;
+				}
+				img {
+					background-color:	#fff;
+					margin-right:	5px;
+					.round-square-image(14px);
+				}
+			}
+			.alert {
+				margin-bottom:	0;
+			}
+		}
+	}
+}

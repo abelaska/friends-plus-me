@@ -1,0 +1,35 @@
+<div ng-controller="AdminSaaSCtrl">
+  <div class="row">
+    <div class="col-md-12" style="overflow-y:hidden">
+      <table class="table table-hover table-responsive" style="background:white;font-size:12px">
+        <thead>
+          <tr>
+            <th ng-repeat="col in columns" title="{{col.title}}">{{colName(col)}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="month in months">
+            <td ng-repeat="col in columns">{{colValue(month, col)}}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row" ng-repeat="plan in plans">
+    <div class="col-md-12" style="overflow-y:hidden">
+      <h3>{{plan.plan}} / {{plan.interval}} ${{pricingPlans[plan.plan].intervals[plan.interval].pricePerMonth/100}}/mo</h3>
+      <table class="table table-hover table-responsive" style="background:white;font-size:12px">
+        <thead>
+          <tr>
+            <th ng-repeat="col in columns" title="{{col.title}}">{{colName(col)}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="month in plan.metrics">
+            <td ng-repeat="col in columns">{{colValue(month, col)}}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

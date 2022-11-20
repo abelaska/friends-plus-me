@@ -1,0 +1,92 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"KWuGbDKa9n7BACsiv34_Xr85BJM/f50JsHqIxqOcJOypI3JGSSbkHiI\"",
+    "title": "",
+    "published": "2015-03-26T07:04:34.229Z",
+    "updated": "2015-03-26T07:04:34.229Z",
+    "id": "z13fevbg0taqvvcem23hh1t5uuuuuxpwd04",
+    "url": "https://plus.google.com/+АлексейВостриков/posts/Em3L53mtBNu",
+    "actor": {
+      "id": "108038098325546396229",
+      "displayName": "Алексей Востриков",
+      "url": "https://plus.google.com/108038098325546396229",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-l--qyRlAYZQ/AAAAAAAAAAI/AAAAAAAAIRo/RZuVn8INy2w/photo.jpg?sz=50"
+      }
+    },
+    "verb": "share",
+    "object": {
+      "objectType": "activity",
+      "id": "z12ds3fxgvytxzny404cfblylxzvw3ujo0s",
+      "actor": {
+        "id": "108188812033632852631",
+        "displayName": "Майя Авдеева",
+        "url": "https://plus.google.com/108188812033632852631",
+        "image": {
+          "url": "https://lh3.googleusercontent.com/-HjvujBG99ng/AAAAAAAAAAI/AAAAAAAAELc/D9IQFXTKyQw/photo.jpg?sz=50"
+        }
+      },
+      "content": "",
+      "url": "https://plus.google.com/108188812033632852631/posts/ZtVPgi8Cbri",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13fevbg0taqvvcem23hh1t5uuuuuxpwd04/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13fevbg0taqvvcem23hh1t5uuuuuxpwd04/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 1,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z13fevbg0taqvvcem23hh1t5uuuuuxpwd04/people/resharers"
+      },
+      "statusForViewer": {
+        "resharingDisabled": false,
+        "canComment": false,
+        "canPlusone": true,
+        "isPlusOned": false,
+        "canUpdate": false
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "Можно ли читать всё подряд?",
+          "content": "Уэбстер Томас «Печаль» 1842 Можно ли читать всё подряд? Мы стараемся для еды выбирать полезные продукты, во время ремонта квартиры стараемся по минимуму…",
+          "url": "http://pyonerka.livejournal.com/110291.html",
+          "image": {
+            "url": "https://lh3.googleusercontent.com/proxy/Bapgjp_XlAewhpm9fgdR58nQMpME_4-KJ4oK-aFTOyvKEEM-jotHhAtu85vyefcMdYiyNqeUN9e3YyevA0L4BMwWpDJBTqiPFBOC6YuKjpLJU5SK=w506-h303",
+            "type": "image/jpeg",
+            "height": 303,
+            "width": 506
+          },
+          "fullImage": {
+            "url": "http://ic.pics.livejournal.com/pyonerka/53523689/37770/37770_900.jpg",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Reshared Post"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

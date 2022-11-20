@@ -1,0 +1,96 @@
+{
+  "account": {
+    "_id": "1",
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "access": {
+      "items": [
+        {
+          "type": "public"
+        },
+        {
+          "id": "100178862812199164136",
+          "type": "person"
+        }
+      ],
+      "kind": "plus#acl"
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "crosspostSource": "2379789410419391806",
+    "annotation": "<a class='ot-hashtag' href='https://plus.google.com/s/%23politics'>#politics</a> <a class='ot-hashtag' href='https://plus.google.com/s/%23romney'>#romney</a>",
+    "object": {
+      "attachments": [
+        {
+          "url": "http://www.guardian.co.uk/business/economics-blog/2012/sep/03/mitt-romney-tax-avoidance-society",
+          "content": "If politicians and those around them do not pay their fair share of taxes, how can we expect that anyone else will?",
+          "displayName": "Mitt Romney&#39;s tax avoidance weakens bonds of American society",
+          "objectType": "article"
+        },
+        {
+          "fullImage": {
+            "type": "image/jpeg",
+            "url": "http://www.guardian.co.uk/business/economics-blog/2012/sep/03/mitt-romney-tax-avoidance-society"
+          },
+          "image": {
+            "type": "image/jpeg",
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=https%3A%2F%2Fstatic-secure.guim.co.uk%2Fsys-images%2FBusiness%2FPix%2Fpictures%2F2012%2F9%2F3%2F1346674158488%2FMitt-Romney-004.jpg"
+          },
+          "objectType": "photo"
+        }
+      ],
+      "resharers": {
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12lg15wruf2xhgng23uhd1axvikf1xq304/people/resharers",
+        "totalItems": 0
+      },
+      "plusoners": {
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12lg15wruf2xhgng23uhd1axvikf1xq304/people/plusoners",
+        "totalItems": 0
+      },
+      "replies": {
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12lg15wruf2xhgng23uhd1axvikf1xq304/comments",
+        "totalItems": 0
+      },
+      "url": "https://plus.google.com/113630612440279083293/posts/XuC1b6xwWfE",
+      "content": "Mitt Romney&#39;s income taxes have become a major issue in the American presidential campaign. Is this just petty politics, or does it really matter? In fact, it does matter – and not just for Americans.<br /><br />Romney may not be a tax evader; only a thorough investigation by the US Internal Revenue Service could reach that conclusion. But, given that the top US marginal income-tax rate is 35%, he certainly is a tax avoider on a grand scale. And, of course, the problem is not just Romney; writ large, his level of tax avoidance makes it difficult to finance the public goods without which a modern economy cannot flourish.<br /><br />But, even more important, tax avoidance on Romney&#39;s scale undermines belief in the system&#39;s fundamental fairness, and thus weakens the bonds that hold a society together.<br />Collapse this post<br /><br /><a href=\"http://www.guardian.co.uk/business/economics-blog/2012/sep/03/mitt-romney-tax-avoidance-society\" >http://www.guardian.co.uk/business/economics-blog/2012/sep/03/mitt-romney-tax-avoidance-society</a>",
+      "actor": {
+        "image": {
+          "url": "https://lh4.googleusercontent.com/-tjqRWyiS-hM/AAAAAAAAAAI/AAAAAAAAAAA/5_kNTphddHo/photo.jpg?sz=50"
+        },
+        "url": "https://plus.google.com/113630612440279083293",
+        "displayName": "Pamela Zuppo",
+        "id": "113630612440279083293"
+      },
+      "id": "z12yslbp4wi5frrps04cfb4bjxzoifdpynw0k",
+      "objectType": "activity"
+    },
+    "verb": "share",
+    "actor": {
+      "image": {
+        "url": "https://lh4.googleusercontent.com/-5quSHm1TKA8/AAAAAAAAAAI/AAAAAAAAAAA/M63uAmcoNgg/photo.jpg?sz=50"
+      },
+      "url": "https://plus.google.com/100178862812199164136",
+      "name": {
+        "givenName": "Jacob",
+        "familyName": "Moen"
+      },
+      "displayName": "Jacob Moen",
+      "id": "100178862812199164136"
+    },
+    "url": "https://plus.google.com/100178862812199164136/posts/K8aQwatLeEu",
+    "id": "z12lg15wruf2xhgng23uhd1axvikf1xq304",
+    "updated": "2012-09-15T19:53:05.779Z",
+    "published": "2012-09-15T19:53:05.779Z",
+    "title": "Reshared post from Pamela Zuppo\n \n\nMitt Romney's income taxes have become a major issue in the Am...",
+    "etag": "\"PUsAXp2BLQtA2N3E4rX4j93V7TM/M2PVjIZz_mLdqa0_NLIrxgnI7KM\"",
+    "kind": "plus#activity"
+  }
+}

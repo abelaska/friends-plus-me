@@ -1,0 +1,26 @@
+{ statusCode: 401,
+  error: 'Could not authenticate with OAuth.' }
+
+{ statusCode: 401,
+  errors: [{message:'Could not authenticate you', code:32}] }
+
+{ statusCode:401,
+  errors: [{message:'Invalid or expired token',code:89}]}
+
+{ statusCode: 403,
+  error: 'Status is a duplicate.' }
+
+{ statusCode: 403,
+  error: 'Status is over 140 characters.' }
+
+{ statusCode: 403,
+  error: 'Status contains malware.' }
+
+{ statusCode: 403,
+  error: 'User is over daily status update limit.' }
+
+{ statusCode: 500,
+  errors: [{message: 'Internal error', code:131}] }
+
+{ statusCode": 503,
+  errors: [{message: 'Over capacity', code: 130}] }

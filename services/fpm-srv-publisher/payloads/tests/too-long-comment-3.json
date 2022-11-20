@@ -1,0 +1,77 @@
+{
+  "kind": "plus#activity",
+  "etag": "\"TJ4YjXUi1XCM_G3FJ4uiPX8m6Fk/2Rv1yiCIldWaahCzjVJjfyduNNc\"",
+  "title": "PARA REFLEXIONAR.!!\nTres albañiles estaban desempeñando la misma tarea, cuando un distraído transeúnte...",
+  "published": "2013-01-23T14:44:18.324Z",
+  "updated": "2013-01-23T14:44:18.324Z",
+  "id": "z13szvg5yozftlu2r22bwf1ixsr3ddhje04",
+  "url": "https://plus.google.com/105941827808715346527/posts/FguYKmEpF2Q",
+  "actor": {
+    "id": "105941827808715346527",
+    "displayName": "Rafa Montoya",
+    "url": "https://plus.google.com/105941827808715346527",
+    "image": {
+      "url": "https://lh4.googleusercontent.com/-_3z_RmojHMo/AAAAAAAAAAI/AAAAAAADq8Q/eLzOoB9sqqo/photo.jpg?sz=50"
+    }
+  },
+  "verb": "share",
+  "object": {
+    "objectType": "activity",
+    "id": "z13wfrhyyy3xffeys04cfvvodobovvoqbnc0k",
+    "actor": {
+      "id": "100951076468873836662",
+      "displayName": "Lucía Tao",
+      "url": "https://plus.google.com/100951076468873836662",
+      "image": {
+        "url": "https://lh4.googleusercontent.com/-X4SXhxf6gdQ/AAAAAAAAAAI/AAAAAAAAKYM/cFSlkmpwOB8/photo.jpg?sz=50"
+      }
+    },
+    "content": "PARA REFLEXIONAR.!!<br />Tres albañiles estaban desempeñando la misma tarea, cuando un distraído transeúnte se acercó a ellos. El caminante le preguntó al primero:<br />- ¿Que está usted haciendo?. <br />A lo que el albañil respondió:<br />- No ve, apilando ladrillos con un gesto molesto, consecuencia de una<br />pregunta que este percibió como tonta y de respuesta obvia. <br />El caminante repitió la misma pregunta al segundo albañil.<br /> La respuesta no se hizo esperar. <br />- Levantando una pared. <br />El tercer albañil también respondió al particular interrogatorio, y con una amplia sonrisa de orgullo dijo:<br />- Construyendo el hospital de niños del pueblo.<br /><br />&quot;Si trabajamos  con la actitud correcta, el trabajo en sí mismo puede llegar a ser una adoración.&quot;",
+    "url": "https://plus.google.com/100951076468873836662/posts/dBmApAg2Nsy",
+    "replies": {
+      "totalItems": 0,
+      "selfLink": "https://www.googleapis.com/plus/v1/activities/z13szvg5yozftlu2r22bwf1ixsr3ddhje04/comments"
+    },
+    "plusoners": {
+      "totalItems": 0,
+      "selfLink": "https://www.googleapis.com/plus/v1/activities/z13szvg5yozftlu2r22bwf1ixsr3ddhje04/people/plusoners"
+    },
+    "resharers": {
+      "totalItems": 1,
+      "selfLink": "https://www.googleapis.com/plus/v1/activities/z13szvg5yozftlu2r22bwf1ixsr3ddhje04/people/resharers"
+    },
+    "attachments": [
+      {
+        "objectType": "photo",
+        "id": "100951076468873836662.5836556516896430546",
+        "content": "cats.jpg",
+        "url": "https://plus.google.com/photos/100951076468873836662/albums/5836556518685539889/5836556516896430546?authkey=XXX",
+        "image": {
+          "url": "https://lh4.googleusercontent.com/-DR-ZSOwyemc/UP-dOo0aWdI/AAAAAAAAMGk/FHi01MIejGM/w497-h373/cats.jpg",
+          "type": "image/jpeg",
+          "height": 373,
+          "width": 497
+        },
+        "fullImage": {
+          "url": "https://lh4.googleusercontent.com/-DR-ZSOwyemc/UP-dOo0aWdI/AAAAAAAAMGk/FHi01MIejGM/cats.jpg",
+          "type": "image/jpeg",
+          "height": 483,
+          "width": 571
+        }
+      }
+    ]
+  },
+  "annotation": "Actitud... <a class='ot-hashtag' href='https://plus.google.com/s/%23ejemplo'>#ejemplo</a> <a class='ot-hashtag' href='https://plus.google.com/s/%23alba%C3%B1iles'>#albañiles</a>",
+  "provider": {
+    "title": "Reshared Post"
+  },
+  "access": {
+    "kind": "plus#acl",
+    "description": "Public",
+    "items": [
+      {
+        "type": "public"
+      }
+    ]
+  }
+}

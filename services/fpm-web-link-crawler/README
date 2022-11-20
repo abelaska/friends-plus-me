@@ -1,0 +1,50 @@
+http://yt2fb.com/
+http://yt2fb.com/id_1028802/
+
+https://cloud.google.com/appengine/docs/managed-vms/custom-runtimes
+
+reply:
+
+http://crawler.friendsplus.me/?url=urlencoded('http://friendsplus.me')
+{
+  url: '...link url...',
+  title: '...link title...',
+  description: '...link description...',
+  images: [{
+    url: '...image url...',
+    size: 0, // size in bytes
+    width: 0, // image width
+    height: 0, // image height
+    contentType: '...HTTP content type, image/gif, ...'
+  }, ...]
+}
+
+curl http://crawler.friendsplus.me/?url=http://friendsplus.me
+{
+  "url":"http://friendsplus.me",
+  "title":"Friends+Me - Share to ANYWHERE",
+  "description":"The right cross-promotion and content scheduling solution for you. Increase user engagement across all your social networks. Publish Once, Share to ANYWHERE.",
+  "images":[{
+    "url":"https://storage.googleapis.com/static.friendsplus.me/images/promo.jpg",
+    "size":71226,
+    "width":1200,
+    "height":732,
+    "contentType":"image/jpeg"
+  }]
+}
+
+curl http://crawler.friendsplus.me/?url=http://sologi.co/2fnjf5y
+curl http://localhost:8080/?url=http://sologi.co/2fnjf5y
+
+curl http://localhost:8080/?url=https://youtu.be/aCkMPTMYcUo
+curl -v http://localhost:8080/?url=https://money.usnews.com/money/personal-finance/saving-and-budgeting/articles/2017-12-28/10-bills-to-lower-in-the-new-year
+
+curl -v http://localhost:8080/video/proxy?url=https://youtu.be/aCkMPTMYcUo
+
+http://localhost:8080/video/proxy?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DiSKx38fdZGc
+
+https://link-crawler-v1-dot-fpm-application.appspot.com/video/proxy?url=https://youtu.be/aCkMPTMYcUo
+http://crawler.friendsplus.me/video/proxy?url=https://youtu.be/aCkMPTMYcUo
+curl -v https://crawler.friendsplus.me/video/proxy?url=https://youtu.be/aCkMPTMYcUo
+
+https://crawler-dot-fpm-application.appspot.com/video/proxy?url=https://youtu.be/aCkMPTMYcUo

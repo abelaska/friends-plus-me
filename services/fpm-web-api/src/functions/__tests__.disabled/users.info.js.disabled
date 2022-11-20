@@ -1,0 +1,295 @@
+/* eslint no-mixed-operators: "off" */
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { ObjectId, User, Profile } = require('@fpm/db');
+const { testingBeforeAll, testingAfterAll, testFunc, nockHydraTokenIntrospect } = require('../../utils/testing');
+const { unix } = require('../../utils/time');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should get user info', async () => {
+  const now = new Date();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const teamOwnerId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+  await User.create({
+    _id: teamOwnerId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'team owner',
+    image: 'owner image',
+    email: 'owner@domain.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  await Profile.create({
+    _id: dbTeamId,
+    name: 'team name',
+    created: new Date(now * 1000),
+    members: { contributor: [dbUserId], owner: [teamOwnerId] }
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'users.read',
+    userId: teamOwnerId.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'users.info',
+    req: {
+      qs: { access_token: token, user: dbUser._id.toString() }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.user).toEqual({
+    user_id: dbUser._id.toString(),
+    created: unix(now),
+    name: dbUser.name,
+    avatar: dbUser.image
+  });
+});
+
+test('should not found user', async () => {
+  const now = new Date();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const teamOwnerId = new ObjectId();
+  await User.create({
+    _id: teamOwnerId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'team owner',
+    image: 'owner image',
+    email: 'owner@domain.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  await Profile.create({
+    _id: dbTeamId,
+    name: 'team name',
+    created: new Date(now * 1000),
+    members: { owner: [teamOwnerId] }
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'users.read',
+    userId: teamOwnerId.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'users.info',
+    req: {
+      qs: { access_token: token, user: dbUserId.toString() }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(false);
+  expect(reply.body.error).toBe('access_denied');
+});
+
+test('should get user info with users.read.email scope', async () => {
+  const now = new Date();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const teamOwnerId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+  await User.create({
+    _id: teamOwnerId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'team owner',
+    image: 'owner image',
+    email: 'owner@domain.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  await Profile.create({
+    _id: dbTeamId,
+    name: 'team name',
+    created: new Date(now * 1000),
+    members: { contributor: [dbUserId], owner: [teamOwnerId] }
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'users.read users.read.email',
+    userId: teamOwnerId.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'users.info',
+    req: {
+      qs: { access_token: token, user: dbUser._id.toString() }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.user).toEqual({
+    user_id: dbUser._id.toString(),
+    created: unix(now),
+    name: dbUser.name,
+    email: dbUser.email,
+    avatar: dbUser.image
+  });
+});
+
+test('should fail to idenfity on access_denied', async () => {
+  const now = new Date();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser2Id = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+  await User.create({
+    _id: dbUser2Id,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'team owner',
+    image: 'owner image',
+    email: 'owner@domain.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+  await Profile.create({
+    _id: dbTeamId,
+    name: 'team name',
+    created: new Date(now * 1000),
+    members: { contributor: [dbUserId, dbUser2Id] }
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'users.read',
+    userId: dbUser2Id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'users.info',
+    req: {
+      qs: { access_token: token, user: dbUser._id.toString() }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(false);
+  expect(reply.body.error).toBe('access_denied');
+});
+
+test('should return also my notifications settings', async () => {
+  const now = new Date();
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser2Id = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] }
+  });
+  await User.create({
+    _id: dbUser2Id,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'team owner',
+    image: 'owner image',
+    email: 'owner@domain.com',
+    created: now,
+    state: States.user.enabled.code,
+    profiles: { contributor: [dbTeamId] },
+    notifications: {
+      'legacy-notification': false,
+      'post-publishing-failed': false
+    }
+  });
+  await Profile.create({
+    _id: dbTeamId,
+    name: 'team name',
+    created: new Date(now * 1000),
+    members: { contributor: [dbUserId, dbUser2Id] }
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'users.read',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'users.info',
+    req: {
+      qs: { access_token: token, user: dbUser._id.toString(), full: true }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body).toEqual({
+    ok: true,
+    user: {
+      avatar: 'image',
+      created: unix(now),
+      email: 'user@domain.com',
+      name: 'user name',
+      notifications: {
+        'post-publishing-failed': true
+      },
+      user_id: dbUser._id.toString()
+    }
+  });
+});

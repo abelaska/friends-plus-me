@@ -1,0 +1,306 @@
+/* eslint import/no-extraneous-dependencies: "off", global-require: "off", import/no-dynamic-require: "off", no-multi-assign: "off", no-unused-vars: "off", no-mixed-operators: "off" */
+
+// https://www.npmjs.com/package/nock
+
+// eslint-disable-next-line import/no-extraneous-dependencies
+const fs = require('fs');
+const nock = require('nock');
+const moment = require('moment');
+const nanoid = require('nanoid');
+const listen = require('test-listen');
+const rp = require('request-promise');
+const { MongoMemoryServer } = require('mongodb-memory-server');
+const { Scopes } = require('@fpm/constants');
+const { startRedisServer, stopRedisServer } = require('@fpm/redis');
+const { dbConnect, dbDisconnect } = require('@fpm/db');
+const config = require('@fpm/config');
+const { testFunction } = require('./http');
+const { unix } = require('./time');
+const { initDeps } = require('./deps');
+
+let mongoServer;
+let deps;
+
+export const testingDeps = ({ queueManager } = {}) => {
+  if (queueManager) {
+    deps.queueManager = deps.createQueueManager(queueManager);
+  }
+  return deps;
+};
+
+export const testingBeforeAll = ({ db = true, redis = true } = {}) => async () => {
+  if (db) {
+    // https://github.com/nodkz/mongodb-memory-server
+    mongoServer = new MongoMemoryServer({ debug: false });
+    config.set('db:url', await mongoServer.getConnectionString(true));
+    await dbConnect();
+  }
+  if (redis) {
+    await startRedisServer();
+  }
+  deps = initDeps();
+};
+
+export const testingAfterAll = ({ db = true, redis = true } = {}) => async () => {
+  if (db) {
+    await dbDisconnect();
+
+    if (mongoServer) {
+      mongoServer.stop();
+      mongoServer = null;
+    }
+  }
+  if (redis) {
+    await stopRedisServer();
+  }
+};
+
+const loadValidation = name => fs.existsSync(`${__dirname}/../schemas/${name}.js`) && require(`../schemas/${name}`);
+
+const enableDestroyService = server => {
+  const connections = {};
+
+  server.on('connection', conn => {
+    const key = `${conn.remoteAddress}:${conn.remotePort}`;
+    connections[key] = conn;
+    conn.on('close', () => {
+      delete connections[key];
+    });
+  });
+
+  server.destroy = async () => {
+    await new Promise(resolve => server.close(resolve));
+    Object.keys(connections).forEach(key => connections[key].destroy());
+  };
+
+  return server;
+};
+
+const testFunc = (module.exports.testFunc = async ({ name, req }) => {
+  const service = enableDestroyService(testFunction(name, require(`../functions/${name}`), loadValidation(name), deps));
+  const url = await listen(service);
+  const reply = await rp(Object.assign({ json: true, simple: false, resolveWithFullResponse: true }, req, { url }));
+  await service.destroy();
+  return reply;
+});
+
+const expectedReply = (module.exports.expectedReply = (reply, statusCode, body, { debug = false } = {}) => {
+  if (debug) {
+    // eslint-disable-next-line no-console
+    console.log('REPLY', JSON.stringify(reply));
+  }
+  expect(reply).toBeTruthy();
+  expect(reply.body).toEqual(body);
+  if (statusCode !== undefined) {
+    expect(reply.statusCode).toBe(statusCode);
+  }
+});
+
+const testFuncWithReply = (module.exports.testFuncWithReply = async ({ name, req, statusCode, res, debug = false }) => {
+  if (req && !req.method) {
+    req.method = 'GET';
+  }
+  expectedReply(await testFunc({ name, req }), statusCode, res, { debug });
+});
+
+const nockHydraTokenIntrospect = (module.exports.nockHydraTokenIntrospect = ({
+  active,
+  scope,
+  userId,
+  clientId,
+  clientSecret,
+  token,
+  adminToken
+}) => {
+  const now = unix(new Date());
+  token = token || `access-token-user-${nanoid(32)}`;
+  adminToken = adminToken || 'access-token-admin';
+  clientId = clientId || nanoid(32);
+  clientSecret = clientSecret || nanoid(32);
+
+  nock(config.get('hydra:url'))
+    .post(
+      '/oauth2/token',
+      body => body.client_id === config.get('hydra:clientId') && body.client_secret === config.get('hydra:clientSecret')
+    )
+    .reply(200, {
+      access_token: adminToken,
+      expires_in: 3599,
+      scope: config.get('hydra:scope'),
+      token_type: 'bearer'
+    });
+
+  nock(config.get('hydra:url'), { reqheaders: { authorization: `Bearer ${adminToken}` } })
+    .post('/oauth2/introspect', body => body.token === token)
+    .reply(
+      200,
+      (active && {
+        scope,
+        active: true,
+        client_id: clientId,
+        sub: userId,
+        exp: now + 1 * 60 * 60,
+        iat: now,
+        aud: clientId,
+        iss: 'https://hydra.friendsplus.me'
+      }) || { active: false }
+    );
+  return { token, scope, clientId, userId, adminToken };
+});
+
+const nockHydraAuthCodeXchange = (module.exports.nockHydraAuthCodeXchange = ({
+  scope,
+  code,
+  redirectUri,
+  clientId,
+  clientSecret
+}) => {
+  const token = `access-token-user-${nanoid(32)}`;
+  clientId = clientId || nanoid(32);
+  clientSecret = clientSecret || nanoid(32);
+
+  const Authorization = `Basic ${new Buffer(`${clientId}:${clientSecret}`).toString('base64')}`;
+
+  nock(config.get('hydra:url'), { reqheaders: { Authorization } })
+    .post('/oauth2/token', body => body.grant_type === 'authorization_code')
+    .reply(200, {
+      access_token: token,
+      expires_in: 3599,
+      scope,
+      token_type: 'bearer'
+    });
+
+  return { token, scope, clientId, clientSecret, redirectUri };
+});
+
+const nockHydraCreateApplication = (module.exports.nockHydraCreateApplication = ({
+  active,
+  scope,
+  userId,
+  client,
+  clientSecret,
+  ...otherArgs
+}) => {
+  clientSecret = clientSecret || nanoid(32);
+
+  const { token, clientId, adminToken } = nockHydraTokenIntrospect({
+    ...otherArgs,
+    active,
+    scope,
+    userId
+  });
+
+  nock(config.get('hydra:url'), { reqheaders: { authorization: `Bearer ${adminToken}` } })
+    .post('/clients')
+    .reply(200, {
+      [clientId]: {
+        grant_types: ['implicit', 'refresh_token', 'authorization_code'],
+        response_types: ['id_token', 'code', 'token'],
+        scope: Scopes.thirdPartyRootScopes(clientId).join(' '),
+        owner: userId,
+        id: clientId,
+        client_name: client.name,
+        client_secret: clientSecret,
+        client_uri: client.url,
+        redirect_uris: client.callbacks,
+        policy_uri: '',
+        tos_uri: '',
+        logo_uri: '',
+        contacts: null
+      }
+    });
+  return { ...otherArgs, token, clientId, clientSecret, adminToken };
+});
+
+const nockHydraDeleteApplication = (module.exports.nockHydraDeleteApplication = ({
+  active,
+  scope,
+  userId,
+  client,
+  clientSecret,
+  ...otherArgs
+}) => {
+  clientSecret = clientSecret || nanoid(32);
+
+  const { token, clientId, adminToken } = nockHydraTokenIntrospect({
+    ...otherArgs,
+    active,
+    scope,
+    userId
+  });
+
+  nock(config.get('hydra:url'), { reqheaders: { authorization: `Bearer ${adminToken}` } })
+    .delete(`/clients/${clientId}`)
+    .reply(200, {
+      grant_types: ['implicit', 'refresh_token', 'authorization_code'],
+      response_types: ['id_token', 'code', 'token'],
+      scope: Scopes.thirdPartyRootScopes(clientId).join(' '),
+      owner: userId,
+      id: clientId,
+      client_name: client.name,
+      client_secret: clientSecret,
+      client_uri: client.url,
+      redirect_uris: client.callbacks,
+      policy_uri: '',
+      tos_uri: '',
+      logo_uri: '',
+      contacts: null
+    });
+  return { ...otherArgs, token, clientId, clientSecret, adminToken };
+});
+
+const nockHydraUpdateApplication = (module.exports.nockHydraUpdateApplication = ({
+  active,
+  scope,
+  userId,
+  client,
+  clientSecret,
+  rotateClientSecret,
+  ...otherArgs
+}) => {
+  clientSecret = clientSecret || nanoid(32);
+
+  const { token, clientId, adminToken } = nockHydraTokenIntrospect({
+    ...otherArgs,
+    active,
+    scope,
+    userId
+  });
+
+  nock(config.get('hydra:url'), { reqheaders: { authorization: `Bearer ${adminToken}` } })
+    .get(`/clients/${clientId}`)
+    .reply(200, {
+      grant_types: ['implicit', 'refresh_token', 'authorization_code'],
+      response_types: ['id_token', 'code', 'token'],
+      scope: Scopes.thirdPartyRootScopes(clientId).join(' '),
+      owner: userId,
+      id: clientId,
+      client_name: client.name,
+      client_secret: clientSecret,
+      client_uri: client.url,
+      redirect_uris: client.callbacks,
+      policy_uri: '',
+      tos_uri: '',
+      logo_uri: '',
+      contacts: null
+    });
+
+  nock(config.get('hydra:url'), { reqheaders: { authorization: `Bearer ${adminToken}` } })
+    .put(`/clients/${clientId}`)
+    .reply(200, {
+      grant_types: ['implicit', 'refresh_token', 'authorization_code'],
+      response_types: ['id_token', 'code', 'token'],
+      scope: Scopes.thirdPartyRootScopes(clientId).join(' '),
+      owner: userId,
+      id: clientId,
+      client_name: client.name,
+      client_secret: rotateClientSecret || clientSecret,
+      client_uri: client.url,
+      redirect_uris: client.callbacks,
+      policy_uri: '',
+      tos_uri: '',
+      logo_uri: '',
+      contacts: null
+    });
+  return { ...otherArgs, token, clientId, clientSecret, adminToken };
+});

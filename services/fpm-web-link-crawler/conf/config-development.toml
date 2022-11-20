@@ -1,0 +1,8 @@
+[http]
+  bind = "localhost"
+
+[redis]
+  url = "redis://pub-redis-XXX.us-central1-1-1.gce.garantiadata.com:16307?password=XXX"
+
+[log.logentries]
+  enabled = false

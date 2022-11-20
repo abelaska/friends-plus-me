@@ -1,0 +1,86 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"-mjMFWwzw7lU2CWV7I5jKgp2eH8/gvf6o5xZEAvfX3-EWjE16uSNERM\"",
+    "title": "Ich teste gerade http://friendsplus.me aus. Ein Weg, öffentliche Google+ Beiträge zu twittern, Fa...",
+    "published": "2012-10-17T16:57:32.000Z",
+    "updated": "2012-10-17T16:57:32.253Z",
+    "id": "z12vubdy0unlxtqzi04cf55x2z2qvhxyejc",
+    "url": "https://plus.google.com/112218606919002548286/posts/gvrJaAGhUBQ",
+    "actor": {
+      "id": "112218606919002548286",
+      "displayName": "Johannes Lauterbach",
+      "name": {
+        "familyName": "Lauterbach",
+        "givenName": "Johannes"
+      },
+      "url": "https://plus.google.com/112218606919002548286",
+      "image": {
+        "url": "https://lh4.googleusercontent.com/-v5v3c8HrbPM/AAAAAAAAAAI/AAAAAAAAAAA/gVBRN1p1BBw/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "Ich teste gerade <a href=\"http://friendsplus.me\" >http://friendsplus.me</a> aus. Ein Weg, öffentliche Google+ Beiträge zu twittern, Facebook zu füttern und trotzdem bei Google+ zu bleiben. Mal sehen, ob&#39;s funktioniert.",
+      "originalContent": "",
+      "url": "https://plus.google.com/112218606919002548286/posts/gvrJaAGhUBQ",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12vubdy0unlxtqzi04cf55x2z2qvhxyejc/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12vubdy0unlxtqzi04cf55x2z2qvhxyejc/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z12vubdy0unlxtqzi04cf55x2z2qvhxyejc/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "Friends+Me - Automatic repost of public Google+ activity to Facebook and Twitter",
+          "content": "Friends+Me allows you to build up your presence on Google+ and still be present on Facebook and Twitter at the same time. Friends+Me is reposting all your publicly published Google+ activity.",
+          "url": "http://friendsplus.me"
+        },
+        {
+          "objectType": "photo",
+          "image": {
+            "url": "https://images0-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&resize_h=100&url=http%3A%2F%2Fwww.friendsplus.me%2Fimages%2Ffriendsplusme.png",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "http://friendsplus.me",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "crosspostSource": "oz:112218606919002548286.13a6f8d4ddc.0",
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "items": [
+        {
+          "type": "public"
+        },
+        {
+          "type": "person",
+          "id": "112218606919002548286"
+        }
+      ]
+    }
+  }
+}

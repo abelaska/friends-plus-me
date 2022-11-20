@@ -1,0 +1,47 @@
+{
+ "kind": "plus#activity",
+ "etag": "\"TJ4YjXUi1XCM_G3FJ4uiPX8m6Fk/Me4xotRpA6SxhCULOInqDX3R_q8\"",
+ "title": "ਅਟੱਲ ਬਿਹਾਰੀ ਬਾਜਪਾਈ ਅਨੁਸਾਰ, --ਇੰਦਰਾ ਗਾਂਧੀ ਦੇ ਦੋ ਮੁੰਡੇ ਸਨ। ਇਕ ਨੂੰ ਦੇਸ਼ ਚਲਾਉਣ ਦੇ ਸ਼ੌਂਕ ਸੀ ਪਰ ਉੇਸ ਨੇ ਇਕ ਵਾਰ...",
+ "published": "2013-03-13T11:36:52.932Z",
+ "updated": "2013-03-13T11:36:52.932Z",
+ "id": "z13qylowuwr5snj5g04cchjheoy4dhdbgrg0k",
+ "url": "https://plus.google.com/101643175524362502063/posts/VrAnATFRnLk",
+ "actor": {
+  "id": "101643175524362502063",
+  "displayName": "Mandeep Singh",
+  "url": "https://plus.google.com/101643175524362502063",
+  "image": {
+   "url": "https://lh6.googleusercontent.com/-yHPcdV21jKQ/AAAAAAAAAAI/AAAAAAAAS8c/db0q1tQjcVc/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": "ਅਟੱਲ ਬਿਹਾਰੀ ਬਾਜਪਾਈ ਅਨੁਸਾਰ, --ਇੰਦਰਾ ਗਾਂਧੀ ਦੇ ਦੋ ਮੁੰਡੇ ਸਨ। ਇਕ ਨੂੰ ਦੇਸ਼ ਚਲਾਉਣ ਦੇ ਸ਼ੌਂਕ ਸੀ ਪਰ ਉੇਸ ਨੇ ਇਕ ਵਾਰ ਗਲਤੀ ਨਾਲ ਜਹਾਜ਼ ਚਲਾਇਆ ਤਾਂ ਜਹਾਜ਼ ਗਿਰਾ ਦਿਤਾ। ਦੂਜੇ ਨੂੰ ਜਹਾਜ਼ ਚਲਾਉਣ ਦਾ ਸ਼ੌਂਕ ਸੀ ਪਰ ਉਸ ਨੇ ਗਲਤੀ ਨਾਲ਼ ਇਕ ਵਾਰ ਦੇਸ਼ ਚਲਾਇਆ ਤਾਂ ਦੇਸ਼ ਗਿਰਾ ਦਿਤਾ।<br /><i>[ਰਾਹੀਂ ਹਰਜੀਤ ਅਟਵਾਲ]</i>",
+  "url": "https://plus.google.com/101643175524362502063/posts/VrAnATFRnLk",
+  "replies": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13qylowuwr5snj5g04cchjheoy4dhdbgrg0k/comments"
+  },
+  "plusoners": {
+   "totalItems": 2,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13qylowuwr5snj5g04cchjheoy4dhdbgrg0k/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13qylowuwr5snj5g04cchjheoy4dhdbgrg0k/people/resharers"
+  }
+ },
+ "provider": {
+  "title": "Google+"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

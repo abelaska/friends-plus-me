@@ -1,0 +1,331 @@
+.accounts-add {
+
+  md-input-container.search .md-errors-spacer {
+    display:      none;
+  }
+
+  .md-button.md-add, .md-button.md-network {
+    color:        #fff;
+    text-transform: inherit;
+    text-align:   center;
+    font-size:    12px;
+
+    i {
+      margin:       0;
+      display:      block;
+    }
+
+    &.google {
+      background-color: @google-plus-color;
+    }
+    &.facebook {
+      background-color: @facebook-color;
+    }
+    &.pinterest {
+      background-color: @pinterest-color;
+    }
+    &.twitter {
+      background-color: @twitter-color;
+    }
+    &.linkedin {
+      background-color: @linkedin-color;
+    }
+    &.tumblr {
+      background-color: @tumblr-color;
+    }
+    &.instagram {
+      position: relative;
+      overflow: hidden;
+      background: -webkit-linear-gradient(305deg, #3051F1 10%, #C92BB7 70%) no-repeat;
+      background: linear-gradient(145deg, #3051F1 10%, #C92BB7 70%) no-repeat;
+      & > div, &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+      &:before {
+        display: block;
+        content: '';
+        background: -webkit-radial-gradient(circle farthest-corner at 28% 100%, #FCDF8F 0%, #FBD377 10%, #FA8E37 22%, #F73344 35%, rgba(247, 51, 68, 0) 65%) no-repeat;
+        background: radial-gradient(circle farthest-corner at 28% 100%, #FCDF8F 0%, #FBD377 10%, #FA8E37 22%, #F73344 35%, rgba(247, 51, 68, 0) 65%) no-repeat;
+      }
+      & > div {
+        padding-top: 15px;
+      }
+    }
+  }
+
+  .md-button.md-add.instagram > div {
+    padding-top: 5px;
+  }
+
+  .md-button.md-network {
+    height:       66px;
+    min-width:    66px;
+
+    i {
+      font-size:    3em;
+      line-height:  inherit;
+      padding:      0;
+    }
+
+    img {
+      width:         50px;
+      height:        50px;
+      border-radius: 50%;
+      margin-top:    8px;
+    }
+  }
+
+  .md-button.md-add {
+    min-width:    120px;
+    min-height:   120px;
+
+    i {
+      font-size:    60px;
+      line-height:  60px;
+      padding:      15px 15px 0 15px;
+    }
+  }
+
+  .md-button.md-new {
+    color:   rgba(0,0,0,0.75);
+  }
+
+  .md-button.md-profile, .md-button.md-account {
+    font-size:       8px;
+    text-transform:  inherit;
+    line-height:     24px;
+    width:           120px;
+    height:          120px;
+
+    .md-truncate {
+      width:         100px;
+    }
+
+    img {
+      width:         50px;
+      height:        50px;
+      border-radius: 50%;
+      margin-top:    24px;
+    }
+  }
+
+
+/*  .cards {
+
+    .card {
+
+      margin-bottom:    30px;
+      padding:          16px;
+
+      .icon {
+        float:          left;
+
+        i {
+          font-size:    94px;
+          line-height:  94px;
+          margin:       0;
+        }
+
+        .name {
+          text-align:   center;
+          font-size:    20px;
+        }
+      }
+
+      .buttons {
+        float:            right;
+        margin-top:       7px;
+
+        button {
+          display:        block;
+          min-width:      136px;
+          margin-bottom:  4px;
+          color:          #fff;
+          font-weight:    bold;
+        }
+        button:last-of-type {
+          margin-bottom:  0;
+        }
+      }
+    }
+
+    .google {
+      .icon {
+        color: @google-plus-color;
+      }
+      .btn {
+        .button-variant(#fff, @google-plus-color, lighten(@google-plus-color, 15%));
+      }
+    }
+
+    .facebook {
+      .icon {
+        color: @facebook-color;
+      }
+      .btn {
+        .button-variant(#fff, @facebook-color, lighten(@facebook-color, 15%));
+      }
+    }
+
+    .pinterest {
+      .icon {
+        color: @pinterest-color;
+      }
+      .btn {
+        .button-variant(#fff, @pinterest-color, lighten(@pinterest-color, 15%));
+      }
+    }
+
+    .twitter {
+      .icon {
+        color: @twitter-color;
+      }
+      .btn {
+        .button-variant(#fff, @twitter-color, lighten(@twitter-color, 15%));
+      }
+    }
+
+    .linkedin {
+      .icon {
+        color: @linkedin-color;
+      }
+      .btn {
+        .button-variant(#fff, @linkedin-color, lighten(@linkedin-color, 15%));
+      }
+    }
+
+    .tumblr {
+      .icon {
+        color: @tumblr-color;
+      }
+      .btn {
+        .button-variant(#fff, @tumblr-color, lighten(@tumblr-color, 15%));
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .cards {
+      .card {
+        text-align:       center;
+
+        .icon, .buttons {
+          float:          none;
+        }
+        .buttons {
+
+          button {
+            margin:         auto;
+            margin-bottom:  4px;
+          }
+        }
+      }
+    }
+  }*/
+}
+
+.add-google-page.modal-body {
+
+  font-size: 16px;
+
+  a {
+    color: @blue;
+  }
+
+  .b {
+    font-weight: 400;
+  }
+
+  li {
+    padding: 8px 0;
+  }
+
+  input {
+    font-size: 12px;
+    margin: 14px 0 10px 0;
+  }
+
+  ol {
+    margin-bottom: 0;
+  }
+
+  button {
+    margin: 15px 0 0 0;
+    line-height: 32px;
+  }
+
+  .selected-page {
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.add-facebook-profile.modal-body, .add-linkedin-profile.modal-body, .add-facebook-page.modal-body,
+.add-facebook-group.modal-body, .add-linkedin-group.modal-body, .add-linkedin-page.modal-body,
+.add-google-page.modal-body, .add-tumblr-blog.modal-body, .add-twitter-profile.modal-body {
+
+  p {
+    font-size: 14px;
+  }
+
+  table.profile {
+
+    width: 100%;
+    margin-bottom: 20px;
+
+    font-size: 16px;
+    font-weight: 200;
+    color: #333;
+
+    .name {
+      font-weight: bold;
+    }
+
+    td.img {
+      text-align: right;
+    }
+  }
+
+  table.ops {
+
+    width: 100%;
+
+    select {
+      margin-bottom: 0;
+    }
+
+    td.left {
+      font-size: 16px;
+      font-weight: 200;
+      color: #333;
+    }
+
+    td.right {
+      text-align: right;
+      min-width: 240px;
+    }
+  }
+
+  .columns {
+
+    .left {
+      float: left;
+    }
+
+    .right {
+      float: right;
+      min-width: 200px;
+      text-align: right;
+    }
+  }
+}
+
+img.profile {
+  .round-square-image(32px)
+}

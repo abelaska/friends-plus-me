@@ -1,0 +1,133 @@
+<div class="team" ng-controller="TeamMembersCtrl">
+
+  <div ng-include="'/views/team.menu.html'"></div>
+
+  <p class="center" ng-hide="isOwnerOrManager" style="margin-top:30px"><strong>Only team owners and managers are allowed to invite new team members.</strong></p>
+
+  <div layout="column" layout-gt-xs="row" layout-margin ng-show="isOwnerOrManager">
+    <div flex>
+      <h1>Team Members <small>({{loadingMembers ? '…' : members.length}})</small></h1>
+
+      <div layout="row" layout-align="center center" ng-if="loadingMembers">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+      </div>
+
+      <md-list ng-if="!loadingMembers">
+        <md-list-item ng-repeat="m in members" class="md-no-proxy" style="margin-bottom: 30px;">
+          <div layout="column" style="width: 100%">
+            <div layout="row" layout-align="start center">
+              <img class="profile" ng-src="{{m.image}}" alt="{{m.name}}" style="margin-right: 10px">
+
+              <div flex md-truncate style="line-height: 14px;">{{m.name}}<strong ng-show="m._id == Google.user._id"> <small>(Me)</small></strong><small ng-show="m._id != Google.user._id"> / <a href="mailto:{{m.email}}">{{m.email}}</a></small>
+                <div><small style="color: rgba(0,0,0,0.5);">{{roleName(m.role)}}</small></div>
+              </div>
+
+              <md-menu ng-show="m.role==='amanager'">
+                <md-button aria-label="Add Queue" ng-click="$mdMenu.open($event)" class="md-icon-button" ng-disabled="listOfAccountsToAssign(m).length == 0">
+                  <md-tooltip>Assign queue to manager</md-tooltip>
+                  <md-icon md-svg-icon="/images/icons/plus-circle.svg"></md-icon>
+                </md-button>
+                <md-menu-content width="6">
+                  <md-menu-item ng-repeat="acc in listOfAccountsToAssign(m)">
+                    <md-button ng-click="assignAccount(acc, m)">
+                      <span class="destination active {{types.networkTypeNameOfAccount(acc)}}">
+                        <img ng-src="{{acc.image}}" style="border-radius: 50%">
+                        <div class="network-icon" ng-switch on="types.networkTypeNameOfAccount(acc)" style="bottom: 5px;">
+                          <i ng-switch-when="pinterest" class="fa fa-pinterest"></i>
+                          <i ng-switch-when="facebook" class="fa fa-facebook"></i>
+                          <i ng-switch-when="linkedin" class="fa fa-linkedin"></i>
+                          <i ng-switch-when="twitter" class="fa fa-twitter"></i>
+                          <i ng-switch-when="tumblr" class="fa fa-tumblr"></i>
+                          <i ng-switch-when="google" class="fa fa-google-plus"></i>
+                          <i ng-switch-when="instagram" class="fa fa-instagram"></i>
+                        </div>
+                      </span>
+                      {{acc.name}}
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+
+              <md-button aria-label="Remove Member" class="md-icon-button" ng-show="m.role != 'owner' && m._id!=Google.user._id" ng-click="removeMember(m)">
+                <md-tooltip>Remove Team Member</md-tooltip>
+                <md-icon md-svg-icon="/images/icons/delete.svg"></md-icon>
+              </md-button>
+            </div>
+
+            <div ng-show="m.role==='amanager'" layout="column" style="padding-left: 15px;padding-top: 10px;width: 100%">
+              <p ng-show="listOfAssignedAccounts(m).length == 0">No queue assigned to team member to manage.</p>
+              <p ng-show="listOfAssignedAccounts(m).length > 0">List of queues managed by team member:</p>
+              <div layout="row" layout-align="start center" ng-repeat="acc in listOfAssignedAccounts(m)">
+                <a ng-href="teams/{{Google.profile._id}}/queues/{{acc._id}}" class="destination active {{types.networkTypeNameOfAccount(acc)}}" style="margin: 0 15px 0 0;">
+                  <img ng-src="{{acc.image}}" style="border-radius: 50%">
+                  <div class="network-icon" ng-switch on="types.networkTypeNameOfAccount(acc)">
+                    <i ng-switch-when="pinterest" class="fa fa-pinterest"></i>
+                    <i ng-switch-when="facebook" class="fa fa-facebook"></i>
+                    <i ng-switch-when="linkedin" class="fa fa-linkedin"></i>
+                    <i ng-switch-when="twitter" class="fa fa-twitter"></i>
+                    <i ng-switch-when="tumblr" class="fa fa-tumblr"></i>
+                    <i ng-switch-when="google" class="fa fa-google-plus"></i>
+                    <i ng-switch-when="instagram" class="fa fa-instagram"></i>
+                  </div>
+                </a>
+                <span flex md-truncate>
+                  <md-tooltip>{{acc.name}}</md-tooltip>
+                  {{acc.name}}
+                </span>
+                <md-button class="md-icon-button" ng-click="removeAssignedAccount(acc, m)">
+                  <md-tooltip>Remove Permission</md-tooltip>
+                  <md-icon md-svg-icon="/images/icons/delete.svg"></md-icon>
+                </md-button>
+              </div>
+            </div>
+          </div>
+        </md-list-item>
+      </md-list>
+
+      <h1 style="margin: 15px 0 0 0">Active Invitations <small>({{invitations.length}})</small></h1>
+      <md-list ng-hide="!invitations.length">
+        <md-list-item ng-repeat="i in invitations">
+          <div flex md-truncate style="line-height: 14px;">{{i.email}}
+            <div><small style="color: rgba(0,0,0,0.5);">{{roleName(i.role)}}</small></div>
+          </div>
+
+          <md-button class="md-icon-button" ng-href="/team/invitation/{{Google.profile._id}}/{{i.id}}" ng-if="Google.user.role=='admin'">
+            <md-tooltip>Link</md-tooltip>
+            <md-icon md-svg-icon="/images/icons/link-variant.svg"></md-icon>
+          </md-button>
+
+          <md-button aria-label="Cancel Invitation" class="md-icon-button" ng-if="p._id!=Google.profile._id" ng-click="cancelInvitation(i)" style="margin:0">
+            <md-tooltip>Cancel Invitation</md-tooltip>
+            <md-icon md-svg-icon="/images/icons/delete.svg"></md-icon>
+          </md-button>
+        </md-list-item>
+      </md-list>
+    </div>
+
+    <div flex>
+      <h1 style="margin-bottom: 0;">Invite Team Member</h1>
+      <p style="margin: 0 0 20px 0;">Invite your co-workers and friends to help you manage queues, discover and publish great content.</p>
+
+      <md-radio-group ng-model="inviteRole" class="md-primary">
+        <md-radio-button value="manager" class="md-align-top-left">
+          Team Manager<br>
+          <p class="ipsum">manages entire team including all queues</p>
+        </md-radio-button>
+        <md-radio-button value="amanager" class="md-align-top-left">
+          Queue Manager<br>
+          <p class="ipsum">manages only selected queues</p>
+        </md-radio-button>
+        <md-radio-button value="contributor" class="md-align-top-left">
+          Contributor<br>
+          <p class="ipsum">can only create new and edit and delete their own drafts and is <b>not allowed to schedule posts</b></p>
+        </md-radio-button>
+      </md-radio-group>
+
+      <md-input-container class="md-block no-errors" style="max-width: 400px">
+        <input type="email" ng-model="email" placeholder="Click and Enter Team Member's Email" ng-enter="email=invite(email)">
+      </md-input-container>
+
+      <md-button class="md-raised md-primary" ng-disabled="!email" ng-click="email=invite(email);">Invite Team Member</md-button>
+    </div>
+  </div>
+</div>

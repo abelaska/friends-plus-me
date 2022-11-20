@@ -1,0 +1,74 @@
+{
+  "name": "@fpm/web-api",
+  "version": "1.1.1",
+  "private": true,
+  "author": "Alois Bělaška <alois@loysoft.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "micro -l tcp://0.0.0.0:${PORT:-3000} src/index.js",
+    "dev": "pnpm run --inspect micro-dev  -l tcp://0.0.0.0:${PORT:-3000} -w src -w conf src/index.js",
+    "deploy": "/bin/bash scripts/deploy.sh",
+    "build": "exit 0",
+    "build:clean": "rm -rf '*.log'",
+    "eslint": "pnpm eslint index.js utils schemas functions",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "@fpm/accounts": "0.3.17",
+    "@fpm/assets": "0.9.18",
+    "@fpm/auth0": "0.3.9",
+    "@fpm/cache-redis": "0.3.8",
+    "@fpm/config": "0.3.7",
+    "@fpm/constants": "0.3.7",
+    "@fpm/db": "0.9.17",
+    "@fpm/events": "0.11.17",
+    "@fpm/hydra": "0.3.9",
+    "@fpm/image-proxy-client": "0.7.9",
+    "@fpm/logging": "0.4.7",
+    "@fpm/post": "0.8.17",
+    "@fpm/queue": "0.3.17",
+    "@fpm/redis": "0.3.8",
+    "@fpm/token": "0.3.9",
+    "ajv": "^6.1.1",
+    "ajv-keywords": "^3.1.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-register": "^6.26.0",
+    "bluebird": "^3.5.0",
+    "jsonwebtoken": "^7.4.3",
+    "lru-cache": "^4.1.1",
+    "micro": "9.3.4",
+    "moment-timezone": "^0.5.14",
+    "ms": "^2.0.0",
+    "nanoid": "^0.2.0",
+    "ratelimiter": "^3.0.3",
+    "raven": "^2.4.1",
+    "request": "^2.81.0",
+    "request-ip": "^2.0.2",
+    "request-promise": "^4.2.1",
+    "sanitize-html": "^1.14.1",
+    "xss": "^0.3.4"
+  },
+  "devDependencies": {
+    "jest": "26.4.2",
+    "micro-dev": "3.0.0",
+    "nock": "^9.1.6",
+    "test-listen": "^1.0.2"
+  },
+  "jest": {
+    "verbose": true,
+    "testRegex": "(/__tests__/.*)\\.jsx?$",
+    "testPathIgnorePatterns": [
+      "<rootDir>/lib/",
+      "<rootDir>/node_modules/"
+    ],
+    "globals": {
+      "NODE_ENV": "test"
+    }
+  }
+}

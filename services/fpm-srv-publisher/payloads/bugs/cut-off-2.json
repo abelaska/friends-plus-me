@@ -1,0 +1,76 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"pSkIL41GT2wmAdFX5kPW-Rf7v4A/rlg9Qd7OPPqHUBQE2HffTfLvWJU\"",
+    "title": "Twitter Finds Its Special Purpose\n\nTrying to explain Twitter to regular people is frustrating. To most...",
+    "published": "2013-09-16T18:19:44.797Z",
+    "updated": "2013-09-16T18:19:44.797Z",
+    "id": "z133d11heqbmuj33d23bx35hyvahft3fu",
+    "url": "https://plus.google.com/115157882097089845153/posts/JaZkFo3JQa9",
+    "actor": {
+      "id": "115157882097089845153",
+      "displayName": "Mitch Wagner",
+      "url": "https://plus.google.com/115157882097089845153",
+      "image": {
+        "url": "https://lh6.googleusercontent.com/-DgGWPlzxwiY/AAAAAAAAAAI/AAAAAAAASQM/LK40R9GzZTk/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "<b>Twitter Finds Its Special Purpose</b><br /><br />Trying to explain Twitter to regular people is frustrating. To most people, Twitter looks like Facebook, but with less functionality -- and far less appeal.<br /><br />Regular people understand Facebook: You connect with friends and family, share photos, notes, and funny images, and play games. People understand LinkedIn: It&#39;s where you post your resumé when you&#39;re looking for a job.<br /><br />But Twitter? It&#39;s just a bunch of 140-character messages from strangers, and a cryptic box that says, &quot;Compose new tweet...&quot; What&#39;s the point?<br /><br />Twitter finally has an answer to that question. The answer is tied to a business model. And it&#39;s no coincidence that this is all coming out at the moment of Twitter&#39;s IPO.<br /><br />BuzzFeed&#39;s John Herrman spells it out: Twitter is where you go to learn about and discuss events in real-time. <br /><br />My latest on <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a href=\"https://plus.google.com/105535716614289559703\" class=\"proflink\" oid=\"105535716614289559703\">Internet Evolution</a></span>. Find out more: <a href=\"http://goo.gl/s56VTW\" class=\"ot-anchor\" rel=\"nofollow\">http://goo.gl/s56VTW</a><br /><br /> <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23tech\">#tech</a>   <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23twitter\">#twitter</a>   <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23business\">#business</a>   <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23advertising\">#advertising</a>   <a class=\"ot-hashtag\" href=\"https://plus.google.com/s/%23marketing\">#marketing</a>  ",
+      "url": "https://plus.google.com/115157882097089845153/posts/JaZkFo3JQa9",
+      "replies": {
+        "totalItems": 2,
+        "selfLink": "https://content.googleapis.com/plus/v1/activities/z133d11heqbmuj33d23bx35hyvahft3fu/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plus/v1/activities/z133d11heqbmuj33d23bx35hyvahft3fu/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plus/v1/activities/z133d11heqbmuj33d23bx35hyvahft3fu/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "video",
+          "displayName": "Special Purpose",
+          "content": "from the Jerk",
+          "url": "http://www.youtube.com/watch?v=ymucqmjJs20",
+          "image": {
+            "url": "https://lh4.googleusercontent.com/proxy/Sdo0DBW5IV2my7kkxrAJQLtqd10ez0rQIMWM2A2vJhlyDwexPUBu21CFr8eVV-gpKx3pNZfDjzjU9jl0HkbhpB-pYIYaCHOVZksL=w506-h284-n",
+            "type": "image/jpeg",
+            "height": 284,
+            "width": 506
+          },
+          "embed": {
+            "url": "http://www.youtube.com/v/ymucqmjJs20?autohide=1&version=3",
+            "type": "application/x-shockwave-flash"
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

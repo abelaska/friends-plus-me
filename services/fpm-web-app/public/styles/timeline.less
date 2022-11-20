@@ -1,0 +1,442 @@
+.timeline-title {
+  width:                      340px; // 2*@vertical-line-left
+  text-align:                 center;
+}
+.timeline-standalone {
+}
+.timeline {
+
+  //@line-color:    #e0e0e0; #3594cb #6cbfee #afdcf8
+  //@line-color:                darken(#6cbfee, 5%);
+  @line-color:                #e0e0e0;
+  @day-color:                 #888;
+  @day-color-hover:           #333;
+  @message-color:             #333;
+  @time-color:                @day-color;
+  @time-color-hover:          #333;
+  @label-color:               #fff;
+  @label-border-color:        #ccc;
+  @icon-border-color:         @label-border-color;
+  @left-padding:              20px;
+  @vertical-line-left:        100px+@left-padding;
+  @icon-width:                40px;
+  @label-left:                @vertical-line-left+(@icon-width)-@left-padding+10px;
+  @line-width:                2px;
+  @editor-max-width:          800px;
+
+  margin:                     0;
+  padding:                    0 0 0 @left-padding;
+  list-style:                 none;
+  position:                   relative;
+
+  .light-strong {
+    font-weight:              400;
+  }
+
+  a {
+    transition:               color 0.2s ease-in-out;
+  }
+
+  a:link, a:hover, a:active, a:focus, a:visited {
+    text-decoration:          none;
+  }
+
+  > li {
+    position:                 relative;
+    margin-bottom:            20px;
+
+    /* The date/time */
+    .tl-time {
+      display:                block;
+      width:                  @vertical-line-left;
+      padding-right:          @icon-width+@left-padding;
+      position:               absolute;
+
+      span {
+        display:              block;
+        text-align:           right;
+      }
+      span:first-child {
+        font-size:            14px;
+        color:                @day-color;
+      }
+      span:last-child {
+        font-size:            14px;
+        line-height:          42px;
+        color:                @time-color;
+      }
+
+      .tl-time-reschedule, .tl-time-link a {
+        color:                @time-color;
+        cursor:               pointer;
+        transition:           color 0.2s ease-in-out;
+
+        &:hover {
+          color:              @time-color-hover;
+        }
+      }
+    }
+
+    /* Right content */
+    .tl-label {
+      position:               relative;
+      display:                inline-block;
+      min-width:              300px;
+      max-width:              800px;
+      margin:                 0 0 8px @label-left;
+      background:             @label-color;
+      color:                  #fff;
+      padding:                10px;
+      font-size:              14px;
+      font-weight:            300;
+      line-height:            1.6em;
+      border-radius:          5px;
+      border:                 1px solid @label-border-color;
+      min-height:             47px;
+      box-shadow:             0px 0px 15px 4px rgba(0, 0, 0, 0.1);
+
+      &.no-shadow {
+        box-shadow:           0 0;
+      }
+
+      .editor {
+        max-width:            @editor-max-width;
+        width:                100%;
+      }
+
+      .tl-label-post-ops {
+        position:             absolute;
+        right:                10px;
+        top:                  15px;
+
+        .tl-label-post-ops-toggle {
+          transition:         opacity 0.2s ease-in-out;
+          opacity:            0;
+        }
+
+        a {
+          color:              @time-color;
+        }
+        a:hover {
+          color:              @time-color-hover;
+        }
+
+        .dropdown-menu .divider {
+          margin:             5px 0;
+        }
+      }
+
+      .tl-label-post {
+
+        padding:              5px 0 5px 0;
+
+        .message {
+          font-size:          14px;
+          transition:         background-color 0.2s ease-in-out;
+          padding-right:      20px;
+          overflow:           hidden;
+          .selectable();
+
+          &.editable {
+            cursor:           text;
+          }
+          &.editable:hover {
+            background-color: rgba(0,0,0,0.03);
+          }
+
+          p {
+            margin:           0;
+            min-height:       10px;
+          };
+        }
+        .message * {
+          color:              @message-color;
+        }
+
+        .tl-label-post-links {
+          margin-top:         10px;
+          overflow:           hidden;
+
+          .tl-label-post-link {
+            font-size:        13px;
+
+            &, a {
+              color:          @time-color;
+            }
+          }
+          .tl-label-post-link:hover a {
+            color:            @time-color-hover;
+          }
+        }
+
+        .tl-label-post-attachments {
+          margin-top:         10px;
+          margin-bottom:      -5px;
+
+          .tl-label-post-attachment-photo {
+            max-width:        500px;
+            max-height:       200px;
+          }
+        }
+
+        .tl-label-post-failures {
+          margin-top:         10px;
+
+          .tl-label-post-failures-list {
+            margin-top:       10px;
+            margin-bottom:    0;
+
+            .tl-label-post-failure {
+              margin-bottom:  5px;
+              line-height:    1.5;
+              font-size:      13px;
+            }
+            .tl-label-post-failure:last-of-type {
+              margin-bottom:  0;
+            }
+          }
+        }
+      }
+    }
+
+    /* The triangle */
+    .tl-label:before, .tl-label:after {
+        position:           absolute;
+        right:              100%;
+        top:                0;
+        height:             0;
+        width:              0;
+        border:             solid transparent;
+        pointer-events:     none;
+        content:            " ";
+    }
+
+    .tl-label:before {
+        border-right-color: @label-border-color;
+        border-width:       12px;
+        margin-top:         10px;
+    }
+
+    .tl-label:after {
+        border-right-color: @label-color;
+        border-width:       11px;
+        margin-top:         11px;
+    }
+
+     /* The icons */
+    .tl-icon {
+      width:                @icon-width;
+      height:               @icon-width;
+      speak:                none;
+      font-style:           normal;
+      font-weight:          normal;
+      font-variant:         normal;
+      text-transform:       none;
+      font-size:            1.4em;
+      line-height:          @icon-width;
+      -webkit-font-smoothing: antialiased;
+      position:             absolute;
+      color:                #fff;
+      background:           #fff;
+      border-radius:        50%;
+      text-align:           center;
+      left:                 (@vertical-line-left)-@left-padding;
+      top:                  0;
+      margin:               0 0 0 -25px;
+      border:               1px solid @icon-border-color;
+      //box-shadow:           0 0 0 @line-width @line-color;
+      box-shadow:           0px 0px 15px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .tl-icon-post-state_-2 {
+      box-shadow:           0px 0px 15px 4px #f0ad4e;
+    }
+    .tl-icon-post-state_1 {
+      box-shadow:           0px 0px 15px 4px @red;
+    }
+
+    .tl-icon-time {
+      line-height:          12px;
+      font-size:            12px;
+      padding-top:          9px;
+      color:                @time-color;
+
+      small {
+        font-size:          10px;
+      }
+    }
+
+    .tl-icon-btn {
+      cursor:           pointer;
+    }
+    .tl-icon-btn:hover .fa {
+      opacity:          0.7;
+    }
+
+    .tl-icon.post-list-account {
+      .destination {
+        img {
+          border:       0;
+          margin-top:   -3px;
+          box-shadow:   0 0;
+          margin-left:  -2px;
+        }
+        .network {
+          font-size:    13px;
+        }
+      }
+    }
+
+    &:hover {
+      .tl-label {
+        .tl-label-post-ops .tl-label-post-ops-toggle {
+          opacity:            1;
+        }
+      }
+    }
+  }
+
+  > li.extra {
+
+    margin-bottom:    0;
+    margin-top:       0;
+    min-height:       70px;
+
+    .tl-icon {
+      @width:         220px;
+      color:          @day-color;
+      width:          @width;
+      border-radius:  10px;
+      margin:         0 0 0 -(@width/2)-5px;
+    }
+    .tl-icon-small {
+      @width:         @icon-width;
+      color:          @line-color;
+      width:          @width;
+      height:         @width;
+      border-radius:  50%;
+      font-size:      1.4em;
+      margin:         0 0 0 -(@width/2)-5px;
+      transition:     color 0.2s ease-in-out;
+      .unselectable();
+
+      &:hover {
+        color:        @day-color-hover;
+      }
+
+      .fa-play {
+        margin-left:  3px;
+      }
+    }
+
+    .tl-label {
+      margin:         0 0 0 @label-left;
+      display:        block;
+    }
+    .tl-label, .tl-label:after, .tl-label:before {
+      background:     transparent;
+      border-color:   transparent;
+    }
+    .tl-label:after, .tl-label:before {
+      border-right-color: transparent;
+    }
+    .tl-label-editor {
+      padding:        5px 0 50px;
+      max-width:      @editor-max-width;
+
+      input.form-control {
+        box-shadow:   0px 0px 15px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &.day {
+      margin-bottom:  10px;
+
+      .tl-icon {
+        font-size:    14px;
+        cursor:       default;
+      }
+    }
+  }
+
+  > li {
+    .tl-label.editing {
+      padding:            0;
+      display:            block;
+
+      .tl-label-post-ops {
+        display:          none;
+      }
+    }
+    .tl-label.editing, .tl-label.editing:after, .tl-label.editing:before {
+      background:         transparent;
+      border-color:       transparent;
+    }
+    .tl-label.editing:after, .tl-label.editing:before {
+      border-right-color: transparent;
+    }
+  }
+
+  /* The line */
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: @line-width;
+    background: @line-color;
+    left: @vertical-line-left;
+    margin-left: -4px-@line-width;
+  }
+}
+
+/* Example Media Queries */
+/*@media screen and (max-width: 65.375em) {
+
+    .cbp_tmtimeline > li .cbp_tmtime span:last-child {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 47.2em) {
+    .cbp_tmtimeline:before {
+        display: none;
+    }
+
+    .cbp_tmtimeline > li .cbp_tmtime {
+        width: 100%;
+        position: relative;
+        padding: 0 0 20px 0;
+    }
+
+    .cbp_tmtimeline > li .cbp_tmtime span {
+        text-align: left;
+    }
+
+    .cbp_tmtimeline > li .cbp_tmlabel {
+        margin: 0 0 30px 0;
+        padding: 1em;
+        font-weight: 400;
+        font-size: 95%;
+    }
+
+    .cbp_tmtimeline > li .cbp_tmlabel:after {
+        right: auto;
+        left: 20px;
+        border-right-color: transparent;
+        border-bottom-color: #3594cb;
+        top: -20px;
+    }
+
+    .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel:after {
+        border-right-color: transparent;
+        border-bottom-color: #6cbfee;
+    }
+
+    .cbp_tmtimeline > li .cbp_tmicon {
+        position: relative;
+        float: right;
+        left: auto;
+        margin: -55px 5px 0 0px;
+    }
+}*/

@@ -1,0 +1,71 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"GZR2X3-UK6zXRwPjCsTmgE7l6CI/bdbaOmPAUq9K0k1C8cq0w7gyTkU\"",
+    "title": "Come join us October 26th (at 11:30AM) for our fall celebration.  We'll be enjoying a great chick...",
+    "published": "2012-10-18T15:32:10.000Z",
+    "updated": "2012-10-18T15:32:10.714Z",
+    "id": "z125cjpqwwecs3bbm04ccbiicpmivt4aaqo0k",
+    "url": "events/c0515rf91hukqc3olrpm9iheqr4",
+    "actor": {
+      "id": "111522958099722700786",
+      "displayName": "Giertsen Company",
+      "name": {
+        "familyName": ".",
+        "givenName": "Giertsen Company"
+      },
+      "url": "https://plus.google.com/111522958099722700786",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-iYbx6e_umX0/AAAAAAAAAAI/AAAAAAAAAAA/aBKsyhsQY9w/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "\tCome join us October 26th (at 11:30AM) for our fall celebration.  We&#39;ll be enjoying a great chicken dinner with all the trimmings from The Lookout with Apple and Cherry Pie ala mode!!<br /><br />\tJust incase you wait for the last minute to get your pumpkins we&#39;ll have plenty to give away!!  We&#39;ll also have a drawing for great prizes like Viking Tickets, gift cards, and pies.  So, don&#39;t forget your business cards!!  We look forward to seeing you all.<br /><br />\tPlease RSVP to Jim Zondlo @ 763-546-1300",
+      "originalContent": "",
+      "url": "events/c0515rf91hukqc3olrpm9iheqr4",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z125cjpqwwecs3bbm04ccbiicpmivt4aaqo0k/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z125cjpqwwecs3bbm04ccbiicpmivt4aaqo0k/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z125cjpqwwecs3bbm04ccbiicpmivt4aaqo0k/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "October Monthly Luncheon",
+          "content": "\tCome join us October 26th (at 11:30AM) for our fall celebration.  We&#39;ll be enjoying a great chicken dinner with all the trimmings from The Lookout with Apple and Cherry Pie ala mode!!\n\n\tJust incase you wait for the last minute to get your pumpkins we&#39;ll have plenty to give away!!  We&#39;ll also have a drawing for great prizes like Viking Tickets, gift cards, and pies.  So, don&#39;t forget your business cards!!  We look forward to seeing you all.\n\n\tPlease RSVP to Jim Zondlo @ 763-546-1300",
+          "url": "events/c0515rf91hukqc3olrpm9iheqr4"
+        }
+      ]
+    },
+    "crosspostSource": "c0515rf91hukqc3olrpm9iheqr4",
+    "provider": {
+      "title": "Events"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

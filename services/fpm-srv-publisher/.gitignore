@@ -1,0 +1,6 @@
+.bin/
+node_modules/
+*.log
+*.log.*
+source-context.json
+source-contexts.json

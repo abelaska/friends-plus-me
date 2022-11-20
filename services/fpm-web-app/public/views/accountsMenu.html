@@ -1,0 +1,125 @@
+<div layout="column" style="height:100%" flex>
+  <md-toolbar class="md-theme-indigo" ng-if="!accountsMenuPinned">
+    <div class="md-toolbar-tools" style="padding-left: 10px;">
+      <md-button class="md-icon-button" ng-click="togglePinAccountsMenu()">
+        <md-tooltip>Pin Queues List</md-tooltip>
+        <md-icon md-svg-icon="/images/icons/pin.svg"></md-icon>
+      </md-button>
+
+      <span flex></span>
+
+      <md-menu>
+        <md-button layout="row" md-no-ink="true" aria-label="Switch Team" ng-click="$mdMenu.open($event)" style="margin: 0;padding: 0 0 0 6px;text-align: left;">
+          <md-tooltip>{{Google.profile.name}}</md-tooltip>
+          <span md-truncate style="max-width:200px">{{Google.profile.name}}</span>
+          <md-icon md-svg-icon="/images/icons/menu-down.svg"></md-icon>
+        </md-button>
+        <md-menu-content width="4" style="max-height:600px">
+          <md-menu-item ng-repeat="p in Google.profiles | orderBy: 'name' track by p._id">
+            <md-button ng-click="switchToProfile(p)" style="{{p._id==Google.profile._id?'font-weight:bold':''}}">{{p.name}}</md-button>
+          </md-menu-item>
+          <md-divider ng-if="Google.profiles.length > 0"></md-divider>
+          <md-menu-item>
+            <md-button ng-click="createProfile($event)" style="font-style: italic;" aria-label="Create New Team" ng-disabled="creatingProfile">
+              Create New Team
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+  </md-toolbar>
+
+  <div flex layout="column">
+    <div layout="row" ng-if="Google.profile.accounts.length == 0" layout-align="center center" layout-padding style="padding-bottom: 0;">
+      <p style="margin: 0">Add Your First Queue!</p>
+    </div>
+
+    <div layout="row">
+      <md-button flex md-no-ink="true" class="md-raised md-accent" ng-href="teams/{{Google.profile._id}}/queues/add" style="font-size: 14px;font-weight: bold;margin: 8px;" ng-click="toggleAccountsMenu(true)">Add Queue</md-button>
+    </div>
+
+    <div layout="row" layout-padding class="account-search-block" style="padding: 0 8px 8px 8px;" ng-show="Google.profile.accounts.length > 0">
+      <md-input-container flex md-no-float md-no-ink="true" class="md-block search" style="margin:0;padding:0;">
+        <input ng-model="search" ng-change="searchUpdated(search)" type="text" placeholder="Search...">
+      </md-input-container>
+    </div>
+
+    <md-content flex layout="column" ng-hide="Google.profile.accounts.length == 0">
+      <md-virtual-repeat-container flex style="width: 100%;">
+        <div md-virtual-repeat="a in accountsToShowLoader" md-on-demand="true" flex md-colors="{background: account && a.type == 'account' && (a.val._id == account._id) ? 'primary' : 'primary-600-0'}" style="height: 60px;">
+          <div ng-if="a.type=='group'" style="position:relative;color: rgba(0,0,0,0.54);background-color: rgba(0,0,0,0.03);;padding: 20px 16px;">{{a.name}} <span style="font-size:10px">({{a.accountsCount}})</span></div>
+          <md-button ng-show="a.type=='account'" ng-click="selectAccount(a.val);toggleAccountsMenu(true)" style="width: 100%;padding: 0 0 0 16px;margin: 0;font-weight: 400;text-align: left;min-height: 60px;" layout="row" layout-align="center center">
+            <div style="position:relative">
+              <md-tooltip>{{accountTitle(a.val)}}</md-tooltip>
+              <img ng-src="{{a.val.image}}" class="md-avatar" style="-webkit-box-flex: 0;-webkit-flex: none;flex: none;width: 36px;max-width:36px;height: 36px;min-height:36px;max-height:36px;margin-right: 20px;margin-top: 8px;margin-bottom: 8px;border-radius: 50%;box-sizing: content-box;">
+              <div class="network-icon" ng-switch on="types.networkTypeNameOfAccount(a.val)" style="bottom: 13px;left: 20px;">
+                <i ng-switch-when="pinterest" class="fa fa-pinterest"></i>
+                <i ng-switch-when="facebook" class="fa fa-facebook"></i>
+                <i ng-switch-when="linkedin" class="fa fa-linkedin"></i>
+                <i ng-switch-when="twitter" class="fa fa-twitter"></i>
+                <i ng-switch-when="tumblr" class="fa fa-tumblr"></i>
+                <i ng-switch-when="google" class="fa fa-google-plus"></i>
+                <i ng-switch-when="instagram" class="fa fa-instagram"></i>
+              </div>
+            </div>
+            <div flex layout="column" layout-align="center start">
+              <div ng-style="{color: account && a.type == 'account' && (a.val._id == account._id) ? '#fff' : 'rgba(0,0,0,0.87)'}" md-truncate style="line-height: 1.5em;font-size: 13px;text-transform: none;font-weight: 400;letter-spacing: .010em;margin: 0;max-width: 100%;">{{a.val.name}}</div>
+              <div ng-style="{color: account && a.type == 'account' && (a.val._id == account._id) ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.3)'}" style="font-size: 8px;line-height: 10px;">{{types.typeNameOfAccount(a.val)}}</div>
+            </div>
+            <div ng-if="a.val.queue.size>0" layout="column" layout-align="center start">
+              <span class="badge" md-colors="::{background: 'orange-800'}">
+                <md-tooltip>Queue Size</md-tooltip>
+                {{a.val.queue.size}}
+              </span>
+            </div>
+            <md-menu>
+              <md-button aria-label="Queue Operations" class="md-icon-button" ng-click="$mdMenu.open($event)" style="min-height: 60px;">
+                <md-icon md-menu-origin md-svg-icon="/images/icons/dots-vertical.svg"></md-icon>
+              </md-button>
+              <md-menu-content width="4" style="max-height: 400px;">
+                <md-menu-item ng-if="isSchedulingSupported(a.val)">
+                  <md-button ng-href="teams/{{Google.profile._id}}/queues/{{a.val._id}}/scheduling" ng-click="toggleAccountsMenu(true)">
+                    <md-icon md-svg-icon="/images/icons/calendar-clock.svg"></md-icon>
+                    Scheduling
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                  <md-button ng-href="teams/{{Google.profile._id}}/queues/{{a.val._id}}/setup" ng-click="toggleAccountsMenu(true)">
+                    <md-icon md-svg-icon="/images/icons/settings.svg"></md-icon>
+                    Settings
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                  <md-button ng-href="teams/{{Google.profile._id}}/queues/{{a.val._id}}/shortening" ng-click="toggleAccountsMenu(true)">
+                    <md-icon md-svg-icon="/images/icons/arrow-compress.svg"></md-icon>
+                    Link Shortening
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                  <md-button ng-href="{{a.val.url}}" target="_blank" ng-click="toggleAccountsMenu(true)">
+                    <md-icon md-svg-icon="/images/icons/link-variant.svg"></md-icon>
+                    Link
+                  </md-button>
+                </md-menu-item>
+                <md-menu-divider ng-if="a.val.state != states.account.blocked.code && isReconnectVisible(a.val)"></md-menu-divider>
+                <md-menu-item ng-if="a.val.state != states.account.blocked.code && isReconnectVisible(a.val)" ng-click="toggleAccountsMenu(true)">
+                  <md-button ng-href="teams/{{Google.profile._id}}/queues/{{a.val._id}}/reconnect">
+                    <md-icon md-svg-icon="/images/icons/autorenew.svg"></md-icon>
+                    Reconnect Queue
+                  </md-button>
+                </md-menu-item>
+                <md-menu-divider></md-menu-divider>
+                <md-menu-item>
+                  <md-button ng-click="removeAccount(a.val)">
+                    <md-icon md-svg-icon="/images/icons/delete.svg"></md-icon>
+                    Delete Queue
+                  </md-button>
+                </md-menu-item>
+              </md-menu-content>
+            </md-menu>
+          </md-button>
+        </div>
+      </md-virtual-repeat-container>
+    </md-content>
+  </div>
+</div>

@@ -1,0 +1,258 @@
+<div class="billing-upgrade-content" ng-controller="BillingCtrl">
+
+  <div ng-include="'/views/team.menu.html'"></div>
+
+  <div style="text-align: center;border-bottom:1px solid #f3f3f1;padding-bottom:50px;padding-bottom: 30px;margin-bottom: 30px;">
+    <h1>Your Plan is <b>{{planName()}}</b></h1>
+    <p ng-if="nextPayment">
+      Next <b>{{monthlyPrice()}}</b> payment is scheduled for {{nextPaymentDate()}} ({{nextPaymentFromNow()}})
+    </p>
+    <p ng-if="!nextPayment && validUntil()">
+      {{isTrial() ? 'Trial': 'Premium'}} is valid until {{validUntil()}}
+    </p>
+  </div>
+
+  <h1 style="text-align: center">Find the plan that's right for you</h1>
+
+  <div layout="column" class="pricing-table">
+
+    <div layout="row" layout-align="center center" layout-wrap layout-margin="5" class="pricing-list">
+      <div layout="column" class="pricing-item">
+        <div class="pricing-item-header">
+          <h2>FREE</h2>
+          <h3><b>$0</b>/mo</h3>
+          <div class="limits">
+            <div style="line-height: 26px;"><b>2</b> queues</div>
+            <!--div style="line-height: 26px;"><b>No</b> Instagram</div-->
+          </div>
+          <md-button ng-href="teams/{{Google.profile._id}}/downgrade" class="md-raised" ng-class="{'md-primary':isCurrentPlan('FREE')}" ng-disabled="isCurrentPlan('FREE')" aria-label="Choose FREE plan">{{isCurrentPlan('FREE') ? 'Your Plan': 'Choose Plan'}}</md-button>
+        </div>
+      </div>
+
+      <div class="separator-free"></div>
+
+      <div layout="column" class="pricing-item">
+        <div class="pricing-item-header">
+          <h2>Individual</h2>
+          <h3><b>$9</b>/mo</h3>
+          <div class="limits">
+            <div style="line-height: 26px;"><b>5</b> queues</div>
+            <!--div style="line-height: 26px;">Instagram Support</div-->
+          </div>
+          <md-button class="md-raised" ng-class="{'md-primary':isCurrentPlan('PAYWYUM_INDIVIDUAL')}" ng-disabled="isCurrentPlan('PAYWYUM_INDIVIDUAL')" ng-click="choosePlan('PAYWYUM_INDIVIDUAL')" aria-label="Choose Individual plan">{{isCurrentPlan('PAYWYUM_INDIVIDUAL') ? 'Your Plan': 'Choose Plan'}}</md-button>
+        </div>
+      </div>
+
+      <div class="separator-individual"></div>
+
+      <div layout="column" class="pricing-item">
+        <div class="pricing-item-header">
+          <h2>Small</h2>
+          <h3><b>$29</b>/mo</h3>
+          <div class="limits">
+            <div style="line-height: 26px;"><b>15</b> queues</div>
+            <!--div style="line-height: 26px;">Instagram Support</div-->
+          </div>
+          <md-button class="md-raised" ng-class="{'md-primary':isCurrentPlan('PAYWYUM_SMALL')}" ng-disabled="isCurrentPlan('PAYWYUM_SMALL')" ng-click="choosePlan('PAYWYUM_SMALL')" aria-label="Choose Small plan">{{isCurrentPlan('PAYWYUM_SMALL') ? 'Your Plan': 'Choose Plan'}}</md-button>
+        </div>
+      </div>
+
+      <div class="separator-premium"></div>
+
+      <div layout="column" class="pricing-item">
+        <div class="pricing-item-header">
+          <h2>Medium</h2>
+          <h3><b>$59</b>/mo</h3>
+          <div class="limits">
+            <div style="line-height: 26px;"><b>30</b> queues</div>
+            <!--div style="line-height: 26px;"><b>1</b> Instagram Queue <small>for FREE</small></div-->
+          </div>
+          <md-button class="md-raised" ng-class="{'md-primary':isCurrentPlan('PAYWYUM_MEDIUM')}" ng-disabled="isCurrentPlan('PAYWYUM_MEDIUM')" ng-click="choosePlan('PAYWYUM_MEDIUM')" aria-label="Choose Medium plan">{{isCurrentPlan('PAYWYUM_MEDIUM') ? 'Your Plan': 'Choose Plan'}}</md-button>
+        </div>
+      </div>
+
+      <div class="separator-premium"></div>
+
+      <div layout="column" class="pricing-item">
+        <div class="pricing-item-header">
+          <h2>Large</h2>
+          <h3><b>$259</b>/mo</h3>
+          <div class="limits">
+            <div style="line-height: 26px;"><b>120</b> queues</div>
+            <!--div style="line-height: 26px;"><b>10</b> Instagram Queues <small>for FREE</small></div-->
+          </div>
+          <md-button class="md-raised" ng-class="{'md-primary':isCurrentPlan('PAYWYUM_LARGE')}" ng-disabled="isCurrentPlan('PAYWYUM_LARGE')" ng-click="choosePlan('PAYWYUM_LARGE')" aria-label="Choose Large plan">{{isCurrentPlan('PAYWYUM_LARGE') ? 'Your Plan': 'Choose Plan'}}</md-button>
+        </div>
+      </div>
+
+      <div layout="column" flex="100">
+        <p style="text-align: center;">
+          <b>What is Queue?</b> Queue is a destination where you'd like to publish your posts, like Facebook
+          profile, Twitter profile, Pinterest Board, Google+ page...
+        </p>
+      </div>
+    </div>
+
+    <h1 style="text-align: center;margin-bottom: 0;">Pay for what you use</h1>
+    <div layout="column" layout-align="center center" layout-margin="5" style="margin-top: 0;">
+      <p>If you add more {{additionalCategoryName()}}s than you have paid for, you will be charged monthly for the additional on-demand {{additionalCategoryName()}}s.</p>
+      <p style="font-weight: 400;color: #000;">Price per additional {{additionalCategoryName()}} is ${{additionalQueueMonthlyPrice()}}/mo.</p>
+      <!--p style="font-weight: 400;color: #000;">Price per additional Instagram {{additionalCategoryName()}} is ${{Google.profile.premium.metrics.instagramQueue}}/mo.</p-->
+    </div>
+
+    <div layout="column" layout-align="center start" layout-wrap layout-margin="5" class="all-plans-include-block" ng-show="isPrepayAllowed()" id="prepay">
+      <div ng-if="!prepayingYears2" style="margin: 0 auto">
+        <h1 style="text-align: center;margin-bottom: 0;">Prepay a year and get {{prepayDiscountMonths[1]}} months for FREE</h1>
+        <div layout="column" layout-align="center center" layout-margin="5" style="margin-top: 0;">
+          <!--p>Prepay for a year in advance and <b style="font-weight:400">get {{prepayDiscountMonths[1]}} months for free. That's a {{prepayDiscountPercent(1)}}% discount and {{prepayDiscount(1)}} saved</b> for just {{prepayPrice(1)}}.</p-->
+          <md-button class="md-raised md-primary" aria-label="Prepay 1 year" style="text-transform: inherit;padding: 0 20px;" ng-disabled="saving || !isPaymentPrepared || !isPaymentMethodSelected" ng-click="prepay(1)">I'd like to prepay {{prepayPrice(1)}} and <b style="text-transform:uppercase;">get my {{prepayDiscount(1)}} discount</b></md-button>
+          <md-progress-circular md-mode="indeterminate" ng-if="prepayingYears1"></md-progress-circular>
+        </div>
+      </div>
+
+      <div ng-if="!prepayingYears1" style="margin: 0 auto">
+        <h1 style="text-align: center;margin-bottom: 0;">Prepay 2 years and get {{prepayDiscountMonths[2]}} months for FREE</h1>
+        <div layout="column" layout-align="center center" layout-margin="5" style="margin-top: 0;">
+          <!--p>Prepay for 2 years and <b style="font-weight:400">get {{prepayDiscountMonths[2]}} months for free. That's a {{prepayDiscountPercent(2)}}% discount and {{prepayDiscount(2)}} saved</b> for prepay of just {{prepayPrice(2)}}.</p-->
+          <md-button class="md-raised md-primary" aria-label="Prepay 2 years" style="text-transform: inherit;padding: 0 20px;" ng-disabled="saving || !isPaymentPrepared || !isPaymentMethodSelected" ng-click="prepay(2)">I'd like to prepay {{prepayPrice(2)}} and <b style="text-transform:uppercase;">get my {{prepayDiscount(2)}} discount</b></md-button>
+          <md-progress-circular md-mode="indeterminate" ng-if="prepayingYears2"></md-progress-circular>
+        </div>
+      </div>
+    </div>
+
+    <div id="billing-form" style="margin-top:30px;">&nbsp;</div>
+
+    <div flex layout="column" layout-align="center center" class="billing-form" ng-hide="selectedPlan == 'TRIAL' || selectedPlan == 'FREE' || selectedPlan == 'FREEFOREVER'">
+      <h1 style="text-align: center" ng-bind-html="paymentInfoTitle()"></h1>
+      <p ng-if="!isSubscribed">You'll be charged on a monthly basis.</p>
+      <form id="pay-form" layout="column" layout-wrap layout="start center" layout-margin="10">
+        <div id="dropin-container" style="margin-bottom: 30px;"></div>
+
+        <div layout="column">
+          <md-input-container>
+            <label>Organization Name</label>
+            <input ng-model="Google.profile.subject.org">
+          </md-input-container>
+
+          <md-input-container>
+            <label>Organization Address</label>
+            <textarea ng-model="billTo" rows="3"></textarea>
+          </md-input-container>
+
+          <md-input-container>
+            <label>Country</label>
+            <md-select ng-model="billingCountry" ng-init="billingCountry = countries.findSorted(Google.profile.subject.country)" ng-change="Google.profile.subject.country=billingCountry.code" required md-no-asterisk="false">
+                <md-option><em>-- Select Country --</em></md-option>
+                <md-option ng-repeat="c in countries.sorted" ng-value="c">{{c.name}}</md-option>
+              </md-select>
+          </md-input-container>
+
+          <div layout="row">
+            <md-input-container flex="50">
+              <label>VAT ID</label>
+              <input type="text" ng-model="Google.profile.subject.vatId" ng-disabled="!!!Google.profile.subject.country">
+            </md-input-container>
+
+            <md-input-container flex="50">
+              <label>Invoice E-Mail</label>
+              <input type="text" ng-model="Google.profile.subject.invoiceEmail">
+            </md-input-container>
+          </div>
+
+          <div layout="column" layout-align="center center" style="padding-bottom: 20px;">
+            <p ng-if="shouldIncludeVat()" style="margin-bottom:20px;opacity:0.7">
+              EU customers from {{vatCountryName()}} that are not registered VAT business will be charged <strong>additional {{vatPercent()}}% VAT</strong>.
+            </p>
+
+            <button id="pay-form-submit" type="submit" ng-hide="true"></button>
+
+            <div layout="row" layout-align="start center" style="margin-top:10px;width:100%" ng-if="isCurrentPlanFree && Google.profile.plan.name !== selectedPlan">
+              <div flex layout="column" layout-align="center center">
+                <md-whiteframe class="md-whiteframe-1dp" ng-click="setSubinterval('prepay')" layout layout-align="center center" style="min-width:500px;margin-bottom:10px;padding:10px;{{subinterval=='prepay'?'border-color: #0576b9;background: #eaf5fc;':''}}">
+                  <div flex layout="row" layout-align="start center">
+                    <div style="width:20px"><input ng-model="subinterval" type="radio" name="subinterval" value="prepay"></div>
+                    <div flex layout="column" layout-align="start start">
+                      <div><b>Annual Billing</b> - get {{prepayDiscountMonths[1]}} months free!</div>
+                      <div>${{selectedPlanAnnualPrice()}} per year</div>
+                      <div style="font-size: 10px;color: #717274;">(plus applicable taxes)</div>
+                    </div>
+                    <div layout="row" layout-align="center center">
+                      <div style="font-size: 32px;color: #0576b9;margin: 5px;">${{selectedPlanAnnualPriceMonthly()}}</div>
+                      <div style="font-size: 10px;color: #717274;">+ applicable taxes<br>per month</div>
+                    </div>
+                  </div>
+                </md-whiteframe>
+                <md-whiteframe class="md-whiteframe-1dp" ng-click="setSubinterval('month')" layout layout-align="center center" style="min-width:500px;padding:10px;{{subinterval=='month'?'border-color: #0576b9;background: #eaf5fc;':''}}" ng-style={}>
+                  <div flex layout="row" layout-align="start center">
+                    <div style="width:20px"><input ng-model="subinterval" type="radio" name="subinterval" value="month"></div>
+                    <div flex layout="column" layout-align="start start">
+                      <div><b>Monthly Billing</b></div>
+                      <div>${{selectedPlanMonthlyPrice()}} per month (You'll spend ${{12*selectedPlanMonthlyPrice()}} per year) </div>
+                      <div style="font-size: 10px;color: #717274;">(plus applicable taxes)</div>
+                    </div>
+                    <div layout="row" layout-align="center center">
+                      <div style="font-size: 32px;color: #0576b9;margin: 5px;">${{selectedPlanMonthlyPrice()}}</div>
+                      <div style="font-size: 10px;color: #717274;">+ applicable taxes<br>per month</div>
+                    </div>
+                  </div>
+                </md-whiteframe>
+              </div>
+            </div>
+
+            <p style="margin-top:20px;opacity:0.7">By submitting you are agreeing to our <a href="https://friendsplus.me/tos" target="_blank">Terms of Use</a> and <a href="https://friendsplus.me/privacy" title="Privacy Policy" target="_blank">Privacy Policy</a>.</p>
+
+            <md-progress-circular md-mode="indeterminate" ng-if="saving"></md-progress-circular>
+
+            <md-button class="md-raised md-primary" ng-if="!saving" ng-disabled="!Google.profile.subject.country || saving || !isPaymentPrepared || !isPaymentMethodSelected" ng-click="isPaymentPrepared && isPaymentMethodSelected && Google.profile.subject.country && finish($event, subinterval)" aria-label="{{paymentInfoTitle()}}" ng-bind-html="paymentInfoTitle()" style="padding: 20px 30px;"></md-button>
+
+            <a href="https://www.braintreegateway.com/merchants/{{config.braintree.merchantId}}/verified" target="_blank" style="margin-top: 30px;display: block;">
+              <img src="https://braintree-badges.s3.amazonaws.com/06.png" border="0">
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" style="padding-bottom:50px">
+    <div class="col-xs-12" style="padding-top:50px">
+      <h2 class="text-center" style="margin:20px 0 40px 0;font-size: 24px;">What Our Customers Say About Friends+Me</h2>
+    </div>
+
+    <div class="col-lg-4" ng-repeat="c in showCustomers track by c.idx" style="vertical-align: bottom;padding: 0 20px 30px 20px;">
+      <blockquote class="quote" ng-bind-html="c.quote" style="position: relative;font-style: italic;font-weight: 300;background-color: #f4f4f4;color: #4D394B;font-size: 14px;line-height: 21px;margin: 0 0 20px;padding: 20px;border: 0;-webkit-border-radius: 16px;-moz-border-radius: 16px;-ms-border-radius: 16px;-o-border-radius: 16px;border-radius: 16px;"></blockquote>
+      <div style="position: relative;min-height: 60px;padding: 8px 0 0 60px;">
+        <img ng-src="{{c.photo}}" style="position: absolute;top: 0;left: 0;width: 50px;height: 50px;-webkit-border-radius: 50%;-moz-border-radius: 50%;-ms-border-radius: 50%;-o-border-radius: 50%;border-radius: 50%;"/>
+        <a href="{{c.link}}" target="_blank" style="text-decoration: none;font-size: 14px;font-weight: 700;color: #4D394B;">{{c.name}}</a>
+        <div style="font-size: 12px;color: #776275;">{{c.title}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div layout="column" layout-align="center center" class="billing-faq">
+    <div class="column">
+      <h1>Questions?</h1>
+
+      <h4>What is queue?</h4>
+      <p>Queue is a destination where you'd like to publish your posts. For example Facebook profile, Twitter profile, Pinterest Board, Google+ page and so on...</p>
+
+      <h4>What is included in the free trial?</h4>
+      <p>The 15-day free trial lets you publish unlimited posts, add up to 100 queues and invite 30 team members.</p>
+
+      <h4>What happens when my trial expires?</h4>
+      <p>When your trial expires we'll downgrade you to our free tier which is limited to 2 queues, 1 team member and max. 3 scheduled posts per queue.</p>
+
+      <h4>If I downgrade mid-year, when does it apply?</h4>
+      <p>Downgrades and cancellations are processed as the end of the current contract cycle and cannot be refunded.</p>
+
+      <h4>If I want to cancel monthly billing, what happens?</h4>
+      <p>Your plan will continue until the end of the current of the current billing cycle. After this, you’ll revert to the base free plan, with includes a limited number of queues and team members.</p>
+
+      <h4>How can I cancel my subscription?</h4>
+      <p>You can <a href="teams/{{Google.profile._id}}/downgrade">cancel</a> your subscripton anytime you want.</p>
+
+      <h4>Still haven’t found an answer to your question?</h4>
+      <p>Then you can always contact us, just hit us an <a href="mailto:billing@friendsplus.me">e-mail</a>.</p>
+    </div>
+  </div>
+</div>

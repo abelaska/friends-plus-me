@@ -1,0 +1,32 @@
+<div layout="column" md-whiteframe="4" aria-label="Pick Queue" style="min-height: 300px;max-width: 400px;min-width: 300px;background-color: #fff;">
+
+  <div layout="row" layout-padding class="account-search-block" style="padding: 8px;">
+    <md-input-container flex md-no-float md-no-ink="true" class="md-block search" style="margin:0;padding:0;">
+      <input ng-model="search" ng-change="searchUpdated(search)" type="text" placeholder="Search...">
+    </md-input-container>
+  </div>
+
+  <md-virtual-repeat-container flex style="width: 100%;overflow: hidden;overflow-y: auto;">
+    <div md-virtual-repeat="a in accountsLoader" md-on-demand="true" flex style="height: 60px;width: 100%;">
+      <md-button ng-click="pickAccount(a)" style="width: 100%;padding: 0 16px;margin: 0;font-weight: 400;text-align: left;min-height: 60px;" layout="row" layout-align="start center">
+        <div style="position:relative">
+          <md-tooltip>{{accountTitle(a)}}</md-tooltip>
+          <img ng-src="{{a.image}}" style="-webkit-box-flex: 0;-webkit-flex: none;flex: none;width: 36px;min-width:36px;max-width:36px;height: 36px;min-height: 36px;max-height: 36px;margin-right: 20px;margin-top: 8px;margin-bottom: 8px;border-radius: 50%;box-sizing: content-box;">
+          <div class="network-icon" ng-switch on="types.networkTypeNameOfAccount(a)" style="bottom: 13px;left: 20px;">
+            <i ng-switch-when="pinterest" class="fa fa-pinterest"></i>
+            <i ng-switch-when="facebook" class="fa fa-facebook"></i>
+            <i ng-switch-when="linkedin" class="fa fa-linkedin"></i>
+            <i ng-switch-when="twitter" class="fa fa-twitter"></i>
+            <i ng-switch-when="tumblr" class="fa fa-tumblr"></i>
+            <i ng-switch-when="google" class="fa fa-google-plus"></i>
+            <i ng-switch-when="instagram" class="fa fa-instagram"></i>
+          </div>
+        </div>
+        <div flex layout="column">
+          <div md-truncate style="color: rgba(0,0,0,0.87);line-height: 1.5em;font-size: 13px;text-transform: none;font-weight: 400;letter-spacing: .010em;margin: 0;">{{a.name}}</div>
+          <div style="font-size: 8px;line-height: 10px;color: rgba(0,0,0,0.3);">{{types.typeNameOfAccount(a)}}</div>
+        </div>
+      </md-button>
+    </div>
+  </md-virtual-repeat-container>
+</div>

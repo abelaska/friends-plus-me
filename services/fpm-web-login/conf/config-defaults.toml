@@ -1,0 +1,40 @@
+[db.options]
+  useMongoClient = true
+  native_parser = true
+  poolSize = 32
+  reconnectInterval = 2000
+  reconnectTries = 180000000
+  autoReconnect = true
+  keepAlive = 120
+  noDelay = true
+[db.options.config]
+  autoIndex = false
+
+[log.logentries]
+  level = "info"
+
+[auth0]
+  domain = "fpm.auth0.com"
+
+[hydra]
+  url = "https://hydra.friendsplus.me"
+[hydra.consent]
+  scope = "hydra.keys.get"
+  clientId = "fpm-consent-app"
+  clientSecret = "XXX"
+
+[fpm.app]
+  scopes = ["admin"]
+  clientId = "XXX"
+
+[image.proxy]
+  url = "http://fpm-ipapi-fpm-ipapi:8080"
+  token = "XXX"
+  timeout = 60000
+
+[sendy]
+  timeout = 30000
+  subscribeUrl = "https://sendy.loysoft.com/subscribe"
+[sendy.lists]
+  signup = "XXX"
+  trial = "XXX"

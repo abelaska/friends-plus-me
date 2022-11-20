@@ -1,0 +1,31 @@
+[db]
+  url = "mongodb://localhost:27017/${RANDOM_DATABASE}"
+
+[db.options.config]
+  autoIndex = false
+
+[oauth.tokens.store.crypto]
+  key = "1234567890"
+  iv = "0123456789012345"
+
+[log.console]
+  level = "none"
+[log.file]
+  path = "testing.log"
+
+[braintree]
+  environment = "Sandbox"
+[braintree.merchant.default]
+  merchantId = "XXX"
+  privateKey = "XXX"
+  publicKey = "XXX"
+[braintree.merchant.default.account]
+  default = "XXX"
+  amex = "amex"
+
+[email]
+  debug = true
+
+[auth0]
+  clientId = "XXX"
+  clientSecret = "XXX-XXX"

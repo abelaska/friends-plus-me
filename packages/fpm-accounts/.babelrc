@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    "flow"
+  ],
+  "retainLines": true,
+  "plugins": ["add-module-exports", "transform-object-rest-spread"]
+}

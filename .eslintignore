@@ -1,0 +1,8 @@
+packages/*/node_modules
+packages/*/test
+packages/*/__tests__
+packages/*/dist
+packages/*/build
+packages/*/lib
+gulpfile.js
+gulpfile.babel.js

@@ -1,0 +1,49 @@
+[db]
+  url = "mongodb://localhost/fpm"
+
+[redis]
+  auth_pass = ""
+  host = "localhost"
+  port = 6379
+
+[firebase]
+  # without / at the end
+  url = "https://shining-heat-3.firebaseio.com"
+[firebase.session]
+  secret = "XXX"
+
+[email]
+  debug = true
+
+[gcloud.key]
+  filename = "conf/FPM - Cluster.json"
+
+[google]
+  clientId = "XXX"
+  clientSecret = "XXX"
+
+[linkedin]
+  consumerKey = "XXX"
+  consumerSecret = "XXX"
+
+# [log.file]
+#   path = "fpm-publisher.log"
+[log.logentries]
+  enabled = false
+  token = "XXX"
+
+[stats.http]
+  bind = "localhost"
+
+[system]
+  fake = false
+
+[oauth.tokens.store.crypto]
+  key = "1234567890"
+  iv = "0123456789012345"
+
+[http.ui]
+  url = "https://localhost:9000"
+
+[mobileproxy]
+  url = "http://192.168.0.10:15000"

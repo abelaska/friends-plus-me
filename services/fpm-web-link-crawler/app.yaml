@@ -1,0 +1,28 @@
+runtime: custom
+vm: true
+api_version: 1
+threadsafe: true
+service: crawler
+
+resources:
+  cpu: 0.5
+  memory_gb: 1
+  disk_size_gb: 10
+
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 2
+  cool_down_period_sec: 60
+  cpu_utilization:
+    target_utilization: 0.8
+
+health_check:
+  enable_health_check: true
+  check_interval_sec: 10
+  timeout_sec: 8
+  unhealthy_threshold: 2
+  healthy_threshold: 2
+  restart_threshold: 60
+
+env_variables:
+  NODE_ENV: production

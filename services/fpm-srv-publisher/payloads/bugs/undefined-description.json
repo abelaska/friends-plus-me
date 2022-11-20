@@ -1,0 +1,75 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"xy7AeD5bgijDLuyUn5Oks8fofoI/PRJjFPufyFjYfLO1mG9nH9uFOeM\"",
+    "title": "",
+    "published": "2012-12-01T22:27:43.809Z",
+    "updated": "2012-12-01T22:27:43.809Z",
+    "id": "z13xhj2amv35utasx23qtvcovyytt1p2w",
+    "url": "https://plus.google.com/114458856608201314145/posts/5tQjB1g7PJh",
+    "actor": {
+      "id": "114458856608201314145",
+      "displayName": "Carlos Morales Tapia",
+      "url": "https://plus.google.com/114458856608201314145",
+      "image": {
+        "url": "https://lh4.googleusercontent.com/-PNtwXaKQco8/AAAAAAAAAAI/AAAAAAAACis/hDna2SYFVbs/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "",
+      "url": "https://plus.google.com/114458856608201314145/posts/5tQjB1g7PJh",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13xhj2amv35utasx23qtvcovyytt1p2w/comments"
+      },
+      "plusoners": {
+        "totalItems": 1,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13xhj2amv35utasx23qtvcovyytt1p2w/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13xhj2amv35utasx23qtvcovyytt1p2w/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "La rabia contra la ‘imposición’ -",
+          "url": "http://www.cnnexpansion.com/fotogalerias/2012/12/01/la-rabia-contra-la-imposicion",
+          "image": {
+            "url": "https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?url=http://www.cnnexpansion.com/media/portadas/MINI_PORTADA_201211261000561353945656788.jpg&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_h=150&resize_w=150&no_expand=1",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          },
+          "fullImage": {
+            "url": "http://www.cnnexpansion.com/media/portadas/MINI_PORTADA_201211261000561353945656788.jpg",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

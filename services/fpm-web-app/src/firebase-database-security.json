@@ -1,0 +1,435 @@
+{
+  "rules": {
+    "presence": {
+      "extension": {
+        ".read": "auth.uid === 'publisher'",
+        "$userId": {
+          ".read": "auth.uid === $userId",
+          ".write": "auth.uid === $userId"
+        }
+      },
+      "desktop": {
+        ".read": "auth.uid === 'publisher'",
+        "$userId": {
+          ".read": "auth.uid === $userId",
+          ".write": "auth.uid === $userId"
+        }
+      }
+    },
+    "lock": {
+      "post": {
+        "$postId": {
+          ".read": "auth.uid === 'publisher'",
+          ".write": "auth.uid === 'publisher'"
+        }
+      }
+    },
+    "queue": {
+      "query": {
+        "google": {
+          "$userId": {
+            "listen": {
+              "tasks": {
+                ".read": "auth.uid === $userId",
+                ".write": "auth.uid === $userId",
+                ".indexOn": "_state",
+                "$taskId": {
+                  ".read": "auth.uid === $userId",
+                  ".write": "auth.uid === $userId",
+                  ".validate": "newData.hasChildren(['id','body']) || newData.hasChildren(['_state', '_state_changed', '_progress'])",
+                  "_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "_state_changed": {
+                    ".validate": "newData.isNumber() && (newData.val() === now || data.val() === newData.val())"
+                  },
+                  "_owner": {
+                    ".validate": "newData.isString()"
+                  },
+                  "_progress": {
+                    ".validate": "newData.isNumber() &&
+                    newData.val() >= 0 &&
+                    newData.val() <= 100 "
+                  },
+                  "_error_details": {
+                    "error": {
+                      ".validate": "newData.isString()"
+                    },
+                    "error_stack": {
+                      ".validate": "newData.isString()"
+                    },
+                    "previous_state": {
+                      ".validate": "newData.isString()"
+                    },
+                    "original_task": {
+                      /* This space intentionally left blank, for malformed tasks */
+                    },
+                    "attempts": {
+                      ".validate": "newData.isNumber() && newData.val() > 0"
+                    },
+                    "$other": {
+                      ".validate": false
+                    }
+                  }
+                }
+              },
+              "specs": {
+                ".read": "auth.uid === $userId",
+                ".write": "auth.uid === $userId",
+                "$specId": {
+                  ".validate": "newData.hasChild('in_progress_state')",
+                  "start_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "in_progress_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "finished_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "error_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "retries": {
+                    ".validate": "newData.isNumber() && newData.val() >= 0"
+                  },
+                  "timeout": {
+                    ".validate": "newData.isNumber() && newData.val() > 0"
+                  },
+                  "$other": {
+                    ".validate": false
+                  }
+                }
+              }
+            },
+            "reply": {
+              "tasks": {
+                ".read": "auth.uid === $userId",
+                ".write": "auth.uid === $userId",
+                ".indexOn": "_state",
+                "$taskId": {
+                  ".validate": "newData.hasChildren(['id','body']) || newData.hasChildren(['_state', '_state_changed', '_progress'])",
+                  "_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "_state_changed": {
+                    ".validate": "newData.isNumber() && (newData.val() === now || data.val() === newData.val())"
+                  },
+                  "_owner": {
+                    ".validate": "newData.isString()"
+                  },
+                  "_progress": {
+                    ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+                  },
+                  "_error_details": {
+                    "error": {
+                      ".validate": "newData.isString()"
+                    },
+                    "error_stack": {
+                      ".validate": "newData.isString()"
+                    },
+                    "previous_state": {
+                      ".validate": "newData.isString()"
+                    },
+                    "original_task": {
+                      /* This space intentionally left blank, for malformed tasks */
+                    },
+                    "attempts": {
+                      ".validate": "newData.isNumber() && newData.val() > 0"
+                    },
+                    "$other": {
+                      ".validate": false
+                    }
+                  }
+                }
+              },
+              "specs": {
+                ".read": "auth.uid === $userId",
+                ".write": "auth.uid === $userId",
+                "$specId": {
+                  ".validate": "newData.hasChild('in_progress_state')",
+                  "start_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "in_progress_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "finished_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "error_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "retries": {
+                    ".validate": "newData.isNumber() && newData.val() >= 0"
+                  },
+                  "timeout": {
+                    ".validate": "newData.isNumber() && newData.val() > 0"
+                  },
+                  "$other": {
+                    ".validate": false
+                  }
+                }
+              }
+            }
+          }
+        },
+      },
+      "post": {
+        "google": {
+          "$actorId": {
+            "listen": {
+              "tasks": {
+                ".read": "auth.can.processGooglePosts === true",
+                ".write": "auth.can.publishGooglePosts === true || auth.can.processGooglePosts === true",
+                "$taskId": {
+                  ".read": "data.child('publishers/'+auth.uid).val() === true || auth.uid === 'publisher'",
+                  ".write": "data.child('publishers/'+auth.uid).val() === true || auth.uid === 'publisher'",
+                  ".validate": "newData.hasChildren(['_id','html','accountCode','aid','pid','uid','publishers']) || (auth.can.processGooglePosts === true && newData.hasChildren(['_state', '_state_changed', '_progress']))",
+                  "_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "_state_changed": {
+                    ".validate": "newData.isNumber() && (newData.val() === now || data.val() === newData.val())"
+                  },
+                  "_owner": {
+                    ".validate": "newData.isString()"
+                  },
+                  "_progress": {
+                    ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+                  },
+                  "_error_details": {
+                    "error": {
+                      ".validate": "newData.isString()"
+                    },
+                    "error_stack": {
+                      ".validate": "newData.isString()"
+                    },
+                    "previous_state": {
+                      ".validate": "newData.isString()"
+                    },
+                    "original_task": {
+                      /* This space intentionally left blank, for malformed tasks */
+                    },
+                    "attempts": {
+                      ".validate": "newData.isNumber() && newData.val() > 0"
+                    },
+                    "$other": {
+                      ".validate": false
+                    }
+                  }
+                }
+              },
+              "specs": {
+                ".read": "auth.can.processGooglePosts === true",
+                "$specId": {
+                  ".validate": "newData.hasChild('in_progress_state')",
+                  "start_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "in_progress_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "finished_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "error_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "timeout": {
+                    ".validate": "newData.isNumber() && newData.val() > 0"
+                  },
+                  "$other": {
+                    ".validate": false
+                  }
+                }
+              }
+            },
+            "desktop": {
+              "tasks": {
+                ".read": "auth.can.processGooglePosts === true",
+                ".write": "auth.can.publishGooglePosts === true || auth.can.processGooglePosts === true",
+                ".indexOn": "_state",
+                "$taskId": {
+                  ".read": "data.child('publishers/'+auth.uid).val() === true || auth.uid === 'publisher'",
+                  ".write": "data.child('publishers/'+auth.uid).val() === true || auth.uid === 'publisher'",
+                  ".validate": "newData.hasChildren(['_id','html','accountCode','aid','pid','uid','publishers']) || (auth.can.processGooglePosts === true && newData.hasChildren(['_state', '_state_changed', '_progress']))",
+                  "_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "_state_changed": {
+                    ".validate": "newData.isNumber() && (newData.val() === now || data.val() === newData.val())"
+                  },
+                  "_owner": {
+                    ".validate": "newData.isString()"
+                  },
+                  "_progress": {
+                    ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+                  },
+                  "_error_details": {
+                    "error": {
+                      ".validate": "newData.isString()"
+                    },
+                    "error_stack": {
+                      ".validate": "newData.isString()"
+                    },
+                    "previous_state": {
+                      ".validate": "newData.isString()"
+                    },
+                    "original_task": {
+                      /* This space intentionally left blank, for malformed tasks */
+                    },
+                    "attempts": {
+                      ".validate": "newData.isNumber() && newData.val() > 0"
+                    },
+                    "$other": {
+                      ".validate": false
+                    }
+                  }
+                }
+              },
+              "specs": {
+                ".read": "auth.can.processGooglePosts === true",
+                ".write": "auth.can.publishGooglePosts === true || auth.can.processGooglePosts === true",
+                "$specId": {
+                  ".validate": "newData.hasChild('in_progress_state')",
+                  "start_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "in_progress_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "finished_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "error_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "timeout": {
+                    ".validate": "newData.isNumber() && newData.val() > 0"
+                  },
+                  "retries": {
+                    ".validate": "newData.isNumber() && newData.val() >= 0"
+                  },
+                  "$other": {
+                    ".validate": false
+                  }
+                }
+              }
+            }
+          },
+          "result": {
+            "tasks": {
+              ".read": "auth.can.processGoogleReply === true",
+              ".write": "auth.can.publishGoogleReply === true || auth.can.processGoogleReply === true",
+              "$taskId": {
+                ".validate": "newData.hasChildren(['time','success','type','version','data']) || (auth.can.processGoogleReply === true && newData.hasChildren(['_state', '_state_changed', '_progress']))",
+                "_state": {
+                  ".validate": "newData.isString()"
+                },
+                "_state_changed": {
+                  ".validate": "newData.isNumber() && (newData.val() === now || data.val() === newData.val())"
+                },
+                "_owner": {
+                  ".validate": "newData.isString()"
+                },
+                "_progress": {
+                  ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+                },
+                "_error_details": {
+                  "error": {
+                    ".validate": "newData.isString()"
+                  },
+                  "error_stack": {
+                    ".validate": "newData.isString()"
+                  },
+                  "previous_state": {
+                    ".validate": "newData.isString()"
+                  },
+                  "original_task": {
+                    /* This space intentionally left blank, for malformed tasks */
+                  },
+                  "attempts": {
+                    ".validate": "newData.isNumber() && newData.val() > 0"
+                  },
+                  "$other": {
+                    ".validate": false
+                  }
+                },
+                "time": {
+                  ".validate": "newData.isNumber()"
+                },
+                "success": {
+                  ".validate": "newData.isBoolean()"
+                },
+                "type": {
+                  ".validate": "newData.isString()"
+                },
+                "version": {
+                  ".validate": "newData.isString()"
+                },
+                "data": {
+                  ".validate": "newData.hasChildren(['userId','postId'])",
+                  "userId": {
+                    ".validate": "newData.isString() && (auth.uid === newData.val() || auth.uid === 'publisher')"
+                  },
+                  "postId": {
+                    ".validate": "newData.isString()"
+                  },
+                  "error": {
+                    ".validate": true
+                  },
+                  "reply": {
+                    ".validate": "!newData.exists() || newData.hasChildren(['id','url'])",
+                    "id": {
+                      ".validate": "newData.isString()"
+                    },
+                    "url": {
+                      ".validate": "newData.isString()"
+                    },
+                    "html": {
+                      ".validate": "newData.isString()"
+                    },
+                    "text": {
+                      ".validate": "newData.isString()"
+                    },
+                    "$other": {
+                      ".validate": false
+                    }
+                  },
+                  "$other": {
+                    ".validate": false
+                  }
+                }
+              }
+            },
+            "specs": {
+              ".read": "auth.can.processGoogleReply === true",
+              "$specId": {
+                ".validate": "newData.hasChild('in_progress_state')",
+                "start_state": {
+                  ".validate": "newData.isString()"
+                },
+                "in_progress_state": {
+                  ".validate": "newData.isString()"
+                },
+                "finished_state": {
+                  ".validate": "newData.isString()"
+                },
+                "error_state": {
+                  ".validate": "newData.isString()"
+                },
+                "timeout": {
+                  ".validate": "newData.isNumber() && newData.val() > 0"
+                },
+                "$other": {
+                  ".validate": false
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

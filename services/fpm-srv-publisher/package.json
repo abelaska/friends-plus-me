@@ -1,0 +1,64 @@
+{
+  "name": "@fpm/srv-publisher",
+  "version": "2.1.2",
+  "description": "Friends+Me Post Publisher",
+  "private": true,
+  "author": "Alois Bělaška <alois@loysoft.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node --trace-warnings src/app.js",
+    "test": "NODE_ENV=test ava",
+    "test:watch": "NODE_ENV=test ava --watch",
+    "build": "exit 0",
+    "build:clean": "rm -rf '*.log'",
+    "deploy": "/bin/bash scripts/deploy.sh",
+    "eslint": "pnpm eslint src"
+  },
+  "dependencies": {
+    "@fpm/config": "0.3.7",
+    "@fpm/constants": "0.3.7",
+    "@fpm/db": "0.9.17",
+    "@fpm/events": "0.11.17",
+    "@fpm/logging": "0.4.7",
+    "@fpm/post": "0.8.17",
+    "@fpm/redis": "0.3.8",
+    "@fpm/token": "0.3.9",
+    "agentkeepalive": "2.0.3",
+    "app-root-dir": "1.0.2",
+    "async": "^1.5.0",
+    "bluebird": "^3.5.0",
+    "cheerio": "^1.0.0-rc.2",
+    "cron": "1.2.1",
+    "express": "^4.15.3",
+    "lodash": "3.1.0",
+    "moment": "2.10.3",
+    "moment-timezone": "0.4.0",
+    "node-redis-warlock": "0.1.4",
+    "oauth": "0.9.12",
+    "raven": "^2.0.1",
+    "request": "^2.81.0",
+    "string": "3.0.0",
+    "twitter-text": "^1.13.2",
+    "underscore": "^1.8.3",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "ava": "3.15.0",
+    "chai": "~1.9.0",
+    "grunt": "~0.4.1",
+    "mocha": "~1.17.1"
+  },
+  "ava": {
+    "verbose": true,
+    "failFast": false,
+    "concurrency": 4,
+    "files": [
+      "**/__tests__/**/*.js",
+      "!node_modules/**/*"
+    ],
+    "source": [
+      "src"
+    ],
+    "babel": "inherit"
+  }
+}

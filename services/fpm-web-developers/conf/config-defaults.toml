@@ -1,0 +1,9 @@
+[log.logentries]
+  level = "info"
+
+[hydra]
+  url = "https://hydra.friendsplus.me"
+[hydra.developers]
+  scope = "identity.basic identity.avatar apps"
+  clientId = "fpm-developers-app"
+  clientSecret = "XXX"

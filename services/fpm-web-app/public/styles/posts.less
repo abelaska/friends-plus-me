@@ -1,0 +1,306 @@
+.loading-block {
+  font-size:                    24px;
+  text-align:                   center;
+}
+
+.loading-block.enabled {
+  height:                       auto;
+  padding:                      40px;
+  margin:                       0;
+}
+
+.loading-block.disabled {
+  height:                       0;
+  padding:                      0;
+  margin:                       0;
+}
+
+.loading-block.enabled, .posts.enabled {
+  opacity:                      1;
+}
+
+.loading-block.disabled, .posts.disabled  {
+  opacity:                      0;
+}
+
+.loading-block, .posts, .posts .post, .posts .post .stats .col, .posts .post .errors {
+  -webkit-transition:           all 0.2s ease-in-out;
+     -moz-transition:           all 0.2s ease-in-out;
+      -ms-transition:           all 0.2s ease-in-out;
+       -o-transition:           all 0.2s ease-in-out;
+          transition:           all 0.2s ease-in-out;
+}
+
+.posts {
+
+  width:                        100%;
+
+  .day-group {
+    margin-bottom:              20px;
+  }
+
+  .day-group-title {
+    padding:                    0 0 15px 0;
+    font-size:                  24px;
+    font-weight:                400;
+
+    span {
+      font-size:                14px;
+    }
+  }
+
+  .post {
+
+    //background-color:           @gray-bg-color;
+    //border:                     1px solid rgba(0,0,0,.1);
+    border-radius:              4px;
+    .box-shadow(0 0 1px 1px rgba(0,0,0,.2));
+
+    padding:                    0;
+    float:                      left;
+    margin-bottom:              30px;
+    width:                      80%;
+
+    p {
+      margin-bottom:            0;
+    }
+
+    [class^="fa-"] {
+      margin-right:             4px;
+      vertical-align:           top;
+    }
+
+    .message {
+      line-height:              20px;
+      color:                    #444;
+
+      a {
+        color:                  #444;
+      }
+      a:hover {
+        color:                  #000;
+      };
+    }
+
+    .inner {
+      padding:                  8px;
+    }
+
+    .controls, .errors, .replies, .myreply {
+      font-size:                12px;
+    }
+
+    .controls, .errors, .controls a, .errors a, .replies a {
+      color:                    #666;
+    }
+
+    .controls a:hover, .errors a:hover, .replies a:hover {
+      color:                    #333;
+    }
+
+    .time {
+      color:                    #888;
+    }
+  }
+
+  .post.queue {
+
+    .message {
+      font-weight:              400;
+      margin-bottom:            5px;
+    }
+
+    .time {
+      float:                    left;
+    }
+
+    .send-now, .delete {
+      float:                    right;
+    }
+
+    .send-now, .delete {
+      margin-left:              10px;
+    }
+  }
+
+  .post.timeline {
+
+    .controls {
+      line-height:              32px;
+
+      .time, .retry {
+        margin-top:             4px;
+      }
+    }
+
+    .message {
+      font-weight:              400;
+      margin-bottom:            1px;
+    }
+
+    .time, .retry {
+      float:                    left;
+      margin-right:              8px;
+    }
+
+    .delete {
+      float:                    right;
+      margin-left:              10px;
+
+      a {
+        color:                  #888;
+      }
+      a:hover {
+        color:                  #333;
+      }
+    }
+
+    .retry {
+      a, span {
+        color:                  @red;
+      }
+      a:hover {
+        color:                  darken(@red, 20%);
+      }
+    }
+
+    .stats {
+      .col {
+        border-top:             1px solid rgba(0,0,0,.1);
+        border-right:           1px solid rgba(0,0,0,.1);
+        float:                  left;
+        text-align:             center;
+        color:                  #666;
+        padding:                5px;
+        font-weight:            300;
+
+        span {
+          color:                #444;
+          font-size:            16px;
+          font-weight:          400;
+          margin-right:         5px;
+        }
+      }
+      .col:last-of-type {
+        border-right:           0;
+      }
+      .col.c1 {
+        width:                  100%;
+      }
+      .col.c3 {
+        width:                  100%/3;
+      }
+      .col.c4 {
+        width:                  100%/4;
+      }
+      .col.col-btn {
+        cursor:                 pointer;
+      }
+      .col.col-btn:hover {
+        color:                  #333;
+      }
+      .col-error, .col-error span {
+        color:                  @red;
+      }
+      .col-error:hover, .col-error:hover span {
+        color:                  darken(@red, 20%);
+      }
+    }
+
+    .avatars {
+      float:                    right;
+
+      .avatar {
+        float:                  left;
+        margin:                 0 4px 0 0;
+        padding:                0;
+
+        img {
+          width:                26px;
+          height:               26px;
+          margin:               0;
+          padding:              0;
+          border-radius:        13px;
+        }        
+      }
+
+      .avatar.ok {
+        .box-shadow(0 3px 0 0 @brand-success);
+      }
+      .avatar.ok:hover {
+        .box-shadow(0 3px 0 0 darken(@brand-success, 20%));
+      }
+      .avatar.fail {
+        .box-shadow(0 3px 0 0 @brand-danger);
+      }
+      .avatar.fail:hover {
+        .box-shadow(0 3px 0 0 darken(@brand-danger, 20%));
+      }
+    }
+
+    .errors, .replies {
+      line-height:              16px;
+      padding:                  18px 8px 8px 8px;
+      border-top:               1px solid rgba(0,0,0,.1);
+
+      .error, .reply {
+        padding-top:            10px;
+      }
+      .error:first-of-type, .reply:first-of-type {
+        padding-top:            0;
+      }
+      .reply .message img {
+        margin-right:           8px;
+        width:                  26px;
+        height:                 26px;
+        margin:                 0 8px 0 0;
+        padding:                0;
+        -webkit-border-radius:  3px;
+           -moz-border-radius:  3px;
+                border-radius:  3px;
+        .box-shadow(0 1px 1px 0);
+      }
+    }
+
+    .myreply {
+      line-height:              16px;
+      padding:                  8px;
+      
+      .input-append {
+        width:                  100%;
+        input {
+          width:                85%;
+        }
+        .btn {
+          width:                15%;
+        }
+      }
+    }
+  }
+
+  .post:hover {
+    .box-shadow(0 0 1px 1px rgba(0,0,0,.4));
+  }
+
+  .post:hover .stats .col, .post:hover .errors, .post:hover .replies, .post:hover .myreply {
+    border-color:               rgba(0,0,0,.3);
+  }  
+
+  @media (max-width: 980px) {
+    .post {
+      width:              100% !important;
+      clear:              none !important;
+
+      .myreply {
+        .input-append {
+          input {
+            width:                70%;
+          }
+          .btn {
+            width:                30%;
+          }
+        }
+      }
+    }
+  }
+}

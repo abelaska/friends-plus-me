@@ -1,0 +1,7 @@
+go get "golang.org/x/net/context"
+go get "golang.org/x/image"
+go get "cloud.google.com/go/storage"
+go get "google.golang.org/appengine"
+go get "google.golang.org/appengine/image"
+go get "google.golang.org/appengine/blobstore"
+go get "github.com/caarlos0/env"

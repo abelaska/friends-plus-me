@@ -1,0 +1,140 @@
+<div class="bulk-schedule" ng-controller="BulkScheduleCtrl" style="margin:0 16px" ngf-drop="onFileSelect($files)">
+
+  <div id="recaptcha" class="g-recaptcha"></div>
+
+  <h1 class="sign" style="text-align: left">Bulk Schedule Posts</h1>
+
+  <div class="ddg image-list">
+    <h2 style="margin-top:0;">1. Destination Queues</h2>
+    <p>Select one or more queues for which you plan to schedule posts.</p>
+
+    <div class="image active {{types.networkTypeNameOfAccount(a)}}" ng-repeat="a in selectedAccounts track by a._id" ng-click="removeAccount(a)">
+      <md-tooltip>Remove "{{accountTitle(a)}}" from selection</md-tooltip>
+      <img alt="{{accountTitle(a)}}" ng-src="{{a.image}}" ng-class="{'disabled':a.state!=states.account.enabled.code}">
+      <span class="network fa-stack" ng-switch="" on="types.networkTypeNameOfAccount(a)">
+        <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+        <i ng-switch-when="facebook" class="fa fa-facebook fa-stack-1x"></i>
+        <i ng-switch-when="pinterest" class="fa fa-pinterest fa-stack-1x"></i>
+        <i ng-switch-when="linkedin" class="fa fa-linkedin fa-stack-1x"></i>
+        <i ng-switch-when="twitter" class="fa fa-twitter fa-stack-1x"></i>
+        <i ng-switch-when="tumblr" class="fa fa-tumblr fa-stack-1x"></i>
+        <i ng-switch-when="google" class="fa fa-google-plus fa-stack-1x"></i>
+        <i ng-switch-when="instagram" class="fa fa-instagram fa-stack-1x"></i>
+      </span>
+    </div>
+
+    <div class="btn-group btn-pick-account" dropdown>
+      <span class="btn dropdown-toggle btn-default" dropdown-toggle ng-disabled="loading || loaded || uploading || uploaded || accounts.length==0">
+        <i class="fa fa-plus"></i> Add Queue
+        <span class="caret"></span>
+      </span>
+      <ul class="dropdown-menu">
+        <li ng-repeat="a in accounts track by a._id">
+          <a ng-click="addAccount(a)">
+            <span class="image active {{types.networkTypeNameOfAccount(a)}}">
+              <md-tooltip>{{accountTitle(a)}}</md-tooltip>
+              <img alt="{{accountTitle(a)}}" ng-src="{{a.image}}" ng-class="{'disabled':a.state!=states.account.enabled.code}">
+              <span class="network fa-stack" ng-switch="" on="types.networkTypeNameOfAccount(a)">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i ng-switch-when="facebook" class="fa fa-facebook fa-stack-1x"></i>
+                <i ng-switch-when="linkedin" class="fa fa-linkedin fa-stack-1x"></i>
+                <i ng-switch-when="pinterest" class="fa fa-pinterest fa-stack-1x"></i>
+                <i ng-switch-when="twitter" class="fa fa-twitter fa-stack-1x"></i>
+                <i ng-switch-when="tumblr" class="fa fa-tumblr fa-stack-1x"></i>
+                <i ng-switch-when="google" class="fa fa-google-plus fa-stack-1x"></i>
+                <i ng-switch-when="instagram" class="fa fa-instagram fa-stack-1x"></i>
+              </span>
+            </span>
+            {{a.name}}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="alert alert-warning" role="alert" ng-if="maxMsgLength!=-1 && (!loaded || (loaded && invalidLines.length>0) || (loaded && posts.length==0))" style="margin-top:10px;">Max. message length is <strong>{{maxMsgLength}}</strong> character{{maxMsgLength>1?'s':''}}</div>
+  </div>
+
+  <div>
+    <h2 style="margin-top:30px;">2. Load a CSV File</h2>
+    <p>Load a correctly formatted .csv file.</p>
+
+    <div class="btn btn-primary" ng-click="!loading && !uploading && !uploaded && selectedAccounts.length && openFileDialog()" ng-disabled="uploading || uploaded || loading || !selectedAccounts.length">Select a CSV file</div>
+
+    <div class="progress" ng-if="validating" style="margin-top:20px;">
+      <div class="progress-bar progress-bar-striped active" ng-class="{'progress-bar-success':invalidLines.length==0,'progress-bar-danger':invalidLines.length>0}" role="progressbar" aria-valuenow="{{validatingPercent}}" aria-valuemin="0" aria-valuemax="100" style="width:{{validatingPercent}}%">
+        Validating Posts - {{validatingPercent}}% Complete
+      </div>
+    </div>
+
+    <div class="alert alert-success" role="alert" ng-if="loaded && !uploaded && !uploading && invalidLines.length==0 && posts.length>0" style="margin-top:20px;">Successfully loaded <strong>{{posts.length}}</strong> post{{posts.length>1?'s':''}}. <i><strong>You can proceed with step 3.</strong></i></div>
+
+    <div class="alert alert-warning" role="alert" ng-if="loaded && invalidLines.length==0 && posts.length==0" style="margin-top:20px;">No post to schedule found. <strong>Try to upload a different CSV file.</strong></div>
+
+    <div ng-if="invalidLines.length" style="margin-top:20px;">
+      <div class="alert alert-danger" role="alert">
+        <b>Please fix following problems in the CSV file and upload the file again.</b>
+      </div>
+      <div class="alert alert-danger" role="alert">
+        <table class="table table-hover table-condensed table-responsive" style="overflow-y:hidden">
+          <thead>
+            <tr>
+              <th>Line</th>
+              <th>Error Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="line in invalidLines">
+              <td>{{line[0]+1}}</td>
+              <td>
+                <md-tooltip>{{shortLine(line[2])}}</md-tooltip>
+                {{line[1]}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="loaded && posts.length>0 && invalidLines.length==0">
+    <h2 style="margin-top:30px;">3. Schedule Posts</h2>
+    <p>Posts will be imported to selected queues.</p>
+
+    <div class="btn btn-lg btn-primary" ng-disabled="true" ng-if="!uploaded && posts.length==0">Schedule Posts</div>
+    <div class="btn btn-lg btn-primary" ng-click="!uploading && loaded && file && upload()" ng-disabled="uploading || !file || !loaded" ng-if="!uploaded && !uploading && posts.length>0">Schedule {{selectedAccounts.length*posts.length}} Post{{selectedAccounts.length*posts.length>1?'s':''}}</div>
+
+    <div class="progress" ng-if="uploading">
+      <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="{{uploadingPercent}}" aria-valuemin="0" aria-valuemax="100" style="width:{{uploadingPercent}}%">
+        {{uploadText}} - {{uploadingPercent}}% Complete
+      </div>
+    </div>
+
+    <div class="alert alert-danger" role="alert" ng-if="uploadError" style="margin-top:10px;">{{uploadError}}</div>
+
+    <div class="alert alert-success" role="alert" ng-if="uploaded" style="margin-top:10px;">Successfully Scheduled <strong>{{selectedAccounts.length*posts.length}}</strong> Post{{selectedAccounts.length*posts.length>1?'s':''}}</div>
+  </div>
+
+  <div style="margin-top:30px">
+    <h2>CSV File Format</h2>
+    <p>Your .csv file should include the following fields (<strong>"URL Type"</strong> and <strong>"URL"</strong> are optional)</p>
+    <p>If <strong>"URL"</strong> field is set then <strong>"URL Type"</strong> field is required and vice versa.</p>
+    <p>Field <strong>URL Type</strong> can contain value "<i>photo</i>" in case field <strong>"URL"</strong> is a link to a photo or "<i>link</i>" in case <strong>"URL"</strong> is a web link.</p>
+    <pre>DAY;MONTH;YEAR;HOUR;MINUTE;"Message";"URL Type";"URL"</pre>
+    <h3>Format and Rules:</h3>
+    <ul>
+    <li>All fields must have double quotation marks around them and be separated by semicolon</li>
+    <li>Please set times in the future (at least 10 minutes from upload time)</li>
+    <li>Posting times must end in either a 5 or a 0, ex.22:45 or 22:50</li>
+    <li>All other times will be rounded up to the next 5 minute slot</li>
+    <li>Define only one message per time slot</li>
+    </ul>
+    <h3>Example:</h3>
+    <pre style="padding:10px;font-size:10px;">25;06;2016;01;00;"Simple message\nAnother line"
+25;06;2016;01;05;"Message with a link";"link";"https://friendsplus.me"
+25;06;2016;01;10;"Message with a photo #1";"photo";"https://friendsplus.me/images/home.jpg"
+25;06;2016;03;10;"Message with a photo #3";"photo";"https://friendsplus.me/images/home.jpg"</pre>
+  </div>
+
+  <div style="height:0px;overflow:hidden">
+     <input type="file" id="fileSelect" ngf-select="onFileSelect($files)" class="form-control">
+  </div>
+</div>

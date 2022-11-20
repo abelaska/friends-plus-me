@@ -1,0 +1,306 @@
+/* eslint no-mixed-operators: "off" */
+const Promise = require('bluebird');
+const nanoid = require('nanoid');
+const { States, Types } = require('@fpm/constants');
+const { ObjectId, User, Profile, Post } = require('@fpm/db');
+const { testingBeforeAll, testingAfterAll, testFunc, nockHydraTokenIntrospect } = require('../../utils/testing');
+const { unix } = require('../../utils/time');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should get team info', async () => {
+  const now = unix(new Date());
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    name: 'team name',
+    created: new Date(now * 1000),
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        _id: dbQueueId,
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        creator: dbUserId,
+        name: 'queue name',
+        state: States.account.enabled.code,
+        picture: 'picture',
+        uid: 'uid',
+        url: 'url',
+        scheduling: { stype: 't', tz: 'Europe/Prague', schedules: [[0, 60, 120]] }
+      }
+    ]
+  });
+  await Promise.map(
+    [
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.scheduledByUser.code,
+        createdBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.scheduledByScheduler.code,
+        createdBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.published.code,
+        createdBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.failed.code,
+        createdBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        state: States.post.draft.code,
+        createdBy: new ObjectId(),
+        createdAt: now,
+        modifiedAt: now,
+        publishAt: now,
+        completedAt: now
+      }
+    ],
+    post => Post.create(post)
+  );
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'teams.read',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'teams.info',
+    req: {
+      qs: { access_token: token, team: dbTeamId.toString() }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.team).toEqual({
+    team_id: dbTeam._id.toString(),
+    name: dbTeam.name,
+    created: now,
+    members: [
+      {
+        role: 'owner',
+        user_id: dbUser._id.toString(),
+        name: dbUser.name,
+        avatar: dbUser.image
+      }
+    ],
+    queues: [
+      {
+        queue_id: dbQueueId.toString(),
+        created_by: {
+          user_id: dbUserId.toString(),
+          name: dbUser.name,
+          avatar: dbUser.image
+        },
+        name: dbTeam.accounts[0].name,
+        state: 'enabled',
+        service: {
+          type: 'google',
+          category: 'page',
+          id: dbTeam.accounts[0].uid,
+          url: dbTeam.accounts[0].url
+        },
+        scheduling: {
+          timezone: 'Europe/Prague',
+          type: 'times',
+          schedules: [
+            {
+              days: ['mon'],
+              times: ['00:00', '01:00', '02:00']
+            }
+          ]
+        },
+        size: 2
+      }
+    ]
+  });
+});
+
+test('should get team info with users.read.email scope', async () => {
+  const now = unix(new Date());
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    name: 'team name',
+    created: new Date(now * 1000),
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        _id: dbQueueId,
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        creator: dbUserId,
+        name: 'queue name',
+        state: States.account.enabled.code,
+        picture: 'picture',
+        uid: 'uid',
+        url: 'url',
+        scheduling: { stype: 't', tz: 'Europe/Prague', schedules: [[0, 60, 120]] }
+      }
+    ]
+  });
+  await Promise.map(
+    [
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.scheduledByUser.code,
+        createdBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.scheduledByScheduler.code,
+        createdBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.published.code,
+        createdBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.failed.code,
+        createdBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        state: States.post.draft.code,
+        createdBy: new ObjectId(),
+        createdAt: now,
+        modifiedAt: now,
+        publishAt: now,
+        completedAt: now
+      }
+    ],
+    post => Post.create(post)
+  );
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'teams.read users.read.email',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'teams.info',
+    req: {
+      qs: { access_token: token, team: dbTeamId.toString() }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.team).toEqual({
+    team_id: dbTeam._id.toString(),
+    name: dbTeam.name,
+    created: now,
+    members: [
+      {
+        role: 'owner',
+        user_id: dbUser._id.toString(),
+        name: dbUser.name,
+        avatar: dbUser.image,
+        email: dbUser.email
+      }
+    ],
+    queues: [
+      {
+        queue_id: dbQueueId.toString(),
+        created_by: {
+          user_id: dbUserId.toString(),
+          name: dbUser.name,
+          avatar: dbUser.image,
+          email: dbUser.email
+        },
+        name: dbTeam.accounts[0].name,
+        state: 'enabled',
+        service: {
+          type: 'google',
+          category: 'page',
+          id: dbTeam.accounts[0].uid,
+          url: dbTeam.accounts[0].url
+        },
+        scheduling: {
+          timezone: 'Europe/Prague',
+          type: 'times',
+          schedules: [
+            {
+              days: ['mon'],
+              times: ['00:00', '01:00', '02:00']
+            }
+          ]
+        },
+        size: 2
+      }
+    ]
+  });
+});

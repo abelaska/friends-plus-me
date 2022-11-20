@@ -1,0 +1,33 @@
+[db]
+  url = "mongodb://api:XXX@db.c.fpm-application.internal/fpm"
+
+[redis]
+  url = "redis://redis-redis.default.svc.cluster.local:6379?password=XXX"
+
+[oauth.tokens.store.crypto]
+  key = "XXX"
+  iv = "XXX"
+
+[log.logentries]
+  enabled = false
+  token = "XXX"
+
+[braintree]
+  environment = "Production"
+[braintree.merchant.default]
+  merchantId = "XXX"
+  privateKey = "XXX"
+  publicKey = "XXX"
+[braintree.merchant.default.account]
+  default = "USD"
+[braintree.merchant.old]
+  merchantId = "XXX"
+  privateKey = "XXX"
+  publicKey = "XXX"
+[braintree.merchant.old.account]
+  default = "USD"
+  amex = "XXX"
+
+[auth0]
+  clientId = "XXX"
+  clientSecret = "XXX-XXX-XXX-XXX"

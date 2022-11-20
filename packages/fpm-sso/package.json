@@ -1,0 +1,57 @@
+{
+  "name": "@fpm/sso",
+  "version": "0.2.10",
+  "description": "Friends+Me Single-Sign-On",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "build:clean": "rm -rf 'lib' '*.log'",
+    "eslint": "eslint src",
+    "test": "NODE_ENV=test ava --verbose",
+    "test:watch": "NODE_ENV=test ava --verbose --watch"
+  },
+  "author": "Alois Bělaška <alois@loysoft.uk>",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=7.6"
+  },
+  "ava": {
+    "verbose": true,
+    "failFast": false,
+    "concurrency": 4,
+    "require": [
+      "babel-register"
+    ],
+    "files": [
+      "src/__tests__/**/*.js",
+      "!node_modules/**/*"
+    ],
+    "source": [
+      "src"
+    ],
+    "babel": "inherit"
+  },
+  "dependencies": {
+    "@fpm/config": "0.3.7",
+    "@fpm/error": "0.2.6",
+    "@fpm/logging": "0.4.7",
+    "@fpm/redis": "0.3.8",
+    "bluebird": "^3.5.1",
+    "shortid": "^2.2.8"
+  },
+  "devDependencies": {
+    "ava": "3.15.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-define": "^1.3.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1"
+  }
+}

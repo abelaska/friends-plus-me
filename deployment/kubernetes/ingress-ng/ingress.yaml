@@ -1,0 +1,131 @@
+---
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: certificate-sendy-loysoft-com
+spec:
+  domains:
+    - sendy.loysoft.com
+
+---
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: certificate-friendsplus-me
+spec:
+  domains:
+    - friendsplus.me
+
+---
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: certificate-hydra-friendsplus-me
+spec:
+  domains:
+    - hydra.friendsplus.me
+
+---
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: certificate-login-friendsplus-me
+spec:
+  domains:
+    - login.friendsplus.me
+
+---
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: certificate-crawler-friendsplus-me
+spec:
+  domains:
+    - crawler.friendsplus.me
+
+---
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: certificate-api-friendsplus-me
+spec:
+  domains:
+    - api.friendsplus.me
+
+---
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: certificate-app-friendsplus-me
+spec:
+  domains:
+    - app.friendsplus.me
+
+---
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: certificate-developers-friendsplus-me
+spec:
+  domains:
+    - developers.friendsplus.me
+
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: fpm-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: fpm-address
+    networking.gke.io/managed-certificates: certificate-sendy-loysoft-com,certificate-friendsplus-me,certificate-hydra-friendsplus-me,certificate-login-friendsplus-me,certificate-crawler-friendsplus-me,certificate-api-friendsplus-me,certificate-app-friendsplus-me
+spec:
+  rules:
+    - host: friendsplus.me
+      http:
+        paths:
+          - backend:
+              serviceName: fpm-landing-landing
+              servicePort: 6000
+    - host: sendy.loysoft.com
+      http:
+        paths:
+          - backend:
+              serviceName: fpm-sendy-sendy
+              servicePort: 80
+    - host: hydra.friendsplus.me
+      http:
+        paths:
+          - backend:
+              serviceName: fpm-hydra-hydra
+              servicePort: 4444
+    - host: login.friendsplus.me
+      http:
+        paths:
+          - backend:
+              serviceName: fpm-login
+              servicePort: 3000
+    - host: crawler.friendsplus.me
+      http:
+        paths:
+          - backend:
+              serviceName: fpm-crawler-crawler
+              servicePort: 6000
+    - host: api.friendsplus.me
+      http:
+        paths:
+          - backend:
+              serviceName: fpm-api
+              servicePort: 3000
+    - host: app.friendsplus.me
+      http:
+        paths:
+          - backend:
+              serviceName: fpm-webapp
+              servicePort: 8080
+    - host: developers.friendsplus.me
+      http:
+        paths:
+          - backend:
+              serviceName: fpm-developers
+              servicePort: 3000

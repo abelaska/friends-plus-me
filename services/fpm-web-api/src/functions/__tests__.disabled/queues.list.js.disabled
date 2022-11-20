@@ -1,0 +1,401 @@
+/* eslint no-mixed-operators: "off" */
+const Promise = require('bluebird');
+const nanoid = require('nanoid');
+const { States, Types } = require('@fpm/constants');
+const { ObjectId, User, Profile, Post } = require('@fpm/db');
+const { testingBeforeAll, testingAfterAll, testFunc, nockHydraTokenIntrospect } = require('../../utils/testing');
+const { unix } = require('../../utils/time');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should list no queue', async () => {
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: []
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'queues.read',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'queues.list',
+    req: {
+      qs: { access_token: token, team: dbTeamId.toString() }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.queues).toEqual([]);
+});
+
+test('should list queues', async () => {
+  const now = unix(new Date());
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        _id: dbQueueId,
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        creator: dbUserId,
+        name: 'queue name',
+        state: States.account.enabled.code,
+        picture: 'picture',
+        uid: 'uid',
+        url: 'url',
+        scheduling: { stype: 't', tz: 'Europe/Prague', schedules: [[0, 60, 120]] }
+      },
+      {
+        network: Types.network.facebook.code,
+        account: Types.account.page.code,
+        creator: dbUserId,
+        name: 'queue name2',
+        state: States.account.enabled.code,
+        picture: 'picture2',
+        uid: 'uid2',
+        url: 'url2',
+        scheduling: { stype: 't', tz: 'Europe/Prague', schedules: [[0, 240, 480]] }
+      }
+    ]
+  });
+  await Promise.map(
+    [
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.scheduledByUser.code,
+        createdBy: dbUser._id,
+        modifiedBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.scheduledByScheduler.code,
+        createdBy: dbUser._id,
+        modifiedBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.published.code,
+        createdBy: dbUser._id,
+        modifiedBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.failed.code,
+        createdBy: dbUser._id,
+        modifiedBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        state: States.post.draft.code,
+        createdBy: new ObjectId(),
+        modifiedBy: new ObjectId(),
+        createdAt: now,
+        modifiedAt: now,
+        publishAt: now,
+        completedAt: now
+      }
+    ],
+    post => Post.create(post)
+  );
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'queues.read',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'queues.list',
+    req: {
+      qs: { access_token: token, team: dbTeamId.toString() }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.queues).toEqual([
+    {
+      queue_id: dbTeam.accounts[0]._id.toString(),
+      created_by: {
+        user_id: dbUserId.toString(),
+        name: dbUser.name,
+        avatar: dbUser.image
+      },
+      name: dbTeam.accounts[0].name,
+      state: 'enabled',
+      service: {
+        type: 'google',
+        category: 'page',
+        id: dbTeam.accounts[0].uid,
+        url: dbTeam.accounts[0].url
+      },
+      scheduling: {
+        timezone: 'Europe/Prague',
+        type: 'times',
+        schedules: [
+          {
+            days: ['mon'],
+            times: ['00:00', '01:00', '02:00']
+          }
+        ]
+      },
+      size: 2
+    },
+    {
+      queue_id: dbTeam.accounts[1]._id.toString(),
+      created_by: {
+        user_id: dbUserId.toString(),
+        name: dbUser.name,
+        avatar: dbUser.image
+      },
+      name: dbTeam.accounts[1].name,
+      state: 'enabled',
+      service: {
+        type: 'facebook',
+        category: 'page',
+        id: dbTeam.accounts[1].uid,
+        url: dbTeam.accounts[1].url
+      },
+      scheduling: {
+        timezone: 'Europe/Prague',
+        type: 'times',
+        schedules: [
+          {
+            days: ['mon'],
+            times: ['00:00', '04:00', '08:00']
+          }
+        ]
+      },
+      size: 0
+    }
+  ]);
+});
+
+test('should list queues with users.read.email scope', async () => {
+  const now = unix(new Date());
+  const dbUserId = new ObjectId();
+  const dbTeamId = new ObjectId();
+  const dbQueueId = new ObjectId();
+  const dbUser = await User.create({
+    _id: dbUserId,
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    name: 'user name',
+    image: 'image',
+    email: 'user@domain.com',
+    state: States.user.enabled.code,
+    profiles: { owner: [dbTeamId] }
+  });
+  const dbTeam = await Profile.create({
+    _id: dbTeamId,
+    members: { owner: [dbUserId] },
+    accounts: [
+      {
+        _id: dbQueueId,
+        network: Types.network.google.code,
+        account: Types.account.page.code,
+        creator: dbUserId,
+        name: 'queue name',
+        state: States.account.enabled.code,
+        picture: 'picture',
+        uid: 'uid',
+        url: 'url',
+        scheduling: { stype: 't', tz: 'Europe/Prague', schedules: [[0, 60, 120]] }
+      },
+      {
+        network: Types.network.facebook.code,
+        account: Types.account.page.code,
+        creator: dbUserId,
+        name: 'queue name2',
+        state: States.account.enabled.code,
+        picture: 'picture2',
+        uid: 'uid2',
+        url: 'url2',
+        scheduling: { stype: 't', tz: 'Europe/Prague', schedules: [[0, 240, 480]] }
+      }
+    ]
+  });
+  await Promise.map(
+    [
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.scheduledByUser.code,
+        createdBy: dbUser._id,
+        modifiedBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.scheduledByScheduler.code,
+        createdBy: dbUser._id,
+        modifiedBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.published.code,
+        createdBy: dbUser._id,
+        modifiedBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        aid: dbQueueId,
+        state: States.post.failed.code,
+        createdBy: dbUser._id,
+        modifiedBy: dbUser._id,
+        createdAt: now,
+        modifiedAt: now,
+        completedAt: now
+      },
+      {
+        pid: dbTeamId,
+        state: States.post.draft.code,
+        createdBy: new ObjectId(),
+        modifiedBy: new ObjectId(),
+        createdAt: now,
+        modifiedAt: now,
+        publishAt: now,
+        completedAt: now
+      }
+    ],
+    post => Post.create(post)
+  );
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'queues.read users.read.email',
+    userId: dbUser._id.toString()
+  });
+
+  const reply = await testFunc({
+    name: 'queues.list',
+    req: {
+      qs: { access_token: token, team: dbTeamId.toString() }
+    }
+  });
+
+  expect(reply).toBeTruthy();
+  expect(reply.statusCode).toBe(200);
+  expect(reply.body).toBeTruthy();
+  expect(reply.body.ok).toBe(true);
+  expect(reply.body.queues).toEqual([
+    {
+      queue_id: dbTeam.accounts[0]._id.toString(),
+      created_by: {
+        user_id: dbUserId.toString(),
+        email: dbUser.email,
+        name: dbUser.name,
+        avatar: dbUser.image
+      },
+      name: dbTeam.accounts[0].name,
+      state: 'enabled',
+      service: {
+        type: 'google',
+        category: 'page',
+        id: dbTeam.accounts[0].uid,
+        url: dbTeam.accounts[0].url
+      },
+      scheduling: {
+        timezone: 'Europe/Prague',
+        type: 'times',
+        schedules: [
+          {
+            days: ['mon'],
+            times: ['00:00', '01:00', '02:00']
+          }
+        ]
+      },
+      size: 2
+    },
+    {
+      queue_id: dbTeam.accounts[1]._id.toString(),
+      created_by: {
+        user_id: dbUserId.toString(),
+        email: dbUser.email,
+        name: dbUser.name,
+        avatar: dbUser.image
+      },
+      name: dbTeam.accounts[1].name,
+      state: 'enabled',
+      service: {
+        type: 'facebook',
+        category: 'page',
+        id: dbTeam.accounts[1].uid,
+        url: dbTeam.accounts[1].url
+      },
+      scheduling: {
+        timezone: 'Europe/Prague',
+        type: 'times',
+        schedules: [
+          {
+            days: ['mon'],
+            times: ['00:00', '04:00', '08:00']
+          }
+        ]
+      },
+      size: 0
+    }
+  ]);
+});

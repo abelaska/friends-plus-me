@@ -1,0 +1,166 @@
+doctype html
+html(lang="en")
+  head
+    title Friends+Me Invoice -&nbsp;
+      =tx._id
+  body
+    div(style="font-size:10pt;line-height:1.4em;font-family:'Trebuchet MS',Arial,sans-serif")
+      div(style="width:700px;margin:auto auto;padding:25px 50px 25px 50px")
+        div
+          table
+            tbody
+              tr
+                td(style="width:480px")
+                td
+                  div(style="padding-bottom:5px;width:200px")
+                    a(href="https://friendsplus.me",title="Friends+Me",style="color:#576286!important",target="_blank")
+                      img(src="https://storage.googleapis.com/static.friendsplus.me/images/logo-with-text-right-200x37.png")
+              tr(valign="top")
+                td
+                  div
+                    table
+                      tbody
+                        tr
+                          td(style="width:170px;font-size:12pt;font-weight:bold") Charge Period:
+                          td(style="width:170px;font-size:12pt;font-weight:bold")= chargePeriod
+                  div
+                    table
+                      tbody
+                        tr
+                          td(style="width:170px") Invoice Date:
+                          td= txDate
+                        tr
+                          td(style="width:170px") Invoice Number:
+                          td= tx._id
+                td
+                  div
+                    div Loysoft Limited<br>Ground Floor, 13 Cable Court, Pittman Way, Fulwood, Preston, PR2 9YW, United Kingdom
+                    div(style="margin-top:10px")
+                    div
+                      a(href="https://friendsplus.me",style="text-decoration:none;color:#576286!important",target="_blank") https://friendsplus.me
+                    div
+                      a(href="mailto:support@friendsplus.me",style="text-decoration:none;color:#576286!important",target="_blank") support@friendsplus.me
+
+        div(style="border-top:2px solid #555;margin-top:20px;margin-bottom:20px")
+
+        div
+          table(width="100%")
+            tbody
+              tr
+                td
+                  div(style="width:480px")
+                    table
+                      tbody
+                        tr
+                          td(style="width:170px;font-weight:bold") Team Owner:
+                          td(style="font-weight:bold")= owner.name
+                        if profile.name
+                          tr
+                            td(style="width:170px;font-weight:bold") Team Name:
+                            td(style="font-weight:bold")= profile.name
+                        tr
+                          td(style="width:170px;font-weight:bold") Team ID:
+                          td= profile._id
+                        tr
+                          td(style="width:170px;font-weight:bold") Billing Email:
+                          td
+                            a(href="mailto:#{owner.email}",target="_blank")= owner.email
+                    div(style="margin-top:20px")
+                      table
+                        tbody
+                          tr
+                            td(style="width:170px;font-weight:bold") Bill To:
+                            td!= billTo
+                          if vatId
+                            tr
+                              td(style="width:170px;font-weight:bold") VAT ID:
+                              td!= vatId
+                          tr
+                            td(style="width:170px;font-weight:bold") Country:
+                            td!= country
+                  h3 Subscription Charges
+                  table(width="100%")
+                    tbody
+                      tr
+                        td(style="width:20px")
+                        td
+                          div
+                            table(width="90%")
+                              tbody
+                                tr
+                                  th(style="text-align:left") Charge period (
+                                    =chargePeriod
+                                    | )
+                                  th(style="width:10%;text-align:right") Net
+                                  th(style="width:10%;text-align:right") VAT
+                                  th(style="width:10%;text-align:right") Gross
+                                tr
+                                  td=tx.desc
+                                  td(style="width:10%;text-align:right") $
+                                    =net/100
+                                  td(style="width:10%;text-align:right") $
+                                    =vat/100
+                                  td(style="width:10%;text-align:right") $
+                                    =gross/100
+                                if tx.discountAmount > 0
+                                  tr
+                                    td Discount (Code:
+                                      =tx.couponCode
+                                      | )
+                                    td(style="width:10%;text-align:right") $
+                                      =tx.discountAmount/100
+                                    td(style="width:10%;text-align:right") $0
+                                    td(style="width:10%;text-align:right") $-
+                                      =tx.discountAmount/100
+                                tr
+                                  td(colspan="4")
+                                    hr
+                                tr
+                                  th(style="text-align:left") TOTAL
+                                  th(style="width:10%;text-align:right") $
+                                    =net/100
+                                  th(style="width:10%;text-align:right") $
+                                    =vat/100
+                                  th(style="width:10%;text-align:right") $
+                                    =tx.amount/100
+                                tr
+                                  td(colspan="4")
+                                    div(style="margin-top:10px")
+                                    div VAT rate&nbsp;
+                                      =vatPercent
+                                      | %
+                                      if isReverseCharge
+                                        | , Reverse charge
+
+                  h3 Payments Applied
+                  table(width="100%")
+                    tbody
+                      tr
+                        td(style="width:20px")
+                        td
+                          div
+                            table(width="90%")
+                              tbody
+                                tr
+                                  td= txDate
+                                  td= paymentDescription
+                                  td(style="width:10%;text-align:right") ($
+                                    =tx.amount/100
+                                    | )
+                                tr
+                                  td(colspan="5")
+                                    hr
+                                tr
+                                  th(style="text-align:left") TOTAL
+                                  th(style="text-align:left")
+                                  th(style="text-align:right;width:10%") ($
+                                    =tx.amount/100
+                                    | )
+                  div(style="margin-top:30px")
+                  div(style="font-style:italic")
+                    | Please be advised that we are currently in the process of enhancing our automated billing system.
+                    | We ask for your patience at this time and if you have any questions or comments regarding your <span class="il">invoice</span> please contact us at <a href="mailto:support@friendsplus.me" target="_blank">support@friendsplus.me</a>.
+
+        div(style="border-top:2px solid #555;margin-top:20px")
+
+        div All charges and prices are in US dollars. Friends+Me is a product of Loysoft Limited

@@ -1,0 +1,546 @@
+@borderColor:  #ddd;
+@imageBorderColor: darken(@borderColor, 40%);
+
+.main-content.accounts {
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .remaining-reposts {
+    margin-bottom:    20px;
+
+    p {
+      font-size:      16px;
+      color:          #333;
+      font-weight:    400;
+      margin:         0;
+
+      .count {
+        font-weight:  bold;
+      }
+
+      .count.limit-warning {
+        color:        @warningText;
+      }
+
+      .count.limit-danger {
+        color:        @red;
+      }
+
+      .btn {
+        font-weight:  bold;
+        margin-left:  10px;
+      }
+    }
+  }
+
+  .account-add-button {
+
+    padding:          0 15px 17px 15px;
+    color:            rgba(0, 0, 0, 0.2);
+    cursor:           pointer;
+
+    .fa, .text-prefix, .network-type, .account-type {
+      float:          left;
+      line-height:    40px;
+      margin-right:   5px;
+    }
+    .fa-plus-circle {
+      font-size:      40px;
+      margin-right:   24px;
+      margin-left:    24px;
+      color:          rgba(0, 0, 0, 0.1);
+    }
+    .fa.network {
+      font-size:      20px;
+    }
+    .network-type {
+      font-weight:    bold;
+    }
+  }
+  .account-add-button:hover, .account-add-button.highlight {
+    color:            rgba(0, 0, 0, 0.7);
+    .account-type {
+      font-weight:    bold;
+    }
+  }
+  .account-add-button.highlight:hover {
+    opacity:          0.7;
+  }
+  .account-add-button.google:hover, .account-add-button.google.highlight {
+    .fa-plus-circle, .network-type {
+      color: @google-plus-color;
+    }
+  }
+  .account-add-button.facebook:hover, .account-add-button.facebook.highlight {
+    .fa-plus-circle, .network-type {
+      color: @facebook-color;
+    }
+  }
+  .account-add-button.linkedin:hover, .account-add-button.linkedin.highlight {
+    .fa-plus-circle, .network-type {
+      color: @linkedin-color;
+    }
+  }
+  .account-add-button.pinterest:hover, .account-add-button.pinterest.highlight {
+    .fa-plus-circle, .network-type {
+      color: @pinterest-color;
+    }
+  }
+  .account-add-button.tumblr:hover, .account-add-button.tumblr.highlight {
+    .fa-plus-circle, .network-type {
+      color: @tumblr-color;
+    }
+  }
+  .account-add-button.twitter:hover, .account-add-button.twitter.highlight {
+    .fa-plus-circle, .network-type {
+      color: @twitter-color;
+    }
+  }
+
+  .btn-add-account, .account {
+
+    cursor: pointer;
+
+    -webkit-transition: all 0.2s ease-in-out;
+       -moz-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+         -o-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+  }
+
+  .top-icon {
+
+    margin-bottom:      30px;
+
+    i.ic-big {
+      float:            left;
+      font-size:        40px;
+      color:            @blue50;
+      margin-left:      8px;
+    }
+
+    .title {
+      float:            left;
+      padding:          10px 0 0 5px;
+      font-size:        24px;
+      font-weight:      bold;
+      color:            #333;
+
+      small {
+        font-size:      18px;
+        font-weight:    300;
+      }
+    }
+
+    /*.icons {
+      display:          inline-block;
+      float:            left;
+      padding:          10px 0 0 5px;
+      font-size:        24px;
+
+      img {
+        margin-top:     -3px;
+      }
+    }*/
+  }
+
+  .account.detail .content {
+    border-top:         1px solid @blue8;
+    padding-top:        10px;
+  }
+}
+
+.account-control-hashtags {
+  .manage-control-hashtags {
+    padding-bottom: 10px;
+  }
+}
+
+
+////////////////////////////////////////////////////////
+
+.accounts-menu-list {
+
+  width:                  @accounts-menu-width;
+  min-height:             450px;
+  position:               fixed;
+  overflow:               hidden;
+  background-color:       @main-menu-bg;
+  top:                    0;
+  bottom:                 0;
+
+  .menu-bottom {
+    position:             absolute;
+    bottom:               0;
+    left:                 0;
+    width:                @accounts-menu-width;
+    background-color:     @main-menu-bg;
+    z-index:              1000;
+  }
+
+  .btn-add-account {
+    margin:               20px 10px;
+  }
+
+  .accounts-add-block {
+    text-align:           center;
+    width:                @accounts-menu-width;
+  }
+
+  .accounts-menu-list-inner {
+
+    overflow:           hidden;
+    overflow-y:         auto;
+    position:           absolute;
+    width:              @accounts-menu-width;
+    top:                140px;
+    bottom:             0;
+
+    // hide scrollbar
+    //width:              (@accounts-menu-width)-2px+@scrollbar-width;
+    //right:              -(@scrollbar-width)+2px;
+  }
+
+  .title {
+    padding:            14px 10px 13px 10px;
+  }
+
+  .menu-group {
+    background-color:   @main-menu-bg;
+    max-height:         0;
+    opacity:            0;
+    transition:         max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    display:            none;
+
+    &.full {
+      max-height:       500px;
+      opacity:          1;
+      display:          block;
+    }
+  }
+
+  a.menu-item, .menu-item a {
+    display:            block;
+
+    &:link, &:hover, &:active, &:focus, &:visited {
+      text-decoration:  none;
+    }
+  }
+  .menu-item {
+    line-height:        40px;
+    cursor:             pointer;
+    color:              @menu-item-color;
+    border-left:        3px solid transparent;
+    padding:            0 20px;
+    font-weight:        bold;
+    font-size:          12px;
+    transition:         all 0.4s ease-in-out;
+    background-color:   @menu-item-selected;
+
+    .icon {
+      text-align:       center;
+      width:            @main-menu-icon-width;
+      font-size:        18px;
+      line-height:      40px;
+      vertical-align:   top;
+
+      &.fa-heart {
+        color:          @heart-color;
+      }
+    }
+
+    .label {
+      padding:          .4em .6em;
+      font-size:        80%;
+    }
+
+    .badge {
+      background-color: #ff7800;
+      padding:          3px 6px;
+    }
+
+    .label, .badge {
+      float:            right;
+      margin-top:       11px;
+      margin-right:     10px;
+    }
+
+    // &.profile .icon {
+    //   img {
+    //     margin-top:     7px;
+    //     .round-square-image(24px);
+    //   }
+    // }
+
+    &:hover {
+      color:            @menu-item-hover-color;
+    }
+    &.selected {
+      color:            @menu-item-hover-color;
+      background-color: @main-menu-bg;
+      border-left:      3px solid @menu-item-selected-border-color;
+    }
+  }
+
+  .accounts-menu-item {
+    padding:            10px 10px 0 10px;
+    cursor:             pointer;
+    border-left:        3px solid transparent;
+    transition:         all 0.2s ease-in-out;
+    .unselectable()
+  }
+
+  .accounts-menu-item.account:hover, .accounts-menu-item.account.active {
+    .header .detail .name {
+      color:            #e0e0e0;
+    }
+  }
+  .accounts-menu-item.account.active {
+    background-color:   @menu-item-selected;
+    //border-left:        3px solid @menu-item-selected-border-color;
+  }
+  .accounts-menu-item.account {
+    padding:            20px;
+    height:             95px;
+
+    a:link, a:hover, a:active, a:focus, a:visited {
+      text-decoration:  none;
+    }
+
+    .queue-size {
+      position:         absolute;
+      //bottom:           -5px;
+      //left:             -2px;
+      bottom:           15px;
+      left:             220px;
+      // use with label
+      // width:            20px;
+      // height:           20px;
+      // display:          inline-block;
+      // border-radius:    10px;
+      // font-size:        10px;
+      // line-height:      20px;
+      // text-align:       center;
+      // color:            #fff;
+      // font-weight:      400;
+    }
+    .queue-size.badge {
+      background-color: #ff7800;
+      padding:          3px 6px;
+    }
+
+    .header {
+
+      .image {
+        position:           absolute;
+        width:              50px;
+        height:             50px;
+
+        img {
+          .round-square-image(50px);
+
+          &.disabled {
+            border:         3px solid @heart-color;
+          }
+        }
+      }
+
+      .detail {
+        margin-left:      60px;
+        white-space:      nowrap;
+
+        .name, .preset {
+          max-width:      170px;
+          min-width:      20px;
+          overflow:       hidden;
+          text-overflow:  ellipsis;
+        }
+
+        .name {
+          padding:        8px 0 2px 0;
+          font-size:      14px;
+          color:          @menu-item-color;
+          line-height:    18px;
+          font-weight:    bold;
+          transition:     all 0.2s ease-in-out;
+
+          small {
+            font-weight:  300;
+          }
+        }
+        .name.upper {
+          padding:        0 0 2px 0;
+        }
+
+        .preset {
+          color:          #777;
+          font-size:      11px;
+          line-height:    16px;
+
+          .lbl {
+            font-weight:  300;
+          }
+        }
+      }
+    }
+  }
+}
+
+.accounts-content {
+  transition:         opacity 0.4s ease-in-out;
+}
+
+.accounts-add {
+  margin:             0 10px 10px 10px;
+
+  .accounts-add-network {
+
+    padding:          0 10px 30px 0;
+    max-width:        200px;
+    min-height:       220px;
+    float:            none;
+    display:          inline-block;
+    vertical-align:   top;
+    text-align:       center;
+
+    .title {
+      font-size:      14px;
+      line-height:    40px;
+      text-align:     center;
+      color:          #fff;
+      margin-bottom:  10px;
+      border-radius:  4px;
+
+      .fa {
+        font-size:      40px;
+        display:        block;
+      }
+    }
+    .btn {
+      color:            #fff;
+      display:          block;
+      min-width:        140px;
+      max-width:        200px;
+      margin:           10px auto;
+    }
+  }
+
+  .accounts-add-network.pinterest {
+    .title {
+      color:            @pinterest-color;
+    }
+    .btn {
+      background-color: @pinterest-color;
+      &:hover {
+        background-color: lighten(@pinterest-color, 5%);
+      }
+    }
+  }
+  .accounts-add-network.google {
+    .title {
+      color:            @google-plus-color;
+    }
+    .btn {
+      background-color: @google-plus-color;
+      &:hover {
+        background-color: lighten(@google-plus-color, 5%);
+      }
+    }
+  }
+  .accounts-add-network.facebook {
+    .title {
+      color:            @facebook-color;
+    }
+    .btn {
+      background-color: @facebook-color;
+      &:hover {
+        background-color: lighten(@facebook-color, 5%);
+      }
+    }
+  }
+  .accounts-add-network.linkedin {
+    .title {
+      color:            @linkedin-color;
+    }
+    .btn {
+      background-color: @linkedin-color;
+      &:hover {
+        background-color: lighten(@linkedin-color, 5%);
+      }
+    }
+  }
+  .accounts-add-network.tumblr {
+    .title {
+      color:            @tumblr-color;
+    }
+    .btn {
+      background-color: @tumblr-color;
+      &:hover {
+        background-color: lighten(@tumblr-color, 5%);
+      }
+    }
+  }
+  .accounts-add-network.twitter {
+    .title {
+      color:            @twitter-color;
+    }
+    .btn {
+      background-color: @twitter-color;
+      &:hover {
+        background-color: lighten(@twitter-color, 5%);
+      }
+    }
+  }
+}
+
+h1.page-title {
+  margin-top:       0;
+  margin-bottom:    20px;
+  font-size:        40px;
+}
+
+.accounts-add-selector {
+
+  h2 {
+    font-size:          24px;
+    margin:             30px 0 20px 0;
+  }
+
+  .loading {
+    margin:             20px 0;
+    text-align:         center;
+
+    .fa {
+      font-size:        50px;
+    }
+  }
+
+  .buttons {
+    margin:             10px 0;
+
+    .btn {
+      font-size:        16px;
+      margin:           10px;
+      white-space:      nowrap;
+      float:            none;
+      display:          inline-block;
+      vertical-align:   top;
+      padding:          15px 20px;
+
+      .fa {
+        margin-right:   10px;
+      }
+
+      img.avatar       {
+        .round-square-image(32px);
+
+        margin-right:   10px;
+      }
+    }
+  }
+}

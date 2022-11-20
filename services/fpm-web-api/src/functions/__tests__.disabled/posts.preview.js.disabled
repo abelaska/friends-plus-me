@@ -1,0 +1,133 @@
+const nanoid = require('nanoid');
+const { States } = require('@fpm/constants');
+const { User } = require('@fpm/db');
+const {
+  testingBeforeAll,
+  testingAfterAll,
+  nockHydraTokenIntrospect,
+  testFuncWithReply
+} = require('../../utils/testing');
+
+beforeAll(testingBeforeAll());
+afterAll(testingAfterAll());
+
+test('should preview post with html only', async () => {
+  const dbUser = await User.create({
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    email: 'user@email.com',
+    state: States.user.enabled.code
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'posts',
+    userId: dbUser._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'posts.preview',
+    req: { method: 'POST', qs: { access_token: token }, body: { html: '<p>html</p><invalid_tag/>' } },
+    statusCode: 200,
+    res: { ok: true, post: { html: '<p>html</p>' } }
+  });
+});
+
+test('should preview post with html and link', async () => {
+  const dbUser = await User.create({
+    auth0Id: nanoid(32),
+    actorId: nanoid(32),
+    email: 'user@email.com',
+    state: States.user.enabled.code
+  });
+
+  const { token } = nockHydraTokenIntrospect({
+    active: true,
+    scope: 'posts',
+    userId: dbUser._id.toString()
+  });
+
+  await testFuncWithReply({
+    name: 'posts.preview',
+    req: {
+      method: 'POST',
+      qs: { access_token: token },
+      body: { html: '<p>html</p><invalid_tag/>', link: 'https://friendsplus.me' }
+    },
+    statusCode: 200,
+    res: {
+      ok: true,
+      post: {
+        html: '<p>html</p>',
+        attachments: [
+          {
+            type: 'link',
+            description:
+              'Publish at the right time, reach more customers and increase engagement. The right cross-promotion, content management and scheduling solution for you. Ramp Up Sales!',
+            title: 'Friends+Me - Share to ANYWHERE. Because sharing is caring.',
+            url: 'https://friendsplus.me',
+            picture: {
+              url: 'https://d1g9gqsbjj9vp7.cloudfront.net/static/screenshots/main.jpg',
+              width: 1280,
+              height: 827,
+              content_type: 'image/jpeg'
+            },
+            pictures: [
+              {
+                url: 'https://d1g9gqsbjj9vp7.cloudfront.net/static/screenshots/main.jpg',
+                width: 1280,
+                height: 827,
+                content_type: 'image/jpeg'
+              },
+              {
+                url: 'https://d1g9gqsbjj9vp7.cloudfront.net/static/screenshots/timeline.jpg',
+                width: 1280,
+                height: 827,
+                content_type: 'image/jpeg'
+              },
+              {
+                url: 'https://d1g9gqsbjj9vp7.cloudfront.net/static/screenshots/instagram.jpg',
+                width: 1280,
+                height: 1018,
+                content_type: 'image/jpeg'
+              },
+              {
+                url: 'https://d1g9gqsbjj9vp7.cloudfront.net/static/android-chrome-48x48.png',
+                width: 48,
+                height: 48,
+                content_type: 'image/png'
+              },
+              {
+                url:
+                  'https://lh5.googleusercontent.com/-f4zJHsysXWU/AAAAAAAAAAI/AAAAAAAAJeY/rKd1POb-GLA/s0/photo.jpg?sz=60',
+                width: 60,
+                height: 60,
+                content_type: 'image/jpeg'
+              },
+              {
+                url: 'https://d1g9gqsbjj9vp7.cloudfront.net/static/screenshots/draft.jpg',
+                width: 1280,
+                height: 827,
+                content_type: 'image/jpeg'
+              },
+              {
+                url:
+                  'https://lh5.googleusercontent.com/-aP6K2_DaQl4/AAAAAAAAAAI/AAAAAAAAMTU/4n5QesJFPv0/s0/photo.jpg?sz=60',
+                width: 60,
+                height: 60,
+                content_type: 'image/jpeg'
+              },
+              {
+                url:
+                  'https://lh3.googleusercontent.com/-SPCseUqXpHY/AAAAAAAAAAI/AAAAAAAAAHk/xuDPAp7KAzw/s0/photo.jpg?sz=60',
+                width: 60,
+                height: 60,
+                content_type: 'image/jpeg'
+              }
+            ]
+          }
+        ]
+      }
+    }
+  });
+});

@@ -1,0 +1,13 @@
+[db]
+  url = "mongodb://localhost/fpmtest"
+
+[log.logentries]
+  enabled = false
+
+[redis]
+  auth_pass = ""
+  host = "localhost"
+  port = 6379
+
+[sendy]
+  enabled = false

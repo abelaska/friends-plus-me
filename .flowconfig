@@ -1,0 +1,46 @@
+[ignore]
+.*node_modules.*
+.*/build/.*
+.*/lib/.*
+.*/.next/.*
+.*/__tests__/*
+.*/obsolete/.*
+
+[include]
+packages/**
+
+[libs]
+flow/
+flow-typed/
+
+[options]
+
+# https://github.com/facebook/flow/issues/2152#issuecomment-297469469
+sharedmemory.hash_table_pow=21
+
+emoji=true
+module.system=haste
+
+munge_underscores=true
+
+module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> 'RelativeImageStub'
+
+suppress_type=$FlowIssue
+suppress_type=$FlowFixMe
+suppress_type=$FixMe
+
+; Este, a temp fix for:
+; https://github.com/facebook/react-native/commit/e2ce98b7c6f4f2fc7011c214f9edc1301ff30572
+; TODO: Remove after React Native 0.43
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(3[0-7]\\|[1-2][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(3[0-7]\\|1[0-9]\\|[1-2][0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)?:? #[0-9]+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
+
+; experimental.strict_type_args=true
+; unsafe.enable_getters_and_setters=true
+esproposal.decorators=ignore
+
+; [version]
+; ^0.64.0

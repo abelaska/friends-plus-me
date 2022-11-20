@@ -1,0 +1,16 @@
+<md-dialog aria-label="Pick Link Shortener To Use">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Pick Link Shortener To Use</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="$mdDialog.cancel()">
+          <md-icon md-svg-src="/images/icons/close.svg" aria-label="Close Dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout="column" style="padding: 10px;">
+      <md-button class="md-raised md-primary" ng-click="$mdDialog.hide(a)" ng-repeat="a in accounts">{{$name(a)}}<span ng-if="$aid(a)">&nbsp;<small>({{$aid(a)}})</small></span></md-button>
+    </md-dialog-content>
+  </form>
+</md-dialog>

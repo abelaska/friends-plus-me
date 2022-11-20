@@ -1,0 +1,46 @@
+{
+  "name": "@fpm/web-developers",
+  "version": "0.5.0",
+  "private": true,
+  "author": "Alois Bělaška <alois@loysoft.com>",
+  "license": "ISC",
+  "main": "server.js",
+  "scripts": {
+    "dev": "pnpm build && pnpm start",
+    "build": "next build",
+    "clean": "pnpm build:clean",
+    "deploy": "/bin/bash scripts/deploy.sh",
+    "start": "node server.js",
+    "build:clean": "rm -rf '.next' 'dist' '*.log'"
+  },
+  "dependencies": {
+    "@fpm/config": "0.3.7",
+    "@fpm/logging": "0.4.7",
+    "app-root-dir": "1.0.2",
+    "bluebird": "3.5.0",
+    "body-parser": "1.17.2",
+    "client-sessions": "0.8.0",
+    "express": "4.15.4",
+    "isomorphic-fetch": "2.2.1",
+    "mobx": "3.2.2",
+    "mobx-react": "4.2.2",
+    "mobx-react-form": "1.32.1",
+    "next": "12.1.6",
+    "next-routes": "1.4.2",
+    "raven": "2.2.1",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-fontawesome": "1.6.1",
+    "react-styled-flexboxgrid": "2.0.3",
+    "react-toastify": "2.0.0-rc.3",
+    "styled-components": "5.3.5",
+    "validator": "8.1.0",
+    "validatorjs": "3.13.5"
+  },
+  "devDependencies": {
+    "@babel/core": "7.14.5",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.0",
+    "babel-plugin-styled-components": "^1.12.0"
+  }
+}

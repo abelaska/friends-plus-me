@@ -1,0 +1,86 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true,
+      "bitly": true
+    },
+    "tokens": {
+      "twal": true
+    },
+    "shortener": {
+      "type": "googl",
+      "bitly": {
+        "username": "abelaska",
+        "apiKey": "XXX"
+      }
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"bivPgL73S7bmqjYdi7PUoppwbqc/Y9ldHcBzGV-fMqMnXardaO2Z05w\"",
+    "title": "The Guardian: Oldest Swiss bank Wegelin to close after admitting aiding US tax evasion. http://goo.gl...",
+    "published": "2013-01-06T21:57:32.245Z",
+    "updated": "2013-01-06T21:57:32.245Z",
+    "id": "z13jszt5hp2dybmt222wy5f5cwvrynojk04",
+    "url": "https://plus.google.com/116309102273196668202/posts/6nay3pkUFKC",
+    "actor": {
+      "id": "116309102273196668202",
+      "displayName": "Christos Lolas",
+      "url": "https://plus.google.com/116309102273196668202",
+      "image": {
+        "url": "https://lh3.googleusercontent.com/-FjO-qrNHmtk/AAAAAAAAAAI/AAAAAAAADj8/l6V-FlGJ0B8/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "The Guardian: Oldest Swiss bank Wegelin to close after admitting aiding US tax evasion. <a href=\"http://goo.gl/mag/w03l8LP\" class=\"ot-anchor\">http://goo.gl/mag/w03l8LP</a>",
+      "url": "https://plus.google.com/116309102273196668202/posts/6nay3pkUFKC",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13jszt5hp2dybmt222wy5f5cwvrynojk04/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13jszt5hp2dybmt222wy5f5cwvrynojk04/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z13jszt5hp2dybmt222wy5f5cwvrynojk04/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "Oldest Swiss bank Wegelin to close after admitting aiding US tax evasion",
+          "content": "Founded in 1741, Wegelin pleaded guilty in court to helping wealthy Americans hide their income in secret offshore accounts",
+          "url": "http://goo.gl/mag/w03l8LP",
+          "image": {
+            "url": "https://images3-focus-opensocial.googleusercontent.com/gadgets/proxy?url=https://static-secure.guim.co.uk/sys-images/Guardian/Pix/pictures/2013/1/4/1357317181785/Switzerlands-oldest-bank--006.jpg&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_h=150&resize_w=150&no_expand=1",
+            "type": "image/jpeg",
+            "height": 150,
+            "width": 150
+          },
+          "fullImage": {
+            "url": "https://static-secure.guim.co.uk/sys-images/Guardian/Pix/pictures/2013/1/4/1357317181785/Switzerlands-oldest-bank--006.jpg",
+            "type": "image/jpeg"
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Currents"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    },
+    "userId": "50c5a3190c1d8aa90400a444",
+    "dbId": "50e9f3ea89bfc7254d004815"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "fpm-monorepo",
+  "private": true,
+  "scripts": {
+    "clean": "pnpm build:clean",
+    "build": "pnpm -r build",
+    "build:clean": "pnpm -r build:clean",
+    "eslint": "pnpm -r eslint",
+    "test": "pnpm -r test",
+    "test:watch": "pnpm -r test:watch",
+    "api:dev": "yarn workspace @fpm/web-api run dev",
+    "api:start": "yarn workspace @fpm/web-api run start",
+    "web:dev": "yarn workspace @fpm/web-app run dev",
+    "web:start": "yarn workspace @fpm/web-app run start",
+    "developers:dev": "yarn workspace @fpm/web-developers run dev",
+    "developers:start": "yarn workspace @fpm/web-developers run start"
+  },
+  "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0"
+  }
+}

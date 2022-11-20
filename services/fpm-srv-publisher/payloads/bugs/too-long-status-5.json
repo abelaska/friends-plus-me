@@ -1,0 +1,93 @@
+{
+  "account": {
+    "id": 103778702993142591484,
+    "use": {
+      "twitterCards": true
+    },
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"1sIZ_ObVeCvD_mqb4FBXmrmlWC4/bv14jS6VpSSUs4X1CSfVuEkCcQc\"",
+    "title": "8 Reasons to Consider Marketing with Google+ http://bit.ly/118LWFP   via +JeffBullas.com ",
+    "published": "2014-09-30T00:08:54.589Z",
+    "updated": "2014-09-30T00:08:54.589Z",
+    "id": "z12ecrlqoq2sxnrmc23uxldjcqmbv1rjp04",
+    "url": "https://plus.google.com/100730667278499258684/posts/DAfiPR22oDm",
+    "actor": {
+      "id": "100730667278499258684",
+      "displayName": "Heather Koroll",
+      "url": "https://plus.google.com/100730667278499258684",
+      "image": {
+        "url": "https://lh6.googleusercontent.com/-lag6h316nr8/AAAAAAAAAAI/AAAAAAAAADs/GKVjTqD-AtY/photo.jpg?sz=50"
+      }
+    },
+    "verb": "share",
+    "object": {
+      "objectType": "activity",
+      "id": "z12yu1ux1urkdlxbz04ch15guqy5idoxs4g",
+      "actor": {
+        "id": "116321845161889132580",
+        "displayName": "Flying Point Digital",
+        "url": "https://plus.google.com/116321845161889132580",
+        "image": {
+          "url": "https://lh5.googleusercontent.com/-9vtYwN75CiE/AAAAAAAAAAI/AAAAAAAABbw/OwXdmsVYIzg/photo.jpg?sz=50"
+        }
+      },
+      "content": "8 Reasons to Consider Marketing with Google+ <a href=\"http://bit.ly/118LWFP\">http://bit.ly/118LWFP</a>   via <span class=\"proflinkWrapper\"><span class=\"proflinkPrefix\">+</span><a class=\"proflink\" href=\"https://plus.google.com/108616132426905756017\" oid=\"108616132426905756017\">JeffBullas.com</a></span> \ufeff",
+      "url": "https://plus.google.com/116321845161889132580/posts/jodJLiBeEEp",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12ecrlqoq2sxnrmc23uxldjcqmbv1rjp04/comments"
+      },
+      "plusoners": {
+        "totalItems": 1,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12ecrlqoq2sxnrmc23uxldjcqmbv1rjp04/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://content.googleapis.com/plusPages/v2/activities/z12ecrlqoq2sxnrmc23uxldjcqmbv1rjp04/people/resharers"
+      },
+      "statusForViewer": {
+        "resharingDisabled": false,
+        "canComment": true,
+        "canPlusone": true,
+        "isPlusOned": false,
+        "canUpdate": false
+      },
+      "attachments": [
+        {
+          "objectType": "photo",
+          "displayName": "8 Reasons to Consider Marketing with Google+ http://bit.ly/118LWFP   via +JeffBullas.com ",
+          "id": "116321845161889132580.6064533688153649922",
+          "content": "092914GooglePlusMarketing.PNG",
+          "url": "https://plus.google.com/photos/116321845161889132580/albums/6064533683867985617/6064533688153649922",
+          "image": {
+            "url": "https://lh5.googleusercontent.com/-oW9fMPfpMUc/VCmNQhLJswI/AAAAAAAACZQ/HSd1mjQZNoA/w506-h750/092914GooglePlusMarketing.PNG",
+            "type": "image/jpeg"
+          },
+          "fullImage": {
+            "url": "https://lh5.googleusercontent.com/-oW9fMPfpMUc/VCmNQhLJswI/AAAAAAAACZQ/HSd1mjQZNoA/w696-h611/092914GooglePlusMarketing.PNG",
+            "type": "image/jpeg",
+            "height": 611,
+            "width": 696
+          }
+        }
+      ]
+    },
+    "provider": {
+      "title": "Reshared Post"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    }
+  }
+}

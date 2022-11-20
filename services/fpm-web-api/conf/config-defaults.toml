@@ -1,0 +1,48 @@
+[db.options]
+  useMongoClient = true
+  native_parser = true
+  poolSize = 32
+  reconnectInterval = 2000
+  reconnectTries = 180000000
+  autoReconnect = true
+  keepAlive = 120
+  noDelay = true
+[db.options.config]
+  autoIndex = false
+
+[log.file]
+  level = "debug"
+  maxFiles = 25
+  maxSize = 10485760
+[log.logentries]
+  level = "info"
+
+[hydra]
+  url = "https://hydra.friendsplus.me"
+  scope = "hydra.clients hydra.keys.get"
+  clientId = "admin"
+  clientSecret = "XXX"
+[hydra.developers]
+  clientId = "fpm-developers-app"
+  clientSecret = "XXX"
+
+[image.proxy]
+  url = "http://fpm-ipapi-fpm-ipapi:8080"
+  token = "XXX"
+  timeout = 60000
+
+[admin]
+  emails = ["ab@gmail.com"]
+
+[reserved]
+  callbacks = ["friendsplus.me"]
+
+[auth0]
+  domain = "fpm.auth0.com"
+
+[email]
+  bcc = ""
+  sender = "Friends+Me <please-reply@friendsplus.me>"
+[email.transports.mailgun.auth]
+  api_key = "key-XXX"
+  domain = "friendsplus.me"

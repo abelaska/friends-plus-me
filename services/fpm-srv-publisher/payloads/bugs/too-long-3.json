@@ -1,0 +1,68 @@
+{
+  "account": {
+    "shortener": {
+      "type": "none"
+    },
+    "id": 103778702993142591484,
+    "tokens": {
+      "livt": "anyone"
+    }
+  },
+  "activity": {
+    "kind": "plus#activity",
+    "etag": "\"sJt1VilOvxUfDlfPWeqwjvyqpgI/ctkRpup9OWlEVZXNldEpA63nKT8\"",
+    "title": "The comments being posted on Microsoft's technet blog site around the FTC/Google settlement echo many...",
+    "published": "2013-01-04T15:08:54.899Z",
+    "updated": "2013-01-04T15:09:23.000Z",
+    "id": "z135i3iimlvztf0dm225ybmpvkyky50rz04",
+    "url": "https://plus.google.com/100030405042180530507/posts/9N9nTwqFL6D",
+    "actor": {
+      "id": "100030405042180530507",
+      "displayName": "David Hoff",
+      "url": "https://plus.google.com/100030405042180530507",
+      "image": {
+        "url": "https://lh4.googleusercontent.com/-dmhhW5xMqqQ/AAAAAAAAAAI/AAAAAAAAFHQ/8erv7BQD9gE/photo.jpg?sz=50"
+      }
+    },
+    "verb": "post",
+    "object": {
+      "objectType": "note",
+      "content": "The comments being posted on Microsoft&#39;s technet blog site around the FTC/Google settlement echo many of the same themes.  Most people were not aware Microsoft was spending millions to wage a smear campaign against Google.  Second, they are expressing their desire to get away from purchasing anything Microsoft.  <br /><br />I suspect they&#39;ll disable the comments soon, but the first one from Ricardo is typical of many.  He says, &quot;I actually didn&#39;t know about this whole deal with Google and FTC, and as I read more about it, it became quite blatant that the whole thing was schemed by Microsoft... That&#39;s a shady move, wasting government money on a dead end investigation just to stifle competition... Anyway, now that I&#39;m aware of your practices, I won&#39;t take the bait anymore, and in my company, what has windows already, will stay as it is, and will take a look on what the competition has to offer. You lost a customer today, not by the merit of the competition, but by your practices...&quot;<br /><br /><b>Now</b> is a good time to look at your options; with cloud computing and software as a service, you can run an your entire organization without spending another dollar with Microsoft.  It&#39;s not for everyone yet, but now is time to start.",
+      "url": "https://plus.google.com/100030405042180530507/posts/9N9nTwqFL6D",
+      "replies": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z135i3iimlvztf0dm225ybmpvkyky50rz04/comments"
+      },
+      "plusoners": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z135i3iimlvztf0dm225ybmpvkyky50rz04/people/plusoners"
+      },
+      "resharers": {
+        "totalItems": 0,
+        "selfLink": "https://www.googleapis.com/plus/v1/activities/z135i3iimlvztf0dm225ybmpvkyky50rz04/people/resharers"
+      },
+      "attachments": [
+        {
+          "objectType": "article",
+          "displayName": "The FTC and Google: A Missed Opportunity - Microsoft on the Issues - Site Home - TechNet Blogs",
+          "content": "Microsoft On the Issues is the Microsoft blog on technology policy and corporate affairs. On this blog, Microsoft shares thoughts on how the computing revolution can accelerate economic growth by enab...",
+          "url": "http://blogs.technet.com/b/microsoft_on_the_issues/archive/2013/01/03/the-ftc-and-google-a-missed-opportunity.aspx"
+        }
+      ]
+    },
+    "provider": {
+      "title": "Google+"
+    },
+    "access": {
+      "kind": "plus#acl",
+      "description": "Public",
+      "items": [
+        {
+          "type": "public"
+        }
+      ]
+    },
+    "userId": "50e1b13c1ae297f548002408",
+    "dbId": "50e6f0c8a27a23ec68002faf"
+  }
+}

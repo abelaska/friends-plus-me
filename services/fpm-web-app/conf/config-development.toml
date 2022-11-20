@@ -1,0 +1,124 @@
+[db]
+  url = "mongodb://localhost/fpm"
+
+[extension]
+  id = "XXX"
+
+[cookie]
+  secret = "XXX"
+
+[recaptcha]
+  secret = "XXX-XXX"
+
+[redis]
+  auth_pass = ""
+  host = "localhost"
+  port = 6379
+
+[gcloud.key]
+  filename = "conf/FPM - Cluster-XXX.json"
+
+[braintree]
+  environment = "Sandbox"
+[braintree.merchant.default]
+  merchantId = "XXX"
+  privateKey = "XXX"
+  publicKey = "XXX"
+[braintree.merchant.default.account]
+  default = "XXX"
+
+[email]
+  debug = true
+
+[cdn]
+  url = ""
+
+[http]
+  bind = "0.0.0.0"
+  port = 9000
+[http.api]
+  url = "https://localhost:9000"
+  # url = "https://192.168.2.102:9000"
+[http.api.public]
+  url = "http://localhost:3000"
+[http.landingpage]
+  force = "https://localhost:9000/force"
+  signin = "https://localhost:9000/signin"
+  url = "https://localhost:9000"
+  # force = "https://192.168.2.102:9000/force"
+  # signin = "https://192.168.2.102:9000/signin"
+  # url = "https://192.168.2.102:9000"
+[http.ui]
+  url = "https://localhost:9000"
+  # url = "https://192.168.2.102:9000"
+[http.ui.redirect]
+  url = "https://localhost:9000/?url="
+  # url = "https://192.168.2.102:9000/?url="
+
+[log.logentries]
+  enabled = false
+  token = ""
+
+[sendy]
+  enabled = false
+
+[linkedin]
+  apiKey = "XXX"
+  secretKey = "XXX"
+
+[facebook]
+  clientId = "XXX"
+  clientSecret = "XXX"
+
+[postsReady]
+  cron = "*/3 * * * * *"
+
+# [oauth.tokens.store.crypto]
+#   key = "1234567890"
+#   iv = "0123456789012345"
+[oauth.tokens.store.crypto]
+  key = "XXX"
+  iv = "XXX"
+
+[auth0]
+  clientId = "XXX"
+  clientSecret = "XXX-XXX"
+
+[grant.server]
+  host = "localhost:9000"
+[grant.facebook]
+  key = "XXX"
+  secret = "XXX"
+[grant.google]
+  key = "XXX-XXX.apps.googleusercontent.com"
+  secret = "XXX-XXX"
+[grant.linkedin]
+  key = "XXX"
+  secret = "XXX"
+[grant.pinterest]
+  key = "XXX"
+  secret = "XXX"
+[grant.twitter]
+  key = "XXX"
+  secret = "XXX"
+[grant.tumblr]
+  key = "XXX"
+  secret = "XXX"
+
+[quickbooks]
+  companyId = "XXX"
+  clientId = "XXX"
+  clientSecret = "XXX"
+  callbackUrl = "http://localhost:3000/callback"
+
+[mobileproxy]
+  url = "http://192.168.42.1:15000"
+
+[login]
+  url = "http://localhost:4000"
+
+# [users.alias]
+#   "54fd954db853be010073c4d7" = "58c069a45f6e7f3ae28d5d37"
+
+[api]
+  url = "http://localhost:3000"

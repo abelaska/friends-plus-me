@@ -1,0 +1,47 @@
+{
+ "kind": "plus#activity",
+ "etag": "\"TJ4YjXUi1XCM_G3FJ4uiPX8m6Fk/vB4SE5RQCk6Qeej-9B3Nk5-bxHA\"",
+ "title": "Today we are working through slides 23-28 of the powerpoint here: https://docs.google.com/file/d/0B5o...",
+ "published": "2013-03-07T14:00:00.664Z",
+ "updated": "2013-03-07T14:00:00.664Z",
+ "id": "z13re3yqkqi1tnm0d22bx5einw2psp5bc04",
+ "url": "https://plus.google.com/116074288716331317076/posts/2bnRAtzfaxu",
+ "actor": {
+  "id": "116074288716331317076",
+  "displayName": "Westosha AP Geo",
+  "url": "https://plus.google.com/116074288716331317076",
+  "image": {
+   "url": "https://lh3.googleusercontent.com/-S4HxAOVFZbI/AAAAAAAAAAI/AAAAAAAAAE0/BmN3TY-FA5I/photo.jpg?sz=50"
+  }
+ },
+ "verb": "post",
+ "object": {
+  "objectType": "note",
+  "content": "Today we are working through slides 23-28 of the powerpoint here: <a href=\"https://docs.google.com/file/d/0B5oer8LCCIpcd0ctWmttUkk3aU0/edit?usp=sharing\" class=\"ot-anchor\" rel=\"nofollow\">https://docs.google.com/file/d/0B5oer8LCCIpcd0ctWmttUkk3aU0/edit?usp=sharing</a> and here&#39;s a sheet we are taking to sum things up: <a href=\"https://docs.google.com/document/d/15KaDmTP1lYldoFQQwsBw85-DppKzMcwgWaM8YmFg5hE/edit?usp=sharing\" class=\"ot-anchor\" rel=\"nofollow\">https://docs.google.com/document/d/15KaDmTP1lYldoFQQwsBw85-DppKzMcwgWaM8YmFg5hE/edit?usp=sharing</a>",
+  "url": "https://plus.google.com/116074288716331317076/posts/2bnRAtzfaxu",
+  "replies": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13re3yqkqi1tnm0d22bx5einw2psp5bc04/comments"
+  },
+  "plusoners": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13re3yqkqi1tnm0d22bx5einw2psp5bc04/people/plusoners"
+  },
+  "resharers": {
+   "totalItems": 0,
+   "selfLink": "https://www.googleapis.com/plus/v1/activities/z13re3yqkqi1tnm0d22bx5einw2psp5bc04/people/resharers"
+  }
+ },
+ "provider": {
+  "title": "Google+"
+ },
+ "access": {
+  "kind": "plus#acl",
+  "description": "Public",
+  "items": [
+   {
+    "type": "public"
+   }
+  ]
+ }
+}

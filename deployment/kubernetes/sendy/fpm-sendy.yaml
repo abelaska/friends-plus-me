@@ -1,0 +1,96 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: fpm-sendy-sendy
+  labels:
+    app: fpm-sendy-sendy
+spec:
+  type: NodePort
+  selector:
+    app: sendy
+  ports:
+    - name: service
+      port: 80
+      targetPort: 80
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fpm-sendy-sendy
+  labels:
+    app: sendy
+spec:
+  replicas: 1
+  progressDeadlineSeconds: 600
+  selector:
+    matchLabels:
+      app: sendy
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      name: fpm-sendy-sendy
+      labels:
+        app: sendy
+    spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      containers:
+        # [START sendy]
+        - name: sendy
+          image: "gcr.io/fpm-application/fpm-sendy:latest"
+          imagePullPolicy: "Always"
+          ports:
+            - name: service
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 8
+            timeoutSeconds: 1
+          resources:
+            requests:
+              cpu: 1m
+              memory: 32Mi
+        # [STOP sendy]
+        # [START cloudsql-proxy]
+        - name: cloudsql-proxy
+          image: "gcr.io/cloudsql-docker/gce-proxy:1.09"
+          imagePullPolicy: "IfNotPresent"
+          command:
+            [
+              "/cloud_sql_proxy",
+              "--dir=/cloudsql",
+              "-instances=fpm-application:us-central1:db-sendy=tcp:3306",
+              "-credential_file=/secrets/cloudsql/credentials.json",
+            ]
+          volumeMounts:
+            - name: cloudsql-sendy-credentials
+              mountPath: /secrets/cloudsql
+              readOnly: true
+            - name: ssl-certs
+              mountPath: /etc/ssl/certs
+            - name: cloudsql
+              mountPath: /cloudsql
+          resources:
+            requests:
+              cpu: 1m
+              memory: 16Mi
+        # [END cloudsql-proxy]
+      # [START volumes]
+      volumes:
+        - name: cloudsql-sendy-credentials
+          secret:
+            secretName: cloudsql-sendy-credentials
+        - name: ssl-certs
+          hostPath:
+            path: /etc/ssl/certs
+        - name: cloudsql
+          emptyDir:
+      # [END volumes]
